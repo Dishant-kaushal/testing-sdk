@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm view *)",
+      "Bash(npm start *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/static/js/bundle.js)",
+      "Bash(curl -s \"http://localhost:3000/static/js/bundle.js\")",
+      "Read(//d/Code//**)",
+      "Bash(pnpm build *)",
+      "Read(//c/Users/hp/Downloads/NPM env//**)",
+      "Read(//c/Users/hp/Downloads/NPM env/**)",
+      "Bash(node -e \"const sdk = require\\('/d/Code/testing-sdk/node_modules/@faclon-labs/design-sdk/dist/index.js'\\); console.log\\(Object.keys\\(sdk\\).filter\\(k => k.startsWith\\('Table'\\) || k.startsWith\\('Cell'\\) || k === 'SearchInput'\\).join\\(', '\\)\\)\")",
+      "Read(//tmp/**)",
+      "Bash(npx kill-port *)"
+    ],
+    "additionalDirectories": [
+      "D:\\Code\\testing-sdk\\src",
+      "\\tmp"
+    ]
+  }
+}
