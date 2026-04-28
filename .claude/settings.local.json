@@ -13,7 +13,10 @@
       "Read(//c/Users/hp/Downloads/NPM env/**)",
       "Bash(node -e \"const sdk = require\\('/d/Code/testing-sdk/node_modules/@faclon-labs/design-sdk/dist/index.js'\\); console.log\\(Object.keys\\(sdk\\).filter\\(k => k.startsWith\\('Table'\\) || k.startsWith\\('Cell'\\) || k === 'SearchInput'\\).join\\(', '\\)\\)\")",
       "Read(//tmp/**)",
-      "Bash(npx kill-port *)"
+      "Bash(npx kill-port *)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git config *)"
     ],
     "additionalDirectories": [
       "D:\\Code\\testing-sdk\\src",
