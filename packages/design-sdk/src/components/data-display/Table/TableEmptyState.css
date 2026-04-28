@@ -1,0 +1,18 @@
+/* TableEmptyState — wraps DS <EmptyState> inside a <tr><td colSpan/> so it
+   can be dropped straight into a <TableBody>. The <EmptyState> owns its
+   own chrome (illustration + title + description + actions), so this
+   stylesheet only handles the surrounding `<td>` centring. */
+
+.fds-table__empty-state-cell {
+  padding: var(--fds-space-2xl) var(--fds-space-md);
+  text-align: center;
+  /* No row-divider border on the empty-state row — the surface's outer
+     border closes it like the last real row. */
+  border-bottom: none;
+}
+
+.fds-table__empty-state {
+  /* The DS <EmptyState> has its own flex-column layout; center it inside
+     the td. */
+  margin: 0 auto;
+}

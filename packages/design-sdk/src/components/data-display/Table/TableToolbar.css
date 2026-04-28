@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TableToolbar — Figma 1313:14632 (_Table/Header-Base).
+   Sits above the data scroll area in the surface's `toolbar` slot.
+   Padding 12 px all sides; gap 16 px between row + section.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-lg);
+  padding: var(--fds-space-md);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fds-table-toolbar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--fds-space-lg);
+  min-height: 44px;
+  width: 100%;
+}
+
+.fds-table-toolbar__leading {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.fds-table-toolbar__titles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fds-table-toolbar__title {
+  color: var(--text-gray-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fds-table-toolbar__subtitle {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fds-table-toolbar__trailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  gap: var(--fds-space-sm);
+  flex-shrink: 0;
+}
+
+.fds-table-toolbar__section {
+  width: 100%;
+}
+
+/* Convenience wrapper applied by <TableToolbarActions> — lays out its
+   icon/button children with the Figma 8 px trailing gap. */
+.fds-table__toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+}

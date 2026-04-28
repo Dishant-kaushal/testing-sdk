@@ -1,0 +1,15 @@
+/* ModalBody — Faclon Design System 2.0
+   Figma: 1308:1107 */
+
+.fds-modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.fds-modal-body__text {
+  color: var(--text-gray-secondary);
+  letter-spacing: 0;
+  width: 100%;
+}

@@ -1,0 +1,40 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card Leading Item — Faclon Design System 2.0
+   Figma: 1506:5869
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-card-leading {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Icon variant: fixed 24×24, centered, clipped */
+.fds-card-leading--icon {
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.fds-card-leading__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  overflow: clip;
+  flex-shrink: 0;
+  color: var(--text-gray-primary);
+}
+
+.fds-card-leading__icon > svg,
+.fds-card-leading__icon > img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom variant: flexible, aligned start */
+.fds-card-leading--custom {
+  align-items: flex-start;
+}

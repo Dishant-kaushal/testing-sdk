@@ -1,0 +1,13 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PopoverFooter — Figma 778:8451
+   Right-aligned action row, no divider (Figma spec).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-popover-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--fds-space-md);
+  width: 100%;
+}

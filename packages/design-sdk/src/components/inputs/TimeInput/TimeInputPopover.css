@@ -1,0 +1,34 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TimeInputPopover — floating panel with columns + footer
+   Figma: 3155:11400
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-time-popover {
+  display: flex;
+  flex-direction: column;
+  width: 192px;
+  background: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: 0 8px 24px var(--elevation-mid-raised, rgba(25, 40, 57, 0.12));
+  overflow: hidden;
+}
+
+.fds-time-popover__columns {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* Columns grow equally to fill the 192px popover:
+   - 3 columns (12-hour) → 64px each
+   - 2 columns (24-hour, AM/PM hidden) → 96px each */
+.fds-time-popover__columns .fds-time-column {
+  flex: 1 0 0;
+  width: auto;
+}
+
+/* Figma 3155:10656 — Hour & Minute columns have border-right; Period column has none */
+.fds-time-popover__columns .fds-time-column:not(:last-child) {
+  border-right: var(--global-border-width-thin) solid var(--border-gray-muted);
+}

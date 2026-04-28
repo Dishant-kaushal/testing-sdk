@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Chip — Faclon Design System 2.0
+   Figma: 562:1494
+   Pill-shaped toggle with 4 sizes, 4 states (default/hover/focus/disabled),
+   and two selection sets (isSelected=false | true).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fds-space-xs);
+  border-radius: var(--global-border-radius-max);
+  background: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-focused-default);
+  color: var(--text-gray-primary);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.fds-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fds-chip__label {
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Sizes — height, padding, icon glyph size
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip--size-xsmall {
+  height: 24px;
+  padding: 0 var(--fds-space-sm);
+}
+.fds-chip--size-xsmall .fds-chip__icon {
+  width: 12px;
+  height: 12px;
+}
+.fds-chip--size-xsmall .fds-chip__icon > * {
+  width: 12px;
+  height: 12px;
+}
+
+.fds-chip--size-small {
+  height: 28px;
+  padding: 0 var(--fds-space-md);
+}
+.fds-chip--size-small .fds-chip__icon,
+.fds-chip--size-small .fds-chip__icon > * {
+  width: 14px;
+  height: 14px;
+}
+
+.fds-chip--size-medium {
+  height: 36px;
+  padding: 0 var(--fds-space-lg);
+}
+.fds-chip--size-medium .fds-chip__icon,
+.fds-chip--size-medium .fds-chip__icon > * {
+  width: 16px;
+  height: 16px;
+}
+
+.fds-chip--size-large {
+  height: 48px;
+  padding: 0 var(--fds-space-xl);
+}
+.fds-chip--size-large .fds-chip__icon,
+.fds-chip--size-large .fds-chip__icon > * {
+  width: 20px;
+  height: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Icon-only — square chip, symmetric padding sized to match the height
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip--icon-only {
+  gap: 0;
+}
+.fds-chip--icon-only.fds-chip--size-xsmall {
+  width: 24px;
+  padding: 0;
+}
+.fds-chip--icon-only.fds-chip--size-small {
+  width: 28px;
+  padding: 0;
+}
+.fds-chip--icon-only.fds-chip--size-medium {
+  width: 36px;
+  padding: 0;
+}
+.fds-chip--icon-only.fds-chip--size-large {
+  width: 48px;
+  padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Unselected states (isSelected = false)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip:not(.fds-chip--selected):not(.fds-chip--disabled):hover {
+  background: var(--background-gray-hover-light);
+}
+
+.fds-chip:not(.fds-chip--selected):not(.fds-chip--disabled):focus-visible {
+  background: var(--background-gray-hover-light);
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--background-surface-intense),
+    0 0 0 5px var(--border-focused-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Selected states (isSelected = true)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip--selected {
+  background: var(--background-brand-secondary);
+  border-color: var(--border-brand-default);
+  color: var(--text-brand-default);
+}
+
+.fds-chip--selected:not(.fds-chip--disabled):hover {
+  background: var(--background-brand-secondary-hover);
+  border-color: var(--border-brand-hover);
+}
+
+.fds-chip--selected:not(.fds-chip--disabled):focus-visible {
+  background: var(--background-brand-secondary-hover);
+  border-color: var(--border-brand-hover);
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--background-surface-intense),
+    0 0 0 5px var(--border-focused-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled states
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip--disabled {
+  cursor: not-allowed;
+}
+
+.fds-chip--disabled:not(.fds-chip--selected) {
+  border-color: var(--border-gray-disabled);
+  color: var(--text-gray-disabled);
+}
+
+.fds-chip--selected.fds-chip--disabled {
+  background: var(--background-brand-disabled);
+  border-color: var(--border-brand-disabled);
+  color: var(--text-brand-disabled);
+}

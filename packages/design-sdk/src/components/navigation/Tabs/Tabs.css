@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tabs — Faclon Design System 2.0
+   Figma: 581:2199 (Tabs assemblies), 581:2147 (variant matrix)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ———————————————————————————————————————————————————————————————— */
+
+.fds-tabs {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* Sliding indicator styles live in TabIndicator.css (separate component). */
+
+/* Horizontal: top-aligned so different-height tabs anchor at the top edge.
+   Heights are equalised at the TabItem level — see TabItem.css. */
+.fds-tabs--orientation-horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--spacing-08);
+}
+
+.fds-tabs--orientation-vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* Full-width — TabItems share the row */
+.fds-tabs--full-width.fds-tabs--orientation-horizontal {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant — Bordered (container border, line indicator on item)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tabs--variant-bordered.fds-tabs--orientation-horizontal {
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+.fds-tabs--variant-bordered.fds-tabs--orientation-vertical {
+  /* Vertical equivalent of the horizontal baseline — a 1.5 px subtle left rail.
+     Selected item's 2 px brand indicator overlaps this via negative margin. */
+  border-left: 1.5px solid var(--border-gray-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant — Borderless (no container border, line indicator only)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* No additional container styling — TabItem renders its own indicator. */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant — Filled (segmented control enclosure)
+   Always renders as a bordered, padded white box, regardless of orientation
+   or `isFullWidthTabItem` (Figma has no Filled-without-enclosure cell).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tabs--variant-filled {
+  background-color: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-small);
+  padding: var(--spacing-02);
+  gap: var(--spacing-01);
+}
+
+.fds-tabs--variant-filled.fds-tabs--orientation-horizontal {
+  align-items: center;
+}
+
+.fds-tabs--variant-filled.fds-tabs--orientation-vertical {
+  width: max-content;
+  align-items: stretch;
+}
+
+/* When isFullWidthTabItem on horizontal Filled, items expand to share width. */
+.fds-tabs--variant-filled.fds-tabs--orientation-horizontal.fds-tabs--full-width {
+  width: 100%;
+}

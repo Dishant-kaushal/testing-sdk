@@ -1,0 +1,179 @@
+/* ProductAccordionItem — Faclon Design System 2.0
+   Figma: 1477:30051 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Header
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item__header {
+  all: unset;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-04);
+  padding: var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+  transition: background-color 150ms ease;
+}
+
+/* Expanded default — no bottom border (body has it) */
+.fds-pa-item--expanded .fds-pa-item__header {
+  border-bottom-color: transparent;
+}
+
+/* Hover */
+.fds-pa-item:not(.fds-pa-item--disabled) .fds-pa-item__header:hover {
+  background: var(--background-gray-hover-light);
+  border-bottom-color: var(--border-gray-muted);
+}
+
+/* Focus */
+.fds-pa-item:not(.fds-pa-item--disabled) .fds-pa-item__header:focus-visible {
+  background: var(--background-gray-hover-light);
+  outline: none;
+  border-radius: var(--global-border-radius-medium);
+  box-shadow:
+    0 0 0 1px var(--background-surface-intense),
+    0 0 0 4px var(--border-focused-default);
+  border-bottom-color: var(--border-gray-muted);
+}
+
+/* Disabled */
+.fds-pa-item--disabled .fds-pa-item__header {
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Title area — leading + title section
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item__title-area {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+}
+
+.fds-pa-item__title-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-02);
+}
+
+.fds-pa-item__heading-row {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+}
+
+.fds-pa-item__title {
+  color: var(--text-gray-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.fds-pa-item--disabled .fds-pa-item__title {
+  color: var(--text-gray-disabled);
+}
+
+.fds-pa-item__trailing-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+}
+
+.fds-pa-item--disabled .fds-pa-item__trailing-icon {
+  color: var(--text-gray-disabled);
+}
+
+.fds-pa-item__subtitle {
+  color: var(--text-gray-tertiary);
+  letter-spacing: 0;
+  width: 100%;
+}
+
+.fds-pa-item--disabled .fds-pa-item__subtitle {
+  color: var(--text-gray-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Close button (X)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--text-gray-tertiary);
+}
+
+.fds-pa-item--disabled .fds-pa-item__close {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Chevron
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+  transition: transform 150ms ease;
+}
+
+.fds-pa-item__chevron--open {
+  transform: rotate(180deg);
+}
+
+.fds-pa-item--disabled .fds-pa-item__chevron {
+  color: var(--text-gray-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Body
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pa-item__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* Leading icon color */
+.fds-pa-item .fds-pa-leading {
+  color: var(--text-gray-primary);
+}
+
+.fds-pa-item--disabled .fds-pa-leading {
+  color: var(--text-gray-disabled);
+}

@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   StepperGroupLabel — Faclon Design System 2.0
+   Muted caption separating step clusters in a vertical stepper.
+
+   Horizontal alignment matches the step's TITLE column (not the indicator
+   column), so captions read as titles for the block of steps that follow.
+   Left offset = indicator-col-width + gap + text-block inner padding
+               = 24 + 8 + 4 = 36 px at the default scale.
+   Nested labels pick up the same per-level margin-left rule as nested steps.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-stepper-group-label {
+  padding: var(--fds-space-sm) 0 var(--fds-space-xs);
+  color: var(--text-gray-tertiary);
+}
+
+.fds-stepper[data-orientation='vertical'] .fds-stepper-group-label {
+  padding-left: calc(
+    var(--fds-stepper-indicator-col) + var(--fds-stepper-gap) + var(--fds-space-xs)
+  );
+}
+
+.fds-stepper[data-orientation='vertical'] .fds-stepper-group-label[data-nesting-level='1'] {
+  margin-left: var(--fds-stepper-nest-indent);
+}
+.fds-stepper[data-orientation='vertical'] .fds-stepper-group-label[data-nesting-level='2'] {
+  margin-left: calc(2 * var(--fds-stepper-nest-indent));
+}
+.fds-stepper[data-orientation='vertical'] .fds-stepper-group-label[data-nesting-level='3'] {
+  margin-left: calc(3 * var(--fds-stepper-nest-indent));
+}

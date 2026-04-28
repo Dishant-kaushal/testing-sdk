@@ -1,0 +1,46 @@
+/* ModalLeadingItem — Faclon Design System 2.0
+   Figma: 619:11599 */
+
+/* Base */
+.fds-modal-leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Icon variant — 20px icon centered with 4px vertical padding */
+.fds-modal-leading--icon {
+  padding: var(--spacing-02) 0;
+}
+
+/* Asset variant — 32×32 slot */
+.fds-modal-leading--asset {
+  width: 32px;
+  height: 32px;
+}
+
+/* Semantic variants — 32×32 tinted square, 8px padding, 4px radius */
+.fds-modal-leading--error,
+.fds-modal-leading--warning,
+.fds-modal-leading--success {
+  width: 32px;
+  height: 32px;
+  padding: var(--spacing-03);
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-modal-leading--error {
+  background: var(--background-error-secondary);
+  color: var(--text-error-default);
+}
+
+.fds-modal-leading--warning {
+  background: var(--background-warning-secondary);
+  color: var(--text-warning-default);
+}
+
+.fds-modal-leading--success {
+  background: var(--background-positive-secondary);
+  color: var(--text-positive-default);
+}

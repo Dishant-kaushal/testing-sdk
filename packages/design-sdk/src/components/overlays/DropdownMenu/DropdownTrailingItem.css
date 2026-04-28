@@ -1,0 +1,16 @@
+/* DropdownTrailingItem — Faclon Design System 2.0
+   Figma: 237:21039 */
+
+.fds-dropdown-trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* Badge, Text, and Link variants get 4px vertical padding */
+.fds-dropdown-trailing--badge,
+.fds-dropdown-trailing--text,
+.fds-dropdown-trailing--link {
+  padding: var(--spacing-02) 0;
+}

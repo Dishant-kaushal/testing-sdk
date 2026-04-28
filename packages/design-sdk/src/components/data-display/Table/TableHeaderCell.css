@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TableHeaderCell — <th>
+   Figma 1313:15159 — Header Cell Base.
+
+   Layout (per Figma): [text-container (text + tooltip-icon)]  ⇄  [sort-indicator]
+   Box: height 36, padding 12 (--spacing[4]), gap 8 (--spacing[3])
+   Bg: --background-secondary-default
+   Border-bottom: 1 px --border-gray-muted   (the single horizontal divider)
+   Text: Body/MediumSemibold, color --text-gray-tertiary
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table__header-cell {
+  height: var(--fds-table-row-header-height);
+  padding: var(--fds-space-md);
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+
+  /* Opaque base + tint scrim via ::before. `--background-gray-default` is
+     semi-transparent (alpha ~0.12) so a single background-color on the
+     sticky header would let scrolled body content bleed through. A solid
+     white base plus a tinted pseudo keeps the header fully opaque. */
+  background-color: var(--background-surface-intense);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+  position: relative;
+  isolation: isolate;
+
+  color: var(--text-gray-tertiary);
+  outline: none;
+}
+.fds-table__header-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--background-gray-default);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Inner flex wrapper — places text + tooltip-icon on the left and the
+   sort indicator on the right. Flex inside <th> works; the <th> itself
+   stays in table-layout. */
+.fds-table__header-cell-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  height: 100%;
+  width: 100%;
+}
+
+.fds-table__header-cell-text-container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fds-table__header-cell-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tooltip-icon slot — 16 px Info icon. Hidden until consumer passes a
+   non-empty `infoTooltip` prop. */
+.fds-table__header-cell-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--fds-space-lg);
+  height: var(--fds-space-lg);
+  color: var(--text-gray-tertiary);
+}
+
+/* Sortable affordance — cursor only, no bg shift (per design direction) */
+.fds-table__header-cell[data-sortable='true'] {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Selection cell — width locked to the selection column token. Centered
+   checkbox via inner wrapper. */
+.fds-table__header-cell--selection {
+  width: var(--fds-table-col-selection);
+  min-width: var(--fds-table-col-selection);
+  max-width: var(--fds-table-col-selection);
+  padding: var(--fds-space-md) 0;
+  text-align: center;
+  cursor: default;
+}
+
+/* Alignment */
+.fds-table__header-cell[data-align='right'] { text-align: right; }
+.fds-table__header-cell[data-align='right'] .fds-table__header-cell-inner { justify-content: flex-end; }
+.fds-table__header-cell[data-align='center'] { text-align: center; }
+.fds-table__header-cell[data-align='center'] .fds-table__header-cell-inner { justify-content: center; }
+
+/* —— Sort indicator (two stacked react-feather chevrons) ───────────────── */
+
+.fds-table__sort-indicator {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--fds-space-xl);
+  height: var(--fds-space-xl);
+  flex-shrink: 0;
+}
+
+.fds-table__sort-indicator__chevron {
+  display: block;
+  color: var(--text-gray-disabled);
+  /* Pulls the two 12 px chevrons closer so they read as a single stacked
+     indicator in a 20 px box. 2 px = --fds-space-xxs. */
+  margin-block: calc(-1 * var(--fds-space-xxs));
+  transition: color var(--fds-duration-xquick) var(--fds-easing-standard);
+}
+
+.fds-table__sort-indicator__chevron--active {
+  color: var(--text-gray-secondary);
+}
+
+/* Right-aligned cells: indicator BEFORE text */
+.fds-table__header-cell[data-align='right'] .fds-table__sort-indicator {
+  order: -1;
+}

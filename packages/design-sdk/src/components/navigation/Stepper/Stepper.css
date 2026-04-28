@@ -1,0 +1,20 @@
+/* Stepper — flex container that hosts <StepperStep> children. Layout flips
+   between row (horizontal) and column (vertical) — same as Blade's StepGroup. */
+
+.fds-stepper {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.fds-stepper[data-orientation='horizontal'] {
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+/* Root-level group gets vertical breathing room around the stack. */
+.fds-stepper[data-nesting-level='0'] {
+  padding: var(--fds-space-md) 0;
+}

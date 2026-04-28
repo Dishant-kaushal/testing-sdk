@@ -1,0 +1,231 @@
+/* ActionListItem — Faclon Design System 2.0
+   Figma: 505:6897 */
+
+/* Base */
+.fds-action-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* ── Item wrapper ──────────────────────────────────────────────────────── */
+
+.fds-action-list-item__wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-03);
+  padding: var(--spacing-03);
+  width: 100%;
+  background: transparent;
+  border-radius: var(--global-border-radius-medium);
+  cursor: pointer;
+}
+
+/* Hover */
+.fds-action-list-item:not(.fds-action-list-item--disabled):hover .fds-action-list-item__wrapper {
+  background: var(--background-brand-secondary);
+}
+
+/* Focus — kill browser outline on the root (tabIndex element) */
+.fds-action-list-item:focus-visible {
+  outline: none;
+}
+
+/* Focus — Figma _BaseFocusRing: stacked box-shadow (2px white gap + 4px ring) */
+.fds-action-list-item:not(.fds-action-list-item--disabled):focus-visible {
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-action-list-item:not(.fds-action-list-item--disabled):focus-visible .fds-action-list-item__wrapper {
+  background: var(--background-brand-secondary);
+}
+
+/* Selected — subtle brand-secondary bg, Single only (Multiple uses checkbox as indicator) */
+.fds-action-list-item--selected:not(.fds-action-list-item--selection-multiple) .fds-action-list-item__wrapper {
+  background: var(--background-brand-secondary);
+}
+
+/* Disabled */
+.fds-action-list-item--disabled {
+  pointer-events: none;
+}
+
+.fds-action-list-item--disabled .fds-action-list-item__wrapper {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Destructive */
+.fds-action-list-item--destructive .fds-action-list-item__title {
+  color: var(--text-error-default);
+}
+
+.fds-action-list-item--destructive .fds-action-list-item__leading {
+  color: var(--text-error-default);
+}
+
+/* Destructive — Hover: error background instead of brand */
+.fds-action-list-item--destructive:not(.fds-action-list-item--disabled):hover .fds-action-list-item__wrapper {
+  background: var(--background-error-secondary);
+}
+
+/* Destructive — Focus: error background */
+.fds-action-list-item--destructive:not(.fds-action-list-item--disabled):focus-visible .fds-action-list-item__wrapper {
+  background: var(--background-error-secondary);
+}
+
+/* Destructive — Selected: error background, Single only */
+.fds-action-list-item--destructive.fds-action-list-item--selected:not(.fds-action-list-item--selection-multiple) .fds-action-list-item__wrapper {
+  background: var(--background-error-secondary);
+}
+
+/* ── Body (leading + content) ──────────────────────────────────────────── */
+
+.fds-action-list-item__body {
+  display: flex;
+  flex: 1 0 0;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* ── Leading icon ──────────────────────────────────────────────────────── */
+
+.fds-action-list-item__leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--text-gray-primary);
+}
+
+.fds-action-list-item__leading > svg,
+.fds-action-list-item__leading > img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Checkbox (Multi Select) ───────────────────────────────────────────── */
+
+.fds-action-list-item__checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  flex-shrink: 0;
+  padding: var(--spacing-01);
+}
+
+.fds-action-list-item__checkbox-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: var(--global-border-width-thick) solid var(--text-gray-tertiary);
+  border-radius: var(--global-border-radius-small);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.fds-action-list-item__checkbox-box--checked {
+  border: none;
+  background: var(--background-brand-default);
+  color: var(--text-brand-on-brand);
+}
+
+/* ── Content (title + description) ─────────────────────────────────────── */
+
+.fds-action-list-item__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.fds-action-list-item__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-03);
+  align-items: center;
+  width: 100%;
+}
+
+.fds-action-list-item__title {
+  color: var(--text-gray-primary);
+  white-space: nowrap;
+}
+
+.fds-action-list-item__description {
+  color: var(--text-gray-tertiary);
+  width: 100%;
+}
+
+/* ── Badge group ──────────────────────────────────────────────────────── */
+
+.fds-action-list-item__badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-03);
+  align-items: center;
+}
+
+/* ── Trailing ──────────────────────────────────────────────────────────── */
+
+.fds-action-list-item__trailing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.fds-action-list-item__trailing > * {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+  color: var(--text-gray-tertiary);
+}
+
+/* ── Separator ─────────────────────────────────────────────────────────── */
+
+.fds-action-list-item--separator {
+  padding: var(--spacing-01) var(--spacing-03);
+}
+
+/* ── Section Heading ───────────────────────────────────────────────────── */
+
+.fds-action-list-item--heading {
+  cursor: default;
+}
+
+.fds-action-list-item__heading-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-03);
+  padding: var(--spacing-03) var(--spacing-03) var(--spacing-01);
+  width: 100%;
+}
+
+.fds-action-list-item__heading-body {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  min-width: 0;
+}
+
+.fds-action-list-item__heading-title {
+  color: var(--text-gray-tertiary);
+  flex: 1 0 0;
+}

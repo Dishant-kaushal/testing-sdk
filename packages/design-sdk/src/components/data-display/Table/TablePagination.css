@@ -1,0 +1,93 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TablePagination — Figma 1313:14730
+   Layout: label-left  •  controls-right  (each side wraps independently)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table__pagination {
+  /* Component-scoped dimensions for the trigger — kept here so the
+     TablePagination.tsx `min-width`/`height` stay in sync with CSS without
+     duplicating magic numbers. */
+  --fds-table-trigger-h: 32px;
+  --fds-table-trigger-min-w: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fds-space-md);
+  width: 100%;
+  /* Padding owned here so total height matches Figma (12 + 36 + 12 = 60 px).
+     Sibling layout: TablePagination is rendered inside .fds-table-footer-bar
+     which provides bg + border + bottom-radius. */
+  padding: var(--fds-space-md);
+  box-sizing: border-box;
+}
+
+/* —— Left: label —————————————————————————————————————————————————————— */
+.fds-table__pagination-label {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+/* —— Right: controls (size + arrows) ————————————————————————————————— */
+.fds-table__pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--fds-space-md);
+}
+
+.fds-table__pagination-size-label {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+/* —— Page-size picker — DropdownMenu + ActionListItem via React Portal ───
+   Trigger is a small button. The menu renders via createPortal to
+   document.body so it escapes the surface's overflow:hidden. Position is
+   computed in TablePagination.tsx from the trigger's bounding rect. */
+
+.fds-table__pagination-size-trigger {
+  /* Reset native button defaults */
+  appearance: none;
+  -webkit-appearance: none;
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  background: var(--background-surface-intense);
+  cursor: pointer;
+  font: inherit;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  height: var(--fds-table-trigger-h);
+  min-width: var(--fds-table-trigger-min-w);
+  padding: 0 var(--fds-space-sm);
+  border-radius: var(--global-border-radius-medium);
+
+  /* Typography is provided by .BodyMediumRegular utility on the element */
+  color: var(--text-gray-secondary);
+  transition:
+    background-color var(--fds-duration-xquick) var(--fds-easing-standard),
+    box-shadow var(--fds-duration-xquick) var(--fds-easing-standard);
+}
+
+.fds-table__pagination-size-trigger:hover {
+  background-color: var(--background-gray-default);
+}
+
+.fds-table__pagination-size-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+.fds-table__pagination-size-trigger[aria-expanded='true'] {
+  background-color: var(--background-gray-default);
+}
+
+/* Portal'd menu — `position: fixed` + z-index live in CSS so the inline
+   style only needs to set top/left/minWidth (the measured values). Font is
+   applied by the `BodyMediumRegular` utility class on the portal div so we
+   don't re-declare font-family here. */
+.fds-table__pagination-size-menu {
+  position: fixed;
+  z-index: var(--fds-z-dropdown);
+}

@@ -1,0 +1,41 @@
+/* Base */
+.fds-divider {
+  --_divider-width: var(--global-border-width-thin);
+  --_divider-style: var(--global-border-style-solid);
+  --_divider-color: var(--border-gray-default);
+  border: none;
+  margin: 0;
+}
+
+/* Orientation */
+.fds-divider--orientation-horizontal {
+  width: 100%;
+  height: 0;
+  border-top-width: var(--_divider-width);
+  border-top-style: var(--_divider-style);
+  border-top-color: var(--_divider-color);
+}
+
+.fds-divider--orientation-vertical {
+  height: 100%;
+  width: 0;
+  border-left-width: var(--_divider-width);
+  border-left-style: var(--_divider-style);
+  border-left-color: var(--_divider-color);
+  align-self: stretch;
+}
+
+/* Thickness */
+.fds-divider--thickness-thinner { --_divider-width: var(--global-border-width-thinner); }
+.fds-divider--thickness-thin    { --_divider-width: var(--global-border-width-thin); }
+.fds-divider--thickness-thick   { --_divider-width: var(--global-border-width-thick); }
+.fds-divider--thickness-thicker { --_divider-width: var(--global-border-width-thicker); }
+
+/* Style */
+.fds-divider--style-solid  { --_divider-style: var(--global-border-style-solid); }
+.fds-divider--style-dashed { --_divider-style: var(--global-border-style-dashed); }
+
+/* Variant */
+.fds-divider--variant-normal { --_divider-color: var(--border-gray-default); }
+.fds-divider--variant-subtle { --_divider-color: var(--border-gray-subtle); }
+.fds-divider--variant-muted  { --_divider-color: var(--border-gray-muted); }

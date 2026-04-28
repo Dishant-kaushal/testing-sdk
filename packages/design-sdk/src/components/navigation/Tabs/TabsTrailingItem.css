@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TabsTrailingItem — Faclon Design System 2.0
+   Figma: 581:2415
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tab-trailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Counter — pill containing a number or short label */
+.fds-tab-trailing--type-counter .fds-tab-trailing__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  padding: 0 var(--spacing-02);
+  border-radius: 1000px;
+  background-color: var(--background-gray-default);
+  color: var(--text-gray-primary);
+}
+
+/* Badge — passes through to the consumer's <Badge>; no extra box */
+.fds-tab-trailing--type-badge {
+  /* no-op container; Badge renders itself */
+}

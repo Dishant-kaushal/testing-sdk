@@ -1,0 +1,17 @@
+/* Breadcrumb — Faclon Design System 2.0
+   Figma: 2782:18712
+   Navigation breadcrumb trail — nav > ol wrapper */
+
+.fds-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+}
+
+.fds-breadcrumb__list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

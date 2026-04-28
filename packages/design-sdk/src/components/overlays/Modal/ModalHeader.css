@@ -1,0 +1,90 @@
+/* ModalHeader — Faclon Design System 2.0
+   Figma: 2573:74491 */
+
+.fds-modal-header {
+  width: 100%;
+}
+
+.fds-modal-header__root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Top row — leading + content + trailing + close */
+.fds-modal-header__wrapper {
+  display: flex;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  padding-top: var(--spacing-06);
+  padding-left: var(--spacing-06);
+  padding-right: var(--spacing-06);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Left section — leading item + text content */
+.fds-modal-header__left {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* Title + subtitle column */
+.fds-modal-header__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Title row — title + counter */
+.fds-modal-header__heading {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  height: 28px;
+  padding-top: var(--spacing-01);
+}
+
+.fds-modal-header__title {
+  color: var(--text-gray-primary);
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.fds-modal-header__counter {
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--spacing-01);
+  flex-shrink: 0;
+}
+
+.fds-modal-header__subtitle {
+  color: var(--text-gray-tertiary);
+  letter-spacing: 0;
+}
+
+/* Close button — 20px X icon, centered in 28px height */
+.fds-modal-header__close {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--text-gray-primary);
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-modal-header__close:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}

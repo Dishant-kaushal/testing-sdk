@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Accordion Item — Faclon Design System 2.0
+   Figma: 506:5079 (_Accordion Item)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Root ————————————————————————————————————————————————————————————————— */
+
+.fds-accordion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-accordion-item__root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* —— Header ——————————————————————————————————————————————————————————————— */
+
+.fds-accordion-item__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-04);
+  padding: var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: background-color 150ms ease;
+}
+
+/* Hover (collapsed) */
+.fds-accordion-item:not(.fds-accordion-item--expanded)
+  .fds-accordion-item__header:hover {
+  background-color: var(--background-gray-hover-light);
+}
+
+/* Focus */
+.fds-accordion-item__header:focus-visible {
+  background-color: var(--background-gray-hover-light);
+  outline: none;
+  border-radius: var(--global-border-radius-medium);
+  box-shadow:
+    0 0 0 1px var(--background-surface-intense),
+    0 0 0 4px var(--border-focused-default);
+}
+
+/* Expanded header */
+.fds-accordion-item--expanded .fds-accordion-item__header {
+  background-color: var(--background-gray-default);
+}
+
+/* Hover (expanded) */
+.fds-accordion-item--expanded .fds-accordion-item__header:hover {
+  background-color: var(--background-gray-default);
+}
+
+/* —— Title area —————————————————————————————————————————————————————————— */
+
+.fds-accordion-item__title-area {
+  display: flex;
+  flex: 1 0 0;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.fds-accordion-item__title {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--text-gray-primary);
+  letter-spacing: 0;
+}
+
+/* —— Chevron —————————————————————————————————————————————————————————————— */
+
+.fds-accordion-item__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--text-gray-tertiary);
+  transition: transform 200ms ease;
+}
+
+.fds-accordion-item--expanded .fds-accordion-item__chevron {
+  transform: rotate(180deg);
+}
+
+.fds-accordion-item__chevron svg {
+  width: 10px;
+  height: 6px;
+}
+
+/* —— Body ————————————————————————————————————————————————————————————————— */
+
+.fds-accordion-item__body {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  padding: var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fds-accordion-item--expanded .fds-accordion-item__body {
+  display: flex;
+}
+
+.fds-accordion-item__body-text {
+  color: var(--text-gray-secondary);
+  letter-spacing: 0;
+  width: 100%;
+}

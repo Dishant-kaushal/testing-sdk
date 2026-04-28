@@ -1,0 +1,44 @@
+/* StepLine — Faclon Design System
+   Connector + curve renderer used inside <StepperStep>. Straight runs are
+   rendered with the DS <Divider> component (Solid for full progress, Dashed
+   for dotted progress). Curves are inline SVGs ported from Blade — colour
+   is inherited from the column via `currentColor`. */
+
+.fds-step-line__column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Stretch to the parent step's flex-row height so the inner StraightVertical
+     with `flex: 1 1 0` has space to grow. Without this the column shrinks to
+     content height and the connector lines visually truncate. */
+  align-self: stretch;
+  color: var(--border-gray-muted);
+}
+
+.fds-step-line__row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: var(--border-gray-muted);
+}
+
+.fds-step-line__marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 2 px padding around the 20 px marker so the visible bg-circle's centre
+     lands on the connector line's centreline. The negative `margin-left`
+     applied inline in StepLine.tsx is `(20 + 2) / 2 = -11`, which assumes the
+     marker container is 20 + 2 px — this padding provides that 2 px shift on
+     the inside. Mirrors Blade's `MarkerBackgroundCircle.margin: 2px`. */
+  padding: 2px;
+}
+
+/* —— Curves: SVG inherits color from the column ————————————————————————— */
+
+.fds-step-line__curve {
+  display: block;
+}

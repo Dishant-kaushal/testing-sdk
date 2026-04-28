@@ -1,0 +1,20 @@
+/* TableRowActions — 3-slot icon cluster with overflow menu.
+   Lives inside a `<td>` (or `<TableCell>`). The overflow dropdown renders
+   via `createPortal` to `document.body` (see the component), so its styles
+   live at the portal root — not scoped to the cell — to avoid being clipped
+   by the table's `overflow: auto` scroll container. */
+
+.fds-table__row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-xs);
+}
+
+/* The portal'd menu wrapper. `position: fixed` + z-index live in CSS so the
+   inline style only sets the measured `top`/`left`/`minWidth`. The inner
+   `<DropdownMenu>` handles chrome (bg, shadow, border). */
+.fds-table__row-actions-menu {
+  position: fixed;
+  z-index: var(--fds-z-dropdown);
+  pointer-events: auto;
+}

@@ -1,0 +1,33 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CheckboxGroup — Faclon Design System 2.0
+   Figma: 557:15757
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+}
+
+.fds-checkbox-group__label {
+  color: var(--text-gray-primary);
+  letter-spacing: 0;
+}
+
+/* Vertical: checkboxes stacked, gap 4px */
+.fds-checkbox-group--vertical .fds-checkbox-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Horizontal: checkboxes in a row, gap 8px */
+.fds-checkbox-group--horizontal .fds-checkbox-group__body {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-03);
+  align-items: center;
+}

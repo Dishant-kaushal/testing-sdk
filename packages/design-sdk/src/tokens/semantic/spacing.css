@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic Spacing Tokens — Faclon Design System
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --fds-space-none: var(--spacing-00);
+  --fds-space-xxs: var(--spacing-01);
+  --fds-space-xs: var(--spacing-02);
+  --fds-space-sm: var(--spacing-03);
+  --fds-space-md: var(--spacing-04);
+  --fds-space-lg: var(--spacing-05);
+  --fds-space-xl: var(--spacing-06);
+  --fds-space-2xl: var(--spacing-07);
+  --fds-space-3xl: var(--spacing-08);
+  --fds-space-4xl: var(--spacing-09);
+  --fds-space-5xl: var(--spacing-10);
+  --fds-space-6xl: var(--spacing-11);
+}

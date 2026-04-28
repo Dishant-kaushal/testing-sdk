@@ -1,0 +1,48 @@
+/* DatePicker — Faclon Design System 2.0
+   Composed wrapper: trigger + periodicity + popover positioning */
+
+.fds-datepicker {
+  position: relative;
+  width: max-content;
+}
+
+/* Trigger row — default: just the trigger */
+.fds-datepicker__trigger-row {
+  display: flex;
+  width: 100%;
+}
+
+/* With periodicity dropdown — row layout, gap 8px, align fields to bottom */
+.fds-datepicker__trigger-row--with-periodicity {
+  gap: var(--spacing-03);
+  align-items: flex-end;
+}
+
+/* Trigger fills remaining space when periodicity is shown */
+.fds-datepicker__trigger-row--with-periodicity > .fds-date-trigger {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Periodicity dropdown — fixed 106px width */
+.fds-datepicker__periodicity {
+  width: 106px;
+  flex-shrink: 0;
+}
+
+.fds-datepicker__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: var(--spacing-02);
+  z-index: var(--global-z-index-dropdown, 100);
+}
+
+/* Preset chip dropdown — DropdownMenu positioned below the trigger chip */
+.fds-datepicker__preset-dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-02));
+  left: 0;
+  z-index: var(--global-z-index-dropdown, 100);
+  min-width: 180px;
+}

@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TextInput — Faclon Design System 2.0
+   Figma: 40:8469
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Root ————————————————————————————————————————————————————————————————— */
+
+.fds-text-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Large size — Figma 3030:12275 */
+.fds-text-input--size-large {
+  gap: var(--spacing-03);
+}
+
+/* Left label layout */
+.fds-text-input--label-left {
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.fds-text-input--label-left .fds-text-input__label {
+  width: 120px;
+  flex: none;
+  padding-top: var(--spacing-03);
+  text-align: left;
+}
+
+.fds-text-input--label-left .fds-text-input__field-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+/* —— Field wrapper ———————————————————————————————————————————————————————— */
+
+.fds-text-input__field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* —— Field ———————————————————————————————————————————————————————————————— */
+
+.fds-text-input__field {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  height: 36px;
+  padding: var(--spacing-03) var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  box-sizing: border-box;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Large size — 48px field height; typography + icon sizes are set on the elements themselves in TSX */
+.fds-text-input--size-large .fds-text-input__field {
+  height: 48px;
+}
+
+/* Hover */
+.fds-text-input:not(.fds-text-input--disabled):not(.fds-text-input--error):not(.fds-text-input--success)
+  .fds-text-input__field:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus ring (Active) — applies in EVERY validation state (default, error,
+   success) so focus is always visible. The state-specific border colour is
+   handled by the rules below; the ring sits behind/around it. */
+.fds-text-input:not(.fds-text-input--disabled) .fds-text-input__field:focus-within {
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* Default-state focus — also swaps border-color to brand + bg to secondary.
+   Error/success states keep their own border colour on focus (no override
+   needed; their static rules already set border-width: thick). */
+.fds-text-input:not(.fds-text-input--disabled):not(.fds-text-input--error):not(.fds-text-input--success)
+  .fds-text-input__field:focus-within {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+}
+
+/* Error */
+.fds-text-input--error .fds-text-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-error-default);
+}
+
+/* Success */
+.fds-text-input--success .fds-text-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-positive-default);
+}
+
+/* Disabled */
+.fds-text-input--disabled .fds-text-input__field {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* Loading (disabled + loading) */
+.fds-text-input--loading .fds-text-input__field {
+  border-color: var(--border-focused-default);
+}
+
+/* —— Leading section ————————————————————————————————————————————————————— */
+
+.fds-text-input__leading {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--spacing-03);
+  min-width: 0;
+}
+
+/* —— Leading slot (interactive, flush-left with right separator) ————————— */
+/* Used by composite inputs (e.g. PhoneNumberInput) to mount a click target
+   inside the field. Consumes the field's left padding so the slot sits flush
+   to the field's left edge; its own interior padding is restored by the child
+   (the slot's button). */
+
+.fds-text-input--with-leading-slot .fds-text-input__field {
+  padding-left: 0;
+}
+
+.fds-text-input__leading-slot {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-shrink: 0;
+  border-right: var(--global-border-width-thin) solid var(--border-gray-default);
+}
+
+.fds-text-input--error .fds-text-input__leading-slot,
+.fds-text-input--success .fds-text-input__leading-slot {
+  border-right-color: transparent;
+}
+
+.fds-text-input--disabled .fds-text-input__leading-slot {
+  border-right-color: var(--border-gray-disabled);
+}
+
+/* —— Icon ————————————————————————————————————————————————————————————————— */
+
+.fds-text-input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-text-input--disabled .fds-text-input__icon {
+  color: var(--text-gray-disabled);
+}
+
+/* —— Prefix —————————————————————————————————————————————————————————————— */
+
+.fds-text-input__prefix {
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fds-text-input--disabled .fds-text-input__prefix {
+  color: var(--text-gray-disabled);
+}
+
+/* —— Input ——————————————————————————————————————————————————————————————— */
+
+.fds-text-input__input {
+  all: unset;
+  flex: 1 0 0;
+  min-width: 0;
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-text-input__input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-text-input--disabled .fds-text-input__input {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* —— Trailing section ———————————————————————————————————————————————————— */
+
+.fds-text-input__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* —— Suffix —————————————————————————————————————————————————————————————— */
+
+.fds-text-input__suffix {
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+.fds-text-input--disabled .fds-text-input__suffix {
+  color: var(--text-gray-disabled);
+}
+
+/* —— Clear button ———————————————————————————————————————————————————————— */
+
+.fds-text-input__clear {
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+}
+
+.fds-text-input__clear:hover {
+  color: var(--text-gray-secondary);
+}
+

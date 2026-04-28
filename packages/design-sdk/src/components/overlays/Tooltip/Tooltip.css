@@ -1,0 +1,162 @@
+/* Tooltip — Faclon Design System 2.0
+   Figma: 776:4283
+   Dark floating popup with heading + body text, 8 placements, SVG arrow.
+   Triggered by hover/focus on wrapped children. */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Wrapper — contains trigger + positions tooltip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tooltip popup
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tooltip {
+  position: absolute;
+  z-index: var(--fds-z-tooltip);
+  pointer-events: none;
+  width: max-content;
+  --fds-tooltip-max-width: 200px;
+}
+
+/* Content container — dark bg, padding 12px, rounded, shadow */
+.fds-tooltip__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  padding: var(--spacing-04);
+  background: var(--background-brand-default);
+  border: var(--global-border-width-thin) solid var(--border-brand-default);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-sm);
+  color: var(--text-brand-on-brand);
+}
+
+/* Heading — single line, truncate */
+.fds-tooltip__heading {
+  max-width: var(--fds-tooltip-max-width);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Body — hugs content, word-wraps at max-width */
+.fds-tooltip__body {
+  max-width: var(--fds-tooltip-max-width);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Arrow — SVG triangle, colored via currentColor */
+.fds-tooltip__arrow {
+  position: absolute;
+  color: var(--background-brand-default);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Placements — Top
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tooltip--top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: var(--spacing-03);
+}
+.fds-tooltip--top .fds-tooltip__arrow {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.fds-tooltip--top-start {
+  bottom: 100%;
+  left: 0;
+  padding-bottom: var(--spacing-03);
+}
+.fds-tooltip--top-start .fds-tooltip__arrow {
+  bottom: 0;
+  left: var(--spacing-04);
+  transform: rotate(180deg);
+}
+
+.fds-tooltip--top-end {
+  bottom: 100%;
+  right: 0;
+  padding-bottom: var(--spacing-03);
+}
+.fds-tooltip--top-end .fds-tooltip__arrow {
+  bottom: 0;
+  right: var(--spacing-04);
+  transform: rotate(180deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Placements — Bottom
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tooltip--bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: var(--spacing-03);
+}
+.fds-tooltip--bottom .fds-tooltip__arrow {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fds-tooltip--bottom-start {
+  top: 100%;
+  left: 0;
+  padding-top: var(--spacing-03);
+}
+.fds-tooltip--bottom-start .fds-tooltip__arrow {
+  top: 0;
+  left: var(--spacing-04);
+}
+
+.fds-tooltip--bottom-end {
+  top: 100%;
+  right: 0;
+  padding-top: var(--spacing-03);
+}
+.fds-tooltip--bottom-end .fds-tooltip__arrow {
+  top: 0;
+  right: var(--spacing-04);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Placements — Left / Right
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tooltip--left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: var(--spacing-03);
+}
+.fds-tooltip--left .fds-tooltip__arrow {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.fds-tooltip--right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: var(--spacing-03);
+}
+.fds-tooltip--right .fds-tooltip__arrow {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}

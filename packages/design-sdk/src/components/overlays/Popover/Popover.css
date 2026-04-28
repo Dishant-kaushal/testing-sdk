@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Popover — Faclon Design System 2.0
+   Figma: 778:8023 (popover + 12 placements)
+
+   Trigger-anchored overlay via CSS position (no JS measurement). 12 placements
+   map to combinations of main-axis side (Top/Right/Bottom/Left) × cross-axis
+   alignment (Start / centre / End).
+
+   Dimensions from Figma spec:
+     • Panel padding:      16 px  (--fds-space-lg)
+     • Content stack gap:  16 px  (between header / body / footer)
+     • Panel border:       1 px solid var(--border-gray-muted)
+     • Panel radius:       8 px   (--global-border-radius-large)
+     • Arrow:              26 × 13 px, two-path SVG (fill + diagonal stroke)
+     • Panel min-width:    240 px
+     • Panel max-width:    360 px
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-popover {
+  position: relative;
+  display: inline-block;
+
+  /* Arrow geometry — derived from the Figma 778:8438 SVG (26 × 13). These offsets
+     position the arrow against the panel edge; they track the intrinsic SVG size,
+     not the design spacing scale, so they live here as component-local constants
+     instead of in the semantic token layer. */
+  --fds-popover-arrow-w: 26px;
+  --fds-popover-arrow-h: 13px;
+  --fds-popover-arrow-half-w: -13px;   /* center apex on Top/Bottom placements */
+  --fds-popover-arrow-half-h: -6px;    /* center apex on Left/Right placements */
+  --fds-popover-arrow-rot-offset: -7px; /* visual-centering nudge after 90° rotation */
+  --fds-popover-arrow-seam: -1px;      /* 1 px overlap hides panel-border seam */
+
+  /* Stacking layer for all Popover panels. Shared here so sibling overlay
+     components can align with a single source of truth. */
+  --fds-z-popover: 100;
+}
+
+.fds-popover__trigger {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+/* —— Panel ————————————————————————————————————————————————————————————————— */
+
+.fds-popover__panel {
+  position: absolute;
+  z-index: var(--fds-z-popover);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-lg);
+  width: 360px;
+  padding: var(--fds-space-lg);
+  background: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-large);
+  box-shadow: var(--fds-shadow-md);
+  box-sizing: border-box;
+}
+
+/* —— Arrow ——————————————————————————————————————————————————————————————— */
+
+.fds-popover__arrow {
+  position: absolute;
+  width: var(--fds-popover-arrow-w);
+  height: var(--fds-popover-arrow-h);
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* —— Placements ——————————————————————————————————————————————————————————— */
+
+/* Shared offsets:
+     8 px gap between trigger and panel (arrow sits in this gap)
+     16 px side-inset for Start/End arrow alignment within the panel edge */
+
+/* Arrow rotation semantics — the SVG in Popover.tsx draws an apex-DOWN
+   triangle (matches Figma 778:8438 orientation). CSS rotations relative to
+   that default:
+     • Top placement    — no rotation (apex stays down, points at trigger below)
+     • Bottom placement — rotate(180deg)  (apex flipped up)
+     • Left placement   — rotate(-90deg)  (apex points right, into trigger)
+     • Right placement  — rotate(90deg)   (apex points left, into trigger) */
+
+/* Top side — panel above trigger, arrow below panel (apex points down) */
+.fds-popover--top,
+.fds-popover--top-start,
+.fds-popover--top-end {
+  bottom: 100%;
+  margin-bottom: var(--fds-space-sm);
+}
+
+.fds-popover--top { left: 50%; transform: translateX(-50%); }
+.fds-popover--top-start { left: 0; }
+.fds-popover--top-end { right: 0; }
+
+.fds-popover--top .fds-popover__arrow,
+.fds-popover--top-start .fds-popover__arrow,
+.fds-popover--top-end .fds-popover__arrow {
+  top: 100%;
+  margin-top: var(--fds-popover-arrow-seam);
+}
+.fds-popover--top .fds-popover__arrow { left: 50%; margin-left: var(--fds-popover-arrow-half-w); }
+.fds-popover--top-start .fds-popover__arrow { left: var(--fds-space-lg); }
+.fds-popover--top-end .fds-popover__arrow { right: var(--fds-space-lg); }
+
+/* Bottom side — panel below trigger, arrow above panel (apex points up) */
+.fds-popover--bottom,
+.fds-popover--bottom-start,
+.fds-popover--bottom-end {
+  top: 100%;
+  margin-top: var(--fds-space-sm);
+}
+
+.fds-popover--bottom { left: 50%; transform: translateX(-50%); }
+.fds-popover--bottom-start { left: 0; }
+.fds-popover--bottom-end { right: 0; }
+
+.fds-popover--bottom .fds-popover__arrow,
+.fds-popover--bottom-start .fds-popover__arrow,
+.fds-popover--bottom-end .fds-popover__arrow {
+  bottom: 100%;
+  transform: rotate(180deg);
+  margin-bottom: var(--fds-popover-arrow-seam);
+}
+.fds-popover--bottom .fds-popover__arrow { left: 50%; margin-left: var(--fds-popover-arrow-half-w); }
+.fds-popover--bottom-start .fds-popover__arrow { left: var(--fds-space-lg); }
+.fds-popover--bottom-end .fds-popover__arrow { right: var(--fds-space-lg); }
+
+/* Left side — panel left of trigger, arrow right of panel (apex points right) */
+.fds-popover--left,
+.fds-popover--left-start,
+.fds-popover--left-end {
+  right: 100%;
+  margin-right: var(--fds-space-sm);
+}
+
+.fds-popover--left { top: 50%; transform: translateY(-50%); }
+.fds-popover--left-start { top: 0; }
+.fds-popover--left-end { bottom: 0; }
+
+.fds-popover--left .fds-popover__arrow,
+.fds-popover--left-start .fds-popover__arrow,
+.fds-popover--left-end .fds-popover__arrow {
+  left: 100%;
+  transform: rotate(-90deg);
+  /* After -90deg rotation the 26 × 13 layout box shows its apex ~6.5 px right
+     of the left edge — the rot-offset nudges the visual onto the card border. */
+  margin-left: var(--fds-popover-arrow-rot-offset);
+}
+.fds-popover--left .fds-popover__arrow { top: 50%; margin-top: var(--fds-popover-arrow-half-h); }
+.fds-popover--left-start .fds-popover__arrow { top: var(--fds-space-lg); }
+.fds-popover--left-end .fds-popover__arrow { bottom: var(--fds-space-lg); }
+
+/* Right side — panel right of trigger, arrow left of panel (apex points left) */
+.fds-popover--right,
+.fds-popover--right-start,
+.fds-popover--right-end {
+  left: 100%;
+  margin-left: var(--fds-space-sm);
+}
+
+.fds-popover--right { top: 50%; transform: translateY(-50%); }
+.fds-popover--right-start { top: 0; }
+.fds-popover--right-end { bottom: 0; }
+
+.fds-popover--right .fds-popover__arrow,
+.fds-popover--right-start .fds-popover__arrow,
+.fds-popover--right-end .fds-popover__arrow {
+  right: 100%;
+  transform: rotate(90deg);
+  margin-right: var(--fds-popover-arrow-rot-offset);
+}
+.fds-popover--right .fds-popover__arrow { top: 50%; margin-top: var(--fds-popover-arrow-half-h); }
+.fds-popover--right-start .fds-popover__arrow { top: var(--fds-space-lg); }
+.fds-popover--right-end .fds-popover__arrow { bottom: var(--fds-space-lg); }

@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Global Styles — @faclon-labs/design-sdk
+   Imports all token layers. Consumers import via:
+     import '@faclon-labs/design-sdk/styles.css';
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Global tokens (raw palette, scales, primitives) */
+@import '../tokens/global/colors.css';
+@import '../tokens/global/spacing.css';
+@import '../tokens/global/typography.css';
+@import '../tokens/global/border.css';
+@import '../tokens/global/elevation.css';
+@import '../tokens/global/display.css';
+@import '../tokens/global/motion.css';
+
+/* Semantic tokens (mapped values used by components) */
+@import '../tokens/semantic/colors.css';
+@import '../tokens/semantic/typography.css';
+@import '../tokens/semantic/border.css';
+@import '../tokens/semantic/elevation.css';
+@import '../tokens/semantic/spacing.css';
+@import '../tokens/semantic/display.css';
+@import '../tokens/semantic/motion.css';
+
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

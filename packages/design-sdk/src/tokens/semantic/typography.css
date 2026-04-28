@@ -1,0 +1,446 @@
+.DisplayXLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4.5rem;
+  line-height: 4.875rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayXLargeRegular {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+.DisplayXLargeMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4.5rem;
+  line-height: 4.875rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayXLargeMedium {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+.DisplayXLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4.5rem;
+  line-height: 4.875rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayXLargeSemibold {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+.DisplayLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4rem;
+  line-height: 4.375rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayLargeRegular {
+    font-size: 2.375rem;
+    line-height: 2.875rem;
+  }
+}
+.DisplayLargeMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4rem;
+  line-height: 4.375rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayLargeMedium {
+    font-size: 2.375rem;
+    line-height: 2.875rem;
+  }
+}
+.DisplayLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 4rem;
+  line-height: 4.375rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayLargeSemibold {
+    font-size: 2.375rem;
+    line-height: 2.875rem;
+  }
+}
+.DisplayMediumRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayMediumRegular {
+    font-size: 2.25rem;
+    line-height: 2.625rem;
+  }
+}
+.DisplayMediumMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayMediumMedium {
+    font-size: 2.25rem;
+    line-height: 2.625rem;
+  }
+}
+.DisplayMediumSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .DisplayMediumSemibold {
+    font-size: 2.25rem;
+    line-height: 2.625rem;
+  }
+}
+.DisplaySmallRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplaySmallRegular {
+    font-size: 2.125rem;
+    line-height: 2.625rem;
+  }
+}
+.DisplaySmallMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+@media screen and (max-width: 768px) {
+  .DisplaySmallMedium {
+    font-size: 2.125rem;
+    line-height: 2.625rem;
+  }
+}
+.DisplaySmallSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .DisplaySmallSemibold {
+    font-size: 2.125rem;
+    line-height: 2.625rem;
+  }
+}
+.Heading2XLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.875rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .Heading2XLargeRegular {
+    font-size: 2rem;
+    line-height: 2.375rem;
+  }
+}
+.Heading2XLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.875rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .Heading2XLargeSemibold {
+    font-size: 2rem;
+    line-height: 2.375rem;
+  }
+}
+.HeadingXLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 2rem;
+  line-height: 2.375rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingXLargeRegular {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.HeadingXLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 2rem;
+  line-height: 2.375rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingXLargeSemibold {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.HeadingLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingLargeRegular {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+.HeadingLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingLargeSemibold {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+.HeadingMediumRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingMediumRegular {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+}
+.HeadingMediumSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingMediumSemibold {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+}
+.HeadingSmallRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingSmallRegular {
+    font-size: 1rem;
+    line-height: 1.375rem;
+  }
+}
+.HeadingSmallSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .HeadingSmallSemibold {
+    font-size: 1rem;
+    line-height: 1.375rem;
+  }
+}
+.BodyLargeRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyLargeRegular {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+.BodyLargeMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyLargeMedium {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+.BodyLargeSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyLargeSemibold {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+.BodyMediumRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyMediumRegular {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+.BodyMediumMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyMediumMedium {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+.BodyMediumSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyMediumSemibold {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+.BodySmallRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodySmallRegular {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+.BodySmallMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodySmallMedium {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+.BodySmallSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodySmallSemibold {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+.BodyXSmallRegular {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyXSmallRegular {
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+  }
+}
+.BodyXSmallMedium {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyXSmallMedium {
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+  }
+}
+.BodyXSmallSemibold {
+  font-family: 'Noto Sans Variable', sans-serif;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+}
+@media screen and (max-width: 768px) {
+  .BodyXSmallSemibold {
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+  }
+}
+
+.fluid-text {
+  font-size: clamp(1rem, calc(16px + (32 - 16) * ((100vw - 320px) / (1200 - 320))), 2rem);
+}

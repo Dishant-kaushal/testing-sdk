@@ -1,0 +1,59 @@
+/* CalendarBase — Faclon Design System 2.0
+   Figma: 2097:10785 */
+
+.fds-calendar-base {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 296px;
+  min-height: 380px;
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
+  overflow: hidden;
+}
+
+/* Header section — bg white, bottom border */
+.fds-calendar-base__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-03);
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--background-surface-intense);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* Body — day grid or month/year grid; flex:1 keeps footer at bottom across views */
+.fds-calendar-base__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  padding: var(--spacing-03);
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--background-surface-intense);
+}
+
+/* Month/year grid — wider padding */
+.fds-calendar-base__body--grid {
+  padding: var(--spacing-03) var(--spacing-05);
+}
+
+/* Week row */
+.fds-calendar-base__week {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Month/year item row */
+.fds-calendar-base__item-row {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+  width: 100%;
+}

@@ -1,0 +1,87 @@
+/* DatePickerPopover — Faclon Design System 2.0
+   Figma: 2225:2243
+
+   Structure:
+   Container (flex row, border, shadow, rounded, overflow hidden)
+   ├── Sidebar (172px, p-16px, gap-8px, bg moderate, border-right)
+   └── Right panel (flex col, gap-12px, bg white)
+       ├── Input Container (flex row, gap-12px, p-12px)
+       ├── Calendar (header+weekdays border-b | day grid p-8px)
+       └── Footer (divider + actions pb-16px px-16px)
+*/
+
+.fds-datepicker-popover {
+  display: inline-flex;
+  align-items: stretch;
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
+  overflow: hidden;
+  background: var(--background-surface-intense);
+}
+
+/* Right panel — 296px, gap-12px between sections (inputs → calendar → footer) */
+.fds-datepicker-popover__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  width: 296px;
+}
+
+/* Date/Time inputs — rows: each row has date + time side by side */
+.fds-datepicker-popover__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  padding: var(--spacing-04);
+}
+
+.fds-datepicker-popover__input-row {
+  display: flex;
+  gap: var(--spacing-04);
+}
+
+.fds-datepicker-popover__input-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Calendar section — flex:1 keeps footer at bottom across views */
+.fds-datepicker-popover__calendar {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Calendar header + weekdays — bg white, border-bottom, uniform 8px padding */
+.fds-datepicker-popover__calendar-header {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-03);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* Day grid — p-8px, gap-4px between rows; flex:1 fills remaining space */
+.fds-datepicker-popover__calendar-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  padding: var(--spacing-03);
+}
+
+/* Month/year grid — wider padding */
+.fds-datepicker-popover__calendar-body--grid {
+  padding: var(--spacing-03) var(--spacing-05);
+}
+
+.fds-datepicker-popover__item-row {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+  width: 100%;
+}
+
+.fds-datepicker-popover__week {
+  display: flex;
+}

@@ -1,0 +1,10 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic Border Tokens — Faclon Design System
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --fds-border-default: var(--global-border-width-thin) var(--global-border-style-solid) var(--border-gray-default);
+  --fds-border-subtle: var(--global-border-width-thin) var(--global-border-style-solid) var(--border-gray-subtle);
+  --fds-border-muted: var(--global-border-width-thin) var(--global-border-style-solid) var(--border-gray-muted);
+  --fds-border-focus-ring: 0 0 0 var(--spacing-02) var(--border-focused-default);
+}

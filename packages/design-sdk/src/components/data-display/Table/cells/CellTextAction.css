@@ -1,0 +1,44 @@
+/* CellTextAction — Figma 1966:4367. Same frame as CellText; the trailing
+   IconButton gets the `.fds-table-cell-hover-action` class for hover-reveal
+   (rules live in TableCell.css so the same hook covers other future usages). */
+
+.fds-table-cell-text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  width: 100%;
+  min-width: 0;
+}
+
+.fds-table-cell-text-action__leading {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-table-cell-text-action__content {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.fds-table-cell-text-action__title {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.fds-table-cell-text-action__description {
+  color: var(--text-gray-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

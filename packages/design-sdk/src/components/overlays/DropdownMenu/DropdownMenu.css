@@ -1,0 +1,35 @@
+/* DropdownMenu — Faclon Design System 2.0
+   Figma: 237:20936 */
+
+.fds-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* Wrapper — elevated panel */
+.fds-dropdown-menu__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-height: 600px;
+  background: var(--background-surface-intense);
+  border: var(--fds-border-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
+}
+
+/* Scrollable items list */
+.fds-dropdown-menu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: var(--spacing-02) 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}

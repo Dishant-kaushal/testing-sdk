@@ -1,0 +1,17 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card Trailing Item — Faclon Design System 2.0
+   Figma: 832:3355
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-card-trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* Badge and Link variants get vertical padding */
+.fds-card-trailing--badge,
+.fds-card-trailing--link {
+  padding: var(--spacing-02) 0;
+}

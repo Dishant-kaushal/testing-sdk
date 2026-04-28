@@ -1,0 +1,40 @@
+/* SwitchButtonGroup — Faclon Design System 2.0
+   Figma: 1905:9252 */
+
+.fds-switch-btn-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Children — keep individual borders, overlap by -1px, no rounding except edges */
+.fds-switch-btn-group > .fds-switch-btn {
+  border: 1px solid var(--border-gray-default);
+  border-radius: 0;
+  margin-right: -1px;
+  position: relative;
+}
+
+.fds-switch-btn-group > .fds-switch-btn:first-child {
+  border-radius: var(--global-border-radius-medium) 0 0 var(--global-border-radius-medium);
+}
+
+.fds-switch-btn-group > .fds-switch-btn:last-child {
+  border-radius: 0 var(--global-border-radius-medium) var(--global-border-radius-medium) 0;
+  margin-right: 0;
+}
+
+/* Active button on top so its border/bg covers neighbors */
+.fds-switch-btn-group > .fds-switch-btn--active {
+  z-index: 2;
+}
+
+/* Focus — ensure ring is rounded and above siblings */
+.fds-switch-btn-group > .fds-switch-btn:focus-visible {
+  border-radius: var(--global-border-radius-medium);
+  z-index: 3;
+}
+
+/* Disabled inside group */
+.fds-switch-btn-group > .fds-switch-btn--disabled {
+  border-color: var(--border-gray-disabled);
+}

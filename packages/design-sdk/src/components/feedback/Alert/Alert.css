@@ -1,0 +1,223 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Alert — Faclon Design System 2.0
+   Figma: 1792:8185 (matrix), 1792-8186..8509 (per-variant).
+   5 colors × 2 emphasis × 2 layouts (driven by `isFullWidth`).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-alert {
+  /* Slots painted per (color, emphasis) rule below.
+     `--fds-alert-family-fg` always holds the family "default" colour so
+     stories / consumers can reuse it for action buttons + links. */
+  --fds-alert-bg: var(--background-info-secondary);
+  --fds-alert-border: var(--border-info-disabled);
+  --fds-alert-family-fg: var(--text-info-default);
+  --fds-alert-icon: var(--text-info-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--fds-space-sm);
+  padding: var(--fds-space-md);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--fds-alert-bg);
+  border: var(--global-border-width-thin) solid var(--fds-alert-border);
+  color: var(--fds-alert-title);
+  width: max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Inline (compact) layout — centre-align icon / content / trailing actions */
+.fds-alert:not([data-full-width='true']) {
+  align-items: center;
+}
+
+.fds-alert[data-full-width='true'] {
+  width: 100%;
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Structural sub-parts
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-alert__leading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: var(--fds-alert-icon);
+}
+.fds-alert__leading-icon > * {
+  width: 16px;
+  height: 16px;
+}
+.fds-alert:not([data-full-width='true']) .fds-alert__leading-icon {
+  margin-top: 0;
+}
+
+.fds-alert__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fds-alert__header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fds-space-md);
+}
+
+.fds-alert__title {
+  margin: 0;
+  color: var(--fds-alert-title);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fds-alert__description {
+  margin: 0;
+  color: var(--fds-alert-body);
+}
+
+.fds-alert__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  margin-top: var(--fds-space-xs);
+}
+
+.fds-alert__trailing {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Close × — inherits the alert's close-colour across all interaction states */
+.fds-alert .fds-icon-btn,
+.fds-alert .fds-icon-btn:hover:not(:disabled),
+.fds-alert .fds-icon-btn:focus-visible,
+.fds-alert .fds-icon-btn:active:not(:disabled) {
+  color: var(--fds-alert-close);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   color × emphasis matrix — sets every slot variable for each of the 10 cells
+   Subtle  → family-tinted bg, 18% family border, family icon, neutral title,
+             tertiary body, dark-primary close.
+   Intense → solid family bg, transparent border, on-family white everything.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Positive */
+.fds-alert[data-color='Positive'][data-emphasis='Subtle'] {
+  --fds-alert-bg: var(--background-positive-secondary);
+  --fds-alert-border: var(--border-positive-disabled);
+  --fds-alert-family-fg: var(--text-positive-default);
+  --fds-alert-icon: var(--text-positive-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+}
+.fds-alert[data-color='Positive'][data-emphasis='Intense'] {
+  --fds-alert-bg: var(--background-positive-default);
+  --fds-alert-border: transparent;
+  --fds-alert-family-fg: var(--text-positive-default);
+  --fds-alert-icon: var(--text-positive-on-positive);
+  --fds-alert-title: var(--text-positive-on-positive);
+  --fds-alert-body: var(--text-positive-on-positive);
+  --fds-alert-close: var(--text-positive-on-positive);
+}
+
+/* Negative */
+.fds-alert[data-color='Negative'][data-emphasis='Subtle'] {
+  --fds-alert-bg: var(--background-error-secondary);
+  --fds-alert-border: var(--border-error-disabled);
+  --fds-alert-family-fg: var(--text-error-default);
+  --fds-alert-icon: var(--text-error-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+}
+.fds-alert[data-color='Negative'][data-emphasis='Intense'] {
+  --fds-alert-bg: var(--background-error-default);
+  --fds-alert-border: transparent;
+  --fds-alert-family-fg: var(--text-error-default);
+  --fds-alert-icon: var(--text-error-on-error);
+  --fds-alert-title: var(--text-error-on-error);
+  --fds-alert-body: var(--text-error-on-error);
+  --fds-alert-close: var(--text-error-on-error);
+}
+
+/* Notice */
+.fds-alert[data-color='Notice'][data-emphasis='Subtle'] {
+  --fds-alert-bg: var(--background-warning-secondary);
+  --fds-alert-border: var(--border-warning-disabled);
+  --fds-alert-family-fg: var(--text-warning-default);
+  --fds-alert-icon: var(--text-warning-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+}
+.fds-alert[data-color='Notice'][data-emphasis='Intense'] {
+  --fds-alert-bg: var(--background-warning-default);
+  --fds-alert-border: transparent;
+  --fds-alert-family-fg: var(--text-warning-default);
+  --fds-alert-icon: var(--text-warning-on-warning);
+  --fds-alert-title: var(--text-warning-on-warning);
+  --fds-alert-body: var(--text-warning-on-warning);
+  --fds-alert-close: var(--text-warning-on-warning);
+}
+
+/* Information */
+.fds-alert[data-color='Information'][data-emphasis='Subtle'] {
+  --fds-alert-bg: var(--background-info-secondary);
+  --fds-alert-border: var(--border-info-disabled);
+  --fds-alert-family-fg: var(--text-info-default);
+  --fds-alert-icon: var(--text-info-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+}
+.fds-alert[data-color='Information'][data-emphasis='Intense'] {
+  --fds-alert-bg: var(--background-info-default);
+  --fds-alert-border: transparent;
+  --fds-alert-family-fg: var(--text-info-default);
+  --fds-alert-icon: var(--text-info-on-info);
+  --fds-alert-title: var(--text-info-on-info);
+  --fds-alert-body: var(--text-info-on-info);
+  --fds-alert-close: var(--text-info-on-info);
+}
+
+/* Neutral */
+.fds-alert[data-color='Neutral'][data-emphasis='Subtle'] {
+  --fds-alert-bg: var(--background-brand-secondary);
+  --fds-alert-border: var(--border-brand-disabled);
+  --fds-alert-family-fg: var(--text-brand-default);
+  --fds-alert-icon: var(--text-brand-default);
+  --fds-alert-title: var(--text-gray-secondary);
+  --fds-alert-body: var(--text-gray-tertiary);
+  --fds-alert-close: var(--text-gray-primary);
+}
+.fds-alert[data-color='Neutral'][data-emphasis='Intense'] {
+  --fds-alert-bg: var(--background-brand-default);
+  --fds-alert-border: transparent;
+  --fds-alert-family-fg: var(--text-brand-default);
+  --fds-alert-icon: var(--text-brand-on-brand);
+  --fds-alert-title: var(--text-brand-on-brand);
+  --fds-alert-body: var(--text-brand-on-brand);
+  --fds-alert-close: var(--text-brand-on-brand);
+}

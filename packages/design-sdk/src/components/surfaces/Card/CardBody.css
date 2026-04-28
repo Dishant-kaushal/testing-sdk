@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card Body — Faclon Design System 2.0
+   Figma: 1509:7608
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-card-body {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Text variant */
+.fds-card-body__text {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--text-gray-primary);
+  letter-spacing: 0;
+}
+
+/* Slot variant */
+.fds-card-body--slot {
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--global-border-radius-medium);
+}

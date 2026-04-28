@@ -1,0 +1,10 @@
+/* ActionListItemGroup — Faclon Design System 2.0
+   Figma: 238:808 */
+
+.fds-action-list-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-02) var(--spacing-03);
+  width: 100%;
+}

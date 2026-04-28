@@ -1,0 +1,46 @@
+/* ColorCell — Faclon Design System 2.0
+   Figma: 2586:1855 (Default), 2588:2478 (Hover), 2586:1859 (Selected)
+   36×24 horizontal rectangle, rounded medium */
+
+.fds-color-cell {
+  all: unset;
+  position: relative;
+  width: 36px;
+  height: 24px;
+  border-radius: var(--global-border-radius-medium);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Inner color fill — extends to cover the full cell including under the border */
+.fds-color-cell__color {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* Hover — border switches to brand */
+.fds-color-cell:hover {
+  border-color: var(--border-brand-default);
+}
+
+/* Selected — brand border + inner color gets its own gray border */
+.fds-color-cell--selected {
+  border-color: var(--border-brand-default);
+}
+
+.fds-color-cell--selected .fds-color-cell__color {
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  box-sizing: border-box;
+}
+
+/* Focus-visible — stacked ring */
+.fds-color-cell:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}

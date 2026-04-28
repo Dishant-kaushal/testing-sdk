@@ -1,0 +1,13 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LineChart — Faclon Design System 2.0
+   Figma: 2745:2872
+   This class is applied directly to the Highcharts React container div via
+   `containerProps={{ className: 'fds-line-chart' }}`. The chart canvas
+   then fills the full available width of the parent `Chart` canvas slot,
+   and Highcharts auto-sizes its SVG to match.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-line-chart {
+  width: 100%;
+  min-height: inherit;
+}

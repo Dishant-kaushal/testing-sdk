@@ -1,0 +1,33 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   RadioGroup — Faclon Design System 2.0
+   Figma: 271:1096
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+}
+
+.fds-radio-group__label {
+  color: var(--text-gray-secondary);
+  letter-spacing: 0;
+}
+
+/* Vertical: radios stacked, gap 4px */
+.fds-radio-group--vertical .fds-radio-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Horizontal: radios in a row, gap 8px */
+.fds-radio-group--horizontal .fds-radio-group__body {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-03);
+  align-items: center;
+}

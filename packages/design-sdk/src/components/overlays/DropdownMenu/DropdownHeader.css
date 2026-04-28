@@ -1,0 +1,64 @@
+/* DropdownHeader — Faclon Design System 2.0
+   Figma: 2329:16563 */
+
+.fds-dropdown-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Container (left + trailing) */
+.fds-dropdown-header__container {
+  display: flex;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  padding: var(--spacing-04) var(--spacing-05) var(--spacing-05);
+  width: 100%;
+}
+
+/* Left section (leading + content) */
+.fds-dropdown-header__left {
+  display: flex;
+  flex: 1 0 0;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  min-width: 0;
+  overflow: clip;
+}
+
+/* Content (heading + subtitle) */
+.fds-dropdown-header__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* Heading row (title + counter) */
+.fds-dropdown-header__heading {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  padding-top: var(--spacing-01);
+  height: 28px;
+  width: 100%;
+}
+
+.fds-dropdown-header__title {
+  color: var(--text-brand-default);
+  white-space: nowrap;
+}
+
+.fds-dropdown-header__counter {
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--spacing-01);
+  flex-shrink: 0;
+}
+
+.fds-dropdown-header__subtitle {
+  color: var(--text-gray-tertiary);
+  width: 100%;
+}

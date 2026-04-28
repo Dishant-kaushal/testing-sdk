@@ -1,0 +1,49 @@
+/* CellText — Figma 1313:12838. Default row content. */
+
+.fds-table-cell-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm); /* 8px between leading / content / trailing */
+  width: 100%;
+  min-width: 0;
+}
+
+.fds-table-cell-text__leading {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-table-cell-text__content {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.fds-table-cell-text__title {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.fds-table-cell-text__description {
+  color: var(--text-gray-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.fds-table-cell-text__trailing {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}

@@ -1,0 +1,23 @@
+/* CalendarFooter — Faclon Design System 2.0
+   Figma: 2097:10428
+   Structure: Divider → gap 16px → actions row (justify-end, pb-16px, px-16px)
+   Button gap: 12px between Cancel and Apply */
+
+.fds-calendar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-calendar-footer__actions {
+  display: flex;
+  flex: 1;
+  gap: var(--spacing-04);
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--spacing-05) var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+}

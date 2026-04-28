@@ -1,0 +1,10 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PhoneNumberInput
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Marker class — PhoneNumberInput mostly styles itself via TextInput's
+   `leadingSlot` rules and CountrySelector.css. Kept so consumers can target
+   the composite for edge cases. */
+.fds-phone-number-input {
+  /* intentionally empty */
+}

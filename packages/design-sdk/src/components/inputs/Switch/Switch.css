@@ -1,0 +1,263 @@
+/* Switch — Faclon Design System 2.0
+   Figma: 552:11900
+   Hidden checkbox + custom track/thumb pattern.
+   Structure: label > input(hidden) > wrapper(2px pad, focus ring) > track(colored pill) > thumb */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.fds-switch--disabled {
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hidden input
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Wrapper — outer container with 2px padding for focus ring gap
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-01);
+  border-radius: var(--global-border-radius-max);
+  transition: box-shadow 150ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Track — colored pill
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-01);
+  border-radius: var(--global-border-radius-max);
+  background: var(--background-gray-default);
+  transition: background-color 150ms ease;
+}
+
+/* —— Medium: track 36×20 ————————————————————————————————————————————————— */
+
+.fds-switch--medium .fds-switch__track {
+  width: 36px;
+  height: 20px;
+}
+
+/* —— Small: track 28×16 —————————————————————————————————————————————————— */
+
+.fds-switch--small .fds-switch__track {
+  width: 28px;
+  height: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Thumb
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--background-surface-intense);
+  transition: transform 150ms ease;
+}
+
+/* —— Medium thumb 16×16 ——————————————————————————————————————————————————— */
+
+.fds-switch--medium .fds-switch__thumb {
+  width: 16px;
+  height: 16px;
+}
+
+/* —— Small thumb 12×12 ———————————————————————————————————————————————————— */
+
+.fds-switch--small .fds-switch__thumb {
+  width: 12px;
+  height: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Checkmark icon — hidden by default, visible when checked
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__check-icon {
+  opacity: 0;
+  color: var(--background-surface-intense);
+  transition: opacity 150ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Checked state
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-brand-default);
+}
+
+/* Slide thumb to the right */
+.fds-switch--medium .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__thumb {
+  transform: translateX(16px);
+}
+
+.fds-switch--small .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__thumb {
+  transform: translateX(12px);
+}
+
+/* Show checkmark */
+.fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__check-icon {
+  opacity: 1;
+  color: var(--background-brand-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Unchecked hover */
+.fds-switch:not(.fds-switch--disabled):hover .fds-switch__input:not(:checked) ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-gray-hover-dark);
+}
+
+/* Checked hover */
+.fds-switch:not(.fds-switch--disabled):hover .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-brand-default-hover);
+}
+
+.fds-switch:not(.fds-switch--disabled):hover .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__check-icon {
+  color: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Focus — ring on wrapper + track bg change (matches Checkbox pattern)
+   Figma: wrapper p-[2px], _BaseFocusRing inset-px border-4
+   CSS: stacked box-shadow — 2px gap + 4px ring
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Wrapper already has 2px padding as the gap — no stacked white layer needed */
+.fds-switch__input:focus-visible ~ .fds-switch__wrapper {
+  box-shadow: 0 0 0 var(--spacing-02) var(--border-focused-default);
+}
+
+/* Unchecked focus — track bg darkens (same as hover) */
+.fds-switch:not(.fds-switch--disabled) .fds-switch__input:focus-visible:not(:checked) ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-gray-hover-dark);
+}
+
+/* Checked focus — track bg darkens (same as hover) */
+.fds-switch:not(.fds-switch--disabled) .fds-switch__input:focus-visible:checked ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-brand-default-hover);
+}
+
+.fds-switch:not(.fds-switch--disabled) .fds-switch__input:focus-visible:checked ~ .fds-switch__wrapper .fds-switch__check-icon {
+  color: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Disabled unchecked */
+.fds-switch--disabled .fds-switch__input:not(:checked) ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-brand-disabled);
+}
+
+/* Disabled checked */
+.fds-switch--disabled .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__track {
+  background: var(--background-brand-disabled);
+}
+
+.fds-switch--disabled .fds-switch__input:checked ~ .fds-switch__wrapper .fds-switch__check-icon {
+  color: var(--background-brand-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SwitchField — "with text" layout (label + helpText + trailingIcon)
+   Figma: 1555:601
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-field {
+  width: 100%;
+}
+
+/* Label spans full row width in field layout */
+.fds-switch-field .fds-switch {
+  display: flex;
+  width: 100%;
+}
+
+.fds-switch-field__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-04);
+  padding: var(--spacing-03) var(--spacing-05);
+  width: 100%;
+}
+
+.fds-switch-field__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+}
+
+.fds-switch-field__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+}
+
+.fds-switch-field__title {
+  color: var(--text-gray-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fds-switch-field__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+}
+
+.fds-switch-field__help {
+  color: var(--text-gray-tertiary);
+}
+
+/* Disabled text */
+.fds-switch--disabled .fds-switch-field__title {
+  color: var(--text-gray-disabled);
+}
+
+.fds-switch--disabled .fds-switch-field__icon {
+  color: var(--text-gray-disabled);
+}
+
+.fds-switch--disabled .fds-switch-field__help {
+  color: var(--text-gray-disabled);
+}

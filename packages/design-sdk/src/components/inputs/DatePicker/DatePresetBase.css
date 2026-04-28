@@ -1,0 +1,36 @@
+/* DatePresetBase — Faclon Design System 2.0
+   Figma: 2170:10686 */
+
+.fds-date-preset {
+  all: unset;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 var(--spacing-03);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-moderate);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 150ms ease;
+}
+
+.fds-date-preset:hover {
+  background: var(--background-brand-secondary-hover);
+}
+
+.fds-date-preset:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+.fds-date-preset--selected {
+  background: var(--background-brand-secondary);
+}
+
+.fds-date-preset__label {
+  color: var(--text-gray-primary);
+  white-space: nowrap;
+  letter-spacing: 0;
+}

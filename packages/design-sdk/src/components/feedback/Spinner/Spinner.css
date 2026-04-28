@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Spinner — Faclon Design System 2.0
+   Figma: 464:4043 (_SpinnerBase) + 464:4127 (Spinner)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ————————————————————————————————————————————————————————————————— */
+
+.fds-spinner {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.fds-spinner__indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: fds-spinner-rotate var(--fds-duration-spinner) var(--fds-easing-overshoot) infinite;
+}
+
+.fds-spinner__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fds-spinner__track {
+  fill-opacity: 0.18;
+}
+
+.fds-spinner__label {
+  color: var(--text-gray-tertiary);
+  white-space: nowrap;
+}
+
+@keyframes fds-spinner-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* —— Sizes ———————————————————————————————————————————————————————————————— */
+
+.fds-spinner--size-medium .fds-spinner__indicator {
+  width: 16px;
+  height: 16px;
+}
+
+.fds-spinner--size-large .fds-spinner__indicator {
+  width: 20px;
+  height: 20px;
+}
+
+.fds-spinner--size-xlarge .fds-spinner__indicator {
+  width: 24px;
+  height: 24px;
+}
+
+/* —— Label position —————————————————————————————————————————————————————— */
+
+.fds-spinner--label-bottom {
+  flex-direction: column;
+  align-items: center;
+}
+
+.fds-spinner--label-right {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Gap between spinner and label */
+.fds-spinner--size-medium.fds-spinner--label-bottom,
+.fds-spinner--size-medium.fds-spinner--label-right {
+  gap: var(--spacing-02);
+}
+
+.fds-spinner--size-large.fds-spinner--label-bottom,
+.fds-spinner--size-large.fds-spinner--label-right,
+.fds-spinner--size-xlarge.fds-spinner--label-bottom,
+.fds-spinner--size-xlarge.fds-spinner--label-right {
+  gap: var(--spacing-03);
+}
+
+/* —— Color variants —————————————————————————————————————————————————————— */
+
+.fds-spinner--color-brand {
+  color: var(--background-brand-default);
+}
+
+.fds-spinner--color-positive {
+  color: var(--background-positive-default);
+}
+
+.fds-spinner--color-negative {
+  color: var(--background-error-default);
+}
+
+.fds-spinner--color-warning {
+  color: var(--background-warning-default);
+}
+
+.fds-spinner--color-information {
+  color: var(--background-info-default);
+}
+
+.fds-spinner--color-neutral {
+  color: var(--text-gray-tertiary);
+}
+
+.fds-spinner--color-white {
+  color: var(--background-surface-intense);
+}
+
+/* White variant label should also be white */
+.fds-spinner--color-white .fds-spinner__label {
+  color: var(--background-surface-intense);
+}

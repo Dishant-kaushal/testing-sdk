@@ -1,0 +1,196 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Table — Faclon Design System 2.0
+   Native <table> + <thead>/<tbody>/<tfoot>/<tr>/<th>/<td>.
+
+   Architecture:
+     border-collapse: separate    no shared borders → sticky cells own
+                                  clean boxes; eliminates the column-border-
+                                  scroll-with-neighbor bug.
+     ROW DIVIDERS only            per Figma: NO vertical column borders;
+                                  only horizontal lines between rows. Owned
+                                  by each cell's `border-bottom`.
+
+   Surface structure (in Table.tsx):
+     .fds-table-surface              flex column, holds toolbar + scroll + footer
+       .fds-table-surface__toolbar       optional, fixed at top (Phase R3)
+       .fds-table-surface__scroll        overflow:auto, ONLY this scrolls
+         <table class="fds-table">
+       .fds-table-surface__footer        optional, fixed at bottom (Phase R6)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Surface (outer chrome) ────────────────────────────────────────────── */
+
+.fds-table-surface {
+  /* Component-scoped dimension vars — used by selection cells + header height
+     across TableCell / TableHeaderCell / TableFooter / TablePagination. */
+  --fds-table-col-selection: 48px;
+  --fds-table-row-header-height: 36px;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: transparent;
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  /* Clip rounded corners; prevents inner content from poking out. */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* When a footer is present, surface drops its bottom rounding + bottom
+   border so it sits flush against the footer-bar below. The footer-bar
+   then carries the bottom rounding. Together they read as one card. */
+.fds-table-surface[data-has-footer='true'] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+
+/* Footer bar — separate sibling div below the surface. Shares the surface's
+   border colour + radius (bottom corners only) so they visually combine. */
+.fds-table-footer-bar {
+  width: 100%;
+  background-color: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: 0 0 var(--global-border-radius-medium) var(--global-border-radius-medium);
+  box-sizing: border-box;
+}
+
+/* Toolbar slot — sits above scroll area, never scrolls. */
+.fds-table-surface__toolbar {
+  flex: 0 0 auto;
+  background-color: var(--background-surface-intense);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* Scroll area — the ONLY scrollable region.
+   Body rows scroll vertically beneath the sticky <thead>; columns scroll
+   horizontally past sticky cells. Scrollbar transparent until hover. */
+.fds-table-surface__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  background: transparent;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.fds-table-surface__scroll:hover {
+  scrollbar-color: var(--border-gray-default) transparent;
+}
+.fds-table-surface__scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.fds-table-surface__scroll::-webkit-scrollbar-track { background: transparent; }
+.fds-table-surface__scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: var(--global-border-radius-medium);
+}
+.fds-table-surface__scroll:hover::-webkit-scrollbar-thumb {
+  background: var(--border-gray-default);
+}
+
+/* Refresh overlay — rendered on top of existing rows when `isRefreshing`.
+   Keeps the rows visible so the user keeps context while the data refetches.
+   Position is relative to the scroll container (which has overflow:auto). */
+.fds-table-surface__scroll {
+  position: relative;
+}
+.fds-table-surface__refresh-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  isolation: isolate;
+}
+/* Tinted scrim painted via a pseudo so we can hit an opacity against the
+   semantic surface token without baking a hardcoded rgba into the rule. */
+.fds-table-surface__refresh-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--background-surface-intense);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* (The legacy `.fds-table-surface__footer` slot was retired — footer now
+   renders as a sibling `.fds-table-footer-bar` below the surface.) */
+
+/* —— Table element ─────────────────────────────────────────────────────── */
+
+.fds-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BORDERED CELLS — opt-in vertical column dividers per Figma 1313:15128.
+   With `border-collapse: separate`, each cell owns its own border-right; no
+   shared-border ownership ambiguity, so sticky cells don't drag their edges.
+   Last cell in each row drops the right border (the surface's outer border
+   closes the row).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table-surface[data-bordered='true'] .fds-table th:not(:last-child),
+.fds-table-surface[data-bordered='true'] .fds-table td:not(:last-child) {
+  border-right: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY / FROZEN COLUMNS — native <th>/<td> sticky.
+   Z-index tiers: body sticky=1, header=2, intersection=3.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Sticky header — each <th> sticks to top:0 of the scroll container. */
+.fds-table-surface[data-header-sticky='true'] .fds-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* Selection cell — always sticky-left when multi-select is on */
+.fds-table-surface[data-selection='multiple'] .fds-table th.fds-table__header-cell--selection,
+.fds-table-surface[data-selection='multiple'] .fds-table td.fds-table__cell--selection {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.fds-table-surface[data-selection='multiple'] .fds-table thead th.fds-table__header-cell--selection {
+  z-index: 3;
+}
+
+/* First DATA column — sticky-left at offset 48 px when multi, else 0 */
+.fds-table-surface[data-first-col-sticky='true'][data-selection='multiple'] .fds-table tbody tr > td:nth-child(2),
+.fds-table-surface[data-first-col-sticky='true'][data-selection='multiple'] .fds-table thead tr > th:nth-child(2) {
+  position: sticky;
+  left: var(--fds-table-col-selection);
+  z-index: 1;
+}
+.fds-table-surface[data-first-col-sticky='true'][data-selection='multiple'] .fds-table thead tr > th:nth-child(2) {
+  z-index: 3;
+}
+
+.fds-table-surface[data-first-col-sticky='true']:not([data-selection='multiple']) .fds-table tbody tr > td:first-child,
+.fds-table-surface[data-first-col-sticky='true']:not([data-selection='multiple']) .fds-table thead tr > th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.fds-table-surface[data-first-col-sticky='true']:not([data-selection='multiple']) .fds-table thead tr > th:first-child {
+  z-index: 3;
+}
+
+/* Frozen RIGHT (action) column */
+.fds-table-surface[data-action-col-sticky='true'] .fds-table tbody tr > td:last-child,
+.fds-table-surface[data-action-col-sticky='true'] .fds-table thead tr > th:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+}
+.fds-table-surface[data-action-col-sticky='true'] .fds-table thead tr > th:last-child {
+  z-index: 3;
+}

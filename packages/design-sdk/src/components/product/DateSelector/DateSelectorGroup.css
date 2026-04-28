@@ -1,0 +1,31 @@
+/* DateSelectorGroup — Faclon Design System 2.0
+   Figma: 1000:4658 */
+
+.fds-date-selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-date-selector-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-date-selector-group__row {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+  width: 100%;
+}
+
+/* Buttons stretch equally inside the row — flex-basis: 0 forces equal widths */
+.fds-date-selector-group__row > * {
+  flex: 1 1 0;
+  min-width: 0;
+}

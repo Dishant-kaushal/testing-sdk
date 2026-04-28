@@ -1,0 +1,35 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic Elevation Tokens — Faclon Design System
+   Maps Figma elevation levels to composite box-shadow values.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --fds-shadow-xs:
+    0 2px 1px -1px var(--global-elevation-shadow-color),
+    0 1px 1px 0 var(--global-elevation-shadow-color),
+    0 1px 3px 0 var(--global-elevation-shadow-color);
+  --fds-shadow-sm:
+    0 3px 3px -2px var(--global-elevation-shadow-color),
+    0 3px 4px 0 var(--global-elevation-shadow-color),
+    0 1px 8px 0 var(--global-elevation-shadow-color);
+  --fds-shadow-md:
+    0 3px 5px -1px var(--global-elevation-shadow-color),
+    0 6px 10px 0 var(--global-elevation-shadow-color),
+    0 1px 18px 0 var(--global-elevation-shadow-color);
+  --fds-shadow-lg:
+    0 5px 5px -3px var(--global-elevation-shadow-color),
+    0 8px 10px 1px var(--global-elevation-shadow-color),
+    0 3px 14px 2px var(--global-elevation-shadow-color);
+  --fds-shadow-xl:
+    0 7px 8px -4px var(--global-elevation-shadow-color),
+    0 12px 17px 2px var(--global-elevation-shadow-color),
+    0 5px 22px 4px var(--global-elevation-shadow-color);
+
+  /* Figma single-shadow model (highRaised) */
+  --fds-shadow-highraised:
+    var(--elevation-highraised-x)
+    var(--elevation-highraised-y)
+    var(--elevation-highraised-blur)
+    var(--elevation-highraised-spread)
+    var(--elevation-highraised-color);
+}

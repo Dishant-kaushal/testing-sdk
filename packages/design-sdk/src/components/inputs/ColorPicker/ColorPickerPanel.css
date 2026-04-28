@@ -1,0 +1,117 @@
+/* ColorPickerPanel — Faclon Design System 2.0
+   Figma: 2623:2537 (Custom tab) */
+
+.fds-color-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Saturation/Brightness canvas — border + rounded
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-panel__canvas {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: var(--global-border-radius-medium);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  cursor: crosshair;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.fds-color-panel__canvas-white {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.fds-color-panel__canvas-black {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, black);
+}
+
+/* Canvas picker circle — smaller, thick white border + focused border + elevation */
+.fds-color-panel__picker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--background-surface-intense);
+  border-radius: var(--global-border-radius-max);
+  box-shadow:
+    0 0 0 1px var(--border-focused-default),
+    0 16px 48px -4px var(--background-overlay-default, rgba(25, 40, 57, 0.18));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hue slider — 8px track
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-panel__hue {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+}
+
+.fds-color-panel__hue-track {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--global-border-radius-max);
+  background: linear-gradient(
+    to right,
+    #ff0000, #ff8000, #ffff00, #80ff00,
+    #00ff00, #00ff80, #00ffff, #0080ff,
+    #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Opacity slider — 8px track with checkerboard
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-panel__opacity {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  border-radius: var(--global-border-radius-max);
+  background-image:
+    linear-gradient(45deg, var(--border-gray-muted) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--border-gray-muted) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--border-gray-muted) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--border-gray-muted) 75%);
+  background-size: 6px 6px;
+  background-position: 0 0, 0 3px, 3px -3px, -3px 0;
+}
+
+.fds-color-panel__opacity-track {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--global-border-radius-max);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Slider thumb (shared) — small circle, thick white border,
+   focused-default border ring, elevation highRaised shadow
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-panel__slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--background-surface-intense);
+  border-radius: var(--global-border-radius-max);
+  box-shadow:
+    0 0 0 1px var(--border-focused-default),
+    0 16px 48px -4px var(--background-overlay-default, rgba(25, 40, 57, 0.18));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

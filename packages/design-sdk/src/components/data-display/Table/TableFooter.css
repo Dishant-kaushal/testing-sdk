@@ -1,0 +1,10 @@
+/* —— Table footer (tfoot) ─────────────────────────────────────────────────
+   Optional summary row(s) at the BOTTOM of the table. Visual mirror of the
+   header — secondary bg, semibold text. */
+
+.fds-table__footer td {
+  background-color: var(--background-gray-default);
+  color: var(--text-gray-tertiary);
+  padding: var(--fds-space-md);
+  height: var(--fds-table-row-header-height);
+}

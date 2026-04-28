@@ -1,0 +1,87 @@
+/* PaginationEllipsis — Pagination sub-component
+   Figma: 780:9495
+   Shows dots by default, skip arrows on hover/active.
+   Icon swap via opacity for smooth transition (no layout jank). */
+
+.fds-pagination-ellipsis {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: var(--global-border-radius-medium);
+  background: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: var(--text-gray-secondary);
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+/* Both icons stacked via absolute — swap is opacity-based */
+.fds-pagination-ellipsis__dots,
+.fds-pagination-ellipsis__skip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 150ms ease;
+}
+
+.fds-pagination-ellipsis__dots {
+  opacity: 1;
+}
+
+.fds-pagination-ellipsis__skip {
+  opacity: 0;
+}
+
+/* Hover — crossfade icons, add bg */
+.fds-pagination-ellipsis:hover {
+  background: var(--background-gray-default);
+  color: var(--text-gray-primary);
+}
+
+.fds-pagination-ellipsis:hover .fds-pagination-ellipsis__dots {
+  opacity: 0;
+}
+
+.fds-pagination-ellipsis:hover .fds-pagination-ellipsis__skip {
+  opacity: 1;
+}
+
+/* Focus */
+.fds-pagination-ellipsis:focus-visible {
+  background: var(--background-gray-default);
+  color: var(--text-gray-primary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-pagination-ellipsis:focus-visible .fds-pagination-ellipsis__dots {
+  opacity: 0;
+}
+
+.fds-pagination-ellipsis:focus-visible .fds-pagination-ellipsis__skip {
+  opacity: 1;
+}
+
+/* Active */
+.fds-pagination-ellipsis:active {
+  background: var(--background-gray-hover-dark);
+  color: var(--text-gray-primary);
+}
+
+.fds-pagination-ellipsis:active .fds-pagination-ellipsis__dots {
+  opacity: 0;
+}
+
+.fds-pagination-ellipsis:active .fds-pagination-ellipsis__skip {
+  opacity: 1;
+}

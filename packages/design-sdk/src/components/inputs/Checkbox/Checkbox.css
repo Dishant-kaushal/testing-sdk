@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Checkbox — Faclon Design System 2.0
+   Figma: 556:2260
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Root ————————————————————————————————————————————————————————————————— */
+
+.fds-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  padding: var(--spacing-01) 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.fds-checkbox--disabled {
+  cursor: not-allowed;
+}
+
+/* —— Hidden native input —————————————————————————————————————————————————— */
+
+.fds-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* —— Box (custom checkbox indicator) —————————————————————————————————————— */
+
+.fds-checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--global-border-radius-small);
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* —— Unchecked (default) —————————————————————————————————————————————————— */
+
+.fds-checkbox__box {
+  border: var(--global-border-width-thick) solid var(--border-gray-default);
+  background: transparent;
+}
+
+/* Large uses thicker border */
+.fds-checkbox--size-large .fds-checkbox__box {
+  border-width: var(--global-border-width-thicker);
+}
+
+/* —— Checked ————————————————————————————————————————————————————————————— */
+
+.fds-checkbox__input:checked + .fds-checkbox__box,
+.fds-checkbox--indeterminate .fds-checkbox__box {
+  border: none;
+  background-color: var(--background-brand-default);
+}
+
+/* —— Hover ———————————————————————————————————————————————————————————————— */
+
+/* Unchecked hover */
+.fds-checkbox:not(.fds-checkbox--disabled):hover .fds-checkbox__box {
+  background: var(--background-gray-default);
+}
+
+/* Checked/indeterminate hover */
+.fds-checkbox:not(.fds-checkbox--disabled):hover .fds-checkbox__input:checked + .fds-checkbox__box,
+.fds-checkbox:not(.fds-checkbox--disabled).fds-checkbox--indeterminate:hover .fds-checkbox__box {
+  background-color: var(--background-brand-default-hover);
+}
+
+/* —— Focus ———————————————————————————————————————————————————————————————— */
+
+/*
+ * Figma: _CheckboxBase has p-[2px] around checkbox square.
+ * _BaseFocusRing at inset: [-2px] from wrapper = 4px from checkbox edge.
+ * Ring: border-4 = 4px thick.
+ * CSS: stacked box-shadow — inner layer creates 2px gap, outer layer is 4px ring.
+ */
+.fds-checkbox__input:focus-visible + .fds-checkbox__box {
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+/* Unchecked focus bg */
+.fds-checkbox:not(.fds-checkbox--disabled) .fds-checkbox__input:focus-visible + .fds-checkbox__box {
+  background: var(--background-gray-default);
+}
+
+/* Checked/indeterminate focus bg — uses hover color per Figma */
+.fds-checkbox:not(.fds-checkbox--disabled) .fds-checkbox__input:checked:focus-visible + .fds-checkbox__box,
+.fds-checkbox:not(.fds-checkbox--disabled).fds-checkbox--indeterminate .fds-checkbox__input:focus-visible + .fds-checkbox__box {
+  background-color: var(--background-brand-default-hover);
+}
+
+/* —— Disabled ————————————————————————————————————————————————————————————— */
+
+/* Unchecked disabled */
+.fds-checkbox--disabled .fds-checkbox__box {
+  border-color: var(--border-gray-disabled);
+  background: transparent;
+}
+
+/* Checked/indeterminate disabled */
+.fds-checkbox--disabled .fds-checkbox__input:checked + .fds-checkbox__box,
+.fds-checkbox--disabled.fds-checkbox--indeterminate .fds-checkbox__box {
+  border: none;
+  background-color: var(--background-brand-disabled);
+}
+
+/* —— Icon inside box —————————————————————————————————————————————————————— */
+
+.fds-checkbox__icon {
+  display: none;
+  color: var(--text-brand-on-brand);
+}
+
+.fds-checkbox__input:checked ~ .fds-checkbox__box .fds-checkbox__icon--check,
+.fds-checkbox--indeterminate .fds-checkbox__icon--minus {
+  display: flex;
+}
+
+.fds-checkbox--indeterminate .fds-checkbox__input ~ .fds-checkbox__box .fds-checkbox__icon--check {
+  display: none;
+}
+
+/* —— Sizes ———————————————————————————————————————————————————————————————— */
+
+/* Small: 12px box, 8px icon */
+.fds-checkbox--size-small .fds-checkbox__box {
+  width: 12px;
+  height: 12px;
+}
+
+.fds-checkbox--size-small .fds-checkbox__icon svg {
+  width: 8px;
+  height: 8px;
+}
+
+/* Medium: 16px box, 12px icon */
+.fds-checkbox--size-medium .fds-checkbox__box {
+  width: 16px;
+  height: 16px;
+}
+
+.fds-checkbox--size-medium .fds-checkbox__icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Large: 20px box, 16px icon */
+.fds-checkbox--size-large .fds-checkbox__box {
+  width: 20px;
+  height: 20px;
+}
+
+.fds-checkbox--size-large .fds-checkbox__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* —— Label ———————————————————————————————————————————————————————————————— */
+
+.fds-checkbox__label {
+  color: var(--text-gray-primary);
+  letter-spacing: 0;
+  user-select: none;
+}
+
+.fds-checkbox--disabled .fds-checkbox__label {
+  color: var(--text-gray-disabled);
+}

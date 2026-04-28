@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   EmptyState — Faclon Design System 2.0
+   Figma spec (Medium): node 1025:9446 — 307 × 242 component box.
+
+   Layout has TWO gap levels:
+     • Root (illustration → text → actions block): 20 px (--fds-space-xl)
+     • Actions block (buttons row → help row):    16 px (--fds-space-lg)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fds-space-xl);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* —— Illustration ——————————————————————————————————————————————————————— */
+
+/* EmptyState does NOT constrain illustration size — each Faclon illustration
+   has its own natural aspect ratio and accepts a `size` prop (pixel height,
+   default 120). Consumers pass a size that fits their context, e.g.
+   `<NoDataOneIllustration size={90} />` for the Medium Figma spec. */
+.fds-empty-state__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* —— Text block (title + description) ———————————————————————————————————— */
+
+.fds-empty-state__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fds-space-xs);
+  width: 100%;
+}
+
+.fds-empty-state__title {
+  margin: 0;
+  color: var(--text-gray-primary);
+}
+
+.fds-empty-state__description {
+  margin: 0;
+  color: var(--text-gray-tertiary);
+}
+
+/* —— Actions block (buttons row + help row) —————————————————————————————— */
+
+.fds-empty-state__actions-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fds-space-lg);
+  width: 100%;
+}
+
+.fds-empty-state__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fds-space-md);
+  flex-wrap: wrap;
+}
+
+/* —— Help row (icon + "Need help?" + link) ——————————————————————————————— */
+
+.fds-empty-state__help {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--fds-space-xs);
+}
+
+.fds-empty-state__help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray-tertiary);
+  flex-shrink: 0;
+}
+
+.fds-empty-state__help-text {
+  color: var(--text-gray-tertiary);
+}
+
+.fds-empty-state__help-link {
+  display: inline-flex;
+  align-items: center;
+}

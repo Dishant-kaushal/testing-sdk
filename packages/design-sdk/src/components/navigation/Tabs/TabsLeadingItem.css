@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TabsLeadingItem — Faclon Design System 2.0
+   Figma: 581:2385
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tab-leading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fds-tab-leading--size-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.fds-tab-leading--size-20 {
+  width: 20px;
+  height: 20px;
+}
+
+.fds-tab-leading > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

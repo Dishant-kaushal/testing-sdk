@@ -1,0 +1,32 @@
+/* MonthYearCell — Faclon Design System 2.0
+   Figma: 2097:10785 (MonthYearCell sub-component) */
+
+.fds-month-year-cell {
+  all: unset;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-03);
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: var(--global-border-radius-medium);
+  transition: background-color 150ms ease;
+}
+
+.fds-month-year-cell:hover {
+  background: var(--background-gray-hover-dark);
+}
+
+.fds-month-year-cell--selected {
+  background: var(--background-brand-secondary);
+  overflow: hidden;
+}
+
+.fds-month-year-cell__text {
+  color: var(--text-gray-primary);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0;
+}

@@ -1,0 +1,20 @@
+/* ColorPicker — Faclon Design System 2.0
+   Figma: 3102:28464
+   Popover container with Presets/Custom tabs */
+
+.fds-color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  padding: var(--spacing-04);
+  background: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
+  box-sizing: border-box;
+  width: 420px;
+}
+
+.fds-color-picker__panel {
+  width: 100%;
+}

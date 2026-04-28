@@ -1,0 +1,14 @@
+/* ModalTrailingItem — Faclon Design System 2.0
+   Figma: 619:11621 */
+
+.fds-modal-trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* Badge / Link / Text get 4px vertical padding */
+.fds-modal-trailing--padded {
+  padding: var(--spacing-02) 0;
+}

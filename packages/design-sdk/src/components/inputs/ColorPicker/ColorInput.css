@@ -1,0 +1,121 @@
+/* ColorInput — Faclon Design System 2.0
+   Figma: 3071:11289
+   Same field structure as TextInput: header + field + footer */
+
+.fds-color-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  position: relative;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Field — matches TextInput field (36px, border, rounded, padding)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-input__field {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  height: 36px;
+  padding: var(--spacing-03) var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Hover */
+.fds-color-input:not(.fds-color-input--disabled)
+  .fds-color-input__field:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus / Active — same as TextInput */
+.fds-color-input__field:focus-visible,
+.fds-color-input__field--open {
+  outline: none;
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+
+/* Error */
+.fds-color-input__field--error {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-error-default);
+}
+
+/* Disabled */
+.fds-color-input__field--disabled {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Value text — read-only display, click opens popover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-input__value {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-gray-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fds-color-input__value--placeholder {
+  color: var(--text-gray-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Color swatch — inside the field, trailing
+   Figma: 24×24, borderRadius/small, border-gray-default
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-input__swatch {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--global-border-radius-small);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  /* Checkerboard base — always visible behind transparent colors */
+  background-image:
+    linear-gradient(45deg, var(--border-gray-muted) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--border-gray-muted) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--border-gray-muted) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--border-gray-muted) 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+/* Color overlay — sits on top of the checkerboard */
+.fds-color-input__swatch-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Popover — positioned below the field
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-color-input__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: var(--spacing-02);
+  z-index: var(--fds-z-dropdown);
+}

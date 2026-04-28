@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CounterInput — Faclon Design System 2.0
+   Figma: 1897:25910
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-counter-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-xs);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-counter-input__field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.fds-counter-input__field {
+  display: flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  height: 36px;
+  padding: var(--fds-space-xs) var(--fds-space-xs) var(--fds-space-xs) var(--fds-space-md);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  box-sizing: border-box;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.fds-counter-input:not(.fds-counter-input--disabled):not(.fds-counter-input--error):not(.fds-counter-input--success)
+  .fds-counter-input__field:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus ring — applies in EVERY validation state (default, error, success).
+   The state-specific border colour is set by the static rules below. */
+.fds-counter-input:not(.fds-counter-input--disabled) .fds-counter-input__field:focus-within {
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* Default-state focus — also swaps border-color to brand + bg to secondary. */
+.fds-counter-input:not(.fds-counter-input--disabled):not(.fds-counter-input--error):not(.fds-counter-input--success)
+  .fds-counter-input__field:focus-within {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+}
+
+.fds-counter-input--error .fds-counter-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-error-default);
+}
+
+.fds-counter-input--success .fds-counter-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-positive-default);
+}
+
+.fds-counter-input--disabled .fds-counter-input__field {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* —— Leading section ————————————————————————————————————————————————————— */
+
+.fds-counter-input__leading {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  min-width: 0;
+}
+
+.fds-counter-input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-counter-input--disabled .fds-counter-input__icon {
+  color: var(--text-gray-disabled);
+}
+
+.fds-counter-input__leading-label {
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fds-counter-input--disabled .fds-counter-input__leading-label {
+  color: var(--text-gray-disabled);
+}
+
+.fds-counter-input__input {
+  all: unset;
+  flex: 1 0 0;
+  min-width: 0;
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+  /* truncate very long values — Use Case 5 */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fds-counter-input__input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-counter-input--disabled .fds-counter-input__input {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* —— Trailing section ———————————————————————————————————————————————————— */
+
+.fds-counter-input__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  height: 100%;
+  flex-shrink: 0;
+}

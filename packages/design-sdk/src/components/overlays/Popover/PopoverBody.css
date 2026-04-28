@@ -1,0 +1,16 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PopoverBody — Figma 778:8023 (body slot)
+   Vertical stack with 16 px gap between description + custom content.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-popover-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-lg);
+  width: 100%;
+}
+
+.fds-popover-body__description {
+  margin: 0;
+  color: var(--text-gray-secondary);
+}

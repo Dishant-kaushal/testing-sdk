@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TimeInputFooter — Figma 3155:10656
+   Dimensions: 192×60 (divider + 16px gap + 28px button row + 16px bottom pad)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-time-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-lg);
+  width: 192px;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.fds-time-footer__actions {
+  display: flex;
+  gap: var(--fds-space-lg);
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--fds-space-lg) var(--fds-space-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Both buttons fill equally (50/50 split with a 16px gap between them) */
+.fds-time-footer__actions > * {
+  flex: 1;
+}

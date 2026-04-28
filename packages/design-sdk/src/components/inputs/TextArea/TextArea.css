@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TextArea — Faclon Design System 2.0
+   Figma: 637:3704 + Use Cases (1864:1892)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Root ————————————————————————————————————————————————————————————————— */
+
+.fds-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* —— Field wrapper ———————————————————————————————————————————————————————— */
+
+.fds-textarea__field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* —— Field ———————————————————————————————————————————————————————————————— */
+
+.fds-textarea__field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-03);
+  padding: var(--spacing-03) 0 var(--spacing-03) var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  resize: vertical;
+
+  /* Scrollbar — thin, hidden until hover */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Scrollbar visible on hover */
+.fds-textarea__field:hover {
+  scrollbar-color: var(--border-gray-default) transparent;
+}
+
+.fds-textarea__field::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fds-textarea__field::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fds-textarea__field::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: var(--global-border-radius-full);
+}
+
+.fds-textarea__field:hover::-webkit-scrollbar-thumb {
+  background-color: var(--border-gray-default);
+}
+
+/* Hover */
+.fds-textarea:not(.fds-textarea--disabled):not(.fds-textarea--error)
+  .fds-textarea__field:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus ring (Active) — applies in EVERY validation state so focus stays
+   visible when the field is in error too. */
+.fds-textarea:not(.fds-textarea--disabled) .fds-textarea__field:focus-within {
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* Default-state focus — also swaps border-color to brand + bg moderate.
+   Error state keeps its red border on focus (no override needed). */
+.fds-textarea:not(.fds-textarea--disabled):not(.fds-textarea--error)
+  .fds-textarea__field:focus-within {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-surface-moderate);
+}
+
+/* Error */
+.fds-textarea--error .fds-textarea__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-error-default);
+}
+
+/* Disabled */
+.fds-textarea--disabled .fds-textarea__field {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* —— Textarea element ————————————————————————————————————————————————————— */
+
+.fds-textarea__input {
+  all: unset;
+  flex: 1 0 0;
+  min-width: 0;
+  height: 100%;
+  padding-right: var(--spacing-04);
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+  resize: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: visible;
+}
+
+.fds-textarea__input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-textarea--disabled .fds-textarea__input {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* —— Tags mode ———————————————————————————————————————————————————————————— */
+
+.fds-textarea--tags .fds-textarea__field {
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing-02);
+  overflow-y: auto;
+  resize: vertical;
+  padding-right: var(--spacing-04);
+}
+
+.fds-textarea--tags .fds-textarea__tag-input {
+  all: unset;
+  flex: 1 1 100%;
+  min-width: 80px;
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-textarea--tags .fds-textarea__tag-input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-textarea--disabled .fds-textarea__tag-input {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* —— Size × maxLines heights ————————————————————————————————————————————— */
+
+/* Medium */
+.fds-textarea--size-medium .fds-textarea__field { height: 56px; }
+.fds-textarea--size-medium.fds-textarea--lines-3 .fds-textarea__field { height: 76px; }
+.fds-textarea--size-medium.fds-textarea--lines-4 .fds-textarea__field { height: 96px; }
+.fds-textarea--size-medium.fds-textarea--lines-5 .fds-textarea__field { height: 116px; }
+
+/* Large */
+.fds-textarea--size-large .fds-textarea__field { height: 64px; }
+.fds-textarea--size-large.fds-textarea--lines-3 .fds-textarea__field { height: 88px; }
+.fds-textarea--size-large.fds-textarea--lines-4 .fds-textarea__field { height: 112px; }
+.fds-textarea--size-large.fds-textarea--lines-5 .fds-textarea__field { height: 136px; }
+

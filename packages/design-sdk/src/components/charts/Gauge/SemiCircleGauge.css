@@ -1,0 +1,8 @@
+.fds-semi-circle-gauge {
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-surface-intense);
+}

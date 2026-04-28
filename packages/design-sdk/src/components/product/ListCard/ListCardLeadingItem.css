@@ -1,0 +1,19 @@
+/* ListCardLeadingItem — Faclon Design System 2.0
+   Figma: 1519:30378 */
+
+.fds-list-card-leading {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-02) 0;
+  flex-shrink: 0;
+}
+
+/* Color swatch — 16×16 rounded square */
+.fds-list-card-leading__color {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--global-border-radius-xsmall);
+  border: var(--global-border-width-thin) solid var(--border-focused-default);
+  background: var(--background-warning-default);
+  flex-shrink: 0;
+}

@@ -1,0 +1,68 @@
+import { forwardRef } from 'react';
+import type { EmptyStateIllustrationProps } from './types';
+import { cn } from '../../../../utils/cn';
+
+export type NoSearchResultIllustrationProps = EmptyStateIllustrationProps;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NoSearchResultIllustration — Faclon Design System 2.0
+   Figma node: 1062:404 (illustration=No search result)
+   Flat single-SVG export with Faclon semantic tokens.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+export const NoSearchResultIllustration = forwardRef<
+  SVGSVGElement,
+  NoSearchResultIllustrationProps
+>(({ size = 120, className }, ref) => {
+  const width = (115 * size) / 120;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={size}
+      viewBox="0 0 115 120"
+      fill="none"
+      className={cn('fds-illustration', className)}
+      aria-hidden="true"
+      focusable="false"
+    >
+      {/* Circular backdrop */}
+      <path
+        d="M57.5341 114.057C87.6841 114.057 112.127 89.6138 112.127 59.3561C112.127 29.0984 87.5764 4.6554 57.5341 4.6554C27.3841 4.6554 2.94104 29.0984 2.94104 59.3561C2.94104 89.6138 27.3841 114.057 57.5341 114.057Z"
+        fill="var(--background-gray-default)"
+        stroke="var(--border-gray-default)"
+        strokeWidth="2.15357"
+        strokeMiterlimit="10"
+      />
+      {/* Document body (with folded corner) */}
+      <path
+        d="M97.9135 32.0063L98.7749 101.351C98.7749 103.72 96.8367 105.551 94.4678 105.551H26.8456C24.4767 105.551 22.5385 103.613 22.5385 101.351V12.1935C22.5385 9.82455 24.4767 7.99402 26.8456 7.99402H75.8394L97.9135 32.0063Z"
+        fill="var(--background-surface-intense)"
+        stroke="var(--border-gray-default)"
+        strokeWidth="2.15357"
+        strokeMiterlimit="10"
+      />
+      {/* Document — title line */}
+      <path
+        d="M66.3637 22.53H33.9525C33.1987 22.53 32.5526 21.8839 32.5526 21.1302C32.5526 20.3764 33.1987 19.7303 33.9525 19.7303H66.3637C67.1175 19.7303 67.7635 20.3764 67.7635 21.1302C67.7635 21.8839 67.1175 22.53 66.3637 22.53Z"
+        fill="var(--border-gray-default)"
+      />
+      {/* Folded corner (top right) */}
+      <path
+        d="M76.3883 7.99402V27.1608C76.3883 29.8528 78.7572 32.0063 81.4492 32.0063H98.4624"
+        fill="var(--border-gray-default)"
+      />
+      {/* Magnifier — ring + handle over the document */}
+      <path
+        d="M103.082 107.166C102.005 107.166 100.928 106.735 100.067 105.766L82.0847 87.7839L81.4386 88.2146C75.6239 92.5217 68.8402 94.783 61.9488 94.783C53.6575 94.783 45.3663 91.445 39.2286 85.6303C32.7679 79.4926 29.2145 71.2014 29.2145 62.1564C29.2145 44.1741 43.8588 29.5298 61.8411 29.5298C74.1164 29.5298 84.8843 35.9905 90.6989 46.9737C96.4059 57.8493 95.6522 70.5553 88.653 80.7848L88.2223 81.4309L106.312 99.5209C108.143 101.351 107.712 103.182 107.389 104.151C106.528 105.874 104.805 107.166 103.082 107.166ZM61.8411 38.4671C48.7043 38.4671 38.1518 49.1273 38.1518 62.1564C38.1518 77.016 50.3195 85.9534 62.1641 85.9534C69.3786 85.9534 75.947 82.723 80.5772 76.9084C86.2841 69.8016 87.2532 60.2182 83.2691 51.9269C79.1773 43.6357 70.9938 38.4671 61.8411 38.4671Z"
+        fill="var(--border-gray-default)"
+        stroke="var(--text-gray-tertiary)"
+        strokeWidth="2.15357"
+        strokeMiterlimit="10"
+      />
+    </svg>
+  );
+});
+
+NoSearchResultIllustration.displayName = 'NoSearchResultIllustration';

@@ -1,0 +1,283 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TabItem — Faclon Design System 2.0
+   Figma: 581:1346 (matrix), 581:2199 (assemblies)
+
+   Layout principle: SELECTING A TAB MUST NOT CHANGE THE TAB'S BOX SIZE.
+   Indicators (line under text, left rail, filled bg) are layered via ::after
+   or background-color so heights/widths stay constant across states.
+
+   Motion principle: hover transitions use the INSTANT duration (~80 ms);
+   selection-entrance transitions use the GENTLE duration (~480 ms). The
+   `.fds-tab-item--selected` rule overrides the base transition so picking
+   up the selected class slows the property changes; losing the class falls
+   back to instant (deselection feels quick).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ———————————————————————————————————————————————————————————————— */
+
+.fds-tab-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-03);
+  border: 0;
+  background: transparent;
+  color: var(--text-gray-tertiary);
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  /* Default — variant rules override. */
+  padding: var(--spacing-05) 0;
+  /* Hover-driven properties — Blade's xquick (160ms) for text/icon transitions. */
+  transition:
+    color var(--fds-duration-xquick) var(--fds-easing-standard),
+    background-color var(--fds-duration-xquick) var(--fds-easing-standard),
+    box-shadow var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+/* Selection-entrance — slower so the bg/colour swap feels deliberate. */
+.fds-tab-item--selected {
+  transition:
+    color var(--fds-duration-moderate) var(--fds-easing-standard),
+    background-color var(--fds-duration-moderate) var(--fds-easing-standard),
+    box-shadow var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+.fds-tab-item__leading,
+.fds-tab-item__trailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fds-tab-item__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hover (unselected, not disabled) */
+.fds-tab-item:hover:not(:disabled):not(.fds-tab-item--selected) {
+  color: var(--text-gray-secondary);
+}
+
+/* Focus ring — button pattern (stacked shadow with white gap) */
+.fds-tab-item:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Disabled */
+.fds-tab-item--disabled {
+  cursor: not-allowed;
+  color: var(--text-gray-disabled);
+}
+.fds-tab-item--disabled.fds-tab-item--selected {
+  color: var(--text-brand-disabled);
+}
+
+/* Selected text colour (overridden by Filled which keeps brand-default) */
+.fds-tab-item--selected {
+  color: var(--text-brand-default);
+}
+
+/* Full-width (horizontal only) */
+.fds-tab-item--full-width {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant — Bordered + Borderless (line indicator)
+   The two variants render IDENTICALLY at the item level; the container
+   draws (or doesn't draw) the baseline. Indicator is an absolutely-positioned
+   ::after that ALWAYS exists; opacity toggles 0 → 1 on selection so we can
+   animate the indicator entrance with a gentle curve.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Horizontal — Bordered/Borderless padding mirrors Blade's tabTokens map.
+   Asymmetric on Medium so the indicator sits visually closer to the label
+   baseline (fixes the 12 px text↔indicator gap reported against the previous
+   uniform 16 px padding). */
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-horizontal.fds-tab-item--size-medium,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-horizontal.fds-tab-item--size-medium {
+  padding-top: var(--spacing-02);    /* 4 px */
+  padding-bottom: var(--spacing-04); /* 12 px */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-horizontal.fds-tab-item--size-large,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-horizontal.fds-tab-item--size-large {
+  padding-top: var(--spacing-04);    /* 12 px */
+  padding-bottom: var(--spacing-04); /* 12 px */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Selected indicator is the shared sliding element on `.fds-tabs` (see
+   Tabs.css `.fds-tabs__indicator`). The HOVER affordance is a per-item
+   `::after` line in `--border-gray-default` (lighter than the brand
+   indicator) — visible only on unselected, non-disabled hover. */
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-horizontal::after,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-horizontal::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: var(--global-border-width-thicker);
+  background-color: var(--border-gray-default);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-horizontal:hover:not(:disabled):not(.fds-tab-item--selected)::after,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-horizontal:hover:not(:disabled):not(.fds-tab-item--selected)::after {
+  opacity: 1;
+}
+
+/* Vertical — Bordered/Borderless: padding per Blade's tabTokens.
+   Medium: 4 px V × 12 px H. Large: 12 px V × 12 px H. */
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-vertical,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-vertical {
+  width: 100%;
+  justify-content: flex-start;
+  padding: var(--spacing-02) var(--spacing-04);
+}
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-vertical.fds-tab-item--size-large,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-vertical.fds-tab-item--size-large {
+  padding-top: var(--spacing-04);    /* 12 px */
+  padding-bottom: var(--spacing-04); /* 12 px */
+}
+
+/* Vertical hover affordance — per-item `::after` rail in --border-gray-default,
+   matching the horizontal pattern. Only visible on unselected, non-disabled hover.
+   Position: same as the shared selected indicator (left edge, overlaps container rail). */
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-vertical::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1.5px;
+  width: var(--global-border-width-thicker);
+  background-color: var(--border-gray-default);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-vertical::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--global-border-width-thicker);
+  background-color: var(--border-gray-default);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+.fds-tab-item--variant-bordered.fds-tab-item--orientation-vertical:hover:not(:disabled):not(.fds-tab-item--selected)::after,
+.fds-tab-item--variant-borderless.fds-tab-item--orientation-vertical:hover:not(:disabled):not(.fds-tab-item--selected)::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant — Filled (filled bg indicator inside a segmented enclosure)
+   Items have UNIFORM padding/height; selection only swaps the bg colour
+   (transition handled by the .--selected override above).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal {
+  padding: var(--spacing-03);
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal.fds-tab-item--size-medium {
+  height: 36px;
+}
+
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal.fds-tab-item--size-large {
+  height: 40px;
+}
+
+.fds-tab-item--variant-filled.fds-tab-item--orientation-vertical {
+  padding: var(--spacing-03) var(--spacing-04);
+  border-radius: var(--global-border-radius-small);
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Filled selected bg is now provided by the shared TabIndicator pill.
+   `z-index: 1` keeps tab text/icons above the indicator (which sits at z-index: 0).
+   `position: relative` is already on .fds-tab-item base. */
+.fds-tab-item--variant-filled {
+  z-index: 1;
+}
+
+/* Hover (unselected Filled) — subtle bg pill on the tab itself, since the
+   shared indicator only renders for the SELECTED tab. */
+.fds-tab-item--variant-filled:hover:not(:disabled):not(.fds-tab-item--selected) {
+  background-color: var(--background-gray-default);
+}
+
+/* Filled item dividers — vertical 1 px line at the right edge of every
+   non-last item. `z-index: -1` keeps the line BEHIND the sliding indicator
+   pill (which sits at z-index: 0 on .fds-tabs__indicator); the tab itself
+   stays at z-index: 1 (set on .fds-tab-item--variant-filled above) so text
+   and icons remain on top. Result: as the pill slides between tabs, dividers
+   pass cleanly behind it without flashing over the selected bg. */
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: calc(var(--spacing-01) * -0.5);
+  top: 25%;
+  bottom: 25%;
+  width: var(--global-border-width-thin);
+  background-color: var(--border-gray-muted);
+  opacity: 1;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity var(--fds-duration-gentle) var(--fds-easing-standard);
+}
+
+/* Hide ONLY the dividers immediately adjacent to the selected tab —
+   the selected tab's own right-divider, and the divider on the tab
+   immediately BEFORE the selected one (`:has(+ .--selected)`). */
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal.fds-tab-item--selected::after,
+.fds-tab-item--variant-filled.fds-tab-item--orientation-horizontal:has(+ .fds-tab-item--selected)::after {
+  opacity: 0;
+}
+
+/* Vertical Filled dividers — horizontal 1 px line at the bottom edge. */
+.fds-tab-item--variant-filled.fds-tab-item--orientation-vertical:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: calc(var(--spacing-01) * -0.5);
+  left: 25%;
+  right: 25%;
+  height: var(--global-border-width-thin);
+  background-color: var(--border-gray-muted);
+  opacity: 1;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity var(--fds-duration-gentle) var(--fds-easing-standard);
+}
+
+.fds-tab-item--variant-filled.fds-tab-item--orientation-vertical.fds-tab-item--selected::after,
+.fds-tab-item--variant-filled.fds-tab-item--orientation-vertical:has(+ .fds-tab-item--selected)::after {
+  opacity: 0;
+}

@@ -1,0 +1,71 @@
+/* Indicator — Faclon Design System 2.0
+   Figma: 1792:19458
+   Colored dot + optional label text. */
+
+.fds-indicator {
+  display: inline-flex;
+  align-items: center;
+}
+
+.fds-indicator__wrapper {
+  display: flex;
+  gap: var(--spacing-02);
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dot — circle sized by variant
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-indicator__dot {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+/* Sizes */
+.fds-indicator__dot--small {
+  width: 6px;
+  height: 6px;
+}
+
+.fds-indicator__dot--medium {
+  width: 8px;
+  height: 8px;
+}
+
+.fds-indicator__dot--large {
+  width: 10px;
+  height: 10px;
+}
+
+/* Intent colors */
+.fds-indicator__dot--positive {
+  background-color: var(--background-positive-default);
+}
+
+.fds-indicator__dot--negative {
+  background-color: var(--background-error-default);
+}
+
+.fds-indicator__dot--notice {
+  background-color: var(--background-warning-default);
+}
+
+.fds-indicator__dot--information {
+  background-color: var(--background-info-default);
+}
+
+.fds-indicator__dot--neutral {
+  background-color: var(--text-gray-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Label
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-indicator__label {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  letter-spacing: 0;
+}

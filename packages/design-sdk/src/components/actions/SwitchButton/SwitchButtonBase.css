@@ -1,0 +1,101 @@
+/* SwitchButtonBase — Faclon Design System 2.0
+   Figma: 1905:9226 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-gray-default);
+  background: var(--background-surface-intense);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Types
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Icon — 36×36 square */
+.fds-switch-btn--icon {
+  width: 36px;
+  height: 36px;
+  color: var(--text-brand-default);
+}
+
+/* Text — 36px height, horizontal padding */
+.fds-switch-btn--text {
+  height: 36px;
+  padding: 0 var(--spacing-06);
+  gap: var(--spacing-03);
+}
+
+.fds-switch-btn__label {
+  color: var(--text-brand-default);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+  letter-spacing: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Active — filled brand bg, white icon/text
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-btn--active {
+  background: var(--background-brand-default);
+}
+
+.fds-switch-btn--active.fds-switch-btn--icon {
+  color: var(--text-brand-on-brand);
+}
+
+.fds-switch-btn--active .fds-switch-btn__label {
+  color: var(--text-brand-on-brand);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hover — gray bg
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-btn:not(.fds-switch-btn--active):not(.fds-switch-btn--disabled):hover {
+  background: var(--background-gray-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Focus
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-btn:not(.fds-switch-btn--disabled):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  z-index: 3;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-switch-btn--disabled {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+.fds-switch-btn--disabled.fds-switch-btn--icon {
+  color: var(--text-brand-disabled);
+}
+
+.fds-switch-btn--disabled .fds-switch-btn__label {
+  color: var(--text-brand-disabled);
+}

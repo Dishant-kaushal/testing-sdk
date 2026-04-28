@@ -1,0 +1,48 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PopoverHeader — Figma 778:8461
+   Title on the left (with optional leading), close icon on the right.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fds-space-md);
+  width: 100%;
+  box-sizing: border-box;
+  /* Figma 778:8023 — header ↔ body gap is 4 px (vs the 16 px the panel's flex-gap
+     applies between every other sibling). Tighten specifically after the header
+     by offsetting the panel gap with a negative bottom margin:
+       effective-spacing = panel-gap + header-margin-bottom
+                         = 16 px + (4 px − 16 px) = 4 px */
+  margin-bottom: calc(var(--fds-space-xs) - var(--fds-space-lg));
+}
+
+.fds-popover-header__left {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.fds-popover-header__leading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-popover-header__title {
+  margin: 0;
+  color: var(--text-gray-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fds-popover-header__close {
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+}

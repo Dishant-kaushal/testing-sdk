@@ -1,0 +1,16 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PopoverSlot — Figma 778:8023 (Slot region)
+   A flexible full-width container consumers fill with custom content.
+   Min-height 48 px keeps small-content popovers looking intentional.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-popover-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  border-radius: var(--global-border-radius-small);
+  box-sizing: border-box;
+}

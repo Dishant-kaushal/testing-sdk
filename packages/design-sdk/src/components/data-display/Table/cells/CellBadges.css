@@ -1,0 +1,8 @@
+/* CellBadges — Figma 1313:12918. Horizontal badge list with 8 px gap. */
+
+.fds-table-cell-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  flex-wrap: nowrap;
+}

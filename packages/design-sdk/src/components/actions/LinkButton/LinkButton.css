@@ -1,0 +1,350 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Link — Faclon Design System 2.0
+   Figma: 286:4327
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ————————————————————————————————————————————————————————————————— */
+
+.fds-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    font-weight 150ms ease;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Anchor gets border-bottom slot for underline on hover/focus */
+.fds-link--type-anchor {
+  border-bottom: var(--global-border-width-thin) solid transparent;
+}
+
+.fds-link__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
+.fds-link__label {
+  display: inline-grid;
+  grid-template-columns: auto;
+  white-space: nowrap;
+}
+
+/* Inner text + invisible heavier-weight twin share the same grid cell. The
+   twin reserves the Medium-weight width; the real content can then flip
+   Regular→Medium on hover/focus without shifting the layout around it. */
+.fds-link__label-inner,
+.fds-link__label[data-text]::before {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fds-link__label[data-text]::before {
+  content: attr(data-text);
+  font-weight: var(--global-fw-500, 500);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* —— Type: Anchor ————————————————————————————————————————————————————————— */
+
+/* Anchor / Primary */
+.fds-link--type-anchor.fds-link--color-primary {
+  color: var(--text-brand-default);
+}
+
+.fds-link--type-anchor.fds-link--color-primary:hover {
+  color: var(--text-brand-on-secondary);
+  border-bottom-color: var(--border-brand-hover);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-primary:focus-visible {
+  color: var(--text-brand-on-secondary);
+  border-bottom-color: var(--border-brand-hover);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Anchor / Neutral */
+.fds-link--type-anchor.fds-link--color-neutral {
+  color: var(--text-gray-primary);
+}
+
+.fds-link--type-anchor.fds-link--color-neutral:hover {
+  color: var(--text-gray-secondary);
+  border-bottom-color: var(--text-gray-secondary);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-neutral:focus-visible {
+  color: var(--text-gray-secondary);
+  border-bottom-color: var(--text-gray-secondary);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Anchor / Negative (destructive) */
+.fds-link--type-anchor.fds-link--color-negative {
+  color: var(--text-error-default);
+}
+
+.fds-link--type-anchor.fds-link--color-negative:hover {
+  color: var(--text-error-on-secondary);
+  border-bottom-color: var(--border-error-hover);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-negative:focus-visible {
+  color: var(--text-error-on-secondary);
+  border-bottom-color: var(--border-error-hover);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Anchor / Positive (success) */
+.fds-link--type-anchor.fds-link--color-positive {
+  color: var(--text-positive-default);
+}
+
+.fds-link--type-anchor.fds-link--color-positive:hover {
+  color: var(--text-positive-on-secondary);
+  border-bottom-color: var(--border-positive-hover);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-positive:focus-visible {
+  color: var(--text-positive-on-secondary);
+  border-bottom-color: var(--border-positive-hover);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Anchor / Warning (Notice) */
+.fds-link--type-anchor.fds-link--color-warning {
+  color: var(--text-warning-default);
+}
+
+.fds-link--type-anchor.fds-link--color-warning:hover {
+  color: var(--text-warning-on-secondary);
+  border-bottom-color: var(--border-warning-hover);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-warning:focus-visible {
+  color: var(--text-warning-on-secondary);
+  border-bottom-color: var(--border-warning-hover);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Anchor / Info (Information) */
+.fds-link--type-anchor.fds-link--color-info {
+  color: var(--text-info-default);
+}
+
+.fds-link--type-anchor.fds-link--color-info:hover {
+  color: var(--text-info-on-secondary);
+  border-bottom-color: var(--border-info-hover);
+  font-weight: var(--global-fw-500, 500);
+}
+
+.fds-link--type-anchor.fds-link--color-info:focus-visible {
+  color: var(--text-info-on-secondary);
+  border-bottom-color: var(--border-info-hover);
+  font-weight: var(--global-fw-500, 500);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+/* —— Type: Action ————————————————————————————————————————————————————————— */
+
+/* Action / Primary */
+.fds-link--type-action.fds-link--color-primary {
+  color: var(--text-brand-default);
+}
+
+.fds-link--type-action.fds-link--color-primary:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-brand-on-secondary);
+}
+
+.fds-link--type-action.fds-link--color-primary:focus-visible {
+  color: var(--text-brand-on-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-primary:disabled,
+.fds-link--type-action.fds-link--color-primary[aria-disabled='true'] {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Action / Neutral */
+.fds-link--type-action.fds-link--color-neutral {
+  color: var(--text-gray-primary);
+}
+
+.fds-link--type-action.fds-link--color-neutral:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-gray-secondary);
+}
+
+.fds-link--type-action.fds-link--color-neutral:focus-visible {
+  color: var(--text-gray-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-neutral:disabled,
+.fds-link--type-action.fds-link--color-neutral[aria-disabled='true'] {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Action / Negative (destructive) */
+.fds-link--type-action.fds-link--color-negative {
+  color: var(--text-error-default);
+}
+
+.fds-link--type-action.fds-link--color-negative:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-error-on-secondary);
+}
+
+.fds-link--type-action.fds-link--color-negative:focus-visible {
+  color: var(--text-error-on-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-negative:disabled,
+.fds-link--type-action.fds-link--color-negative[aria-disabled='true'] {
+  color: var(--text-error-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Action / Positive (success) */
+.fds-link--type-action.fds-link--color-positive {
+  color: var(--text-positive-default);
+}
+
+.fds-link--type-action.fds-link--color-positive:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-positive-on-secondary);
+}
+
+.fds-link--type-action.fds-link--color-positive:focus-visible {
+  color: var(--text-positive-on-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-positive:disabled,
+.fds-link--type-action.fds-link--color-positive[aria-disabled='true'] {
+  color: var(--text-positive-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Action / Warning (Notice) */
+.fds-link--type-action.fds-link--color-warning {
+  color: var(--text-warning-default);
+}
+
+.fds-link--type-action.fds-link--color-warning:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-warning-on-secondary);
+}
+
+.fds-link--type-action.fds-link--color-warning:focus-visible {
+  color: var(--text-warning-on-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-warning:disabled,
+.fds-link--type-action.fds-link--color-warning[aria-disabled='true'] {
+  color: var(--text-warning-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Action / Info (Information) */
+.fds-link--type-action.fds-link--color-info {
+  color: var(--text-info-default);
+}
+
+.fds-link--type-action.fds-link--color-info:hover:not(:disabled):not([aria-disabled='true']) {
+  color: var(--text-info-on-secondary);
+}
+
+.fds-link--type-action.fds-link--color-info:focus-visible {
+  color: var(--text-info-on-secondary);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+  border-radius: var(--global-border-radius-small);
+}
+
+.fds-link--type-action.fds-link--color-info:disabled,
+.fds-link--type-action.fds-link--color-info[aria-disabled='true'] {
+  color: var(--text-info-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}

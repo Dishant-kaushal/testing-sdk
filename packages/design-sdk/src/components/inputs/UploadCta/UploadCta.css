@@ -1,0 +1,126 @@
+/* UploadCta — Faclon Design System 2.0
+   Figma: 736:6875
+
+   States are container-driven, not link-driven.
+   The LinkButton inside has pointer-events: none — all its states
+   are overridden from the parent container's hover/focus/active/disabled. */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root container — dashed border drop zone
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta__root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 56px;
+  border: var(--global-border-width-thin) dashed var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.fds-upload-cta__root:focus {
+  outline: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Inner body — text + link, gap 6px
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-02);
+}
+
+.fds-upload-cta__body {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* LinkButton inside — disable its own interactions, parent drives states */
+.fds-upload-cta__link {
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEFAULT — Link: text-brand-default, no underline
+   (LinkButton default is already correct, no override needed)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOVER — container bg darkens, link gets underline + darker color
+   Figma: bg background-gray-hover-dark, link text-brand-on-secondary,
+          underline border-brand-hover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta:not(.fds-upload-cta--disabled):not(.fds-upload-cta--active)
+  .fds-upload-cta__root:hover {
+  background: var(--background-gray-hover-dark);
+}
+
+.fds-upload-cta:not(.fds-upload-cta--disabled)
+  .fds-upload-cta__root:hover .fds-upload-cta__link.fds-link {
+  color: var(--text-brand-on-secondary);
+  border-bottom-color: var(--border-brand-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOCUS — link gets underline + focus ring (box-shadow 4px)
+   Figma: no bg change, link text-brand-on-secondary, underline,
+          _BaseFocusRing: border-4 border-focused-default rounded-2px
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta:not(.fds-upload-cta--disabled)
+  .fds-upload-cta__root:focus .fds-upload-cta__link.fds-link {
+  color: var(--text-brand-on-secondary);
+  border-bottom-color: var(--border-brand-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  border-radius: var(--global-border-radius-small);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACTIVE (drag over) — brand secondary bg, brand border, link underline
+   Figma: bg background-brand-secondary, border border-brand-disabled,
+          link text-brand-on-secondary, underline border-brand-hover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta--active .fds-upload-cta__root {
+  background: var(--background-brand-secondary);
+  border-color: var(--border-brand-disabled);
+}
+
+.fds-upload-cta--active .fds-upload-cta__link.fds-link {
+  color: var(--text-brand-on-secondary);
+  border-bottom-color: var(--border-brand-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DISABLED — faded border, faded text, no interactions
+   Figma: border border-gray-disabled, body text-gray-disabled,
+          link text-gray-disabled font-semibold (600)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-cta--disabled .fds-upload-cta__root {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+.fds-upload-cta--disabled .fds-upload-cta__body {
+  color: var(--text-gray-disabled);
+}
+
+.fds-upload-cta--disabled .fds-upload-cta__link.fds-link {
+  color: var(--text-gray-disabled);
+}

@@ -1,0 +1,17 @@
+/* CellIcon — token-colored 20 px icon. Figma 1313:12877. */
+
+.fds-table-cell-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fds-space-xl);
+  height: var(--fds-space-xl);
+  line-height: 0;
+}
+
+.fds-table-cell-icon[data-color='default'] { color: var(--text-gray-secondary); }
+.fds-table-cell-icon[data-color='gray']     { color: var(--text-gray-tertiary); }
+.fds-table-cell-icon[data-color='positive'] { color: var(--text-positive-default); }
+.fds-table-cell-icon[data-color='negative'] { color: var(--text-error-default); }
+.fds-table-cell-icon[data-color='notice']   { color: var(--text-warning-default); }
+.fds-table-cell-icon[data-color='info']     { color: var(--text-info-default); }

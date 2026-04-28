@@ -1,0 +1,59 @@
+/* DateSelectorButton — Faclon Design System 2.0
+   Figma: 1130:1774 */
+
+.fds-date-selector-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.fds-date-selector-btn__label {
+  color: var(--text-gray-secondary);
+  text-align: center;
+  letter-spacing: 0;
+}
+
+/* Hover */
+.fds-date-selector-btn:not(.fds-date-selector-btn--active):not(.fds-date-selector-btn--disabled):hover {
+  background: var(--background-gray-default);
+}
+
+/* Active */
+.fds-date-selector-btn--active {
+  background: var(--background-brand-default);
+  border-color: var(--border-brand-default);
+}
+
+.fds-date-selector-btn--active .fds-date-selector-btn__label {
+  color: var(--text-brand-on-brand);
+}
+
+/* Disabled */
+.fds-date-selector-btn--disabled {
+  background: var(--background-gray-disabled);
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+.fds-date-selector-btn--disabled .fds-date-selector-btn__label {
+  color: var(--text-gray-disabled);
+}
+
+/* Focus */
+.fds-date-selector-btn:not(.fds-date-selector-btn--disabled):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}

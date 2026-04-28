@@ -1,0 +1,103 @@
+/* FileThumbnail — Faclon Design System 2.0
+   Figma: 2725:1823 (construction), 736:6944 (all types)
+   38×38px file type icon. 5 SVG layers, colors driven by CSS vars.
+
+   Color architecture (4 levels per type, light → dark):
+   --_ft-body     lightest tint (body fill)
+   --_ft-accent   medium accent (body stroke)
+   --_ft-ribbon   darker (ribbon fill)
+   --_ft-shadow   darkest (support triangles)
+*/
+
+.fds-file-thumbnail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SVG layers
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-file-thumbnail__body {
+  fill: var(--_ft-body);
+  stroke: var(--_ft-accent);
+}
+
+.fds-file-thumbnail__ribbon {
+  fill: var(--_ft-ribbon);
+}
+
+.fds-file-thumbnail__shadow {
+  fill: var(--_ft-shadow);
+}
+
+/* Error variant — single path, red at 32% opacity */
+.fds-file-thumbnail__error {
+  fill: var(--background-error-default);
+}
+
+.fds-file-thumbnail__label {
+  fill: var(--text-brand-on-brand);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 7px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Color variants — all mapped to global token scales
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* xyz — neutral gray (generic/unknown file type) */
+.fds-file-thumbnail[data-type="xyz"] {
+  --_ft-body: var(--global-neutral-gray-50);
+  --_ft-accent: var(--global-neutral-gray-700);
+  --_ft-ribbon: var(--global-neutral-gray-900);
+  --_ft-shadow: var(--global-neutral-gray-1100);
+}
+
+/* xlsx, csv — chromatic green (spreadsheet) */
+.fds-file-thumbnail[data-type="xlsx"],
+.fds-file-thumbnail[data-type="csv"] {
+  --_ft-body: var(--global-chromatic-green-50);
+  --_ft-accent: var(--global-chromatic-green-700);
+  --_ft-ribbon: var(--global-chromatic-green-700);
+  --_ft-shadow: var(--global-chromatic-green-800);
+}
+
+/* pdf — chromatic red (document) */
+.fds-file-thumbnail[data-type="pdf"] {
+  --_ft-body: var(--global-chromatic-red-50);
+  --_ft-accent: var(--global-chromatic-red-600);
+  --_ft-ribbon: var(--global-chromatic-red-700);
+  --_ft-shadow: var(--global-chromatic-red-800);
+}
+
+/* docx — chromatic blue (word document) */
+.fds-file-thumbnail[data-type="docx"] {
+  --_ft-body: var(--global-chromatic-blue-50);
+  --_ft-accent: var(--global-chromatic-blue-600);
+  --_ft-ribbon: var(--global-chromatic-blue-700);
+  --_ft-shadow: var(--global-chromatic-blue-800);
+}
+
+/* png, jpg, svg — chromatic blue (image files, lighter shades) */
+.fds-file-thumbnail[data-type="png"],
+.fds-file-thumbnail[data-type="jpg"],
+.fds-file-thumbnail[data-type="svg"] {
+  --_ft-body: var(--global-chromatic-blue-50);
+  --_ft-accent: var(--global-chromatic-blue-500);
+  --_ft-ribbon: var(--global-chromatic-blue-600);
+  --_ft-shadow: var(--global-chromatic-blue-700);
+}
+
+/* json — chromatic brand (charcoal) */
+.fds-file-thumbnail[data-type="json"] {
+  --_ft-body: var(--global-chromatic-brand-50);
+  --_ft-accent: var(--global-chromatic-brand-500);
+  --_ft-ribbon: var(--global-chromatic-brand-600);
+  --_ft-shadow: var(--global-chromatic-brand-700);
+}

@@ -1,0 +1,5 @@
+.fds-circle-gauge {
+  width: 100%;
+  min-height: inherit;
+  background-color: var(--background-surface-intense);
+}

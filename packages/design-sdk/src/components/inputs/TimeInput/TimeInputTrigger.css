@@ -1,0 +1,27 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TimeInputTrigger — wraps TextInput with a clock icon + size variants
+   Figma: 3114:39632
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-time-trigger {
+  width: 100%;
+  cursor: pointer;
+}
+
+.fds-time-trigger .fds-text-input__input {
+  cursor: pointer;
+}
+
+/* Large size override — bumps the field height to 44px */
+.fds-time-trigger--size-large .fds-text-input__field {
+  height: 44px;
+}
+
+/* Opened state — persistent brand border + focus ring even when focus leaves
+   the input (e.g. after user clicks a cell in the popover) */
+.fds-time-trigger--open .fds-text-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}

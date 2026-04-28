@@ -1,0 +1,16 @@
+/* PATrailingItem — Faclon Design System 2.0
+   Figma: 1477:29816 */
+
+.fds-pa-trailing {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.fds-pa-trailing--icon {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray-tertiary);
+}

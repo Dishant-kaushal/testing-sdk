@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TableCell — <td>
+   Figma 1313:12524 — Cell Base.
+
+   Layout: padding 12 (--spacing[4]) horizontal, density-driven vertical.
+   Border-bottom: 1 px --border-gray-muted   (the row divider; only border
+                                              that exists per Figma)
+   Bg: --background-surface-intense + --fds-row-bg overlay (for hover/sel)
+   Text: Body/MediumRegular, color --text-gray-secondary
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table__cell {
+  padding-left: var(--fds-space-md);
+  padding-right: var(--fds-space-md);
+  vertical-align: middle;
+  text-align: left;
+  color: var(--text-gray-secondary);
+
+  /* Row divider — Figma's only border. With border-collapse:separate, each
+     cell owns this rule individually; together they form a continuous
+     horizontal line at the bottom of every row. */
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+
+  /* Opaque base — sticky cells must cover scrolled content. The row-tint
+     (`--fds-row-bg`) is painted by the `::before` pseudo below so it can
+     stack above the base colour and animate cleanly via a real
+     background-color transition (no @property hack needed). */
+  background-color: var(--background-surface-intense);
+  position: relative;
+  isolation: isolate;
+}
+.fds-table__cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--fds-row-bg, transparent);
+  pointer-events: none;
+  z-index: -1;
+  transition: background-color var(--fds-duration-xquick) var(--fds-easing-standard);
+}
+
+/* Last row drops its bottom border — surface's outer border closes it. */
+.fds-table__body tr:last-child .fds-table__cell {
+  border-bottom: none;
+}
+
+/* Inner span — passthrough for ReactNode children. */
+.fds-table__cell-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Selection cell — width LOCKED to the selection column token, centered
+   checkbox via inner wrapper. */
+.fds-table__cell--selection {
+  width: var(--fds-table-col-selection);
+  min-width: var(--fds-table-col-selection);
+  max-width: var(--fds-table-col-selection);
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fds-table__cell-selection-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* —— Alignment ─────────────────────────────────────────────────────────── */
+.fds-table__cell[data-align='right'] { text-align: right; }
+.fds-table__cell[data-align='center'] { text-align: center; }
+
+/* —— Content-type alignment + width ───────────────────────────────────────
+   Figma `_Table/Cell` ships one base with 10 `contentType` variants. We map
+   each to a `data-content-type` attribute and drive layout from CSS — no JS
+   branching. Content components live under `./cells/`. */
+
+/* Narrow columns: checkbox / icon / spacer are locked to the selection
+   column width and centered. */
+.fds-table__cell[data-content-type='checkbox'],
+.fds-table__cell[data-content-type='icon'],
+.fds-table__cell[data-content-type='spacer'] {
+  width: var(--fds-table-col-selection);
+  min-width: var(--fds-table-col-selection);
+  max-width: var(--fds-table-col-selection);
+  text-align: center;
+}
+
+/* Child layout for centered types: primitives (CellCheckbox, CellIcon, slot
+   content) want a flex-center wrapper around their single child. */
+.fds-table__cell[data-content-type='checkbox'] > *,
+.fds-table__cell[data-content-type='icon'] > *,
+.fds-table__cell[data-content-type='slot'] > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right-aligned cell types — clusters (actions / badges / buttons / status).
+   Inner content is an inline-flex row with the Figma 12 px (--fds-space-md)
+   gap between sub-items. */
+.fds-table__cell[data-content-type='actions'],
+.fds-table__cell[data-content-type='badges'],
+.fds-table__cell[data-content-type='buttons'],
+.fds-table__cell[data-content-type='status'] {
+  text-align: right;
+}
+.fds-table__cell[data-content-type='actions'] > *,
+.fds-table__cell[data-content-type='badges'] > *,
+.fds-table__cell[data-content-type='buttons'] > *,
+.fds-table__cell[data-content-type='status'] > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--fds-space-md);
+}
+
+/* Hover-reveal action icon — used by CellTextAction. Hidden by default,
+   revealed when the enclosing row is hovered/focused. */
+.fds-table__cell-hover-action {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--fds-duration-xquick) var(--fds-easing-exit);
+}
+.fds-table__row:hover .fds-table__cell-hover-action,
+.fds-table__row:focus-within .fds-table__cell-hover-action,
+.fds-table__cell-hover-action[data-always-visible='true'] {
+  visibility: visible;
+  opacity: 1;
+}

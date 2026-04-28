@@ -1,0 +1,8 @@
+/* ColorPickerPresets — Faclon Design System 2.0
+   Figma: 3102:28464 (Presets tab) */
+
+.fds-color-presets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-03);
+}

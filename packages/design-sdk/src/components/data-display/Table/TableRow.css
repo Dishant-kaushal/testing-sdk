@@ -1,0 +1,50 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TableRow — <tr>
+   Density-driven row heights, hover/selected/disabled states.
+   Row exposes `--fds-row-bg` so cells layer it over their solid base
+   (preserves opacity-tint visual + opaque sticky cells).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-table__row {
+  /* Row's effective background — cells inherit via the custom-property cascade
+     and layer it over their own `background-color: white` base so sticky cells
+     stay opaque against scrolled content. The actual fade from transparent
+     → hover/selected tint runs on `.fds-table__cell::before` (see
+     TableCell.css) so `--fds-row-bg` changes animate smoothly. */
+  --fds-row-bg: var(--background-surface-intense);
+  background-color: var(--fds-row-bg);
+  transition: background-color var(--fds-duration-xquick) var(--fds-easing-standard);
+}
+
+/* —— Hover ─────────────────────────────────────────────────────────────── */
+.fds-table__row:hover {
+  --fds-row-bg: var(--background-gray-default);
+}
+
+/* —— Selected (Figma 1313:13206) ──────────────────────────────────────── */
+.fds-table__row[data-selected='true'] {
+  --fds-row-bg: var(--background-brand-secondary);
+}
+.fds-table__row[data-selected='true']:hover {
+  --fds-row-bg: var(--background-brand-secondary-hover);
+}
+
+/* —— Disabled ──────────────────────────────────────────────────────────── */
+.fds-table__row[data-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.fds-table__row[data-disabled='true']:hover {
+  --fds-row-bg: var(--background-surface-intense);
+}
+
+/* —— Density-driven row heights ─────────────────────────────────────────
+   `height` on the <td> acts as a minimum in `table-layout: auto`, and the
+   cell's `vertical-align: middle` (TableCell.css) centres content. Two
+   fixed values per Figma: 40 px compact, 48 px expanded. */
+.fds-table-surface[data-density='compact'] .fds-table__row td {
+  height: 40px;
+}
+.fds-table-surface[data-density='expanded'] .fds-table__row td {
+  height: 48px;
+}

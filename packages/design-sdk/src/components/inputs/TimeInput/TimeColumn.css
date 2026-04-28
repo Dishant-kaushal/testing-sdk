@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TimeColumn — single scrollable column (hour / minute / meridiem)
+   iOS-style wheel behaviour with a fixed highlight band; visuals match
+   Figma node 3155:10656. Scroll feel borrows from Razorpay Blade's SpinWheel
+   (proximity snap + smooth scroll + elementFromPoint active-row detection).
+
+   Geometry (MUST stay in sync with TimeColumn.tsx ROW_HEIGHT = 28):
+     column height      152
+     top spacer          68   (matches Figma Spacer cell height)
+     band top offset     68
+     band height         28   (= row: 4px top-pad + 20px line-height + 4px bot-pad)
+     row height          28
+     bottom spacer       68   (uniform with top spacer — Figma 3155:10656 Period column)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-time-column {
+  position: relative;
+  width: 64px;
+  height: 152px;
+  flex-shrink: 0;
+}
+
+/* Fixed highlight band — absolute-positioned behind the scrolling numbers */
+.fds-time-column__highlight {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: var(--background-brand-secondary);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fds-time-column__scroll {
+  /* Must be a flex column — child `flex: 0 0 Npx` rules (spacers & cells) rely on it.
+     Without `display: flex`, flex-basis is ignored and spacers collapse to 0, which
+     drops the first row above the fixed highlight band. */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  /* Blade-style smoothness: proximity (not mandatory) + smooth scrollTo animation */
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  scroll-padding-top: 68px;
+  scrollbar-width: none;
+  outline: none;
+}
+
+.fds-time-column__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.fds-time-column__scroll:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--border-focused-default);
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-time-column__spacer--top {
+  flex: 0 0 68px;
+}
+
+.fds-time-column__spacer--bottom {
+  flex: 0 0 68px;
+}
+
+.fds-time-column__cell {
+  /* Surgical button reset — preserves font-family / size / weight / line-height
+     from the BodyMediumRegular / BodyMediumSemibold utility classes applied
+     via className (`all: unset` would nuke them). */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  background: transparent;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 100%;
+  padding: var(--fds-space-xs) var(--fds-space-md);
+  cursor: pointer;
+  color: var(--text-gray-primary);
+  /* Snap each row's top to the band top (scroll-padding-top handles the 68px offset) */
+  scroll-snap-align: start;
+  transition: color 120ms ease;
+}
+
+.fds-time-column__cell:disabled {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}

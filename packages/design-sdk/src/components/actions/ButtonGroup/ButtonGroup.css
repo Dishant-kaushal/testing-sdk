@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ButtonGroup — Faclon Design System 2.0
+   Figma: 3330:22648 (Large Primary), 3330:21332 (Left), 3330:21721 (Center),
+          3330:21642 (Right), 3330:22737 (all variants master)
+
+   Structure:
+     .fds-btn-group                 ← root flex container (horizontal row)
+       └ .fds-btn-group__item       ← <span> wrapper around each Button
+           ├ ::before               ← shared-edge divider for Primary / Gray
+           └ .fds-btn-group__button ← the composed <Button>
+
+   Visual-merge strategy:
+     • Wrappers overlap by -1px so neighbouring Secondary-variant borders merge
+       into a single hairline (they're the same colour, so they paint cleanly).
+     • For Primary / Gray variants (Button's border is transparent), a
+       pseudo-element `::before` paints an explicit 1px divider on the shared
+       edge. Matches Figma's explicit <Divider> nodes.
+     • The wrapper lifts on :focus-within / :hover so Button's stacked focus
+       ring sits above neighbours and isn't clipped.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn-group {
+  display: inline-flex;
+  align-items: stretch;
+  isolation: isolate;
+}
+
+.fds-btn-group--full-width {
+  display: flex;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Item wrapper — layout, stacking, shared-edge divider
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn-group__item {
+  position: relative;
+  display: inline-flex;
+}
+
+.fds-btn-group--full-width .fds-btn-group__item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fds-btn-group--full-width .fds-btn-group__item .fds-btn-group__button {
+  width: 100%;
+}
+
+/* Overlap so adjacent Secondary-variant borders merge into one hairline. */
+.fds-btn-group__item--center,
+.fds-btn-group__item--right {
+  margin-left: calc(-1 * var(--global-border-width-thin));
+}
+
+/* Focus / hover lift — moves the item above siblings so Button's stacked
+   box-shadow focus ring isn't clipped by the neighbour's background. */
+.fds-btn-group__item:focus-within {
+  z-index: 2;
+}
+
+.fds-btn-group__item:hover {
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared-edge divider — for variants with a transparent Button border
+   (Primary, Gray). Sits at the left edge of Center/Right items.
+   Secondary's own visible border provides the divider naturally, so no
+   pseudo-element is needed there.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn-group__item--variant-primary.fds-btn-group__item--center::before,
+.fds-btn-group__item--variant-primary.fds-btn-group__item--right::before,
+.fds-btn-group__item--variant-gray.fds-btn-group__item--center::before,
+.fds-btn-group__item--variant-gray.fds-btn-group__item--right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--global-border-width-thin);
+  background-color: var(--border-gray-subtle);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Inner button — per-position corner rounding
+   Button's native border-radius is zeroed by default inside a group; outer
+   edges (Left / Right / Only) re-apply the radius on the relevant corners.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn-group__item .fds-btn-group__button {
+  border-radius: 0;
+}
+
+.fds-btn-group__item--only .fds-btn-group__button {
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-btn-group__item--left .fds-btn-group__button {
+  border-top-left-radius: var(--global-border-radius-medium);
+  border-bottom-left-radius: var(--global-border-radius-medium);
+}
+
+.fds-btn-group__item--right .fds-btn-group__button {
+  border-top-right-radius: var(--global-border-radius-medium);
+  border-bottom-right-radius: var(--global-border-radius-medium);
+}

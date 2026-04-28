@@ -1,0 +1,71 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tag — Faclon Design System 2.0
+   Figma: 519:1812
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ————————————————————————————————————————————————————————————————— */
+
+.fds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  border-radius: var(--global-border-radius-max);
+  background-color: var(--background-brand-secondary);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.fds-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fds-tag__label {
+  white-space: nowrap;
+  color: var(--text-gray-secondary);
+}
+
+.fds-tag__dismiss {
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-tag__dismiss:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+/* —— Sizes ———————————————————————————————————————————————————————————————— */
+
+.fds-tag--size-medium {
+  padding: var(--spacing-01) var(--spacing-02) var(--spacing-01) var(--spacing-03);
+}
+
+.fds-tag--size-large {
+  padding: var(--spacing-02) var(--spacing-03) var(--spacing-02) var(--spacing-04);
+}
+
+/* —— Disabled ————————————————————————————————————————————————————————————— */
+
+.fds-tag--disabled {
+  background-color: var(--background-brand-disabled);
+}
+
+.fds-tag--disabled .fds-tag__label {
+  color: var(--text-gray-disabled);
+}
+
+.fds-tag--disabled .fds-tag__dismiss {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.fds-tag--disabled .fds-tag__icon {
+  color: var(--text-gray-disabled);
+}

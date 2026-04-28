@@ -1,0 +1,125 @@
+/* ListCard — Faclon Design System 2.0
+   Figma: 1521:3617 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  padding: var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card:not(.fds-list-card--selected):not(.fds-list-card--disabled):hover {
+  background: var(--background-gray-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Selected
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card--selected {
+  border-color: var(--border-brand-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Focus
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card:not(.fds-list-card--disabled):focus-visible {
+  outline: none;
+  background: var(--background-gray-default);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card--disabled {
+  cursor: not-allowed;
+  border-color: var(--border-gray-disabled);
+}
+
+.fds-list-card--disabled .fds-list-card__title,
+.fds-list-card--disabled .fds-list-card__subtitle {
+  color: var(--text-gray-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Content — leading + text
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card__content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-03);
+  align-items: center;
+}
+
+/* Leading icon color — cascades to react-feather icons via currentColor */
+.fds-list-card__content .fds-list-card-leading {
+  color: var(--text-gray-secondary);
+}
+
+.fds-list-card--disabled .fds-list-card-leading {
+  color: var(--text-gray-disabled);
+}
+
+/* Text — title + subtitle stacked */
+.fds-list-card__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.fds-list-card__title {
+  color: var(--text-gray-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.fds-list-card__subtitle {
+  color: var(--text-gray-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Trailing — action icons
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-list-card__trailing {
+  display: flex;
+  gap: var(--spacing-02);
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-gray-tertiary);
+}
+
+.fds-list-card--disabled .fds-list-card__trailing {
+  color: var(--text-gray-disabled);
+}

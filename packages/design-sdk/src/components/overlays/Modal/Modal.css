@@ -1,0 +1,69 @@
+/* Modal — Faclon Design System 2.0
+   Figma: 619:11351 */
+
+/* Backdrop — full viewport overlay */
+.fds-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-overlay-default);
+  z-index: var(--fds-z-overlay);
+}
+
+/* Modal card */
+.fds-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--global-border-radius-large);
+  background: var(--background-surface-intense);
+  box-shadow: var(--fds-shadow-lg);
+}
+
+/* Sizes */
+.fds-modal--small {
+  width: 400px;
+}
+
+.fds-modal--medium {
+  width: 760px;
+}
+
+.fds-modal--large {
+  width: 1024px;
+}
+
+/* Floating close button — shown when no header is provided */
+.fds-modal__floating-close {
+  all: unset;
+  position: absolute;
+  top: var(--spacing-05);
+  right: var(--spacing-05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-gray-primary);
+  border-radius: var(--global-border-radius-small);
+  z-index: 1;
+}
+
+.fds-modal__floating-close:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+/* Body wrapper — controls padding */
+.fds-modal__body {
+  width: 100%;
+}
+
+.fds-modal__body--padded {
+  padding: 0 var(--spacing-06);
+}

@@ -1,0 +1,202 @@
+/* DatePickerTrigger — Faclon Design System 2.0
+   Figma: 981:35
+   Standalone trigger — does NOT inherit from TextInput.
+
+   Structure:
+   .fds-date-trigger (root, 100% width)
+   ├── InputFieldHeader (label)
+   ├── .fds-date-trigger__field (button — 36px, border, rounded, own padding)
+   │   └── .fds-date-trigger__leading (flex row, gap 8px)
+   │       ├── .fds-date-trigger__preset (range chip — 28px, gap 4px)
+   │       │   ├── Calendar icon (16px)
+   │       │   ├── .fds-date-trigger__preset-label (14px BodyMediumRegular)
+   │       │   └── ExpandAllIcon (16px, up/down chevrons)
+   │       └── .fds-date-trigger__value (flex 1, 14px)
+   └── InputFieldFooter (help/error text)
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Field (the clickable button)
+   Figma: h-36px, pl-4px, pr-12px, py-8px, border 1px, rounded medium
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger__field {
+  all: unset;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: var(--spacing-03) var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Range mode with chip — tighter left padding, fill parent width */
+.fds-date-trigger--range .fds-date-trigger__field {
+  padding-left: var(--spacing-02);
+  width: 100%;
+}
+
+/* Range without preset chip — normal padding, hug content */
+.fds-date-trigger--range.fds-date-trigger--no-chip .fds-date-trigger__field {
+  padding-left: var(--spacing-04);
+  width: auto;
+}
+
+/* Hover */
+.fds-date-trigger__field:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus / Active — thick brand border + bg + 3px input focus ring */
+.fds-date-trigger:not(.fds-date-trigger--disabled)
+  .fds-date-trigger__field:focus-visible,
+.fds-date-trigger--open .fds-date-trigger__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* Error */
+.fds-date-trigger--error .fds-date-trigger__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-error-default);
+}
+
+/* Disabled */
+.fds-date-trigger--disabled .fds-date-trigger__field {
+  border-color: var(--border-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Leading content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger__leading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+}
+
+/* Calendar icon */
+.fds-date-trigger__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-gray-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Preset chip (range mode)
+   Figma 2753-3842: h-28px, px-8px, gap-4px, rounded medium
+   Default: bg-default-intense (white)
+   Hover/Focus: bg-secondary-default
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger__preset {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  height: 28px;
+  padding: 0 var(--spacing-03);
+  background: var(--background-surface-intense);
+  border-radius: var(--global-border-radius-medium);
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--text-gray-secondary);
+  transition: background-color 150ms ease;
+}
+
+.fds-date-trigger__preset-expand {
+  color: var(--text-gray-tertiary);
+  display: flex;
+  align-items: center;
+}
+
+.fds-date-trigger__preset:hover {
+  background: var(--background-gray-default);
+}
+
+/* Focus state — secondary bg + stacked focus ring */
+.fds-date-trigger__preset:focus-visible {
+  background: var(--background-gray-default);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-date-trigger__preset-label {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Value text
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger__value {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+/* With preset chip, value fills remaining space */
+.fds-date-trigger--range:not(.fds-date-trigger--no-chip) .fds-date-trigger__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fds-date-trigger__value--placeholder {
+  color: var(--text-gray-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Typed input (single mode)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-date-trigger__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-gray-secondary);
+  cursor: text;
+  width: 10ch;
+  padding: 0;
+}
+
+.fds-date-trigger__input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-date-trigger__input--placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-date-trigger--disabled .fds-date-trigger__input {
+  cursor: not-allowed;
+}

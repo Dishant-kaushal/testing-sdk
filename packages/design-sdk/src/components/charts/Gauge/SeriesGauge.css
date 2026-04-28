@@ -1,0 +1,12 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SeriesGauge — Faclon Design System
+   Applied to the Highcharts React container div via containerProps.
+   min-height: inherit matches the parent Chart canvas (367 px) so the
+   Highcharts white background fills the full canvas area — no gray
+   canvas background bleeds through at the bottom.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-series-gauge {
+  width: 100%;
+  min-height: inherit;
+}

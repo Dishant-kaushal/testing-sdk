@@ -1,0 +1,19 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ChipGroup — Faclon Design System 2.0
+   Compound parent for <Chip>. Propagates size / isDisabled / selection via
+   React Context. Layout is a simple column with optional label and
+   help / error footer; children render in a horizontal flex row by default.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chip-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fds-space-sm);
+}
+
+.fds-chip-group__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fds-space-sm);
+  align-items: center;
+}

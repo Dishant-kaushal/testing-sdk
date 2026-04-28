@@ -1,0 +1,188 @@
+/* CalendarDayCell — Faclon Design System 2.0
+   Figma: 2097:6837 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell {
+  all: unset;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-09);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.fds-day-cell__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-03);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fds-day-cell__text {
+  color: var(--text-gray-primary);
+  text-align: center;
+  letter-spacing: 0;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Current date dot
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell__dot {
+  position: absolute;
+  bottom: var(--spacing-02);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--spacing-02);
+  height: var(--spacing-02);
+  border-radius: 50%;
+  background: var(--text-gray-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Default — hover
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--default:not(.fds-day-cell--selected):not(.fds-day-cell--disabled):hover .fds-day-cell__inner {
+  background: var(--background-gray-hover-dark);
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Default — selected
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--default.fds-day-cell--selected {
+  background: var(--background-brand-default);
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-day-cell--default.fds-day-cell--selected .fds-day-cell__text {
+  color: var(--text-brand-on-brand);
+}
+
+/* Selected hover — darken */
+.fds-day-cell--default.fds-day-cell--selected:hover {
+  background: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Current Date
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--currentDate {
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-day-cell--currentDate:not(.fds-day-cell--selected):hover .fds-day-cell__inner {
+  background: var(--background-gray-hover-dark);
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-day-cell--currentDate.fds-day-cell--selected .fds-day-cell__inner {
+  background: var(--background-brand-default);
+  border-radius: var(--global-border-radius-medium);
+}
+
+.fds-day-cell--currentDate.fds-day-cell--selected .fds-day-cell__text {
+  color: var(--text-brand-on-brand);
+}
+
+.fds-day-cell--currentDate.fds-day-cell--selected .fds-day-cell__dot {
+  background: var(--text-brand-on-brand);
+}
+
+/* Current Date — selected hover (darken) */
+.fds-day-cell--currentDate.fds-day-cell--selected:hover .fds-day-cell__inner {
+  background: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Today dot in range — white dot on brand bg (rangeStart/rangeEnd)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--rangeStart.fds-day-cell--today .fds-day-cell__dot,
+.fds-day-cell--rangeEnd.fds-day-cell--today .fds-day-cell__dot {
+  background: var(--text-brand-on-brand);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Range Start — rounded left, filled brand bg
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--rangeStart {
+  background: var(--background-brand-default);
+  border-radius: var(--global-border-radius-medium) 0 0 var(--global-border-radius-medium);
+}
+
+.fds-day-cell--rangeStart .fds-day-cell__text {
+  color: var(--text-brand-on-brand);
+}
+
+.fds-day-cell--rangeStart:hover {
+  background: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Range In — gray bg, no rounding
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--rangeIn {
+  background: var(--background-gray-default);
+}
+
+.fds-day-cell--rangeIn:hover .fds-day-cell__inner {
+  background: var(--background-gray-hover-dark);
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Range End — rounded right, filled brand bg
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--rangeEnd {
+  background: var(--background-brand-default);
+  border-radius: 0 var(--global-border-radius-medium) var(--global-border-radius-medium) 0;
+}
+
+.fds-day-cell--rangeEnd .fds-day-cell__text {
+  color: var(--text-brand-on-brand);
+}
+
+.fds-day-cell--rangeEnd:hover {
+  background: var(--background-brand-default-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Out of Month — disabled look
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--outOfMonth .fds-day-cell__text {
+  color: var(--text-gray-disabled);
+}
+
+.fds-day-cell--outOfMonth {
+  cursor: default;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-day-cell--disabled {
+  cursor: not-allowed;
+}
+
+.fds-day-cell--disabled .fds-day-cell__text {
+  color: var(--text-gray-disabled);
+}

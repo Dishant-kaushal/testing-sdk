@@ -1,0 +1,26 @@
+/* PALeadingItem — Faclon Design System 2.0
+   Figma: 1688:5323 */
+
+.fds-pa-leading {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Icon — 20px with right padding */
+.fds-pa-leading--icon {
+  padding-right: var(--spacing-02);
+}
+
+/* Number — text aligned top */
+.fds-pa-leading--number {
+  align-items: flex-start;
+}
+
+.fds-pa-leading__number {
+  color: var(--text-gray-primary);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0;
+}

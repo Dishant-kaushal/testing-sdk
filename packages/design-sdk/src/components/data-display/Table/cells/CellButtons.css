@@ -1,0 +1,8 @@
+/* CellButtons — Figma 1313:12938. Two XSmall Buttons, gap 8 px. */
+
+.fds-table-cell-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  flex-shrink: 0;
+}

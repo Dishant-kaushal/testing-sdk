@@ -1,0 +1,80 @@
+/* StepperIndicator — Faclon Design System
+   Figma 3192:1859. Single 20 × 20 size; tinted circle with an 8 px inner dot.
+   Colour mapping per Figma:
+     • Inactive  → background-gray-default + text-gray-secondary
+     • Active    → background-brand-secondary + background-brand-default
+     • Success   → background-positive-secondary + text-positive-default
+     • Warning   → background-warning-secondary + text-warning-default
+   `negative` and `information` follow the same family pattern. */
+
+.fds-stepper-indicator {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--global-border-radius-max);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fds-stepper-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--global-border-radius-max);
+}
+
+/* —— Colours: tinted background + inner dot ———————————————————————————— */
+
+.fds-stepper-indicator--neutral {
+  background-color: var(--background-gray-default);
+}
+.fds-stepper-indicator--neutral .fds-stepper-indicator__dot {
+  background-color: var(--text-gray-secondary);
+}
+
+.fds-stepper-indicator--primary {
+  background-color: var(--background-brand-secondary);
+}
+.fds-stepper-indicator--primary .fds-stepper-indicator__dot {
+  background-color: var(--background-brand-default);
+}
+
+.fds-stepper-indicator--positive {
+  background-color: var(--background-positive-secondary);
+}
+.fds-stepper-indicator--positive .fds-stepper-indicator__dot {
+  background-color: var(--text-positive-default);
+}
+
+.fds-stepper-indicator--notice {
+  background-color: var(--background-warning-secondary);
+}
+.fds-stepper-indicator--notice .fds-stepper-indicator__dot {
+  background-color: var(--text-warning-default);
+}
+
+.fds-stepper-indicator--negative {
+  background-color: var(--background-error-secondary);
+}
+.fds-stepper-indicator--negative .fds-stepper-indicator__dot {
+  background-color: var(--text-error-default);
+}
+
+.fds-stepper-indicator--information {
+  background-color: var(--background-info-secondary);
+}
+.fds-stepper-indicator--information .fds-stepper-indicator__dot {
+  background-color: var(--text-info-default);
+}
+
+/* —— Disabled override ———————————————————————————————————————————————— */
+
+.fds-stepper-indicator[data-disabled='true'] {
+  background-color: var(--background-gray-default);
+  opacity: 0.5;
+}
+.fds-stepper-indicator[data-disabled='true'] .fds-stepper-indicator__dot {
+  background-color: var(--text-gray-disabled);
+}

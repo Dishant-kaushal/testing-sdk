@@ -1,0 +1,18 @@
+/* FileUpload — Faclon Design System 2.0
+   Figma: 736:7389
+   Composed form field: Header + UploadCta + Footer + file list */
+
+.fds-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  width: 350px;
+}
+
+/* File list — stacks below the footer */
+.fds-file-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-03);
+  margin-top: var(--spacing-03);
+}

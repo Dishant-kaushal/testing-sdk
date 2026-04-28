@@ -1,0 +1,67 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card — Faclon Design System 2.0
+   Figma: 832:3150
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-07);
+  background: var(--background-surface-intense);
+  border-radius: var(--global-border-radius-medium);
+  width: 100%;
+  box-sizing: border-box;
+  gap: var(--spacing-04);
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease,
+    border-color 200ms ease;
+}
+
+/* —— Elevation ———————————————————————————————————————————————————————————— */
+
+.fds-card--elevation-none {
+  border: var(--fds-border-muted);
+}
+
+.fds-card--elevation-lowraised {
+  box-shadow: var(--fds-shadow-sm);
+}
+
+.fds-card--elevation-midraised {
+  box-shadow: var(--fds-shadow-md);
+}
+
+.fds-card--elevation-highraised {
+  box-shadow: var(--fds-shadow-lg);
+}
+
+/* —— States ——————————————————————————————————————————————————————————————— */
+
+/* Hover — bump to next elevation */
+.fds-card--hoverable:hover {
+  box-shadow: var(--fds-shadow-md);
+}
+
+.fds-card--elevation-lowraised.fds-card--hoverable:hover {
+  box-shadow: var(--fds-shadow-md);
+}
+
+.fds-card--elevation-midraised.fds-card--hoverable:hover {
+  box-shadow: var(--fds-shadow-lg);
+}
+
+.fds-card--elevation-highraised.fds-card--hoverable:hover {
+  box-shadow: var(--fds-shadow-lg);
+}
+
+/* Hover-scaled — Figma shows all values at 1.05×, equivalent to CSS scale(1.05) */
+.fds-card--hover-scaled:hover {
+  transform: scale(1.05);
+}
+
+/* Selected */
+.fds-card--selected {
+  border: var(--global-border-width-thicker) solid var(--border-brand-default);
+}

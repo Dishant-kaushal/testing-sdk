@@ -1,0 +1,70 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TabIndicator — Faclon Design System 2.0
+   Sliding selected-tab indicator, used by Bordered + Borderless variants.
+   Filled variant uses per-tab background colour (TabIndicator returns null).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-tabs__indicator {
+  position: absolute;
+  background-color: var(--border-brand-default);
+  opacity: 0;
+  pointer-events: none;
+  /* Sits BEHIND the tab buttons so tab text remains visible. */
+  z-index: 0;
+  /* Slide animation per Blade: moderate (~280ms) + standard easing.
+     `background-color` uses INSTANT so the hover-on-selected colour shift
+     (brand-default → brand-hover) feels snappy. */
+  transition:
+    transform var(--fds-duration-moderate) var(--fds-easing-standard),
+    width var(--fds-duration-moderate) var(--fds-easing-standard),
+    height var(--fds-duration-moderate) var(--fds-easing-standard),
+    opacity var(--fds-duration-moderate) var(--fds-easing-standard),
+    background-color var(--fds-duration-instant) var(--fds-easing-standard);
+}
+
+/* Hover on the SELECTED tab shifts the shared indicator colour from
+   brand-default → brand-hover (#25313c). TabIndicator leaves backgroundColor
+   inline empty for the non-disabled case so this CSS rule wins. */
+.fds-tabs:has(.fds-tab-item--selected:hover:not(:disabled)) .fds-tabs__indicator {
+  background-color: var(--border-brand-hover);
+}
+
+/* Horizontal: 2 px line at the bottom edge, overlapping the container's
+   1 px border-bottom via bottom: -1px. Width is set inline. */
+.fds-tabs--orientation-horizontal .fds-tabs__indicator {
+  left: 0;
+  bottom: -1px;
+  height: var(--global-border-width-thicker);
+  /* width set inline */
+}
+
+/* Vertical: 2 px rail at the left edge, overlapping the container's
+   1.5 px border-left via left: -1.5px. Height is set inline. */
+.fds-tabs--orientation-vertical .fds-tabs__indicator {
+  top: 0;
+  left: -1.5px;
+  width: var(--global-border-width-thicker);
+  /* height set inline */
+}
+
+/* Borderless vertical has no container rail — sit flush at left: 0. */
+.fds-tabs--variant-borderless.fds-tabs--orientation-vertical .fds-tabs__indicator {
+  left: 0;
+}
+
+/* Filled: full pill that slides between tabs. Width + height + transform are
+   set inline by TabIndicator. Sits BEHIND the tab buttons (z-index: 0); tab
+   text + icons are above (z-index: 1) so they remain readable. */
+.fds-tabs--variant-filled .fds-tabs__indicator {
+  top: 0;
+  left: 0;
+  bottom: auto;
+  background-color: var(--background-brand-secondary);
+  border-radius: var(--global-border-radius-small);
+}
+
+/* Hover-on-selected colour shift doesn't apply to Filled (the brand-hover
+   token is only for the line indicator). Reset to default. */
+.fds-tabs--variant-filled:has(.fds-tab-item--selected:hover:not(:disabled)) .fds-tabs__indicator {
+  background-color: var(--background-brand-secondary);
+}

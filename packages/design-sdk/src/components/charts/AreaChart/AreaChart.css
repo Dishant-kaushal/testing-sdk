@@ -1,0 +1,13 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   AreaChart — Faclon Design System 2.0
+   Figma: 2745:2875
+   This class is applied directly to the Highcharts React container div via
+   `containerProps={{ className: 'fds-area-chart' }}`. The chart canvas
+   then fills the full available width of the parent `Chart` canvas slot,
+   and Highcharts auto-sizes its SVG to match.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-area-chart {
+  width: 100%;
+  min-height: inherit;
+}

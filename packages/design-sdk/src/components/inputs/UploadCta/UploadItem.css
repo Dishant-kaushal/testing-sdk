@@ -1,0 +1,174 @@
+/* UploadItem — Faclon Design System 2.0
+   Figma: 736:7104 (default), 736:7215 (hover), 736:7250 (focus)
+
+   Structure:
+   .fds-upload-item (350px)
+   └── .fds-upload-item__root (bg, border, p-8px, rounded)
+       └── .fds-upload-item__body (flex row, gap-12px)
+           ├── FileThumbnail (38×38)
+           ├── .fds-upload-item__info (flex col, flex:1)
+           │   ├── .fds-upload-item__name-group (name + check icon)
+           │   └── .fds-upload-item__size
+           └── .fds-upload-item__actions (icon buttons + dividers)
+               ├── .fds-upload-item__hover-actions (hidden by default)
+               └── IconButton(X) — always visible
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item {
+  width: 350px;
+}
+
+.fds-upload-item__root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-03);
+  border: var(--global-border-width-thin) solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-gray-default);
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  transition: background-color 150ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Body — flex row layout
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item__body {
+  display: flex;
+  gap: var(--spacing-04);
+  align-items: center;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Info section — file name + size
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.fds-upload-item__name-group {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+}
+
+.fds-upload-item__name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-gray-secondary);
+}
+
+.fds-upload-item__status-icon {
+  flex-shrink: 0;
+  color: var(--text-positive-default);
+}
+
+.fds-upload-item__size {
+  color: var(--text-gray-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Actions — close always visible, download/preview on hover/focus
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item__actions {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.fds-upload-item__divider {
+  height: var(--spacing-04);
+}
+
+/* Download + preview actions hidden by default */
+.fds-upload-item__hover-actions {
+  display: none;
+  gap: var(--spacing-03);
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOVER — darker bg, show all action icons
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item:not(.fds-upload-item--failed) .fds-upload-item__root:hover {
+  background: var(--background-gray-hover-dark);
+}
+
+.fds-upload-item:not(.fds-upload-item--failed) .fds-upload-item__root:hover .fds-upload-item__hover-actions {
+  display: flex;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOCUS-WITHIN — same as hover (keyboard navigation)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item:not(.fds-upload-item--failed) .fds-upload-item__root:focus-within {
+  background: var(--background-gray-hover-dark);
+}
+
+.fds-upload-item:not(.fds-upload-item--failed) .fds-upload-item__root:focus-within .fds-upload-item__hover-actions {
+  display: flex;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FAILED — red bg, red border, error text, top-aligned body
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item--failed .fds-upload-item__root {
+  background: var(--background-error-secondary);
+  border-color: var(--border-error-disabled);
+}
+
+.fds-upload-item--failed .fds-upload-item__root:hover {
+  background: var(--background-error-secondary-hover);
+}
+
+.fds-upload-item--failed .fds-upload-item__root:focus-within {
+  background: var(--background-error-secondary-hover);
+}
+
+.fds-upload-item__body--top {
+  align-items: flex-start;
+}
+
+.fds-upload-item__name--wide {
+  max-width: 200px;
+}
+
+.fds-upload-item__error {
+  color: var(--text-error-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADING — white bg, no hover, progress bar at bottom
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-upload-item--loading .fds-upload-item__root {
+  background: var(--background-surface-intense);
+  position: relative;
+}
+
+/* Progress bar — positioned at bottom of root */
+.fds-upload-item__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

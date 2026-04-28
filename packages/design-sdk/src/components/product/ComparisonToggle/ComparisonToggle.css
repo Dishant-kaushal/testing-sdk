@@ -1,0 +1,31 @@
+/* ComparisonToggle — Faclon Design System 2.0
+   Figma: 1183:1327
+   Paired toggle — two ComparisonButtons joined with shared border. */
+
+.fds-comparison-toggle {
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+}
+
+/* Left button — only left corners rounded, overlaps right border */
+.fds-comparison-toggle__left {
+  border-radius: var(--global-border-radius-medium) 0 0 var(--global-border-radius-medium);
+  margin-right: -1px;
+  z-index: 2;
+}
+
+/* Right button — only right corners rounded */
+.fds-comparison-toggle__right {
+  border-radius: 0 var(--global-border-radius-medium) var(--global-border-radius-medium) 0;
+  z-index: 1;
+}
+
+/* Ensure selected side is on top (covers shared border cleanly) */
+.fds-comparison-toggle__left.fds-comparison-btn--selected {
+  z-index: 3;
+}
+
+.fds-comparison-toggle__right.fds-comparison-btn--selected {
+  z-index: 3;
+}

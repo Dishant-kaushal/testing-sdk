@@ -1,0 +1,213 @@
+/* SelectInput — Faclon Design System 2.0
+   Figma: 614:13380 (single), 614:11526 (multiple), 700:12978 (multiple-flex)
+   Single (click or searchable) composes TextInput + chevron + popover.
+   Multi delegates to MultiSelectField (private helper). */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input {
+  position: relative;
+  width: 100%;
+}
+
+/* Single click-only — field reads as a button */
+.fds-select-input .fds-text-input__input[readonly] {
+  cursor: pointer;
+}
+
+.fds-select-input .fds-text-input__field {
+  cursor: pointer;
+}
+
+/* Single searchable — field is a normal text input */
+.fds-select-input .fds-text-input__input:not([readonly]) {
+  cursor: text;
+}
+
+/* Reserve right padding on the single-mode input so typed text doesn't slide under the chevron */
+.fds-select-input .fds-text-input__input {
+  padding-right: var(--spacing-08);
+}
+
+/* Multi trigger overrides — trigger area reads as text-input */
+.fds-select-input__multi-trigger {
+  cursor: text;
+}
+
+.fds-text-input--disabled .fds-select-input__multi-trigger {
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Single-mode chevron — absolute, vertically centered
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input__chevron {
+  position: absolute;
+  right: var(--spacing-04);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray-primary);
+  transition: transform 150ms ease;
+  pointer-events: none;
+}
+
+.fds-select-input__chevron--open {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Open state — brand border + focus ring on the composed field
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input--open .fds-text-input__field {
+  border-width: var(--global-border-width-thick);
+  border-color: var(--border-brand-default);
+  background: var(--background-gray-default);
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Popover — shared across single and multi
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: var(--spacing-03);
+  z-index: var(--fds-z-dropdown);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Multi — shared across 'multiple' and 'multiple-flex'
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input__multi {
+  width: 100%;
+}
+
+.fds-select-input__multi-field-wrapper {
+  position: relative;
+}
+
+.fds-select-input__multi-input {
+  all: unset;
+  flex: 1 0 0;
+  min-width: 40px;
+  letter-spacing: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-select-input__multi-input::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-text-input--disabled .fds-select-input__multi-input {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+.fds-select-input__multi-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray-primary);
+  transition: transform 150ms ease;
+}
+
+.fds-select-input__multi-chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Multi type="multiple" — fixed-height single row with +N overflow
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-select-input__tags {
+  display: flex;
+  gap: var(--spacing-02);
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.fds-select-input__overflow {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Multi type="multiple-flex" — same starting height as fixed; expands when
+   tags exceed one row width.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Flex mode matches fixed's 36px baseline when the field is empty or tags fit on one row; grows when tags wrap */
+.fds-select-input__multi-trigger--flex {
+  height: auto;
+  min-height: 36px;
+  align-items: center;
+}
+
+/* Hide the typing cursor in click-only multi (parent didn't wire onInputChange → input is readOnly) */
+.fds-select-input__multi-input[readonly] {
+  cursor: pointer;
+}
+
+/* Flex mode stacks tags row above the input row; chevron sits to the right, stretching full height */
+.fds-select-input__leading-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-width: 0;
+  gap: 0;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.fds-select-input--open .fds-select-input__leading-col {
+  gap: var(--spacing-02);
+}
+
+/* Tags in flex mode: wrap within the parent row; don't overflow the field boundary */
+.fds-select-input__tags--flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-02);
+  row-gap: var(--spacing-02);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  flex-shrink: 1;
+  overflow: visible;
+}
+
+/* Input row sits below tags; collapses when closed + tags are committed */
+.fds-select-input__input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  width: 100%;
+  min-width: 0;
+}
+
+.fds-select-input__input-row--hidden {
+  height: 0;
+  overflow: hidden;
+}
+
+/* Trailing chevron — stretches to match the column's full height */
+.fds-select-input__trailing--flex {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  flex-shrink: 0;
+}

@@ -1,0 +1,73 @@
+/* InputFieldFooter — Faclon Design System 2.0
+   Figma: 697:8533 */
+
+.fds-field-footer {
+  width: 100%;
+}
+
+.fds-field-footer__row {
+  display: flex;
+  gap: var(--spacing-02);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.fds-field-footer__row--center {
+  align-items: center;
+}
+
+/* Help group — icon + text */
+.fds-field-footer__help-group {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-02);
+  align-items: center;
+}
+
+/* Icon */
+.fds-field-footer__icon {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--spacing-01) 0;
+  flex-shrink: 0;
+}
+
+.fds-field-footer__icon--error {
+  color: var(--text-error-default);
+}
+
+.fds-field-footer__icon--success {
+  color: var(--text-positive-default);
+}
+
+/* Text */
+.fds-field-footer__text--default {
+  color: var(--text-gray-tertiary);
+}
+
+.fds-field-footer__text--error {
+  color: var(--text-error-default);
+}
+
+.fds-field-footer__text--success {
+  color: var(--text-positive-default);
+}
+
+/* Counter */
+.fds-field-footer__counter {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.fds-field-footer__counter--default {
+  color: var(--text-gray-tertiary);
+}
+
+.fds-field-footer__counter--error {
+  color: var(--text-error-default);
+}
+
+.fds-field-footer__counter--success {
+  color: var(--text-positive-default);
+}

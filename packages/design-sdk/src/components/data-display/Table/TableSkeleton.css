@@ -1,0 +1,43 @@
+/* TableSkeleton — shimmer rows rendered inside <tbody>. The row + cell
+   inherit the usual table row spacing; only the inner "bar" element
+   draws the shimmer. */
+
+.fds-table__skeleton-row {
+  /* Mirrors the real row height at each density so the table does not
+     jump in size when real rows arrive. Density values come from
+     `[data-density]` on the surface — matched on the ancestor. */
+}
+
+.fds-table__skeleton-cell {
+  padding: var(--fds-space-md) var(--fds-space-md);
+  vertical-align: middle;
+  background: var(--background-surface-intense);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-muted);
+}
+
+.fds-table__skeleton-bar {
+  display: block;
+  width: 100%;
+  height: var(--fds-space-md);
+  border-radius: var(--global-border-radius-medium);
+  background: linear-gradient(
+    90deg,
+    var(--background-gray-hover-light) 0%,
+    var(--background-gray-default) 50%,
+    var(--background-gray-hover-light) 100%
+  );
+  background-size: 200% 100%;
+  animation: fds-table-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes fds-table-skeleton-shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fds-table__skeleton-bar {
+    animation: none;
+    background: var(--background-gray-hover-light);
+  }
+}

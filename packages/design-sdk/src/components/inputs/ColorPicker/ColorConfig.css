@@ -1,0 +1,41 @@
+/* ColorConfig — Faclon Design System 2.0
+   Figma: 3112:30584
+   Mode dropdown (78px) + value inputs */
+
+.fds-color-config {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* Hide label headers and footers on all config inputs */
+.fds-color-config .fds-field-header,
+.fds-color-config .fds-field-footer {
+  display: none;
+}
+
+/* Mode selector — fixed 78px */
+.fds-color-config__mode {
+  width: 78px;
+  flex-shrink: 0;
+}
+
+/* Hex input — fills remaining space */
+.fds-color-config__hex {
+  flex: 1;
+  min-width: 0;
+}
+
+/* RGB inputs — 4 fields with tighter gap */
+.fds-color-config__rgb {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: var(--spacing-02);
+}
+
+.fds-color-config__rgb > * {
+  flex: 1;
+  min-width: 0;
+}

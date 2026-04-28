@@ -1,0 +1,49 @@
+/* TableEditableCell — read-mode wrapper.
+   Edit mode renders the DS <TextInput> inline, inheriting the cell's
+   padding. The row grows taller to accommodate the 36 px input (by design
+   — the cell padding stays consistent across read/edit, the row simply
+   lifts to fit). Width stays at the cell's content box via
+   `.fds-text-input { width: 100%; min-width: 0 }`. */
+
+.fds-table__editable-cell-read {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-sm);
+  width: 100%;
+  min-width: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-table__editable-cell-read-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: text;
+  border-radius: var(--global-border-radius-small, 2px);
+  outline: none;
+}
+
+.fds-table__editable-cell-read-value--empty {
+  color: var(--text-gray-tertiary);
+}
+
+/* Keyboard focus ring on the read-mode value so Tab users get a clear
+   affordance. Matches the SDK's simple 3 px focus ring (same as inputs). */
+.fds-table__editable-cell-read-value:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+}
+
+/* Edit mode — TextInput fills the cell horizontally without expanding it.
+   `min-width: 0` at every flex level allows the input to shrink into the
+   existing column width rather than pushing it wider. */
+.fds-table__editable-cell[data-editing='true'] .fds-text-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.fds-table__editable-cell[data-editing='true'] .fds-text-input__field input {
+  min-width: 0;
+  width: 100%;
+}

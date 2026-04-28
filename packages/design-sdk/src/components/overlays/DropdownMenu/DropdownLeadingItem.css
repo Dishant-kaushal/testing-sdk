@@ -1,0 +1,38 @@
+/* DropdownLeadingItem — Faclon Design System 2.0
+   Figma: 237:21017 */
+
+.fds-dropdown-leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Icon variant: 20px icon with 4px vertical padding */
+.fds-dropdown-leading--icon {
+  padding: var(--spacing-02) 0;
+}
+
+.fds-dropdown-leading__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  overflow: clip;
+  flex-shrink: 0;
+  color: var(--text-gray-primary);
+}
+
+.fds-dropdown-leading__icon > svg,
+.fds-dropdown-leading__icon > img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Asset variant: 32×32 fixed container */
+.fds-dropdown-leading--asset {
+  width: 32px;
+  height: 32px;
+  overflow: clip;
+}

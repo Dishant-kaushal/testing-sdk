@@ -1,0 +1,82 @@
+/* Pagination — Faclon Design System 2.0
+   Figma: 780:9576
+   Composed pagination bar — prev/next + page numbers or page jumper */
+
+.fds-pagination {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fds-pagination__root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 36px;
+  padding: 0 var(--spacing-01);
+}
+
+/* Wrapper — 4px gap between prev, pages/jumper, next */
+.fds-pagination__wrapper {
+  display: flex;
+  gap: var(--spacing-02);
+  align-items: center;
+}
+
+/* Page number container — 2px gap between individual page items */
+.fds-pagination__pages {
+  display: flex;
+  gap: var(--spacing-01);
+  align-items: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Jumper variant — input + "of N" label
+   Figma: 780:9633
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pagination__jumper {
+  display: flex;
+  gap: var(--spacing-03);
+  align-items: center;
+  height: 36px;
+  justify-content: flex-end;
+}
+
+/* Page input — 64px wide, bordered, rounded */
+.fds-pagination__jumper-input {
+  width: 64px;
+  height: 36px;
+  padding: var(--spacing-03) var(--spacing-04);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  background: var(--background-surface-intense);
+  color: var(--text-gray-secondary);
+  box-sizing: border-box;
+  text-align: left;
+  transition: border-color 150ms ease;
+}
+
+.fds-pagination__jumper-input:focus {
+  border-color: var(--border-brand-default);
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+}
+
+/* "of N" label */
+.fds-pagination__jumper-label {
+  color: var(--text-gray-primary);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Disabled — whole container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-pagination--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

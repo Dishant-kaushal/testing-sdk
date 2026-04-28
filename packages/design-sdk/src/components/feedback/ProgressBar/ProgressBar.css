@@ -1,0 +1,124 @@
+/* ProgressBar — Faclon Design System 2.0
+   Figma: 3067:2490 */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Header — label + percentage
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fds-progress-bar__label {
+  color: var(--text-gray-secondary);
+}
+
+.fds-progress-bar__percentage {
+  color: var(--text-gray-secondary);
+  margin-left: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Track
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar__track {
+  width: 100%;
+  background: var(--background-gray-default);
+  border-radius: var(--global-border-radius-max);
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Indicator
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar__indicator {
+  height: 100%;
+  border-radius: var(--global-border-radius-max);
+  transition: width var(--fds-duration-moderate) var(--fds-easing-standard);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Sizes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar--size-large .fds-progress-bar__track {
+  height: 4px;
+}
+
+.fds-progress-bar--size-small .fds-progress-bar__track {
+  height: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Intents — indicator fill colors
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar--intent-none .fds-progress-bar__indicator {
+  background: var(--background-brand-default);
+}
+
+.fds-progress-bar--intent-positive .fds-progress-bar__indicator {
+  background: var(--background-positive-default);
+}
+
+.fds-progress-bar--intent-negative .fds-progress-bar__indicator {
+  background: var(--background-error-default);
+}
+
+.fds-progress-bar--intent-notice .fds-progress-bar__indicator {
+  background: var(--background-warning-default);
+}
+
+.fds-progress-bar--intent-information .fds-progress-bar__indicator {
+  background: var(--background-info-default);
+}
+
+.fds-progress-bar--intent-neutral .fds-progress-bar__indicator {
+  background: var(--background-brand-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Indeterminate — slide-and-grow
+   Bar enters narrow from left, grows wide in the middle, shrinks exiting right
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-progress-bar--indeterminate .fds-progress-bar__track {
+  position: relative;
+}
+
+.fds-progress-bar--indeterminate .fds-progress-bar__indicator {
+  position: absolute;
+  top: 0;
+  border-radius: 0;
+  animation: fds-progress-indeterminate var(--fds-duration-spinner) linear infinite;
+}
+
+@keyframes fds-progress-indeterminate {
+  0% {
+    left: -5%;
+    width: 5%;
+  }
+  50% {
+    left: 35%;
+    width: 30%;
+  }
+  100% {
+    left: 105%;
+    width: 5%;
+  }
+}

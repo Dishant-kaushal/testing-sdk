@@ -1,0 +1,56 @@
+/* BreadcrumbItem — Faclon Design System 2.0
+   Figma: 2774:11736
+   Individual breadcrumb item — reuses LinkButton + IconButton internally */
+
+/* ── Base list item ─────────────────────────────────────────────────────── */
+
+.fds-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+}
+
+/* ── LinkButton overrides in breadcrumb context ─────────────────────────── */
+
+.fds-breadcrumb-item__action.fds-link {
+  opacity: 0.57; /* Figma spec — no matching semantic token */
+}
+
+.fds-breadcrumb-item__action.fds-link:hover {
+  opacity: 0.8;
+}
+
+.fds-breadcrumb-item__action.fds-link:focus-visible {
+  opacity: 0.8;
+}
+
+/* ── IconButton overrides in breadcrumb context ─────────────────────────── */
+
+.fds-breadcrumb-item__action.fds-icon-btn {
+  opacity: 0.57; /* Figma spec — no matching semantic token */
+  color: var(--text-gray-primary);
+}
+
+.fds-breadcrumb-item__action.fds-icon-btn:hover:not(:disabled) {
+  opacity: 0.8;
+  color: var(--text-gray-primary);
+}
+
+.fds-breadcrumb-item__action.fds-icon-btn:focus-visible {
+  opacity: 0.8;
+  color: var(--text-gray-primary);
+}
+
+/* ── Current item (not a link) ──────────────────────────────────────────── */
+
+.fds-breadcrumb-item__current {
+  color: var(--text-gray-primary);
+}
+
+/* ── Separator ──────────────────────────────────────────────────────────── */
+
+.fds-breadcrumb-item__separator {
+  color: var(--text-gray-primary);
+  opacity: 0.57; /* Figma spec — no matching semantic token */
+  user-select: none;
+}

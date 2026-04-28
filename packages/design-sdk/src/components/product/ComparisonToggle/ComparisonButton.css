@@ -1,0 +1,77 @@
+/* ComparisonButton — Faclon Design System 2.0
+   Figma: 1174:4968 */
+
+.fds-comparison-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 150ms ease;
+}
+
+/* Selected — white bg */
+.fds-comparison-btn--selected {
+  background: var(--background-surface-intense);
+}
+
+.fds-comparison-btn--selected:hover {
+  background: var(--background-gray-hover-light);
+}
+
+/* Unselected — gray bg */
+.fds-comparison-btn--unselected {
+  background: var(--background-gray-default);
+}
+
+.fds-comparison-btn--unselected:hover {
+  background: var(--background-gray-hover-dark);
+}
+
+/* Disabled */
+.fds-comparison-btn--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Arrow icon colors — driven by selection state */
+.fds-comparison-btn__arrow-up {
+  color: var(--text-gray-tertiary);
+}
+
+.fds-comparison-btn__arrow-down {
+  color: var(--text-gray-tertiary);
+}
+
+/* Left button selected: green up, red down */
+.fds-comparison-toggle__left.fds-comparison-btn--selected .fds-comparison-btn__arrow-up {
+  color: var(--text-positive-default);
+}
+
+.fds-comparison-toggle__left.fds-comparison-btn--selected .fds-comparison-btn__arrow-down {
+  color: var(--text-error-default);
+}
+
+/* Right button selected: red up, green down (reversed) */
+.fds-comparison-toggle__right.fds-comparison-btn--selected .fds-comparison-btn__arrow-up {
+  color: var(--text-error-default);
+}
+
+.fds-comparison-toggle__right.fds-comparison-btn--selected .fds-comparison-btn__arrow-down {
+  color: var(--text-positive-default);
+}
+
+/* Focus — rounded ring above siblings (same as SwitchButton) */
+.fds-comparison-btn:not(.fds-comparison-btn--disabled):focus-visible {
+  outline: none;
+  border-radius: var(--global-border-radius-medium);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  z-index: 4;
+}

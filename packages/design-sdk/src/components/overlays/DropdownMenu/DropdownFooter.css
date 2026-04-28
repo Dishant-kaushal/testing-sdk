@@ -1,0 +1,75 @@
+/* DropdownFooter — Faclon Design System 2.0
+   Figma: 237:21058 */
+
+.fds-dropdown-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Container (slot + actions) */
+.fds-dropdown-footer__container {
+  display: flex;
+  gap: var(--spacing-05);
+  padding: 0 var(--spacing-05) var(--spacing-05);
+  width: 100%;
+}
+
+/* Horizontal: row layout */
+.fds-dropdown-footer--horizontal .fds-dropdown-footer__container {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Vertical: column layout */
+.fds-dropdown-footer--vertical .fds-dropdown-footer__container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Slot content */
+.fds-dropdown-footer__slot {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.fds-dropdown-footer--vertical .fds-dropdown-footer__slot {
+  width: 100%;
+}
+
+/* Actions */
+.fds-dropdown-footer__actions {
+  display: flex;
+  gap: var(--spacing-05);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* Horizontal: side by side */
+.fds-dropdown-footer--horizontal .fds-dropdown-footer__actions {
+  align-items: flex-start;
+}
+
+/* Vertical: stacked full width */
+.fds-dropdown-footer--vertical .fds-dropdown-footer__actions {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Each action stretches equally */
+.fds-dropdown-footer__action {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fds-dropdown-footer__action > * {
+  width: 100%;
+}

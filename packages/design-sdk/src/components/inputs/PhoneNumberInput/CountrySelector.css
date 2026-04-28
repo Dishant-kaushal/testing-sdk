@@ -1,0 +1,103 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CountrySelector — internal to PhoneNumberInput
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Trigger (mounts inside TextInput's leadingSlot) ——————————————————————— */
+
+.fds-country-selector__trigger {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  align-self: stretch;
+  padding: 0 var(--spacing-04);
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--text-gray-secondary);
+  transition: background-color 150ms ease;
+}
+
+.fds-country-selector__trigger:hover:not(:disabled) {
+  background: var(--background-gray-default);
+}
+
+.fds-country-selector__trigger:focus-visible {
+  background: var(--background-gray-default);
+  box-shadow: inset 0 0 0 2px var(--border-focused-default);
+}
+
+.fds-country-selector__trigger:disabled {
+  cursor: not-allowed;
+  color: var(--text-gray-disabled);
+}
+
+.fds-country-selector__flag {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.fds-country-selector__trigger--size-large .fds-country-selector__flag {
+  font-size: 22px;
+}
+
+.fds-country-selector__dial-code {
+  color: var(--text-gray-default);
+  white-space: nowrap;
+}
+
+.fds-country-selector__chevron {
+  color: var(--text-gray-tertiary);
+  flex-shrink: 0;
+}
+
+/* —— Portalled menu ——————————————————————————————————————————————————————— */
+
+.fds-country-selector__menu {
+  position: fixed;
+  z-index: 1000;
+  width: 320px;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-surface-intense);
+  border: var(--global-border-width-thin) solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--shadow-level-3);
+  overflow: hidden;
+}
+
+.fds-country-selector__search {
+  padding: var(--spacing-03);
+  border-bottom: var(--global-border-width-thin) solid var(--border-gray-subtle);
+}
+
+/* The search TextInput renders its label; hide it — we use aria-label instead */
+.fds-country-selector__search .fds-text-input > .fds-field-header {
+  display: none;
+}
+
+.fds-country-selector__dropdown {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.fds-country-selector__empty {
+  padding: var(--spacing-05) var(--spacing-04);
+  color: var(--text-gray-tertiary);
+  text-align: center;
+}
+
+/* —— Menu rows ———————————————————————————————————————————————————————————— */
+
+.fds-country-selector__row-flag {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.fds-country-selector__row-dial-code {
+  color: var(--text-gray-tertiary);
+  white-space: nowrap;
+}

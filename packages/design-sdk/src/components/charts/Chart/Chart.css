@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Chart — Faclon Design System 2.0
+   Figma: 2742:4943
+   Base wrapper for all chart types. Provides header (title, breadcrumb,
+   actions), optional filter row, and a canvas slot for the chart instance.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  gap: var(--spacing-06);
+  padding: var(--spacing-06);
+  background-color: var(--background-surface-intense);
+  border: var(--fds-border-subtle);
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* —— Header ———————————————————————————————————————————————————————————————— */
+
+.fds-chart__header {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: var(--spacing-06);
+}
+
+.fds-chart__header-main {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-02);
+}
+
+.fds-chart__header-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--spacing-04);
+}
+
+/* —— Title trigger (default — used when `title` is a string) ———————————————— */
+
+.fds-chart__title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-02);
+  padding: var(--spacing-02);
+  background-color: var(--background-surface-intense);
+  border: none;
+  border-radius: var(--global-border-radius-medium);
+  color: var(--text-gray-primary);
+  cursor: pointer;
+  font: inherit;
+  transition: background-color 150ms ease;
+}
+
+.fds-chart__title:hover {
+  background-color: var(--background-gray-hover-light);
+}
+
+.fds-chart__title:focus-visible {
+  outline: none;
+  box-shadow: var(--fds-border-focus-ring);
+}
+
+.fds-chart__title-label {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.fds-chart__title-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
+/* —— Duration row (clock icon + time-range label) ——————————————————————————— */
+
+.fds-chart__duration {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--spacing-02);
+}
+
+.fds-chart__duration-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--text-gray-secondary);
+}
+
+.fds-chart__duration-label {
+  color: var(--text-gray-secondary);
+  white-space: nowrap;
+}
+
+/* —— Actions group ————————————————————————————————————————————————————————— */
+
+.fds-chart__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-03);
+}
+
+/* —— Filters row (e.g. DatePicker, periodicity dropdown) ——————————————————
+   Splits the row so the first child (typically a DatePicker) sits on the
+   left and the last child (typically a periodicity dropdown) sits on the
+   far right. With a single child, `space-between` resolves to start.   */
+
+.fds-chart__filters {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-04);
+}
+
+/* —— Canvas slot ——————————————————————————————————————————————————————————— */
+
+.fds-chart__canvas {
+  position: relative;
+  width: 100%;
+  min-height: 367px;
+  background-color: var(--background-surface-moderate);
+}

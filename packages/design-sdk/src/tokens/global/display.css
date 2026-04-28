@@ -1,0 +1,458 @@
+/* ── Display tokens ── */
+
+:root {
+  --global-display-block: block;
+  --global-display-inline-block: inline-block;
+  --global-display-inline: inline;
+  --global-display-flex: flex;
+  --global-display-inline-flex: inline-flex;
+  --global-display-grid: grid;
+  --global-display-inline-grid: inline-grid;
+  --global-display-none: none;
+
+  --global-position-static: static;
+  --global-position-relative: relative;
+  --global-position-absolute: absolute;
+  --global-position-fixed: fixed;
+  --global-position-sticky: sticky;
+
+  --global-overflow-visible: visible;
+  --global-overflow-hidden: hidden;
+  --global-overflow-scroll: scroll;
+  --global-overflow-auto: auto;
+
+  --global-visibility-visible: visible;
+  --global-visibility-hidden: hidden;
+
+  --global-opacity-00: 0;
+  --global-opacity-05: 0.05;
+  --global-opacity-10: 0.1;
+  --global-opacity-20: 0.2;
+  --global-opacity-30: 0.3;
+  --global-opacity-40: 0.4;
+  --global-opacity-50: 0.5;
+  --global-opacity-60: 0.6;
+  --global-opacity-70: 0.7;
+  --global-opacity-80: 0.8;
+  --global-opacity-90: 0.9;
+  --global-opacity-100: 1;
+
+  --global-z-index-hide: -1;
+  --global-z-index-base: 0;
+  --global-z-index-dropdown: 100;
+  --global-z-index-sticky: 200;
+  --global-z-index-overlay: 300;
+  --global-z-index-modal: 400;
+  --global-z-index-popover: 500;
+  --global-z-index-toast: 600;
+  --global-z-index-tooltip: 700;
+
+  --global-cursor-default: default;
+  --global-cursor-pointer: pointer;
+  --global-cursor-not-allowed: not-allowed;
+  --global-cursor-grab: grab;
+  --global-cursor-grabbing: grabbing;
+  --global-cursor-text: text;
+  --global-cursor-move: move;
+  --global-cursor-wait: wait;
+
+  --global-pointer-events-auto: auto;
+  --global-pointer-events-none: none;
+
+  --global-user-select-none: none;
+  --global-user-select-auto: auto;
+  --global-user-select-text: text;
+  --global-user-select-all: all;
+
+  /* Motion tokens (durations / delays / easings) live in tokens/global/motion.css */
+}
+
+/* ── Display ── */
+
+.global-d-block {
+  display: block;
+}
+
+.global-d-inline-block {
+  display: inline-block;
+}
+
+.global-d-inline {
+  display: inline;
+}
+
+.global-d-flex {
+  display: flex;
+}
+
+.global-d-inline-flex {
+  display: inline-flex;
+}
+
+.global-d-grid {
+  display: grid;
+}
+
+.global-d-inline-grid {
+  display: inline-grid;
+}
+
+.global-d-none {
+  display: none;
+}
+
+/* ── Position ── */
+
+.global-pos-static {
+  position: static;
+}
+
+.global-pos-relative {
+  position: relative;
+}
+
+.global-pos-absolute {
+  position: absolute;
+}
+
+.global-pos-fixed {
+  position: fixed;
+}
+
+.global-pos-sticky {
+  position: sticky;
+}
+
+/* ── Overflow ── */
+
+.global-overflow-visible {
+  overflow: visible;
+}
+
+.global-overflow-hidden {
+  overflow: hidden;
+}
+
+.global-overflow-scroll {
+  overflow: scroll;
+}
+
+.global-overflow-auto {
+  overflow: auto;
+}
+
+.global-overflow-x-visible {
+  overflow-x: visible;
+}
+
+.global-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.global-overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.global-overflow-x-auto {
+  overflow-x: auto;
+}
+
+.global-overflow-y-visible {
+  overflow-y: visible;
+}
+
+.global-overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.global-overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.global-overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* ── Visibility ── */
+
+.global-visible {
+  visibility: visible;
+}
+
+.global-invisible {
+  visibility: hidden;
+}
+
+/* ── Opacity ── */
+
+.global-opacity-00 {
+  opacity: 0;
+}
+
+.global-opacity-05 {
+  opacity: 0.05;
+}
+
+.global-opacity-10 {
+  opacity: 0.1;
+}
+
+.global-opacity-20 {
+  opacity: 0.2;
+}
+
+.global-opacity-30 {
+  opacity: 0.3;
+}
+
+.global-opacity-40 {
+  opacity: 0.4;
+}
+
+.global-opacity-50 {
+  opacity: 0.5;
+}
+
+.global-opacity-60 {
+  opacity: 0.6;
+}
+
+.global-opacity-70 {
+  opacity: 0.7;
+}
+
+.global-opacity-80 {
+  opacity: 0.8;
+}
+
+.global-opacity-90 {
+  opacity: 0.9;
+}
+
+.global-opacity-100 {
+  opacity: 1;
+}
+
+/* ── Z-Index ── */
+
+.global-z-hide {
+  z-index: -1;
+}
+
+.global-z-base {
+  z-index: 0;
+}
+
+.global-z-dropdown {
+  z-index: 100;
+}
+
+.global-z-sticky {
+  z-index: 200;
+}
+
+.global-z-overlay {
+  z-index: 300;
+}
+
+.global-z-modal {
+  z-index: 400;
+}
+
+.global-z-popover {
+  z-index: 500;
+}
+
+.global-z-toast {
+  z-index: 600;
+}
+
+.global-z-tooltip {
+  z-index: 700;
+}
+
+/* ── Flex Direction ── */
+
+.global-flex-row {
+  flex-direction: row;
+}
+
+.global-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.global-flex-col {
+  flex-direction: column;
+}
+
+.global-flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+/* ── Flex Wrap ── */
+
+.global-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.global-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.global-flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* ── Flex Grow / Shrink ── */
+
+.global-flex-grow-0 {
+  flex-grow: 0;
+}
+
+.global-flex-grow-1 {
+  flex-grow: 1;
+}
+
+.global-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.global-flex-shrink-1 {
+  flex-shrink: 1;
+}
+
+/* ── Justify Content ── */
+
+.global-justify-start {
+  justify-content: flex-start;
+}
+
+.global-justify-center {
+  justify-content: center;
+}
+
+.global-justify-end {
+  justify-content: flex-end;
+}
+
+.global-justify-between {
+  justify-content: space-between;
+}
+
+.global-justify-around {
+  justify-content: space-around;
+}
+
+.global-justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* ── Align Items ── */
+
+.global-items-start {
+  align-items: flex-start;
+}
+
+.global-items-center {
+  align-items: center;
+}
+
+.global-items-end {
+  align-items: flex-end;
+}
+
+.global-items-baseline {
+  align-items: baseline;
+}
+
+.global-items-stretch {
+  align-items: stretch;
+}
+
+/* ── Align Self ── */
+
+.global-self-auto {
+  align-self: auto;
+}
+
+.global-self-start {
+  align-self: flex-start;
+}
+
+.global-self-center {
+  align-self: center;
+}
+
+.global-self-end {
+  align-self: flex-end;
+}
+
+.global-self-stretch {
+  align-self: stretch;
+}
+
+.global-self-baseline {
+  align-self: baseline;
+}
+
+/* ── Cursor ── */
+
+.global-cursor-default {
+  cursor: default;
+}
+
+.global-cursor-pointer {
+  cursor: pointer;
+}
+
+.global-cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.global-cursor-grab {
+  cursor: grab;
+}
+
+.global-cursor-grabbing {
+  cursor: grabbing;
+}
+
+.global-cursor-text {
+  cursor: text;
+}
+
+.global-cursor-move {
+  cursor: move;
+}
+
+.global-cursor-wait {
+  cursor: wait;
+}
+
+/* ── Pointer Events ── */
+
+.global-pe-auto {
+  pointer-events: auto;
+}
+
+.global-pe-none {
+  pointer-events: none;
+}
+
+/* ── User Select ── */
+
+.global-select-none {
+  user-select: none;
+}
+
+.global-select-auto {
+  user-select: auto;
+}
+
+.global-select-text {
+  user-select: text;
+}
+
+.global-select-all {
+  user-select: all;
+}

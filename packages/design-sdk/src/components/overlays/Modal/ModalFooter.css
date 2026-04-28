@@ -1,0 +1,55 @@
+/* ModalFooter — Faclon Design System 2.0
+   Figma: 619:11640 */
+
+.fds-modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Horizontal actions — row, right-aligned */
+.fds-modal-footer__actions {
+  display: flex;
+  gap: var(--spacing-05);
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--spacing-06) var(--spacing-06);
+  padding-top: var(--spacing-05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Vertical actions — column */
+.fds-modal-footer__actions--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Slot — flex-1 in horizontal, full-width in vertical */
+.fds-modal-footer__slot {
+  flex: 1;
+  min-width: 0;
+}
+
+.fds-modal-footer__actions--vertical .fds-modal-footer__slot {
+  width: 100%;
+}
+
+/* Button stack — horizontal row */
+.fds-modal-footer__stack {
+  display: flex;
+  gap: var(--spacing-05);
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* Button stack — vertical column, full-width buttons */
+.fds-modal-footer__stack--vertical {
+  flex-direction: column;
+  width: 100%;
+}
+
+.fds-modal-footer__stack--vertical > * {
+  width: 100%;
+}

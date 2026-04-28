@@ -1,0 +1,9 @@
+/* CellStatus — Figma 3493:49982. Indicator + badges + optional action,
+   inline with 12 px gaps. */
+
+.fds-table-cell-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fds-space-md);
+  flex-shrink: 0;
+}

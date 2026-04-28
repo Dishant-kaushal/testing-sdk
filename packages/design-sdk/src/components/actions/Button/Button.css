@@ -1,0 +1,397 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Button — Faclon Design System 2.0
+   Figma: 231:18811
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ————————————————————————————————————————————————————————————————— */
+
+.fds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--global-border-width-thin) solid transparent;
+  border-radius: var(--global-border-radius-medium);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+  box-sizing: border-box;
+}
+
+.fds-btn__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.fds-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* —— Sizes ———————————————————————————————————————————————————————————————— */
+
+.fds-btn--size-large {
+  height: var(--spacing-10);
+  padding: 0 var(--spacing-06);
+  gap: var(--spacing-03);
+}
+
+.fds-btn--size-medium {
+  height: 36px;
+  padding: 0 var(--spacing-06);
+  gap: var(--spacing-03);
+}
+
+.fds-btn--size-small {
+  height: var(--spacing-08);
+  padding: 0 var(--spacing-04);
+  gap: var(--spacing-02);
+}
+
+.fds-btn--size-xsmall {
+  height: 28px;
+  padding: 0 var(--spacing-03);
+  gap: var(--spacing-02);
+}
+
+/* —— Icon-only overrides —————————————————————————————————————————————————— */
+
+.fds-btn--icon-only.fds-btn--size-large {
+  width: var(--spacing-10);
+  padding: 0;
+}
+
+.fds-btn--icon-only.fds-btn--size-medium {
+  width: 36px;
+  padding: 0;
+}
+
+.fds-btn--icon-only.fds-btn--size-small {
+  width: var(--spacing-08);
+  padding: 0;
+}
+
+.fds-btn--icon-only.fds-btn--size-xsmall {
+  width: 28px;
+  padding: 0;
+}
+
+/* —— Full-width —————————————————————————————————————————————————————————— */
+
+.fds-btn--full-width {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant × Color — Primary
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--variant-primary.fds-btn--color-primary {
+  background-color: var(--background-brand-default);
+  color: var(--text-brand-on-brand);
+}
+
+.fds-btn--variant-primary.fds-btn--color-primary:hover:not(:disabled) {
+  background-color: var(--background-brand-default-hover);
+}
+
+.fds-btn--variant-primary.fds-btn--color-primary:focus-visible {
+  background-color: var(--background-brand-default-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-primary.fds-btn--color-primary:disabled {
+  background-color: var(--background-brand-disabled);
+  color: var(--text-brand-disabled);
+  cursor: not-allowed;
+}
+
+/* Primary / Negative */
+.fds-btn--variant-primary.fds-btn--color-negative {
+  background-color: var(--background-error-default);
+  color: var(--text-error-on-error);
+}
+
+.fds-btn--variant-primary.fds-btn--color-negative:hover:not(:disabled) {
+  background-color: var(--background-error-default-hover);
+}
+
+.fds-btn--variant-primary.fds-btn--color-negative:focus-visible {
+  background-color: var(--background-error-default-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-primary.fds-btn--color-negative:disabled {
+  background-color: var(--background-error-disabled);
+  color: var(--text-error-disabled);
+  cursor: not-allowed;
+}
+
+/* Primary / Positive */
+.fds-btn--variant-primary.fds-btn--color-positive {
+  background-color: var(--background-positive-default);
+  color: var(--text-positive-on-positive);
+}
+
+.fds-btn--variant-primary.fds-btn--color-positive:hover:not(:disabled) {
+  background-color: var(--background-positive-default-hover);
+}
+
+.fds-btn--variant-primary.fds-btn--color-positive:focus-visible {
+  background-color: var(--background-positive-default-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-primary.fds-btn--color-positive:disabled {
+  background-color: var(--background-positive-disabled);
+  color: var(--text-positive-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant × Color — Secondary
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--variant-secondary.fds-btn--color-primary {
+  background-color: transparent;
+  border-color: var(--border-brand-default);
+  color: var(--text-brand-default);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-primary:hover:not(:disabled) {
+  background-color: var(--background-brand-secondary);
+  border-color: var(--border-brand-hover);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-primary:focus-visible {
+  background-color: var(--background-brand-secondary-hover);
+  border-color: var(--border-brand-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-secondary.fds-btn--color-primary:disabled {
+  background-color: transparent;
+  border-color: var(--border-brand-disabled);
+  color: var(--text-brand-disabled);
+  cursor: not-allowed;
+}
+
+/* Secondary / Negative */
+.fds-btn--variant-secondary.fds-btn--color-negative {
+  background-color: var(--background-error-secondary);
+  border-color: var(--border-error-default);
+  color: var(--text-error-on-secondary);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-negative:hover:not(:disabled) {
+  background-color: var(--background-error-secondary-hover);
+  border-color: var(--border-error-default);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-negative:focus-visible {
+  background-color: var(--background-error-secondary-hover);
+  border-color: var(--border-error-default);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-secondary.fds-btn--color-negative:disabled {
+  background-color: var(--background-error-disabled);
+  border-color: var(--border-error-disabled);
+  color: var(--text-error-disabled);
+  cursor: not-allowed;
+}
+
+/* Secondary / Positive */
+.fds-btn--variant-secondary.fds-btn--color-positive {
+  background-color: var(--background-positive-secondary);
+  border-color: var(--border-positive-default);
+  color: var(--text-positive-on-secondary);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-positive:hover:not(:disabled) {
+  background-color: var(--background-positive-secondary-hover);
+  border-color: var(--border-positive-default);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-positive:focus-visible {
+  background-color: var(--background-positive-secondary-hover);
+  border-color: var(--border-positive-default);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-secondary.fds-btn--color-positive:disabled {
+  background-color: var(--background-positive-disabled);
+  border-color: var(--border-positive-disabled);
+  color: var(--text-positive-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant × Color — Gray
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--variant-gray.fds-btn--color-primary {
+  background-color: var(--background-gray-default);
+  border-color: transparent;
+  color: var(--text-gray-primary);
+}
+
+.fds-btn--variant-gray.fds-btn--color-primary:hover:not(:disabled) {
+  background-color: var(--background-gray-hover-dark);
+}
+
+.fds-btn--variant-gray.fds-btn--color-primary:focus-visible {
+  background-color: var(--background-gray-hover-dark);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-gray.fds-btn--color-primary:disabled {
+  background-color: var(--background-gray-disabled);
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant × Color — Primary / Warning (Notice)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--variant-primary.fds-btn--color-warning {
+  background-color: var(--background-warning-default);
+  color: var(--text-warning-on-warning);
+}
+
+.fds-btn--variant-primary.fds-btn--color-warning:hover:not(:disabled) {
+  background-color: var(--background-warning-default-hover);
+}
+
+.fds-btn--variant-primary.fds-btn--color-warning:focus-visible {
+  background-color: var(--background-warning-default-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-primary.fds-btn--color-warning:disabled {
+  background-color: var(--background-warning-disabled);
+  color: var(--text-warning-disabled);
+  cursor: not-allowed;
+}
+
+/* Primary / Info (Information) */
+.fds-btn--variant-primary.fds-btn--color-info {
+  background-color: var(--background-info-default);
+  color: var(--text-info-on-info);
+}
+
+.fds-btn--variant-primary.fds-btn--color-info:hover:not(:disabled) {
+  background-color: var(--background-info-default-hover);
+}
+
+.fds-btn--variant-primary.fds-btn--color-info:focus-visible {
+  background-color: var(--background-info-default-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-primary.fds-btn--color-info:disabled {
+  background-color: var(--background-info-disabled);
+  color: var(--text-info-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant × Color — Secondary / Warning (Notice)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--variant-secondary.fds-btn--color-warning {
+  background-color: var(--background-warning-secondary);
+  border-color: var(--border-warning-default);
+  color: var(--text-warning-on-secondary);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-warning:hover:not(:disabled) {
+  background-color: var(--background-warning-secondary-hover);
+  border-color: var(--border-warning-hover);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-warning:focus-visible {
+  background-color: var(--background-warning-secondary-hover);
+  border-color: var(--border-warning-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-secondary.fds-btn--color-warning:disabled {
+  background-color: var(--background-warning-disabled);
+  border-color: var(--border-warning-disabled);
+  color: var(--text-warning-disabled);
+  cursor: not-allowed;
+}
+
+/* Secondary / Info (Information) */
+.fds-btn--variant-secondary.fds-btn--color-info {
+  background-color: var(--background-info-secondary);
+  border-color: var(--border-info-default);
+  color: var(--text-info-on-secondary);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-info:hover:not(:disabled) {
+  background-color: var(--background-info-secondary-hover);
+  border-color: var(--border-info-hover);
+}
+
+.fds-btn--variant-secondary.fds-btn--color-info:focus-visible {
+  background-color: var(--background-info-secondary-hover);
+  border-color: var(--border-info-hover);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-btn--variant-secondary.fds-btn--color-info:disabled {
+  background-color: var(--background-info-disabled);
+  border-color: var(--border-info-disabled);
+  color: var(--text-info-disabled);
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Loading state
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-btn--loading {
+  pointer-events: none;
+}

@@ -1,0 +1,84 @@
+import { forwardRef } from 'react';
+import type { EmptyStateIllustrationProps } from './types';
+import { cn } from '../../../../utils/cn';
+
+export type AddImageIllustrationProps = EmptyStateIllustrationProps;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AddImageIllustration — Faclon Design System 2.0
+   Figma node: 1034:2048 (illustration=Add Image)
+   Flat single-SVG export from Figma with Faclon semantic tokens.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+export const AddImageIllustration = forwardRef<SVGSVGElement, AddImageIllustrationProps>(
+  ({ size = 120, className }, ref) => {
+    const width = (115 * size) / 120;
+    return (
+      <svg
+        ref={ref}
+        xmlns="http://www.w3.org/2000/svg"
+        width={width}
+        height={size}
+        viewBox="0 0 115 120"
+        fill="none"
+        className={cn('fds-illustration', className)}
+        aria-hidden="true"
+        focusable="false"
+      >
+        {/* Circular backdrop */}
+        <path
+          d="M57.3402 114.934C87.8944 114.934 112.665 90.1636 112.665 59.5003C112.665 28.8369 87.7853 4.06616 57.3402 4.06616C26.7859 4.06616 2.01517 28.8369 2.01517 59.5003C2.01517 90.1636 26.7859 114.934 57.3402 114.934Z"
+          fill="var(--background-gray-default)"
+          stroke="var(--border-gray-default)"
+          strokeWidth="2.11356"
+          strokeMiterlimit="10"
+        />
+        {/* Outer frame */}
+        <path
+          d="M94.6955 102.758L20.8895 103.288C16.6293 103.307 13.1554 99.8722 13.0984 95.6398L12.5264 25.0258C12.5026 20.7649 15.9325 17.2943 20.164 17.242L93.97 16.7125C98.2302 16.6935 101.704 20.1278 101.761 24.3602L102.333 94.9742C102.357 99.2351 98.927 102.706 94.6955 102.758Z"
+          fill="var(--background-surface-intense)"
+          stroke="var(--border-gray-default)"
+          strokeWidth="2.11356"
+          strokeMiterlimit="10"
+        />
+        {/* Image canvas (inner subtle background) */}
+        <path
+          d="M90.5397 92.215L25.6582 92.706C23.8229 92.7223 22.3457 91.2735 22.3273 89.4379L21.8351 31.0788C21.8167 29.2431 23.2636 27.7673 25.0988 27.751L89.9804 27.26C91.8156 27.2437 93.2928 28.6925 93.3112 30.5281L93.8034 88.8872C93.8218 90.7228 92.3749 92.1986 90.5397 92.215Z"
+          fill="var(--background-surface-moderate)"
+        />
+        {/* Mountain peak (small, left) */}
+        <path
+          d="M59.162 70.3125L35.4935 70.4769L47.2263 56.9724L59.162 70.3125Z"
+          fill="var(--border-gray-default)"
+        />
+        {/* Mountain peak (larger, right) */}
+        <path
+          d="M78.7894 70.1525L44.6702 70.3951L61.5677 51.0023L78.7894 70.1525Z"
+          fill="var(--border-gray-default)"
+        />
+        {/* Sun / circle in the image */}
+        <path
+          d="M47.2036 51.0332C49.0749 49.4238 49.2857 46.6003 47.6745 44.7269C46.0632 42.8534 43.24 42.6394 41.3687 44.2489C39.4973 45.8583 39.2865 48.6818 40.8978 50.5552C42.5091 52.4286 45.3323 52.6427 47.2036 51.0332Z"
+          fill="var(--border-gray-default)"
+        />
+        {/* Plus badge — circle */}
+        <path
+          d="M73.8626 100.199C73.5243 101.637 73.0167 103.159 72.4246 104.428C70.8173 107.558 68.2796 110.011 65.1497 111.619C61.9352 113.226 58.1286 113.902 54.322 113.057C45.3552 111.196 39.603 102.398 41.464 93.4313C43.325 84.4646 52.038 78.6277 61.0047 80.5734C64.2192 81.2501 67.0107 82.8573 69.3793 85.0567C73.3551 89.0325 75.0469 94.7848 73.8626 100.199Z"
+          fill="var(--border-gray-default)"
+          stroke="var(--text-gray-tertiary)"
+          strokeWidth="2.11356"
+          strokeMiterlimit="10"
+        />
+        {/* Plus badge — plus icon */}
+        <path
+          d="M57.7054 89.0755C59.1752 89.0755 60.2005 90.2667 60.2005 91.5706V94.3196H62.9505C64.2543 94.3198 65.4446 95.3451 65.4447 96.8148C65.4447 98.2845 64.2543 99.3097 62.9505 99.3099H60.2005V102.06C60.2004 103.53 59.0092 104.554 57.7054 104.554C56.2358 104.554 55.2105 103.364 55.2103 102.06V99.3099H52.4613C51.7852 99.3099 51.1475 99.0683 50.6771 98.598C50.207 98.1276 49.9662 97.4907 49.9662 96.8148C49.9662 95.345 51.1574 94.3196 52.4613 94.3196H55.2103V91.5706C55.2103 90.1009 56.4016 89.0755 57.7054 89.0755Z"
+          fill="var(--background-surface-intense)"
+          stroke="var(--text-gray-tertiary)"
+          strokeWidth="2.11356"
+        />
+      </svg>
+    );
+  },
+);
+
+AddImageIllustration.displayName = 'AddImageIllustration';

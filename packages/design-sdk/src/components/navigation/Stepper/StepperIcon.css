@@ -1,0 +1,62 @@
+/* StepperIcon — Faclon Design System
+   Figma 3192:1859. Single 20 × 20 size; tinted circle with a 12 px icon.
+   Glyph colour matches the dot colour of the equivalent StepperIndicator. */
+
+.fds-stepper-icon {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--global-border-radius-max);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fds-stepper-icon__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+/* —— Colours: tinted background + icon stroke ———————————————————————————— */
+
+.fds-stepper-icon--neutral {
+  background-color: var(--background-gray-default);
+  color: var(--text-gray-secondary);
+}
+
+.fds-stepper-icon--primary {
+  background-color: var(--background-brand-secondary);
+  color: var(--background-brand-default);
+}
+
+.fds-stepper-icon--positive {
+  background-color: var(--background-positive-secondary);
+  color: var(--text-positive-default);
+}
+
+.fds-stepper-icon--notice {
+  background-color: var(--background-warning-secondary);
+  color: var(--text-warning-default);
+}
+
+.fds-stepper-icon--negative {
+  background-color: var(--background-error-secondary);
+  color: var(--text-error-default);
+}
+
+.fds-stepper-icon--information {
+  background-color: var(--background-info-secondary);
+  color: var(--text-info-default);
+}
+
+/* —— Disabled override ———————————————————————————————————————————————— */
+
+.fds-stepper-icon[data-disabled='true'] {
+  background-color: var(--background-gray-default);
+  color: var(--text-gray-disabled);
+  opacity: 0.5;
+}

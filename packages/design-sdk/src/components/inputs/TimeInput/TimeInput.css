@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TimeInput — root orchestrator: trigger + popover positioning
+   Figma: 3114:39632
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-time-input {
+  position: relative;
+  width: max-content;
+  min-width: 240px;
+}
+
+.fds-time-input__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: var(--fds-space-xs);
+  z-index: var(--global-z-index-dropdown, 100);
+}

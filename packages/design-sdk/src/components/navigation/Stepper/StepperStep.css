@@ -1,0 +1,211 @@
+/* StepperStep — port of Blade StepItem.web.tsx layout
+   Layout:
+     <fds-stepper-step>                  flex (row vertical / column horizontal)
+       <StepLine />                      column or row of connectors + marker
+       <fds-stepper-step__body>          remaining flex-1 column
+         <header-box>                    interactive (a/button) or div
+           <fds-stepper-step__header>    title + description + trailing
+         <fds-stepper-step__slot>        optional children below header
+*/
+
+.fds-stepper-step {
+  display: flex;
+  min-width: 0;
+}
+
+.fds-stepper-step[data-orientation='vertical'] {
+  flex-direction: row;
+  width: 100%;
+  margin: 0 var(--fds-space-md);
+  gap: var(--fds-space-xs);
+  /* Each vertical step is at least 64 px tall so the connector line below the
+     marker has visible length. Without this, short title-only steps make the
+     line render only ~10 px which reads as "no line at all". */
+  min-height: 64px;
+}
+
+.fds-stepper-step[data-orientation='horizontal'] {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 0;
+  min-width: min(120px, 100%);
+  /* 4 px between StepLine row and text-block (Figma 3192:2107). */
+  gap: var(--fds-space-xs);
+}
+
+/* Horizontal: tight horizontal padding on the body (the highlight-bearer),
+   no vertical padding. Header-box stays unpadded everywhere. */
+.fds-stepper-step[data-orientation='horizontal'] .fds-stepper-step__body {
+  padding: 0 var(--fds-space-xs);
+}
+
+.fds-stepper-step[data-orientation='horizontal'] .fds-stepper-step__header {
+  justify-content: center;
+}
+
+.fds-stepper-step[data-orientation='horizontal'] .fds-stepper-step__text-stack {
+  align-items: center;
+  text-align: center;
+}
+
+.fds-stepper-step[data-orientation='horizontal'] .fds-stepper-step__title,
+.fds-stepper-step[data-orientation='horizontal'] .fds-stepper-step__description {
+  text-align: center;
+}
+
+/* Horizontal Active: title shifts to brand. Per Figma 3385:1946 this is
+   horizontal-only — vertical's active title stays gray-primary. */
+.fds-stepper-step[data-orientation='horizontal'][data-color='primary']
+  .fds-stepper-step__title {
+  color: var(--text-brand-default);
+}
+
+/* —— Body (wraps header + slot, carries the highlight bg + padding so
+       the button child sits inside the same hover region as the title) ——— */
+
+.fds-stepper-step__body {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: var(--fds-space-sm) var(--fds-space-md);
+  border-radius: var(--global-border-radius-medium);
+  background-color: transparent;
+  transition: background-color 120ms ease;
+}
+
+.fds-stepper-step__body--interactive {
+  cursor: pointer;
+}
+
+/* —— Header box (interactive click target — transparent, no padding;
+       padding/highlight live on __body so children render inside it) ——— */
+
+.fds-stepper-step__header-box {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  text-align: inherit;
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  padding: 0;
+}
+
+.fds-stepper-step__header-box--interactive {
+  cursor: pointer;
+}
+
+.fds-stepper-step__header-box[disabled],
+.fds-stepper-step__header-box[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* Hover + selected backgrounds follow the marker's colour family — Figma
+   3391:17811 (hover inactive) / 3520:16271 (hover active). The step root
+   carries `data-color` from `marker.props.color`, so the same token tree
+   that drives the marker also drives the row highlight. `isSelected`
+   makes the same colour persistent. The bg lives on `__body` so a
+   `<Button>` rendered as a child sits inside the highlight. */
+
+.fds-stepper-step[data-color='neutral']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='neutral']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-gray-default);
+}
+
+.fds-stepper-step[data-color='primary']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='primary']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-brand-secondary);
+}
+
+.fds-stepper-step[data-color='positive']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='positive']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-positive-secondary);
+}
+
+.fds-stepper-step[data-color='notice']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='notice']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-warning-secondary);
+}
+
+.fds-stepper-step[data-color='negative']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='negative']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-error-secondary);
+}
+
+.fds-stepper-step[data-color='information']
+  .fds-stepper-step__body--interactive:hover,
+.fds-stepper-step[data-color='information']
+  .fds-stepper-step__body[data-selected='true'] {
+  background-color: var(--background-info-secondary);
+}
+
+/* Suppress hover on disabled steps. */
+.fds-stepper-step[data-disabled='true'] .fds-stepper-step__body--interactive:hover {
+  background-color: transparent;
+}
+
+/* —— Header (title + description + optional trailing) ——————————————————— */
+
+.fds-stepper-step__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--fds-space-md);
+  align-items: flex-start;
+}
+
+.fds-stepper-step__text-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Figma 3391:17528 — title + description sit flush; line-heights provide
+     the optical breathing room. */
+  gap: 0;
+}
+
+.fds-stepper-step__title {
+  margin: 0;
+  color: var(--text-gray-primary);
+  font-weight: 500;
+}
+
+.fds-stepper-step[data-nesting-level]:not([data-nesting-level='0']) .fds-stepper-step__title {
+  font-weight: 400;
+}
+
+.fds-stepper-step__description {
+  margin: 0;
+  color: var(--text-gray-secondary);
+}
+
+.fds-stepper-step__trailing {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* —— Slot (children below header — sits inside the body's padding so the
+       hover/selected highlight covers it too) ——————————————————————————— */
+
+.fds-stepper-step__slot {
+  padding-top: var(--fds-space-xs);
+}
+
+/* —— Disabled —————————————————————————————————————————————————————————— */
+
+.fds-stepper-step[data-disabled='true'] .fds-stepper-step__title,
+.fds-stepper-step[data-disabled='true'] .fds-stepper-step__description {
+  color: var(--text-gray-disabled);
+}

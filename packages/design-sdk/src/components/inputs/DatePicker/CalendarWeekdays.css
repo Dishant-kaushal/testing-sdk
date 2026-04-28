@@ -1,0 +1,24 @@
+/* CalendarWeekdays — Faclon Design System 2.0
+   Figma: 2097:11380 */
+
+.fds-calendar-weekdays {
+  display: flex;
+  align-items: center;
+}
+
+.fds-calendar-weekdays__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-09);
+  padding: var(--spacing-03);
+  box-sizing: border-box;
+}
+
+.fds-calendar-weekdays__label {
+  color: var(--text-gray-tertiary);
+  text-align: center;
+  letter-spacing: 0;
+  width: 100%;
+}

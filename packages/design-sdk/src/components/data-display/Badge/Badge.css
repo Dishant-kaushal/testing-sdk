@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Badge — Faclon Design System 2.0
+   Figma: 417:7710
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* —— Base ————————————————————————————————————————————————————————————————— */
+
+.fds-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--global-border-radius-max);
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.fds-badge__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fds-badge__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+/* —— Sizes ———————————————————————————————————————————————————————————————— */
+
+.fds-badge--size-small {
+  height: var(--spacing-05);
+  padding: 0 var(--spacing-02);
+  gap: var(--spacing-01);
+}
+
+.fds-badge--size-medium {
+  height: var(--spacing-06);
+  padding: 0 var(--spacing-03);
+  gap: var(--spacing-02);
+}
+
+.fds-badge--size-large {
+  height: var(--spacing-07);
+  padding: 0 var(--spacing-04);
+  gap: var(--spacing-02);
+}
+
+/* —— Icon sizes —————————————————————————————————————————————————————————— */
+
+.fds-badge--size-small .fds-badge__icon {
+  width: var(--spacing-03);
+  height: var(--spacing-03);
+}
+
+.fds-badge--size-medium .fds-badge__icon {
+  width: var(--spacing-04);
+  height: var(--spacing-04);
+}
+
+.fds-badge--size-large .fds-badge__icon {
+  width: var(--spacing-05);
+  height: var(--spacing-05);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Color × Emphasis — Subtle
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-badge--color-positive.fds-badge--emphasis-subtle {
+  background-color: var(--background-positive-secondary);
+  color: var(--text-positive-default);
+}
+
+.fds-badge--color-negative.fds-badge--emphasis-subtle {
+  background-color: var(--background-error-secondary);
+  color: var(--text-error-default);
+}
+
+.fds-badge--color-notice.fds-badge--emphasis-subtle {
+  background-color: var(--background-warning-secondary);
+  color: var(--text-warning-default);
+}
+
+.fds-badge--color-information.fds-badge--emphasis-subtle {
+  background-color: var(--background-info-secondary);
+  color: var(--text-info-default);
+}
+
+.fds-badge--color-neutral.fds-badge--emphasis-subtle {
+  background-color: var(--background-gray-default);
+  color: var(--text-gray-primary);
+}
+
+.fds-badge--color-primary.fds-badge--emphasis-subtle {
+  background-color: var(--background-brand-secondary);
+  color: var(--text-brand-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Color × Emphasis — Intense
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fds-badge--color-positive.fds-badge--emphasis-intense {
+  background-color: var(--background-positive-default);
+  color: var(--text-positive-on-positive);
+}
+
+.fds-badge--color-negative.fds-badge--emphasis-intense {
+  background-color: var(--background-error-default);
+  color: var(--text-error-on-error);
+}
+
+.fds-badge--color-notice.fds-badge--emphasis-intense {
+  background-color: var(--background-warning-default);
+  color: var(--text-warning-on-warning);
+}
+
+.fds-badge--color-information.fds-badge--emphasis-intense {
+  background-color: var(--background-info-default);
+  color: var(--text-info-on-info);
+}
+
+.fds-badge--color-neutral.fds-badge--emphasis-intense {
+  background-color: var(--background-brand-default);
+  color: var(--text-brand-on-brand);
+}
+
+.fds-badge--color-primary.fds-badge--emphasis-intense {
+  background-color: var(--background-brand-default);
+  color: var(--text-brand-on-brand);
+}

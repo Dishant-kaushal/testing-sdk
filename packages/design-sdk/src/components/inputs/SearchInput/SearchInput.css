@@ -1,0 +1,29 @@
+/* SearchInput — Faclon Design System 2.0
+   Figma: 696:8022
+   Composes TextInput (single) / MultiSelectField (multi) + dropdown popover. */
+
+.fds-search-input {
+  position: relative;
+  width: 100%;
+}
+
+.fds-search-input__popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: var(--spacing-03);
+  z-index: var(--fds-z-dropdown);
+}
+
+.fds-search-input__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-06) var(--spacing-05);
+  background: var(--background-surface-intense);
+  border: var(--fds-border-muted);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
+  color: var(--text-gray-secondary);
+}

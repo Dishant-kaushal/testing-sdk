@@ -1,0 +1,48 @@
+/* DatePresetSidebar — Faclon Design System 2.0
+   Figma: 2225:1511 */
+
+.fds-date-preset-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-03);
+  align-items: flex-start;
+  align-self: stretch;
+  padding: var(--spacing-05);
+  width: 172px; /* fixed sidebar layout width — not a spacing token */
+  min-height: 0;
+  background: var(--background-surface-moderate);
+  border-right: var(--global-border-width-thin) solid var(--border-gray-muted);
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  /* Scrollbar — thin, hidden until hover */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.fds-date-preset-sidebar:hover {
+  scrollbar-color: var(--border-gray-default) transparent;
+}
+
+.fds-date-preset-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fds-date-preset-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fds-date-preset-sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: var(--global-border-radius-full, 3px);
+}
+
+.fds-date-preset-sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: var(--border-gray-default);
+}
+
+/* Presets stretch full width inside sidebar */
+.fds-date-preset-sidebar > .fds-date-preset {
+  width: 100%;
+  flex-shrink: 0;
+}

@@ -1,0 +1,9 @@
+/* ListCardTrailingItem — Faclon Design System 2.0
+   Figma: 1519:30404 */
+
+.fds-list-card-trailing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
