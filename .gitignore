@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 /packages/design-sdk/node_modules
-/packages/design-sdk/dist/node_modules
 /packages/design-sdk/storybook-static
 /.pnp
 .pnp.js
