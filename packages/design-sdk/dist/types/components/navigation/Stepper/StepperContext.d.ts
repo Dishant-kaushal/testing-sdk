@@ -1,7 +1,9 @@
-/** Signals that a Stepper is rendered inside a `StepperStep`'s children slot.
- *  Used to force nested Steppers to vertical orientation regardless of the
- *  `orientation` prop the consumer passes. */
+export type StepperOrientation = 'horizontal' | 'vertical';
+export type StepperColor = 'positive' | 'negative' | 'notice' | 'information' | 'primary' | 'neutral';
 export interface StepperContextValue {
-    isNested: boolean;
+    orientation: StepperOrientation;
+    itemsInGroupCount: number;
+    totalItemsInParentGroupCount: number;
 }
 export declare const StepperContext: import("react").Context<StepperContextValue>;
+export declare function useStepper(): StepperContextValue;

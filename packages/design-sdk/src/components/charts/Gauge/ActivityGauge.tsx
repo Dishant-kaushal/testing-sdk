@@ -7,9 +7,9 @@ import { forwardRef, useMemo } from 'react';
    explanation of why we use `highcharts/esm/` paths here instead of the
    top-level `'highcharts'` path.
    ═══════════════════════════════════════════════════════════════════════════ */
-import Highcharts from 'highcharts/esm/highcharts';
-import 'highcharts/esm/highcharts-more';
-import 'highcharts/esm/modules/solid-gauge';
+import Highcharts from 'highcharts/esm/highcharts.js';
+import 'highcharts/esm/highcharts-more.js';
+import 'highcharts/esm/modules/solid-gauge.js';
 import HighchartsReact from 'highcharts-react-official';
 import type { Options } from 'highcharts';
 import { Chart } from '../Chart/Chart';

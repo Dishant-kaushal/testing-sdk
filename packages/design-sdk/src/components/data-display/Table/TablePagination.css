@@ -89,5 +89,5 @@
    don't re-declare font-family here. */
 .fds-table__pagination-size-menu {
   position: fixed;
-  z-index: var(--fds-z-dropdown);
+  z-index: var(--global-z-index-dropdown);
 }

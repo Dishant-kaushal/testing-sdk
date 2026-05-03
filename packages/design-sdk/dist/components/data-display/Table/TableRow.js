@@ -1,63 +1,32 @@
-import { jsxs as b, jsx as s } from "react/jsx-runtime";
+import { jsxs as w, jsx as f } from "react/jsx-runtime";
 /* empty css             */
-import { Checkbox as p } from "../../inputs/Checkbox/Checkbox.js";
-import { useTableContextOptional as h } from "./TableContext.js";
-function w({
-  item: c,
-  isSelected: i,
-  isDisabled: t
-}) {
-  const n = h();
-  return n ? /* @__PURE__ */ s(
-    "td",
-    {
-      className: "fds-table__cell fds-table__cell--selection",
-      "data-content-type": "selection",
-      onClick: (l) => l.stopPropagation(),
-      children: /* @__PURE__ */ s("div", { className: "fds-table__cell-selection-wrapper", children: /* @__PURE__ */ s(
-        p,
-        {
-          label: "",
-          size: "Medium",
-          "aria-label": i ? "Deselect row" : "Select row",
-          checked: i,
-          isDisabled: t,
-          onClick: (l) => {
-            t || l.shiftKey && (l.preventDefault(), n.toggleRowSelectionRange(c.id));
-          },
-          onChange: (l) => {
-            t || n.toggleRowSelection(c.id);
-          }
-        }
-      ) })
-    }
-  ) : null;
-}
-function _({
+import { useTableContextOptional as g } from "./TableContext.js";
+import { SelectionCell as p } from "./SelectionCell.js";
+function v({
   children: c,
-  item: i,
-  onClick: t,
-  ...n
+  item: d,
+  onClick: i,
+  ...r
 }) {
-  const e = h(), o = i, l = e ? e.isRowSelectable(o) : !0, a = e ? e.selectedIds.includes(o.id) : !1, r = (e == null ? void 0 : e.selectionType) === "multiple", f = (e == null ? void 0 : e.selectionType) === "single", g = r, d = r && (e == null ? void 0 : e.multiSelectTrigger) === "row" || f;
-  return /* @__PURE__ */ b(
+  const e = g(), t = d, o = e ? e.isRowSelectable(t) : !0, l = e ? e.selectedIds.includes(t.id) : !1, s = (e == null ? void 0 : e.selectionType) === "multiple", a = (e == null ? void 0 : e.selectionType) === "single", m = s, n = s && (e == null ? void 0 : e.multiSelectTrigger) === "row" || a;
+  return /* @__PURE__ */ w(
     "tr",
     {
       className: "fds-table__row",
-      "aria-selected": a || void 0,
-      "data-selected": a ? "true" : void 0,
-      "data-disabled": l ? void 0 : "true",
-      onClick: t || d ? (u) => {
-        d && l && e && (u.shiftKey && r ? e.toggleRowSelectionRange(o.id) : e.toggleRowSelection(o.id)), t == null || t(i);
+      "aria-selected": l || void 0,
+      "data-selected": l ? "true" : void 0,
+      "data-disabled": o ? void 0 : "true",
+      onClick: i || n ? (u) => {
+        n && o && e && (u.shiftKey && s ? e.toggleRowSelectionRange(t.id) : e.toggleRowSelection(t.id)), i == null || i(d);
       } : void 0,
-      ...n,
+      ...r,
       children: [
-        g && /* @__PURE__ */ s(
-          w,
+        m && /* @__PURE__ */ f(
+          p,
           {
-            item: o,
-            isSelected: a,
-            isDisabled: !l
+            item: t,
+            isSelected: l,
+            isDisabled: !o
           }
         ),
         c
@@ -66,5 +35,5 @@ function _({
   );
 }
 export {
-  _ as TableRow
+  v as TableRow
 };

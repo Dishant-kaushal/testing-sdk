@@ -66,5 +66,6 @@ function g() {
 }
 export {
   f as FACLON_CHART_PALETTE_TOKENS,
+  o as readCssVar,
   g as useFaclonChartTheme
 };

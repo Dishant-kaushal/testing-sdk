@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 export type Identifier = string | number;
 export type SelectionType = 'none' | 'single' | 'multiple';
 export type MultiSelectTrigger = 'row' | 'checkbox';
-/** Row density. `'compact'` = 40px rows, `'normal'` = 48px, `'comfortable'` = 60px. */
-export type RowDensity = 'compact' | 'normal' | 'comfortable';
+/** Row density. `'compact'` = 40 px row height, `'expanded'` = 48 px. */
+export type RowDensity = 'compact' | 'expanded';
 export type SortDirection = 'asc' | 'desc';
 export interface TableNode {
     id: Identifier;

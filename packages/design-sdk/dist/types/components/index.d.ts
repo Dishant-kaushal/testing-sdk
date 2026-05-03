@@ -11,3 +11,4 @@ export * from './media';
 export * from './forms';
 export * from './utilities';
 export * from './product';
+export * from './chat';

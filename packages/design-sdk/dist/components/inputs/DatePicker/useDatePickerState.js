@@ -1,123 +1,132 @@
-import { useState as h, useCallback as n, useRef as r, useEffect as P, useMemo as v } from "react";
-import { formatDate as o, formatTime as k, generateCalendarDays as Bt, generateMonths as Kt, generateYears as Nt, getPresetDateRange as jt, formatDateInput as zt, parseDateDMY as l, parseTime as tt, getHeaderLabel as Gt } from "./datePickerUtils.js";
-function Ut({
-  mode: f,
+import { useState as D, useCallback as n, useRef as r, useEffect as P, useMemo as v } from "react";
+import { formatDate as f, formatTime as k, generateCalendarDays as jt, generateMonths as zt, generateYears as Gt, getPresetDateRange as Jt, formatDateInput as Ot, parseDateDMY as l, parseTime as st, getHeaderLabel as Pt } from "./datePickerUtils.js";
+function Zt({
+  mode: o,
   controlledOpen: X,
   onOpenChange: Q,
   value: d,
   onChange: U,
   rangeValue: t,
-  onRangeChange: b,
+  onRangeChange: I,
   controlledPreset: N,
   controlledPresetSelect: W,
-  isDisabled: Jt
+  isDisabled: Qt
 }) {
-  const [st, it] = h(!1), A = X ?? st, T = n(
+  const [it, ct] = D(!1), R = X ?? it, T = n(
     (s) => {
-      X === void 0 && it(s), Q == null || Q(s);
+      X === void 0 && ct(s), Q == null || Q(s);
     },
     [X, Q]
-  ), u = /* @__PURE__ */ new Date(), R = f === "single" ? d : t == null ? void 0 : t.start, [p, H] = h((R == null ? void 0 : R.getMonth()) ?? u.getMonth()), [S, y] = h((R == null ? void 0 : R.getFullYear()) ?? u.getFullYear()), [w, q] = h("date"), Z = Math.floor(S / 12) * 12, [D, E] = h((t == null ? void 0 : t.start) ?? null), [L, Y] = h((t == null ? void 0 : t.end) ?? null), [_, x] = h(t ? 2 : 0), [e, j] = h(null), [z, g] = h(!1), [ct, V] = h(N ?? "custom"), $ = N ?? ct, m = n(
+  ), e = /* @__PURE__ */ new Date(), q = o === "single" ? d : t == null ? void 0 : t.start, [m, H] = D((q == null ? void 0 : q.getMonth()) ?? e.getMonth()), [S, p] = D((q == null ? void 0 : q.getFullYear()) ?? e.getFullYear()), [w, A] = D("date"), Z = Math.floor(S / 12) * 12, [ot, u] = D(t ?? null), ft = t !== void 0 ? t : ot, [h, E] = D((t == null ? void 0 : t.start) ?? null), [L, Y] = D((t == null ? void 0 : t.end) ?? null), [_, b] = D(t ? 2 : 0), [g, j] = D(null), [z, V] = D(!1), [dt, a] = D(N ?? "custom"), $ = N ?? dt, y = n(
     (s) => {
-      V(s), W == null || W(s);
+      a(s), W == null || W(s);
     },
     [W]
-  ), [B, K] = h(d ?? null), [ft, G] = h(d ? o(d) : ""), [ot, I] = h(t != null && t.start ? o(t.start) : ""), [dt, F] = h(t != null && t.end ? o(t.end) : ""), [nt, J] = h(t != null && t.start ? k(t.start) : "00:00"), [Dt, O] = h(t != null && t.end ? k(t.end) : "00:00"), a = r(null), ht = r(!1), C = r($);
+  ), [B, K] = D(d ?? null), [nt, G] = D(d ? f(d) : ""), [Dt, x] = D(t != null && t.start ? f(t.start) : ""), [ht, F] = D(t != null && t.end ? f(t.end) : ""), [wt, J] = D(t != null && t.start ? k(t.start) : "00:00"), [Mt, O] = D(t != null && t.end ? k(t.end) : "00:00"), tt = r(null), mt = r(!1), C = r($);
   P(() => {
-    f === "single" && (K(d ?? null), G(d ? o(d) : ""), d && (H(d.getMonth()), y(d.getFullYear())));
-  }, [d, f]), P(() => {
-    f === "range" && (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), I(t != null && t.start ? o(t.start) : ""), F(t != null && t.end ? o(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), x(t ? 2 : 0), t != null && t.start && (H(t.start.getMonth()), y(t.start.getFullYear())));
-  }, [t, f]), P(() => {
-    N !== void 0 && V(N);
+    o === "single" && (K(d ?? null), G(d ? f(d) : ""), d && (H(d.getMonth()), p(d.getFullYear())));
+  }, [d, o]), P(() => {
+    o === "range" && (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), x(t != null && t.start ? f(t.start) : ""), F(t != null && t.end ? f(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), b(t ? 2 : 0), t != null && t.start && (H(t.start.getMonth()), p(t.start.getFullYear())));
+  }, [t, o]), P(() => {
+    N !== void 0 && a(N);
   }, [N]), P(() => {
-    if (A) {
+    if (R) {
       C.current = $;
-      const s = f === "single" ? d : t == null ? void 0 : t.start;
-      s && (H(s.getMonth()), y(s.getFullYear())), q("date");
+      const s = o === "single" ? d : t == null ? void 0 : t.start;
+      s && (H(s.getMonth()), p(s.getFullYear())), A("date");
     }
-  }, [A]), P(() => {
+  }, [R]), P(() => {
     z && requestAnimationFrame(() => {
       var c;
-      const s = (c = a.current) == null ? void 0 : c.querySelector(".fds-datepicker__preset-dropdown"), i = s == null ? void 0 : s.querySelector('[role="menuitem"]:not([aria-disabled="true"])');
+      const s = (c = tt.current) == null ? void 0 : c.querySelector(".fds-datepicker__preset-dropdown"), i = s == null ? void 0 : s.querySelector('[role="menuitem"]:not([aria-disabled="true"])');
       i == null || i.focus();
     });
   }, [z]);
-  const wt = n(() => {
-    A && (f === "single" ? (K(d ?? null), G(d ? o(d) : "")) : (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), I(t != null && t.start ? o(t.start) : ""), F(t != null && t.end ? o(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), x(t ? 2 : 0)), m(C.current), j(null), q("date"), T(!1)), z && g(!1);
-  }, [A, z, f, d, t, T, m]), Mt = v(
-    () => Bt(
+  const pt = n(() => {
+    R && (o === "single" ? (K(d ?? null), G(d ? f(d) : "")) : (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), x(t != null && t.start ? f(t.start) : ""), F(t != null && t.end ? f(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), b(t ? 2 : 0)), y(C.current), j(null), A("date"), T(!1)), z && V(!1);
+  }, [R, z, o, d, t, T, y]), yt = v(
+    () => jt(
       S,
-      p,
-      f === "range" ? D : null,
-      f === "range" ? L : null,
-      f === "single" ? B : null,
-      f === "range" ? e : null
+      m,
+      o === "range" ? h : null,
+      o === "range" ? L : null,
+      o === "single" ? B : null,
+      o === "range" ? g : null
     ),
-    [S, p, D, L, B, e, f]
-  ), pt = v(() => Kt(p), [p]), yt = v(() => Nt(Z, S), [Z, S]), mt = Gt(w, S, p, Z), Tt = n(() => {
-    w === "date" ? p === 0 ? (H(11), y((s) => s - 1)) : H((s) => s - 1) : y(w === "month" ? (s) => s - 1 : (s) => s - 12);
-  }, [w, p]), Ht = n(() => {
-    w === "date" ? p === 11 ? (H(0), y((s) => s + 1)) : H((s) => s + 1) : y(w === "month" ? (s) => s + 1 : (s) => s + 12);
-  }, [w, p]), St = n(() => {
-    w === "date" ? q("month") : w === "month" && q("year");
-  }, [w]), Yt = n((s) => {
-    w === "year" ? (y(s.value), q("month")) : w === "month" && (H(s.value), q("date"));
-  }, [w]), kt = n((s) => {
+    [S, m, h, L, B, g, o]
+  ), Tt = v(() => zt(m), [m]), Ht = v(() => Gt(Z, S), [Z, S]), St = Pt(w, S, m, Z), Yt = n(() => {
+    w === "date" ? m === 0 ? (H(11), p((s) => s - 1)) : H((s) => s - 1) : p(w === "month" ? (s) => s - 1 : (s) => s - 12);
+  }, [w, m]), kt = n(() => {
+    w === "date" ? m === 11 ? (H(0), p((s) => s + 1)) : H((s) => s + 1) : p(w === "month" ? (s) => s + 1 : (s) => s + 12);
+  }, [w, m]), Et = n(() => {
+    w === "date" ? A("month") : w === "month" && A("year");
+  }, [w]), Ft = n((s) => {
+    w === "year" ? (p(s.value), A("month")) : w === "month" && (H(s.value), A("date"));
+  }, [w]), It = n((s) => {
     if (s.type === "outOfMonth") return;
-    const i = new Date(S, p, s.date);
-    f === "single" ? (K(i), G(o(i))) : _ === 0 || _ === 2 ? (E(i), Y(null), I(o(i)), F(""), x(1), m("custom")) : (i < D ? (E(i), Y(D), I(o(i)), F(o(D))) : (Y(i), F(o(i))), x(2), j(null));
-  }, [S, p, f, _, D, m]), Et = n((s) => {
-    m(s);
-    const i = jt(s);
-    i && (E(i.start), Y(i.end), I(o(i.start)), F(o(i.end)), J(k(i.start)), O(k(i.end)), x(2), H(i.start.getMonth()), y(i.start.getFullYear()), b == null || b({ start: i.start, end: i.end }), T(!1));
-  }, [m, b, T]), Ft = n(() => {
-    f === "single" ? U == null || U(B) : D && L && (b == null || b({ start: D, end: L })), T(!1);
-  }, [f, B, D, L, U, b, T]), bt = n(() => {
-    f === "single" ? (K(d ?? null), G(d ? o(d) : "")) : (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), I(t != null && t.start ? o(t.start) : ""), F(t != null && t.end ? o(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), x(t ? 2 : 0)), m(C.current), j(null), q("date"), T(!1);
-  }, [f, d, t, T, m]), xt = n((s) => {
-    f !== "range" || _ !== 1 || s.type === "outOfMonth" || j(new Date(S, p, s.date));
-  }, [f, _, S, p]), It = n(() => {
+    const i = new Date(S, m, s.date);
+    o === "single" ? (K(i), G(f(i))) : _ === 0 || _ === 2 ? (E(i), Y(null), x(f(i)), F(""), b(1), y("custom")) : (i < h ? (E(i), Y(h), x(f(i)), F(f(h))) : (Y(i), F(f(i))), b(2), j(null));
+  }, [S, m, o, _, h, y]), bt = n((s) => {
+    y(s);
+    const i = Jt(s);
+    if (i) {
+      E(i.start), Y(i.end), x(f(i.start)), F(f(i.end)), J(k(i.start)), O(k(i.end)), b(2), H(i.start.getMonth()), p(i.start.getFullYear());
+      const c = { start: i.start, end: i.end };
+      I == null || I(c), u(c), T(!1);
+    }
+  }, [y, I, T]), xt = n(() => {
+    if (o === "single") U == null || U(B);
+    else if (h && L) {
+      const s = { start: h, end: L };
+      I == null || I(s), u(s);
+    }
+    T(!1);
+  }, [o, B, h, L, U, I, T]), Rt = n(() => {
+    o === "single" ? (K(d ?? null), G(d ? f(d) : "")) : (E((t == null ? void 0 : t.start) ?? null), Y((t == null ? void 0 : t.end) ?? null), x(t != null && t.start ? f(t.start) : ""), F(t != null && t.end ? f(t.end) : ""), J(t != null && t.start ? k(t.start) : "00:00"), O(t != null && t.end ? k(t.end) : "00:00"), b(t ? 2 : 0)), y(C.current), j(null), A("date"), T(!1);
+  }, [o, d, t, T, y]), At = n((s) => {
+    o !== "range" || _ !== 1 || s.type === "outOfMonth" || j(new Date(S, m, s.date));
+  }, [o, _, S, m]), qt = n(() => {
     j(null);
-  }, []), At = n((s) => {
-    const i = zt(s);
+  }, []), Lt = n((s) => {
+    const i = Ot(s);
     if (G(i), i === "") {
       K(null);
       return;
     }
     const c = l(i);
-    c && (K(c), H(c.getMonth()), y(c.getFullYear()), A || T(!0));
-  }, [A, T]), qt = n((s) => {
-    I(s);
+    c && (K(c), H(c.getMonth()), p(c.getFullYear()), R || T(!0));
+  }, [R, T]), _t = n((s) => {
+    x(s);
     const i = l(s);
     i && (E((c) => {
       const M = new Date(i);
       return c && M.setHours(c.getHours(), c.getMinutes()), M;
-    }), H(i.getMonth()), y(i.getFullYear()), x(1), m("custom"));
-  }, [m]), Rt = n((s) => {
+    }), H(i.getMonth()), p(i.getFullYear()), b(1), y("custom"));
+  }, [y]), Bt = n((s) => {
     F(s);
     const i = l(s);
     if (i) {
-      if (D && i < D) {
-        const c = new Date(i), M = new Date(D);
-        c.setHours(D.getHours(), D.getMinutes()), E(c), Y(M), I(o(c)), F(o(M));
+      if (h && i < h) {
+        const c = new Date(i), M = new Date(h);
+        c.setHours(h.getHours(), h.getMinutes()), E(c), Y(M), x(f(c)), F(f(M));
       } else
         Y((c) => {
           const M = new Date(i);
           return c && M.setHours(c.getHours(), c.getMinutes()), M;
         });
-      x(2), m("custom");
+      b(2), y("custom");
     }
-  }, [D, m]), Lt = n((s) => {
+  }, [h, y]), Kt = n((s) => {
     J(s);
-    const i = tt(s);
+    const i = st(s);
     i && E((c) => {
       if (!c) return c;
       const M = new Date(c);
       return M.setHours(i.hours, i.minutes), M;
     });
-  }, []), _t = n((s) => {
+  }, []), Nt = n((s) => {
     O(s);
-    const i = tt(s);
+    const i = st(s);
     i && Y((c) => {
       if (!c) return c;
       const M = new Date(c);
@@ -126,48 +135,49 @@ function Ut({
   }, []);
   return {
     // State
-    open: A,
+    open: R,
     setOpen: T,
     presetOpen: z,
-    setPresetOpen: g,
+    setPresetOpen: V,
     preset: $,
     view: w,
     // Refs
-    containerRef: a,
-    closedByKeyboard: ht,
+    containerRef: tt,
+    closedByKeyboard: mt,
     // Calendar data
-    days: Mt,
-    monthItems: pt,
-    yearItems: yt,
-    headerLabel: mt,
+    days: yt,
+    monthItems: Tt,
+    yearItems: Ht,
+    headerLabel: St,
     // Draft values
     draftSingle: B,
-    singleInputText: ft,
-    startRawText: ot,
-    endRawText: dt,
-    startTimeRaw: nt,
-    endTimeRaw: Dt,
+    singleInputText: nt,
+    startRawText: Dt,
+    endRawText: ht,
+    startTimeRaw: wt,
+    endTimeRaw: Mt,
+    resolvedRange: ft,
     // Derived
-    isApplyDisabled: f === "single" ? B === null : !(D && L && _ === 2),
+    isApplyDisabled: o === "single" ? B === null : !(h && L && _ === 2),
     // Handlers
-    closeAndRevert: wt,
-    handlePrev: Tt,
-    handleNext: Ht,
-    handleHeaderClick: St,
-    handleItemClick: Yt,
-    handleDayClick: kt,
-    handleDayHover: xt,
-    handleDayHoverEnd: It,
-    handlePresetSelect: Et,
-    handleApply: Ft,
-    handleCancel: bt,
-    handleSingleInputChange: At,
-    handleStartDateChange: qt,
-    handleEndDateChange: Rt,
-    handleStartTimeChange: Lt,
-    handleEndTimeChange: _t
+    closeAndRevert: pt,
+    handlePrev: Yt,
+    handleNext: kt,
+    handleHeaderClick: Et,
+    handleItemClick: Ft,
+    handleDayClick: It,
+    handleDayHover: At,
+    handleDayHoverEnd: qt,
+    handlePresetSelect: bt,
+    handleApply: xt,
+    handleCancel: Rt,
+    handleSingleInputChange: Lt,
+    handleStartDateChange: _t,
+    handleEndDateChange: Bt,
+    handleStartTimeChange: Kt,
+    handleEndTimeChange: Nt
   };
 }
 export {
-  Ut as useDatePickerState
+  Zt as useDatePickerState
 };

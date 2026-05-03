@@ -1,11 +1,9 @@
-import { type HTMLAttributes, type ReactNode } from 'react';
+import { type HTMLAttributes } from 'react';
+import type { StepperColor } from './StepperContext';
 import './StepperIndicator.css';
-export type StepperStepStatus = 'Inactive' | 'Active' | 'Success' | 'Warning';
-export type StepperIndicatorType = 'Indicator' | 'Icon';
 export interface StepperIndicatorProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
-    status?: StepperStepStatus;
-    type?: StepperIndicatorType;
-    /** Custom 12 px icon for `type='Icon'`. Defaults to `<User size={12} />`. */
-    icon?: ReactNode;
+    color?: StepperColor;
+    /** Forwarded by `<StepperStep>` when its `isDisabled` is true. */
+    isDisabled?: boolean;
 }
 export declare const StepperIndicator: import("react").ForwardRefExoticComponent<StepperIndicatorProps & import("react").RefAttributes<HTMLDivElement>>;

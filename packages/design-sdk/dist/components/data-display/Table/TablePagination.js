@@ -1,111 +1,101 @@
-import { jsxs as d, jsx as n, Fragment as P } from "react/jsx-runtime";
+import { jsxs as d, jsx as e, Fragment as L } from "react/jsx-runtime";
 /* empty css                    */
-import { useRef as w, useState as _, useLayoutEffect as A, useEffect as O } from "react";
-import { createPortal as T } from "react-dom";
-import { ChevronDown as W } from "react-feather";
-import { cn as k } from "../../../utils/cn.js";
-import { useClickOutside as D } from "../../../hooks/useClickOutside.js";
-import { Pagination as j } from "../../navigation/Pagination/Pagination.js";
-import { DropdownMenu as F } from "../../overlays/DropdownMenu/DropdownMenu.js";
-import { ActionListItem as G } from "../../overlays/DropdownMenu/ActionListItem.js";
-import { ActionListItemGroup as H } from "../../overlays/DropdownMenu/ActionListItemGroup.js";
-import { useTableContextOptional as U } from "./TableContext.js";
-const $ = [10, 25, 50, 100];
-function ie({
-  pageSizeOptions: v = $,
-  totalItemCount: x,
-  showRowsPerPage: y = !0,
-  showLabel: z = !0,
-  variant: E = "simple",
-  label: m,
+import { useRef as _, useState as b, useLayoutEffect as T } from "react";
+import { createPortal as D } from "react-dom";
+import { ChevronDown as G } from "react-feather";
+import { cn as U } from "../../../utils/cn.js";
+import { useClickOutside as k } from "../../../hooks/useClickOutside.js";
+import { useDismissOnScrollOutside as H } from "../../../hooks/useDismissOnScrollOutside.js";
+import { Pagination as W } from "../../navigation/Pagination/Pagination.js";
+import { DropdownMenu as j } from "../../overlays/DropdownMenu/DropdownMenu.js";
+import { ActionListItem as F } from "../../overlays/DropdownMenu/ActionListItem.js";
+import { ActionListItemGroup as $ } from "../../overlays/DropdownMenu/ActionListItemGroup.js";
+import { useTableContextOptional as X } from "./TableContext.js";
+const Z = [10, 25, 50, 100], y = 4, M = 200;
+function rt({
+  pageSizeOptions: R = Z,
+  totalItemCount: P,
+  showRowsPerPage: S = !0,
+  showLabel: w = !0,
+  variant: N = "simple",
+  label: p,
+  resetPageOnSizeChange: x = !0,
   onPageChange: u,
-  onPageSizeChange: p,
-  className: L
+  onPageSizeChange: f,
+  className: E
 } = {}) {
-  const o = U(), r = w(null), g = w(null), [i, f] = _(!1), [l, h] = _(null);
-  if (D(g, (e) => {
-    var t;
-    i && !((t = r.current) != null && t.contains(e.target)) && f(!1);
-  }), A(() => {
-    if (!i || !r.current) return;
-    const e = r.current.getBoundingClientRect(), t = 200, N = e.bottom + t > window.innerHeight;
-    h({
-      top: N ? e.top - 4 - t : e.bottom + 4,
-      left: e.left,
-      minWidth: e.width
+  const n = X(), a = _(null), g = _(null), [o, l] = b(!1), [c, O] = b(null);
+  if (k(g, (t) => {
+    var i;
+    o && !((i = a.current) != null && i.contains(t.target)) && l(!1);
+  }), T(() => {
+    if (!o || !a.current) return;
+    const t = a.current.getBoundingClientRect(), i = t.bottom + M > window.innerHeight;
+    O({
+      top: i ? t.top - y - M : t.bottom + y,
+      left: t.left,
+      minWidth: t.width
     });
-  }, [i]), O(() => {
-    if (!i) return;
-    const e = () => {
-      if (!r.current) return;
-      const t = r.current.getBoundingClientRect();
-      h({ top: t.bottom + 4, left: t.left, minWidth: t.width });
-    };
-    return window.addEventListener("scroll", e, !0), window.addEventListener("resize", e), () => {
-      window.removeEventListener("scroll", e, !0), window.removeEventListener("resize", e);
-    };
-  }, [i]), !o) return null;
-  const s = x ?? o.totalItems, { page: c, size: a } = o.pageState, R = s === 0 ? 0 : c * a + 1, b = Math.min((c + 1) * a, s), M = Math.max(1, Math.ceil(s / a)), S = typeof m == "function" ? m({ start: R, end: b, total: s }) : m ?? `Showing ${b} of ${s} Items`, B = (e) => {
-    o.setPageSize(e), c !== 0 && o.setPage(0), p == null || p({ pageSize: e }), f(!1);
-  }, I = (e) => {
-    const t = e - 1;
-    o.setPage(t), u == null || u({ page: t });
+  }, [o]), H(g, () => l(!1), o), !n) return null;
+  const s = P ?? n.totalItems, { page: m, size: r } = n.pageState, z = s === 0 ? 0 : m * r + 1, h = Math.min((m + 1) * r, s), A = Math.max(1, Math.ceil(s / r)), B = typeof p == "function" ? p({ start: z, end: h, total: s }) : p ?? `Showing ${h} of ${s} Items`, I = (t) => {
+    n.setPageSize(t), x && m !== 0 && n.setPage(0), f == null || f({ pageSize: t }), l(!1);
+  }, v = (t) => {
+    const i = t - 1;
+    n.setPage(i), u == null || u({ page: i });
   };
-  return /* @__PURE__ */ d("div", { className: k("fds-table__pagination", L), children: [
-    z && /* @__PURE__ */ n("span", { className: "fds-table__pagination-label BodyMediumRegular", children: S }),
+  return /* @__PURE__ */ d("div", { className: U("fds-table__pagination", E), children: [
+    w && /* @__PURE__ */ e("span", { className: "fds-table__pagination-label BodyMediumRegular", children: B }),
     /* @__PURE__ */ d("div", { className: "fds-table__pagination-controls", children: [
-      y && /* @__PURE__ */ d(P, { children: [
+      S && /* @__PURE__ */ d(L, { children: [
         /* @__PURE__ */ d(
           "button",
           {
-            ref: r,
+            ref: a,
             type: "button",
             className: "fds-table__pagination-size-trigger BodyMediumRegular",
-            onClick: () => f((e) => !e),
+            onClick: () => l((t) => !t),
             "aria-haspopup": "menu",
-            "aria-expanded": i,
+            "aria-expanded": o,
             "aria-label": "Rows per page",
             children: [
-              /* @__PURE__ */ n("span", { children: a }),
-              /* @__PURE__ */ n(W, { size: 12, "aria-hidden": "true" })
+              /* @__PURE__ */ e("span", { children: r }),
+              /* @__PURE__ */ e(G, { size: 12, "aria-hidden": "true" })
             ]
           }
         ),
-        /* @__PURE__ */ n("span", { className: "fds-table__pagination-size-label BodyMediumRegular", children: "rows / page" })
+        /* @__PURE__ */ e("span", { className: "fds-table__pagination-size-label BodyMediumRegular", children: "rows / page" })
       ] }),
-      /* @__PURE__ */ n(
-        j,
+      /* @__PURE__ */ e(
+        W,
         {
-          variant: E === "numbered" ? "default" : "simple",
-          currentPage: c + 1,
-          totalPages: M,
-          onPageChange: I
+          variant: N === "numbered" ? "default" : "simple",
+          currentPage: m + 1,
+          totalPages: A,
+          onPageChange: v
         }
       )
     ] }),
-    i && l && typeof document < "u" && T(
-      /* @__PURE__ */ n(
+    o && c && typeof document < "u" && D(
+      /* @__PURE__ */ e(
         "div",
         {
           ref: g,
-          className: "fds-table__pagination-size-menu",
+          className: "fds-table__pagination-size-menu BodyMediumRegular",
           role: "presentation",
           style: {
-            position: "fixed",
-            top: l.top,
-            left: l.left,
-            minWidth: l.minWidth,
-            zIndex: 1e3
+            top: c.top,
+            left: c.left,
+            minWidth: c.minWidth
           },
-          children: /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(H, { children: v.map((e) => /* @__PURE__ */ n(
-            G,
+          children: /* @__PURE__ */ e(j, { children: /* @__PURE__ */ e($, { children: R.map((t) => /* @__PURE__ */ e(
+            F,
             {
-              title: String(e),
+              title: String(t),
               selectionType: "Single",
-              isSelected: e === a,
-              onClick: () => B(e)
+              isSelected: t === r,
+              onClick: () => I(t)
             },
-            e
+            t
           )) }) })
         }
       ),
@@ -114,5 +104,5 @@ function ie({
   ] });
 }
 export {
-  ie as TablePagination
+  rt as TablePagination
 };

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import type { HTMLAttributes, ReactNode, KeyboardEvent } from 'react';
 import { cn } from '../../../utils/cn';
-import { useClickOutside } from '../../../hooks/useClickOutside';
 import { useKeyboard } from '../../../hooks/useKeyboard';
+import { useDropdownPortal } from '../../../hooks/useDropdownPortal';
 import { DatePickerTrigger } from './DatePickerTrigger';
 import { DatePickerPopover } from './DatePickerPopover';
 import { CalendarBase } from './CalendarBase';
@@ -106,7 +107,7 @@ export function DatePicker({
     containerRef, closedByKeyboard,
     days, monthItems, yearItems, headerLabel,
     singleInputText, startRawText, endRawText, startTimeRaw, endTimeRaw,
-    isApplyDisabled,
+    isApplyDisabled, resolvedRange,
     closeAndRevert,
     handlePrev, handleNext, handleHeaderClick, handleItemClick,
     handleDayClick, handleDayHover, handleDayHoverEnd,
@@ -116,8 +117,11 @@ export function DatePicker({
     handleStartTimeChange, handleEndTimeChange,
   } = state;
 
-  /* ── Outside click + Escape ──────────────────────────────────────────── */
-  useClickOutside(containerRef, closeAndRevert);
+  /* ── Portal positioning — main popover and preset dropdown ──────────── */
+  const { portalRef: mainPortalRef, pos: mainPos } = useDropdownPortal(containerRef, open, closeAndRevert);
+  const { portalRef: presetPortalRef, pos: presetPos } = useDropdownPortal(containerRef, presetOpen, () => setPresetOpen(false));
+
+  /* ── Escape ──────────────────────────────────────────────────────────── */
   useKeyboard('Escape', closeAndRevert);
 
   /* ── Focus management ────────────────────────────────────────────────── */
@@ -125,9 +129,7 @@ export function DatePicker({
   useEffect(() => {
     if (!prevOpen.current && open) {
       requestAnimationFrame(() => {
-        const popover = containerRef.current?.querySelector<HTMLElement>('.fds-datepicker__popover');
-        if (!popover) return;
-        const firstFocusable = popover.querySelector<HTMLElement>(
+        const firstFocusable = mainPortalRef.current?.querySelector<HTMLElement>(
           'input:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])',
         );
         firstFocusable?.focus();
@@ -179,8 +181,8 @@ export function DatePicker({
 
   /* ── Trigger display values ──────────────────────────────────────────── */
   const triggerDate = mode === 'single' && value ? formatDate(value) : undefined;
-  const triggerRange = mode === 'range' && rangeValue
-    ? `${formatDate(rangeValue.start)} - ${formatDate(rangeValue.end)}`
+  const triggerRange = mode === 'range' && resolvedRange
+    ? `${formatDate(resolvedRange.start)} - ${formatDate(resolvedRange.end)}`
     : undefined;
   const presetLabel = PRESET_LABELS[preset] ?? 'Custom';
 
@@ -230,77 +232,91 @@ export function DatePicker({
         )}
       </div>
 
-      {showPresetChip && presetOpen && (
-        <div className="fds-datepicker__preset-dropdown">
-          <DropdownMenu>
-            <ActionListItemGroup>
-              {(presets ?? DEFAULT_PRESETS).filter((p) => p.value !== 'custom').map((p) => (
-                <ActionListItem
-                  key={p.value}
-                  title={p.label}
-                  selectionType="Single"
-                  isSelected={preset === p.value}
-                  onClick={() => {
-                    handlePresetSelect(p.value);
-                    setPresetOpen(false);
-                  }}
-                />
-              ))}
-            </ActionListItemGroup>
-          </DropdownMenu>
-        </div>
-      )}
+      {showPresetChip && presetOpen && presetPos && typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            ref={presetPortalRef}
+            className="fds-datepicker__preset-dropdown"
+            style={{ top: presetPos.top, left: presetPos.left }}
+          >
+            <DropdownMenu>
+              <ActionListItemGroup>
+                {(presets ?? DEFAULT_PRESETS).filter((p) => p.value !== 'custom').map((p) => (
+                  <ActionListItem
+                    key={p.value}
+                    title={p.label}
+                    selectionType="Single"
+                    isSelected={preset === p.value}
+                    onClick={() => {
+                      handlePresetSelect(p.value);
+                      setPresetOpen(false);
+                    }}
+                  />
+                ))}
+              </ActionListItemGroup>
+            </DropdownMenu>
+          </div>,
+          document.body,
+        )
+      }
 
-      {open && (
-        <div className="fds-datepicker__popover">
-          {mode === 'single' ? (
-            <CalendarBase
-              view={view}
-              headerLabel={headerLabel}
-              days={days}
-              items={view === 'month' ? monthItems : yearItems}
-              onDayClick={handleDayClick}
-              onItemClick={handleItemClick}
-              onHeaderClick={handleHeaderClick}
-              onPrev={handlePrev}
-              onNext={handleNext}
-              showFooter
-              isApplyDisabled={isApplyDisabled}
-              onCancel={handleCancel}
-              onApply={handleApply}
-            />
-          ) : (
-            <DatePickerPopover
-              showPresets={showPresets && showPresetChip}
-              presets={presets}
-              selectedPreset={preset}
-              onPresetSelect={handlePresetSelect}
-              startDate={startRawText}
-              endDate={endRawText}
-              startTime={startTimeRaw}
-              endTime={endTimeRaw}
-              onStartDateChange={handleStartDateChange}
-              onEndDateChange={handleEndDateChange}
-              onStartTimeChange={handleStartTimeChange}
-              onEndTimeChange={handleEndTimeChange}
-              calendarLabel={headerLabel}
-              view={view}
-              days={days}
-              items={view === 'month' ? monthItems : yearItems}
-              onDayClick={handleDayClick}
-              onDayHover={handleDayHover}
-              onDayHoverEnd={handleDayHoverEnd}
-              onItemClick={handleItemClick}
-              onCalendarLabelClick={handleHeaderClick}
-              onPrevMonth={handlePrev}
-              onNextMonth={handleNext}
-              isApplyDisabled={isApplyDisabled}
-              onCancel={handleCancel}
-              onApply={handleApply}
-            />
-          )}
-        </div>
-      )}
+      {open && mainPos && typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            ref={mainPortalRef}
+            className="fds-datepicker__popover"
+            style={{ top: mainPos.top, left: mainPos.left }}
+          >
+            {mode === 'single' ? (
+              <CalendarBase
+                view={view}
+                headerLabel={headerLabel}
+                days={days}
+                items={view === 'month' ? monthItems : yearItems}
+                onDayClick={handleDayClick}
+                onItemClick={handleItemClick}
+                onHeaderClick={handleHeaderClick}
+                onPrev={handlePrev}
+                onNext={handleNext}
+                showFooter
+                isApplyDisabled={isApplyDisabled}
+                onCancel={handleCancel}
+                onApply={handleApply}
+              />
+            ) : (
+              <DatePickerPopover
+                showPresets={showPresets && showPresetChip}
+                presets={presets}
+                selectedPreset={preset}
+                onPresetSelect={handlePresetSelect}
+                startDate={startRawText}
+                endDate={endRawText}
+                startTime={startTimeRaw}
+                endTime={endTimeRaw}
+                onStartDateChange={handleStartDateChange}
+                onEndDateChange={handleEndDateChange}
+                onStartTimeChange={handleStartTimeChange}
+                onEndTimeChange={handleEndTimeChange}
+                calendarLabel={headerLabel}
+                view={view}
+                days={days}
+                items={view === 'month' ? monthItems : yearItems}
+                onDayClick={handleDayClick}
+                onDayHover={handleDayHover}
+                onDayHoverEnd={handleDayHoverEnd}
+                onItemClick={handleItemClick}
+                onCalendarLabelClick={handleHeaderClick}
+                onPrevMonth={handlePrev}
+                onNextMonth={handleNext}
+                isApplyDisabled={isApplyDisabled}
+                onCancel={handleCancel}
+                onApply={handleApply}
+              />
+            )}
+          </div>,
+          document.body,
+        )
+      }
     </div>
   );
 }

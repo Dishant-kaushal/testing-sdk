@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect, forwardRef } from 'react';
+import { createPortal } from 'react-dom';
 import type { HTMLAttributes, KeyboardEvent } from 'react';
 import { cn } from '../../../utils/cn';
-import { useClickOutside } from '../../../hooks/useClickOutside';
+import { useDropdownPortal } from '../../../hooks/useDropdownPortal';
 import { InputFieldHeader } from '../../forms/InputFieldHeader/InputFieldHeader';
 import { InputFieldFooter } from '../../forms/InputFieldFooter/InputFieldFooter';
 import { ColorPicker, type ColorPickerTab } from './ColorPicker';
@@ -50,8 +51,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-
-    useClickOutside(containerRef, () => { if (isOpen) setIsOpen(false); });
+    const { portalRef, pos } = useDropdownPortal(containerRef, isOpen, () => setIsOpen(false), 8);
 
     /* ── Derived color state ───────────────────────────────────────────── */
     const rgb = hexToRgb(value || '#000000');
@@ -70,10 +70,8 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
     const prevOpen = useRef(isOpen);
     useEffect(() => {
       if (!prevOpen.current && isOpen) {
-        // Popover opened — focus first interactive element
         requestAnimationFrame(() => {
-          const popover = containerRef.current?.querySelector<HTMLElement>('.fds-color-input__popover');
-          const first = popover?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])');
+          const first = portalRef.current?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])');
           first?.focus();
         });
       }
@@ -196,32 +194,39 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
           />
         )}
 
-        {isOpen && (
-          <div className="fds-color-input__popover">
-            <ColorPicker
-              activeTab={tab}
-              onTabChange={setTab}
-              hue={hue}
-              saturation={sat}
-              brightness={bri}
-              opacity={opacity}
-              r={r}
-              g={g}
-              b={b}
-              hex={value || '#000000'}
-              configMode={configMode}
-              onHueChange={handleHueChange}
-              onSaturationBrightnessChange={handleSatBriChange}
-              onOpacityChange={setOpacity}
-              onRgbChange={handleRgbChange}
-              onHexChange={handlePanelHexChange}
-              onConfigModeChange={setConfigMode}
-              onColorSelect={handlePresetSelect}
-              palettes={palettes}
-              selectedColor={value}
-            />
-          </div>
-        )}
+        {isOpen && pos && typeof document !== 'undefined' &&
+          createPortal(
+            <div
+              ref={portalRef}
+              className="fds-color-input__popover"
+              style={{ top: pos.top, left: pos.left }}
+            >
+              <ColorPicker
+                activeTab={tab}
+                onTabChange={setTab}
+                hue={hue}
+                saturation={sat}
+                brightness={bri}
+                opacity={opacity}
+                r={r}
+                g={g}
+                b={b}
+                hex={value || '#000000'}
+                configMode={configMode}
+                onHueChange={handleHueChange}
+                onSaturationBrightnessChange={handleSatBriChange}
+                onOpacityChange={setOpacity}
+                onRgbChange={handleRgbChange}
+                onHexChange={handlePanelHexChange}
+                onConfigModeChange={setConfigMode}
+                onColorSelect={handlePresetSelect}
+                palettes={palettes}
+                selectedColor={value}
+              />
+            </div>,
+            document.body,
+          )
+        }
       </div>
     );
   },

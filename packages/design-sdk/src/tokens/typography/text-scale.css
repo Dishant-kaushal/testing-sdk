@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Typography — Tier 2 Responsive Text Scale
+   Flask Design System (Falcon 2.0)
+
+   References Tier 1 primitives from global.css.
+   Desktop values are the default. Mobile overrides via @media (max-width: 768px).
+   Tier 3 (styles.css) references these tokens — never Tier 1 directly.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Font sizes — desktop defaults */
+  --font-size-25:   var(--global-fz-10);   /* 10px */
+  --font-size-50:   var(--global-fz-12);   /* 12px */
+  --font-size-100:  var(--global-fz-14);   /* 14px */
+  --font-size-200:  var(--global-fz-16);   /* 16px */
+  --font-size-300:  var(--global-fz-18);   /* 18px */
+  --font-size-400:  var(--global-fz-20);   /* 20px */
+  --font-size-500:  var(--global-fz-24);   /* 24px */
+  --font-size-600:  var(--global-fz-32);   /* 32px */
+  --font-size-700:  var(--global-fz-40);   /* 40px */
+  --font-size-800:  var(--global-fz-48);   /* 48px */
+  --font-size-900:  var(--global-fz-56);   /* 56px */
+  --font-size-1000: var(--global-fz-64);   /* 64px */
+  --font-size-1100: var(--global-fz-72);   /* 72px */
+
+  /* Line heights — desktop defaults */
+  --line-height-00:   var(--global-lh-00);  /*  0px */
+  --line-height-25:   var(--global-lh-14);  /* 14px */
+  --line-height-50:   var(--global-lh-16);  /* 16px */
+  --line-height-75:   var(--global-lh-18);  /* 18px */
+  --line-height-100:  var(--global-lh-20);  /* 20px */
+  --line-height-200:  var(--global-lh-24);  /* 24px */
+  --line-height-300:  var(--global-lh-24);  /* 24px */
+  --line-height-400:  var(--global-lh-26);  /* 26px */
+  --line-height-500:  var(--global-lh-32);  /* 32px */
+  --line-height-600:  var(--global-lh-38);  /* 38px */
+  --line-height-700:  var(--global-lh-46);  /* 46px */
+  --line-height-800:  var(--global-lh-56);  /* 56px */
+  --line-height-900:  var(--global-lh-64);  /* 64px */
+  --line-height-1000: var(--global-lh-70);  /* 70px */
+  --line-height-1100: var(--global-lh-78);  /* 78px */
+
+  /* Letter spacings */
+  --letter-spacing-50:  var(--global-ls-condensed);  /* -1px — Display Regular/Medium */
+  --letter-spacing-100: var(--global-ls-normal);      /*  0px — all other styles */
+
+  /* Font weights */
+  --font-weight-400: var(--global-fw-400);  /* Regular */
+  --font-weight-500: var(--global-fw-500);  /* Medium */
+  --font-weight-600: var(--global-fw-600);  /* SemiBold */
+  --font-weight-700: var(--global-fw-700);  /* Bold */
+}
+
+/* Mobile overrides — only tokens that differ from desktop */
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size-300:  var(--global-fz-16);   /* 18 → 16px */
+    --font-size-400:  var(--global-fz-18);   /* 20 → 18px */
+    --font-size-500:  var(--global-fz-20);   /* 24 → 20px */
+    --font-size-600:  var(--global-fz-24);   /* 32 → 24px */
+    --font-size-700:  var(--global-fz-32);   /* 40 → 32px */
+    --font-size-800:  var(--global-fz-34);   /* 48 → 34px */
+    --font-size-900:  var(--global-fz-36);   /* 56 → 36px */
+    --font-size-1000: var(--global-fz-38);   /* 64 → 38px */
+    --font-size-1100: var(--global-fz-40);   /* 72 → 40px */
+
+    --line-height-500:  var(--global-lh-26); /* 32 → 26px */
+    --line-height-600:  var(--global-lh-32); /* 38 → 32px */
+    --line-height-700:  var(--global-lh-38); /* 46 → 38px */
+    --line-height-800:  var(--global-lh-42); /* 56 → 42px */
+    --line-height-900:  var(--global-lh-42); /* 64 → 42px */
+    --line-height-1000: var(--global-lh-46); /* 70 → 46px */
+    --line-height-1100: var(--global-lh-48); /* 78 → 48px */
+  }
+}

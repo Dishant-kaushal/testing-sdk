@@ -1,6 +1,6 @@
 {
   "name": "@faclon-labs/design-sdk",
-  "version": "0.3.1",
+  "version": "0.5.1",
   "private": false,
   "type": "module",
   "module": "./dist/index.js",
@@ -91,6 +91,46 @@
     "./EmptyState": {
       "types": "./dist/types/components/feedback/EmptyState/index.d.ts",
       "import": "./dist/components/feedback/EmptyState/index.js"
+    },
+    "./EmptyState/illustrations/NoDataOneIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NoDataOneIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NoDataOneIllustration.js"
+    },
+    "./EmptyState/illustrations/NoDataTwoIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NoDataTwoIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NoDataTwoIllustration.js"
+    },
+    "./EmptyState/illustrations/AddImageIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/AddImageIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/AddImageIllustration.js"
+    },
+    "./EmptyState/illustrations/AddWidgetIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/AddWidgetIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/AddWidgetIllustration.js"
+    },
+    "./EmptyState/illustrations/NoNotificationIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NoNotificationIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NoNotificationIllustration.js"
+    },
+    "./EmptyState/illustrations/NoDevicesConfiguredIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NoDevicesConfiguredIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NoDevicesConfiguredIllustration.js"
+    },
+    "./EmptyState/illustrations/TechnicalHiccupIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/TechnicalHiccupIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/TechnicalHiccupIllustration.js"
+    },
+    "./EmptyState/illustrations/AccessDeniedIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/AccessDeniedIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/AccessDeniedIllustration.js"
+    },
+    "./EmptyState/illustrations/NoSearchResultIllustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NoSearchResultIllustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NoSearchResultIllustration.js"
+    },
+    "./EmptyState/illustrations/NotFound404Illustration": {
+      "types": "./dist/types/components/feedback/EmptyState/illustrations/NotFound404Illustration.d.ts",
+      "import": "./dist/components/feedback/EmptyState/illustrations/NotFound404Illustration.js"
     },
     "./Alert": {
       "types": "./dist/types/components/feedback/Alert/index.d.ts",
@@ -272,6 +312,14 @@
       "types": "./dist/types/components/product/ProductAccordion/index.d.ts",
       "import": "./dist/components/product/ProductAccordion/index.js"
     },
+    "./ChatMessage": {
+      "types": "./dist/types/components/chat/ChatMessage/index.d.ts",
+      "import": "./dist/components/chat/ChatMessage/index.js"
+    },
+    "./ChatInput": {
+      "types": "./dist/types/components/chat/ChatInput/index.d.ts",
+      "import": "./dist/components/chat/ChatInput/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -305,12 +353,11 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "dependencies": {
-    "@table-library/react-table-library": "^4.1.7"
-  },
   "peerDependencies": {
+    "@table-library/react-table-library": "^4.1.7",
     "@fontsource-variable/noto-sans": "^5.0.0",
     "apexcharts": "^5.0.0",
+    "framer-motion": ">=11",
     "highcharts": "^12.0.0",
     "highcharts-react-official": "^3.0.0",
     "libphonenumber-js": "^1.12.0",
@@ -320,10 +367,12 @@
     "react-feather": "^2.0.10"
   },
   "devDependencies": {
+    "@table-library/react-table-library": "^4.1.7",
     "@chromatic-com/storybook": "^5.1.1",
     "@storybook/addon-a11y": "^10.3.3",
     "@storybook/addon-docs": "^10.3.3",
     "@storybook/addon-onboarding": "^10.3.3",
+    "@storybook/addon-themes": "^10.3.5",
     "@storybook/addon-vitest": "^10.3.3",
     "@storybook/react-vite": "^10.3.3",
     "@types/react": "^18.3.12",
@@ -332,6 +381,7 @@
     "@vitest/browser-playwright": "^4.1.1",
     "@vitest/coverage-v8": "^4.1.1",
     "apexcharts": "^5.10.5",
+    "framer-motion": "11.12.0",
     "highcharts": "^12.5.0",
     "highcharts-react-official": "^3.2.3",
     "libphonenumber-js": "^1.12.42",

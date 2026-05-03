@@ -1,12 +1,12 @@
-import { Stepper as p } from "./Stepper.js";
+import { Stepper as r } from "./Stepper.js";
 import { StepperStep as t } from "./StepperStep.js";
 import { StepperIndicator as f } from "./StepperIndicator.js";
-import { StepperGroupLabel as x } from "./StepperGroupLabel.js";
-import { StepperConnectCurve as a } from "./StepperConnectCurve.js";
+import { StepperIcon as x } from "./StepperIcon.js";
+import { StepperGroupLabel as c } from "./StepperGroupLabel.js";
 export {
-  p as Stepper,
-  a as StepperConnectCurve,
-  x as StepperGroupLabel,
+  r as Stepper,
+  c as StepperGroupLabel,
+  x as StepperIcon,
   f as StepperIndicator,
   t as StepperStep
 };

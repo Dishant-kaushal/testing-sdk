@@ -3,8 +3,8 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import type { Options, SeriesOptionsType } from 'highcharts';
 import { Chart } from '../Chart/Chart';
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
-import { useFaclonChartTheme } from '../Chart/highchartsTheme';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
+import { useFaclonChartTheme, readCssVar } from '../Chart/highchartsTheme';
 import './LineChart.css';
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -27,16 +27,13 @@ export interface LineChartProps extends Omit<ChartProps, 'children'> {
   /** X-axis category labels (one per index in each series's `data` array). */
   categories: string[];
   /**
-   * Smooth lines using spline (Bezier) interpolation. Highcharts treats this
-   * as `chart.type: 'spline'` — same axes, same legend, same markers, just
-   * curved segments instead of straight ones.
+   * Smooth lines using spline (Bezier) interpolation.
    * @default false
    */
   smooth?: boolean;
   /**
-   * Show data-point markers along each line. Forwarded to each series's
-   * `marker.enabled`. Leaving this `undefined` lets Highcharts use its
-   * default `'auto'` (markers shown when data points are sparse enough).
+   * Show data-point markers along each line. `undefined` lets Highcharts use
+   * its default `'auto'` (shown when data points are sparse enough).
    */
   showMarkers?: boolean;
   /**
@@ -60,21 +57,42 @@ export interface LineChartProps extends Omit<ChartProps, 'children'> {
    */
   scrollableMinWidth?: number;
   /**
-   * Fires when a data point (marker) is clicked. Typical use: time drill-down.
-   * Consumer owns the hierarchy state. When set, data points use a pointer
-   * cursor to signal interactivity.
+   * Fires when a data point is clicked. Consumer owns drill-down state.
+   * When set, data points use a pointer cursor.
    */
   onPointClick?: (ctx: ChartPointClickContext) => void;
+  /**
+   * Override the default Faclon palette for this chart instance.
+   * Array of CSS color strings applied in series order.
+   */
+  colors?: string[];
+  /** X-axis title label shown below the axis. */
+  xAxisTitle?: string;
+  /** Y-axis title label shown beside the axis. */
+  yAxisTitle?: string;
+  /**
+   * Unit string appended to every y-axis tick label (e.g. `'°C'`, `'%'`, `'bar'`).
+   */
+  yAxisUnit?: string;
+  /**
+   * Horizontal reference lines drawn across the plot area.
+   * Commonly used for single threshold markers.
+   */
+  plotLines?: ChartPlotLine[];
+  /**
+   * Shaded Y-axis bands across the plot area.
+   * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+   */
+  plotBands?: ChartPlotBand[];
+  /**
+   * Full Highcharts options escape hatch — deep-merged last after all
+   * computed options. Use this to override anything not covered by props.
+   */
+  highchartsOptions?: Options;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   LineChart — straight or smoothed line chart
-   ───────────────────────────────────────────────────────────────────────────
-   Wraps the design-system `Chart` base for the header / breadcrumb / actions /
-   filters / canvas layout, and renders a Highcharts line (or spline) instance
-   inside the canvas slot. The Faclon theme (colors, typography) comes from
-   `useFaclonChartTheme()` — every other Highcharts default (line width,
-   marker radius, hover state, animation, tooltip, …) is left untouched.
+   LineChart
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export const LineChart = forwardRef<HTMLDivElement, LineChartProps>(
@@ -89,6 +107,13 @@ export const LineChart = forwardRef<HTMLDivElement, LineChartProps>(
       scrollable = false,
       scrollableMinWidth = 900,
       onPointClick,
+      colors,
+      xAxisTitle,
+      yAxisTitle,
+      yAxisUnit,
+      plotLines,
+      plotBands,
+      highchartsOptions,
       ...chartProps
     },
     ref,
@@ -105,8 +130,53 @@ export const LineChart = forwardRef<HTMLDivElement, LineChartProps>(
         ...(showMarkers !== undefined && { marker: { enabled: showMarkers } }),
       }));
 
-      return {
+      const hcPlotBands = plotBands?.map((pb) => ({
+        from: pb.from,
+        to: pb.to,
+        color: pb.color ?? 'rgba(239,68,68,0.1)',
+        zIndex: pb.zIndex ?? 0,
+        ...(pb.label && {
+          label: { text: pb.label, align: pb.labelAlign ?? 'right' },
+        }),
+      }));
+
+      const hcPlotLines = plotLines?.map((pl) => ({
+        value: pl.value,
+        color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444',
+        width: pl.width ?? 2,
+        dashStyle: pl.dashStyle ?? 'Dash',
+        zIndex: pl.zIndex ?? 5,
+        ...(pl.label && {
+          label: {
+            text: pl.label,
+            align: pl.labelAlign ?? 'right',
+            style: { color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444' },
+          },
+        }),
+      }));
+
+      const pointClickOptions = onPointClick
+        ? {
+            cursor: 'pointer' as const,
+            point: {
+              events: {
+                click(this: Highcharts.Point) {
+                  onPointClick({
+                    category: String((this as any).category ?? ''),
+                    seriesName: this.series.name,
+                    value: this.y ?? null,
+                    pointIndex: this.index,
+                    seriesIndex: this.series.index,
+                  });
+                },
+              },
+            },
+          }
+        : {};
+
+      const computed: Options = {
         ...theme,
+        ...(colors && { colors }),
         chart: {
           ...theme.chart,
           type: seriesType,
@@ -117,45 +187,23 @@ export const LineChart = forwardRef<HTMLDivElement, LineChartProps>(
         xAxis: {
           ...theme.xAxis,
           categories,
+          ...(xAxisTitle !== undefined && { title: { ...theme.xAxis?.title, text: xAxisTitle } }),
+        },
+        yAxis: {
+          ...theme.yAxis,
+          ...(yAxisTitle !== undefined && { title: { ...theme.yAxis?.title, text: yAxisTitle } }),
+          ...(yAxisUnit && { labels: { ...theme.yAxis?.labels, format: `{value} ${yAxisUnit}` } }),
+          ...(hcPlotLines && { plotLines: hcPlotLines }),
+          ...(hcPlotBands && { plotBands: hcPlotBands }),
         },
         plotOptions: {
           line: {
             dataLabels: { enabled: showDataLabels },
-            ...(onPointClick && {
-              cursor: 'pointer',
-              point: {
-                events: {
-                  click() {
-                    onPointClick({
-                      category: String(this.category ?? ''),
-                      seriesName: this.series.name,
-                      value: this.y ?? null,
-                      pointIndex: this.index,
-                      seriesIndex: this.series.index,
-                    });
-                  },
-                },
-              },
-            }),
+            ...pointClickOptions,
           },
           spline: {
             dataLabels: { enabled: showDataLabels },
-            ...(onPointClick && {
-              cursor: 'pointer',
-              point: {
-                events: {
-                  click() {
-                    onPointClick({
-                      category: String(this.category ?? ''),
-                      seriesName: this.series.name,
-                      value: this.y ?? null,
-                      pointIndex: this.index,
-                      seriesIndex: this.series.index,
-                    });
-                  },
-                },
-              },
-            }),
+            ...pointClickOptions,
           },
         },
         legend: {
@@ -164,7 +212,9 @@ export const LineChart = forwardRef<HTMLDivElement, LineChartProps>(
         },
         series: seriesConfig,
       };
-    }, [theme, series, categories, smooth, showMarkers, showLegend, showDataLabels, scrollable, scrollableMinWidth, onPointClick]);
+
+      return highchartsOptions ? Highcharts.merge(computed, highchartsOptions) : computed;
+    }, [theme, series, categories, smooth, showMarkers, showLegend, showDataLabels, scrollable, scrollableMinWidth, onPointClick, colors, xAxisTitle, yAxisTitle, yAxisUnit, plotLines, plotBands, highchartsOptions]);
 
     return (
       <Chart ref={ref} {...chartProps}>

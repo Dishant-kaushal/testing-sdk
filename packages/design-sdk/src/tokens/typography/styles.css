@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Typography — Tier 3 Composed Font Styles (34 styles)
+   Flask Design System (Falcon 2.0)
+
+   All values reference Tier 2 tokens from text-scale.css.
+   No hardcoded px/rem values. No per-class @media blocks —
+   responsiveness is handled automatically by text-scale.css.
+
+   Letter-spacing rule:
+     Display Regular/Medium → --letter-spacing-50  (-1px)
+     Display Semibold       → --letter-spacing-100  (0px)
+     All Heading + Body     → --letter-spacing-100  (0px)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Display (12 styles) ─────────────────────────────────────────────────── */
+
+.DisplayXLargeRegular {
+  font-size:      var(--font-size-1100);
+  line-height:    var(--line-height-1100);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayXLargeMedium {
+  font-size:      var(--font-size-1100);
+  line-height:    var(--line-height-1100);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayXLargeSemibold {
+  font-size:      var(--font-size-1100);
+  line-height:    var(--line-height-1100);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.DisplayLargeRegular {
+  font-size:      var(--font-size-1000);
+  line-height:    var(--line-height-1000);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayLargeMedium {
+  font-size:      var(--font-size-1000);
+  line-height:    var(--line-height-1000);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayLargeSemibold {
+  font-size:      var(--font-size-1000);
+  line-height:    var(--line-height-1000);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.DisplayMediumRegular {
+  font-size:      var(--font-size-900);
+  line-height:    var(--line-height-900);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayMediumMedium {
+  font-size:      var(--font-size-900);
+  line-height:    var(--line-height-900);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplayMediumSemibold {
+  font-size:      var(--font-size-900);
+  line-height:    var(--line-height-900);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.DisplaySmallRegular {
+  font-size:      var(--font-size-800);
+  line-height:    var(--line-height-800);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplaySmallMedium {
+  font-size:      var(--font-size-800);
+  line-height:    var(--line-height-800);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-50);
+}
+
+.DisplaySmallSemibold {
+  font-size:      var(--font-size-800);
+  line-height:    var(--line-height-800);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+/* ── Heading (10 styles) ─────────────────────────────────────────────────── */
+
+.Heading2XLargeRegular {
+  font-size:      var(--font-size-700);
+  line-height:    var(--line-height-700);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.Heading2XLargeSemibold {
+  font-size:      var(--font-size-700);
+  line-height:    var(--line-height-700);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingXLargeRegular {
+  font-size:      var(--font-size-600);
+  line-height:    var(--line-height-600);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingXLargeSemibold {
+  font-size:      var(--font-size-600);
+  line-height:    var(--line-height-600);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingLargeRegular {
+  font-size:      var(--font-size-500);
+  line-height:    var(--line-height-500);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingLargeSemibold {
+  font-size:      var(--font-size-500);
+  line-height:    var(--line-height-500);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingMediumRegular {
+  font-size:      var(--font-size-400);
+  line-height:    var(--line-height-400);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingMediumSemibold {
+  font-size:      var(--font-size-400);
+  line-height:    var(--line-height-400);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingSmallRegular {
+  font-size:      var(--font-size-300);
+  line-height:    var(--line-height-200);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.HeadingSmallSemibold {
+  font-size:      var(--font-size-300);
+  line-height:    var(--line-height-200);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+/* ── Body (12 styles) ────────────────────────────────────────────────────── */
+
+.BodyLargeRegular {
+  font-size:      var(--font-size-200);
+  line-height:    var(--line-height-200);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyLargeMedium {
+  font-size:      var(--font-size-200);
+  line-height:    var(--line-height-200);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyLargeSemibold {
+  font-size:      var(--font-size-200);
+  line-height:    var(--line-height-200);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyMediumRegular {
+  font-size:      var(--font-size-100);
+  line-height:    var(--line-height-100);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyMediumMedium {
+  font-size:      var(--font-size-100);
+  line-height:    var(--line-height-100);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyMediumSemibold {
+  font-size:      var(--font-size-100);
+  line-height:    var(--line-height-100);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodySmallRegular {
+  font-size:      var(--font-size-50);
+  line-height:    var(--line-height-75);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodySmallMedium {
+  font-size:      var(--font-size-50);
+  line-height:    var(--line-height-75);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodySmallSemibold {
+  font-size:      var(--font-size-50);
+  line-height:    var(--line-height-75);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyXSmallRegular {
+  font-size:      var(--font-size-25);
+  line-height:    var(--line-height-25);
+  font-weight:    var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyXSmallMedium {
+  font-size:      var(--font-size-25);
+  line-height:    var(--line-height-25);
+  font-weight:    var(--font-weight-500);
+  letter-spacing: var(--letter-spacing-100);
+}
+
+.BodyXSmallSemibold {
+  font-size:      var(--font-size-25);
+  line-height:    var(--line-height-25);
+  font-weight:    var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-100);
+}

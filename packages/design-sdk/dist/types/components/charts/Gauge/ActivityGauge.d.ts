@@ -1,5 +1,5 @@
-import 'highcharts/esm/highcharts-more';
-import 'highcharts/esm/modules/solid-gauge';
+import 'highcharts/esm/highcharts-more.js';
+import 'highcharts/esm/modules/solid-gauge.js';
 import type { Options } from 'highcharts';
 import type { ChartProps } from '../Chart/Chart';
 import './ActivityGauge.css';

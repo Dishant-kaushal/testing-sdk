@@ -146,6 +146,8 @@ import './components/product/ListCard/ListCardTrailingItem.css';
 import './components/product/ProductAccordion/ProductAccordionItem.css';
 import './components/product/ProductAccordion/PALeadingItem.css';
 import './components/product/ProductAccordion/PATrailingItem.css';
+import './components/chat/ChatMessage/ChatMessage.css';
+import './components/chat/ChatInput/ChatInput.css';
 
 
 /* Components */

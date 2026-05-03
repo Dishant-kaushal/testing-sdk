@@ -145,10 +145,9 @@ export function DatePickerPopover({
             {view === 'date' && (
               <div onMouseLeave={() => onDayHoverEnd?.()}>
                 {days.map((week, wi) => (
-                  <div key={wi} id={`week-${wi}`} className="fds-datepicker-popover__week">
+                  <div id={`week-${wi}`} className="fds-datepicker-popover__week">
                     {week.map((day, di) => (
                       <CalendarDayCell
-                        key={`${wi}-${di}`}
                         id={`${wi}-${di}`}
                         date={day.date}
                         type={day.type}

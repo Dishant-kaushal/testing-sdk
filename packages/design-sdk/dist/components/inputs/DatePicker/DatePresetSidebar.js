@@ -49,8 +49,7 @@ function c({
           onClick: () => t == null ? void 0 : t(e.value),
           role: "option",
           "aria-selected": o === e.value
-        },
-        e.value
+        }
       ))
     }
   );

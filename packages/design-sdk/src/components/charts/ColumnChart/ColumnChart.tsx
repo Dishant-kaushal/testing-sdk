@@ -3,8 +3,8 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import type { Options, SeriesColumnOptions } from 'highcharts';
 import { Chart } from '../Chart/Chart';
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
-import { useFaclonChartTheme } from '../Chart/highchartsTheme';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
+import { useFaclonChartTheme, readCssVar } from '../Chart/highchartsTheme';
 import './ColumnChart.css';
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -42,35 +42,54 @@ export interface ColumnChartProps extends Omit<ChartProps, 'children'> {
    */
   showDataLabels?: boolean;
   /**
-   * Make the plot horizontally scrollable when categories overflow. When true,
-   * the chart renders at `scrollableMinWidth` px wide and scrolls inside its
-   * container rather than compressing the columns.
+   * Make the plot horizontally scrollable when categories overflow.
    * @default false
    */
   scrollable?: boolean;
   /**
-   * Minimum plot width (px) when `scrollable` is true. Ignored when `scrollable`
-   * is false.
+   * Minimum plot width (px) when `scrollable` is true.
    * @default 900
    */
   scrollableMinWidth?: number;
   /**
-   * Fires when a column is clicked. Typical use: time drill-down — the
-   * consumer owns the hierarchy state (Month → Week → Day → Hour) and
-   * re-feeds the chart with categories/series for the next level. When set,
-   * data points use a pointer cursor to signal interactivity.
+   * Fires when a column is clicked. Typical use: time drill-down.
+   * When set, data points use a pointer cursor to signal interactivity.
    */
   onPointClick?: (ctx: ChartPointClickContext) => void;
+  /**
+   * Override the default Faclon palette for this chart instance.
+   * Array of CSS color strings applied in series order.
+   */
+  colors?: string[];
+  /** X-axis title label shown below the axis. */
+  xAxisTitle?: string;
+  /** Y-axis title label shown beside the axis. */
+  yAxisTitle?: string;
+  /**
+   * Unit string appended to every y-axis tick label (e.g. `'°C'`, `'%'`, `'bar'`).
+   * Applied as `{value} unit`. For full control use `highchartsOptions.yAxis.labels.formatter`.
+   */
+  yAxisUnit?: string;
+  /**
+   * Horizontal reference lines drawn across the plot area.
+   * Commonly used for single threshold markers.
+   */
+  plotLines?: ChartPlotLine[];
+  /**
+   * Shaded Y-axis bands across the plot area.
+   * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+   */
+  plotBands?: ChartPlotBand[];
+  /**
+   * Full Highcharts options escape hatch — deep-merged last, after all
+   * computed options. Use this to override anything not covered by the props
+   * above without losing the Faclon theme.
+   */
+  highchartsOptions?: Options;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ColumnChart — basic grouped or stacked column chart
-   ───────────────────────────────────────────────────────────────────────────
-   Wraps the design-system `Chart` base for the header / breadcrumb / actions /
-   filters / canvas layout, and renders a Highcharts column instance inside
-   the canvas slot. The Faclon theme (colors, typography) comes from
-   `useFaclonChartTheme()` — every other Highcharts default (column padding,
-   border radius, animation, tooltip, gridline width, …) is left untouched.
+   ColumnChart
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
@@ -84,6 +103,13 @@ export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
       scrollable = false,
       scrollableMinWidth = 900,
       onPointClick,
+      colors,
+      xAxisTitle,
+      yAxisTitle,
+      yAxisUnit,
+      plotLines,
+      plotBands,
+      highchartsOptions,
       ...chartProps
     },
     ref,
@@ -98,8 +124,37 @@ export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
         color: s.color,
       }));
 
-      return {
+      const hcPlotBands = plotBands?.map((pb) => ({
+        from: pb.from,
+        to: pb.to,
+        color: pb.color ?? 'rgba(239,68,68,0.1)',
+        zIndex: pb.zIndex ?? 0,
+        ...(pb.label && {
+          label: {
+            text: pb.label,
+            align: pb.labelAlign ?? 'right',
+          },
+        }),
+      }));
+
+      const hcPlotLines = plotLines?.map((pl) => ({
+        value: pl.value,
+        color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444',
+        width: pl.width ?? 2,
+        dashStyle: pl.dashStyle ?? 'Dash',
+        zIndex: pl.zIndex ?? 5,
+        ...(pl.label && {
+          label: {
+            text: pl.label,
+            align: pl.labelAlign ?? 'right',
+            style: { color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444' },
+          },
+        }),
+      }));
+
+      const computed: Options = {
         ...theme,
+        ...(colors && { colors }),
         chart: {
           ...theme.chart,
           type: 'column',
@@ -110,6 +165,14 @@ export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
         xAxis: {
           ...theme.xAxis,
           categories,
+          ...(xAxisTitle !== undefined && { title: { ...theme.xAxis?.title, text: xAxisTitle } }),
+        },
+        yAxis: {
+          ...theme.yAxis,
+          ...(yAxisTitle !== undefined && { title: { ...theme.yAxis?.title, text: yAxisTitle } }),
+          ...(yAxisUnit && { labels: { ...theme.yAxis?.labels, format: `{value} ${yAxisUnit}` } }),
+          ...(hcPlotLines && { plotLines: hcPlotLines }),
+          ...(hcPlotBands && { plotBands: hcPlotBands }),
         },
         plotOptions: {
           column: {
@@ -139,7 +202,9 @@ export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
         },
         series: seriesConfig,
       };
-    }, [theme, series, categories, stacked, showLegend, showDataLabels, scrollable, scrollableMinWidth, onPointClick]);
+
+      return highchartsOptions ? Highcharts.merge(computed, highchartsOptions) : computed;
+    }, [theme, series, categories, stacked, showLegend, showDataLabels, scrollable, scrollableMinWidth, onPointClick, colors, xAxisTitle, yAxisTitle, yAxisUnit, plotLines, plotBands, highchartsOptions]);
 
     return (
       <Chart ref={ref} {...chartProps}>

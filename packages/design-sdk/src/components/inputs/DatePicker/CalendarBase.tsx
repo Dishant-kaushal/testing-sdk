@@ -1,4 +1,4 @@
-import type { ReactNode, HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 import { cn } from '../../../utils/cn';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarWeekdays } from './CalendarWeekdays';
@@ -100,10 +100,9 @@ export function CalendarBase({
         {view === 'date' && (
           <div onMouseLeave={() => onDayHoverEnd?.()}>
             {days.map((week, wi) => (
-              <div key={wi} id={`week-${wi}`} className="fds-calendar-base__week">
+              <div id={`week-${wi}`} className="fds-calendar-base__week">
                 {week.map((day, di) => (
                   <CalendarDayCell
-                    key={`${wi}-${di}`}
                     id={`${wi}-${di}`}
                     date={day.date}
                     type={day.type}

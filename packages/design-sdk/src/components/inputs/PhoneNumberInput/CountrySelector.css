@@ -42,7 +42,7 @@
 }
 
 .fds-country-selector__dial-code {
-  color: var(--text-gray-default);
+  color: var(--text-gray-primary);
   white-space: nowrap;
 }
 

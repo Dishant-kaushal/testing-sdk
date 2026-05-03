@@ -1,4 +1,4 @@
-import 'highcharts/esm/highcharts-more';
+import 'highcharts/esm/highcharts-more.js';
 import type { ChartProps } from '../Chart/Chart';
 import './SeriesGauge.css';
 /**

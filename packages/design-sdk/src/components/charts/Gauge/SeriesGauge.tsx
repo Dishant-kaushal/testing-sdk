@@ -21,8 +21,8 @@ import { forwardRef, useMemo } from 'react';
    more so they keep using the top-level `'highcharts'` path. Two Highcharts
    instances coexist in memory at runtime — independent and safe.
    ═══════════════════════════════════════════════════════════════════════════ */
-import Highcharts from 'highcharts/esm/highcharts';
-import 'highcharts/esm/highcharts-more';
+import Highcharts from 'highcharts/esm/highcharts.js';
+import 'highcharts/esm/highcharts-more.js';
 import HighchartsReact from 'highcharts-react-official';
 import type { Options } from 'highcharts';
 import { Chart } from '../Chart/Chart';

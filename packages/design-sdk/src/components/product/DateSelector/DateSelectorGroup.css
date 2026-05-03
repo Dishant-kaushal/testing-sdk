@@ -5,27 +5,29 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-02);
-  align-items: flex-start;
   width: 100%;
+  min-width: 0;
 }
 
 .fds-date-selector-group__body {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-02);
-  align-items: flex-start;
   width: 100%;
+  min-width: 0;
 }
 
 .fds-date-selector-group__row {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-03);
   align-items: center;
   width: 100%;
 }
 
-/* Buttons stretch equally inside the row — flex-basis: 0 forces equal widths */
+/* Buttons grow equally; min-width: fit-content ensures they wrap rather than
+   crush below their label width when there is not enough horizontal space */
 .fds-date-selector-group__row > * {
-  flex: 1 1 0;
-  min-width: 0;
+  flex: 1 1 auto;
+  min-width: fit-content;
 }

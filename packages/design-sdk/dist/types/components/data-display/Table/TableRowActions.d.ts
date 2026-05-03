@@ -16,6 +16,8 @@ export interface TableRowActionsProps {
     actions: TableRowAction[];
     /** Aria-label for the overflow trigger. Default `'More actions'`. */
     moreAriaLabel?: string;
+    /** Dropdown min width in px. Default `OVERFLOW_MENU_MIN_WIDTH`. */
+    menuMinWidth?: number;
 }
 /**
  * TableRowActions — max **3 visible slots** per Figma action column spec.
@@ -25,6 +27,11 @@ export interface TableRowActionsProps {
  *                             overflow trigger as the 3rd slot. The trigger
  *                             opens a `DropdownMenu` containing actions[2..].
  *
+ * The dropdown renders via `createPortal` to `document.body` so it is not
+ * clipped by the table's `overflow: auto` scroll container (the same pattern
+ * `TablePagination` uses for its size dropdown). Position is computed from
+ * the trigger's bounding rect on open + on scroll/resize.
+ *
  * Bare IconButtons (not filled Buttons) are intentional here — toolbar-level
  * trailing actions are `<Button iconOnly variant="Gray">`, but **row-level**
  * actions sit against the row bg with no chrome of their own. See
@@ -32,24 +39,5 @@ export interface TableRowActionsProps {
  *
  * `e.stopPropagation()` is applied on every click so row-level `onClick`
  * handlers don't fire alongside the action click.
- *
- * Drop this anywhere inside a `<TableRow>` — typically as the last cell:
- *
- * ```tsx
- * <TableRow item={row}>
- *   <TableCell>...</TableCell>
- *   <td>
- *     <TableRowActions
- *       actions={[
- *         { key: 'edit',   label: 'Edit',   icon: <Edit2 size={20} />,    onClick: () => ... },
- *         { key: 'copy',   label: 'Copy',   icon: <Copy size={20} />,     onClick: () => ... },
- *         { key: 'archive',label: 'Archive',icon: <Archive size={20} />,  onClick: () => ... },
- *         { key: 'delete', label: 'Delete', icon: <Trash2 size={20} />,   onClick: () => ...,
- *           isDestructive: true },
- *       ]}
- *     />
- *   </td>
- * </TableRow>
- * ```
  */
-export declare function TableRowActions({ actions, moreAriaLabel, }: TableRowActionsProps): import("react/jsx-runtime").JSX.Element;
+export declare function TableRowActions({ actions, moreAriaLabel, menuMinWidth, }: TableRowActionsProps): import("react/jsx-runtime").JSX.Element;

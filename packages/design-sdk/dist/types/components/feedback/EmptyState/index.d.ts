@@ -1,3 +1,3 @@
 export { EmptyState } from './EmptyState';
 export type { EmptyStateProps, EmptyStateSize } from './EmptyState';
-export * from './illustrations';
+export type { EmptyStateIllustrationProps } from './illustrations/types';

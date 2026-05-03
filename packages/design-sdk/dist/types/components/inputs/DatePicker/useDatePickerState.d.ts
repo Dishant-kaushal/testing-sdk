@@ -31,6 +31,7 @@ export declare function useDatePickerState({ mode, controlledOpen, onOpenChange,
     endRawText: string;
     startTimeRaw: string;
     endTimeRaw: string;
+    resolvedRange: DateRange | null;
     isApplyDisabled: boolean;
     closeAndRevert: () => void;
     handlePrev: () => void;

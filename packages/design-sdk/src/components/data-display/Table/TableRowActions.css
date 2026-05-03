@@ -15,6 +15,6 @@
    `<DropdownMenu>` handles chrome (bg, shadow, border). */
 .fds-table__row-actions-menu {
   position: fixed;
-  z-index: var(--fds-z-dropdown);
+  z-index: var(--global-z-index-dropdown);
   pointer-events: auto;
 }

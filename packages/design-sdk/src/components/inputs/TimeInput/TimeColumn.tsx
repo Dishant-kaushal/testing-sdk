@@ -163,7 +163,6 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
             const isOnBand = i === selectedIndex;
             return (
               <button
-                key={i}
                 type="button"
                 role="option"
                 aria-selected={isOnBand}

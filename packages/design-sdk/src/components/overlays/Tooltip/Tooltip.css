@@ -18,7 +18,7 @@
 
 .fds-tooltip {
   position: absolute;
-  z-index: var(--fds-z-tooltip);
+  z-index: var(--global-z-index-tooltip);
   pointer-events: none;
   width: max-content;
   --fds-tooltip-max-width: 200px;

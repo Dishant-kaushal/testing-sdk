@@ -8,8 +8,9 @@ import {
   type HTMLAttributes,
   type KeyboardEvent,
 } from 'react';
+import { createPortal } from 'react-dom';
 import { cn } from '../../../utils/cn';
-import { useClickOutside } from '../../../hooks/useClickOutside';
+import { useDropdownPortal } from '../../../hooks/useDropdownPortal';
 import { useKeyboard } from '../../../hooks/useKeyboard';
 import { TimeInputTrigger, type TimeInputTriggerSize } from './TimeInputTrigger';
 import { TimeInputPopover, type TimeInputMeridiem } from './TimeInputPopover';
@@ -227,11 +228,10 @@ export function TimeInput({
     setOpen(false);
   }, [setOpen]);
 
-  /* ── Outside-click + Escape (mirror DatePicker) ─────────────────────── */
+  /* ── Portal positioning + outside-click ─────────────────────────────── */
   const containerRef = useRef<HTMLDivElement | null>(null);
-  useClickOutside(containerRef, () => {
-    if (open) setOpen(false);
-  });
+  const { portalRef, pos } = useDropdownPortal(containerRef, open, () => setOpen(false));
+
   useKeyboard(
     'Escape',
     (e) => {
@@ -309,26 +309,33 @@ export function TimeInput({
         }}
       />
 
-      {open && (
-        <div className="fds-time-input__popover">
-          <TimeInputPopover
-            hourFormat={hourFormat}
-            hourItems={hourItems}
-            minuteItems={MINUTES}
-            hourIndex={hourIndex}
-            minuteIndex={minuteIndex}
-            meridiem={meridiem}
-            onHourChange={handleHourChange}
-            onMinuteChange={handleMinuteChange}
-            onMeridiemChange={handleMeridiemChange}
-            showFooter={showFooter}
-            cancelLabel={cancelLabel}
-            applyLabel={applyLabel}
-            onCancel={handleCancel}
-            onApply={handleApply}
-          />
-        </div>
-      )}
+      {open && pos && typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            ref={portalRef}
+            className="fds-time-input__popover"
+            style={{ top: pos.top, left: pos.left }}
+          >
+            <TimeInputPopover
+              hourFormat={hourFormat}
+              hourItems={hourItems}
+              minuteItems={MINUTES}
+              hourIndex={hourIndex}
+              minuteIndex={minuteIndex}
+              meridiem={meridiem}
+              onHourChange={handleHourChange}
+              onMinuteChange={handleMinuteChange}
+              onMeridiemChange={handleMeridiemChange}
+              showFooter={showFooter}
+              cancelLabel={cancelLabel}
+              applyLabel={applyLabel}
+              onCancel={handleCancel}
+              onApply={handleApply}
+            />
+          </div>,
+          document.body,
+        )
+      }
     </div>
   );
 }

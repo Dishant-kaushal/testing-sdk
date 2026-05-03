@@ -21,6 +21,9 @@ export interface TablePaginationProps {
         end: number;
         total: number;
     }) => string);
+    /** When `true` (default), changing page size resets to page 1. Set to `false`
+     *  for server-driven pagination where the parent manages page state. */
+    resetPageOnSizeChange?: boolean;
     onPageChange?: (args: {
         page: number;
     }) => void;
@@ -42,4 +45,4 @@ export interface TablePaginationProps {
  * never clipped by the surface's `overflow: hidden`. Position is computed
  * from the trigger's bounding rect on open + on resize.
  */
-export declare function TablePagination({ pageSizeOptions, totalItemCount, showRowsPerPage, showLabel, variant, label, onPageChange, onPageSizeChange, className, }?: TablePaginationProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function TablePagination({ pageSizeOptions, totalItemCount, showRowsPerPage, showLabel, variant, label, resetPageOnSizeChange, onPageChange, onPageSizeChange, className, }?: TablePaginationProps): import("react/jsx-runtime").JSX.Element | null;

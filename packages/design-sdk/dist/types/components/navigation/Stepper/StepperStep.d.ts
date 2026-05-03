@@ -1,32 +1,40 @@
-import { type HTMLAttributes, type ReactNode } from 'react';
-import { type StepperIndicatorType, type StepperStepStatus } from './StepperIndicator';
+import { type CSSProperties, type MouseEvent, type ReactElement, type ReactNode } from 'react';
+import { type StepLineStepProgress } from './StepLine';
 import './StepperStep.css';
-export type StepperStepPosition = 'start' | 'intermediate' | 'end';
-export type StepperStepProgress = 'full' | 'start' | 'end' | 'none';
-export interface StepperStepProps extends HTMLAttributes<HTMLDivElement> {
-    /** "Header Title" per Figma 3192:1860 */
-    label: string;
+export type StepperStepProgress = StepLineStepProgress;
+export interface StepperStepProps {
+    /** Header title text. */
+    title: string;
+    /** Optional title colour override. Same Faclon token names used elsewhere. */
+    titleColor?: string;
+    /** Optional subtitle. */
     description?: string;
-    status?: StepperStepStatus;
-    indicatorType?: StepperIndicatorType;
-    /** Custom 12 px icon for Icon-type indicator */
-    icon?: ReactNode;
-    /** Mutes text block + suppresses hover. Does NOT cascade to trailing / children. */
-    isDisabled?: boolean;
-    /** Vertical-only. Right-aligned slot in the header row — typically a `<Badge>` / `<IconButton>`. */
-    trailing?: ReactNode;
-    /** Vertical-only. Renders below the header; accepts any JSX including a nested `<Stepper>`.
-     *  When a nested Stepper is detected, a connector curve is drawn from the parent's bar into
-     *  the first nested indicator. */
-    children?: ReactNode;
-    /** Dotted-line progress per Blade semantics:
-     *  `full` (both solid, default) • `start` (bottom dotted) • `end` (top dotted) • `none` (both dotted). */
+    /** Connector line state. Default `'none'`. */
     stepProgress?: StepperStepProgress;
-    /** Injected by the `<Stepper>` parent — do not set manually. */
-    'data-step-position'?: StepperStepPosition;
-    /** Injected by the `<Stepper>` parent — nesting depth (0 = root). */
-    'data-nesting-level'?: number;
-    /** Injected by the `<Stepper>` parent — marks the first step of a nested group. */
-    'data-step-first-of-nested'?: boolean;
+    /** Marker JSX slot — `<StepperIndicator>` or `<StepperIcon>`. Defaults to a
+     *  neutral indicator. */
+    marker?: ReactElement;
+    /** Vertical-only. Right-aligned slot in the header — typically a `<Badge>`. */
+    trailing?: ReactElement;
+    /** Selected highlight. Style hooks land in Step 4. */
+    isSelected?: boolean;
+    /** Mutes text + suppresses interaction. Forwarded to the marker. */
+    isDisabled?: boolean;
+    /** Anchor `href` — turns the step into an `<a>`. */
+    href?: string;
+    /** Anchor `target` — used alongside `href`. */
+    target?: string;
+    /** Click handler — turns the step into a `<button>`. */
+    onClick?: (event: MouseEvent) => void;
+    /** Children rendered below the header — additional custom content. */
+    children?: ReactNode;
+    /** @internal — injected by parent <Stepper>. */
+    _index?: number;
+    /** @internal — injected by parent <Stepper>. Global index across nesting. */
+    _totalIndex?: number;
+    /** @internal — injected by parent <Stepper>. */
+    _nestingLevel?: number;
+    className?: string;
+    style?: CSSProperties;
 }
 export declare const StepperStep: import("react").ForwardRefExoticComponent<StepperStepProps & import("react").RefAttributes<HTMLDivElement>>;

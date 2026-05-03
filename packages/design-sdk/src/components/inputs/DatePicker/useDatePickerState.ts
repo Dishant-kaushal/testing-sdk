@@ -68,6 +68,8 @@ export function useDatePickerState({
   const decadeStart = Math.floor(currentYear / 12) * 12;
 
   /* ── Range draft state ───────────────────────────────────────────────── */
+  const [internalRange, setInternalRange] = useState<DateRange | null>(rangeValue ?? null);
+  const resolvedRange = rangeValue !== undefined ? rangeValue : internalRange;
   const [draftStart, setDraftStart] = useState<Date | null>(rangeValue?.start ?? null);
   const [draftEnd, setDraftEnd] = useState<Date | null>(rangeValue?.end ?? null);
   const [rangeClickCount, setRangeClickCount] = useState(rangeValue ? 2 : 0);
@@ -261,7 +263,9 @@ export function useDatePickerState({
       setStartTimeRaw(formatTime(range.start)); setEndTimeRaw(formatTime(range.end));
       setRangeClickCount(2);
       setCurrentMonth(range.start.getMonth()); setCurrentYear(range.start.getFullYear());
-      onRangeChange?.({ start: range.start, end: range.end });
+      const committed = { start: range.start, end: range.end };
+      onRangeChange?.(committed);
+      setInternalRange(committed);
       setOpen(false);
     }
   }, [updatePreset, onRangeChange, setOpen]);
@@ -269,7 +273,11 @@ export function useDatePickerState({
   /* ── Apply / Cancel ──────────────────────────────────────────────────── */
   const handleApply = useCallback(() => {
     if (mode === 'single') onChange?.(draftSingle);
-    else if (draftStart && draftEnd) onRangeChange?.({ start: draftStart, end: draftEnd });
+    else if (draftStart && draftEnd) {
+      const committed = { start: draftStart, end: draftEnd };
+      onRangeChange?.(committed);
+      setInternalRange(committed);
+    }
     setOpen(false);
   }, [mode, draftSingle, draftStart, draftEnd, onChange, onRangeChange, setOpen]);
 
@@ -363,6 +371,7 @@ export function useDatePickerState({
     days, monthItems, yearItems, headerLabel,
     // Draft values
     draftSingle, singleInputText, startRawText, endRawText, startTimeRaw, endTimeRaw,
+    resolvedRange,
     // Derived
     isApplyDisabled,
     // Handlers

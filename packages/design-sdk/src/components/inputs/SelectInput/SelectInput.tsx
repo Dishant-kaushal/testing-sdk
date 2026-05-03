@@ -7,12 +7,13 @@ import {
   type MouseEvent,
   type KeyboardEvent,
 } from 'react';
+import { createPortal } from 'react-dom';
 import { ChevronDown } from 'react-feather';
 import { cn } from '../../../utils/cn';
 import { TextInput } from '../TextInput/TextInput';
 import { MultiSelectField, type SelectInputTag, type MultiSelectType } from './MultiSelectField';
-import { useClickOutside } from '../../../hooks/useClickOutside';
 import { useControllableState } from '../../../hooks/useControllableState';
+import { useDropdownPortal } from '../../../hooks/useDropdownPortal';
 import './SelectInput.css';
 
 export type { SelectInputTag, MultiSelectType };
@@ -112,20 +113,18 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
       [setOpenBase],
     );
 
-    useClickOutside(wrapperRef, () => {
-      if (open) setOpen(false);
-    });
+    const { portalRef, pos } = useDropdownPortal(wrapperRef, open, () => setOpen(false));
 
     useEffect(() => {
       if (open && !searchable && !isMultiple) {
         requestAnimationFrame(() => {
-          const firstItem = wrapperRef.current?.querySelector<HTMLElement>(
-            '.fds-select-input__popover [role="menuitem"]:not([aria-disabled="true"])',
+          const firstItem = portalRef.current?.querySelector<HTMLElement>(
+            '[role="menuitem"]:not([aria-disabled="true"])',
           );
           firstItem?.focus();
         });
       }
-    }, [open, searchable, isMultiple]);
+    }, [open, searchable, isMultiple, portalRef]);
 
     useEffect(() => {
       if (prevOpen.current && !open) {
@@ -164,8 +163,8 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
         const isOnMenuItem = target.getAttribute('role') === 'menuitem';
 
         const queryItems = () =>
-          wrapperRef.current?.querySelectorAll<HTMLElement>(
-            '.fds-select-input__popover [role="menuitem"]:not([aria-disabled="true"])',
+          portalRef.current?.querySelectorAll<HTMLElement>(
+            '[role="menuitem"]:not([aria-disabled="true"])',
           );
 
         switch (e.key) {
@@ -248,9 +247,19 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
             leadingIcon={leadingIcon}
             leadingText={leadingText}
             onFocus={handleFocus}
-          >
-            {children}
-          </MultiSelectField>
+          />
+          {open && children && pos && typeof document !== 'undefined' &&
+            createPortal(
+              <div
+                ref={portalRef}
+                className="fds-select-input__popover"
+                style={{ top: pos.top, left: pos.left, width: pos.width }}
+              >
+                {children}
+              </div>,
+              document.body,
+            )
+          }
         </div>
       );
     }
@@ -280,22 +289,29 @@ export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
           isDisabled={isDisabled}
           icon={leadingIcon}
           prefix={leadingText}
-          suffix={undefined}
           autoComplete={searchable ? 'off' : undefined}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-autocomplete={searchable ? 'list' : undefined}
+          trailingIcon={
+            <span className={cn('fds-select-input__chevron', open && 'fds-select-input__chevron--open')}>
+              <ChevronDown size={16} />
+            </span>
+          }
         />
 
-        <span className={cn('fds-select-input__chevron', open && 'fds-select-input__chevron--open')}>
-          <ChevronDown size={16} />
-        </span>
-
-        {open && children && (
-          <div className="fds-select-input__popover">
-            {children}
-          </div>
-        )}
+        {open && children && pos && typeof document !== 'undefined' &&
+          createPortal(
+            <div
+              ref={portalRef}
+              className="fds-select-input__popover"
+              style={{ top: pos.top, left: pos.left, width: pos.width }}
+            >
+              {children}
+            </div>,
+            document.body,
+          )
+        }
       </div>
     );
   },

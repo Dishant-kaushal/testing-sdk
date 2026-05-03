@@ -1,98 +1,89 @@
-import { jsx as k } from "react/jsx-runtime";
-import { forwardRef as b, cloneElement as c, Children as m, isValidElement as d } from "react";
-import { cn as v } from "../../../utils/cn.js";
-import { StepperGroupLabel as S } from "./StepperGroupLabel.js";
-import { StepperStep as y } from "./StepperStep.js";
+import { jsx as c } from "react/jsx-runtime";
+import { forwardRef as W, Children as I, useMemo as x, isValidElement as P, cloneElement as l } from "react";
+import { cn as N } from "../../../utils/cn.js";
+import { StepperStep as j } from "./StepperStep.js";
+import { StepperContext as v, useStepper as y } from "./StepperContext.js";
 /* empty css            */
-function C(t) {
+function E(t) {
   return typeof t != "string" && (t == null ? void 0 : t.displayName) === "Stepper";
 }
-function u(t, s, r, l) {
-  m.forEach(t, (o) => {
-    if (d(o))
-      if (o.type === y) {
-        const a = o.props.children, e = [], n = [];
-        m.forEach(a, (p) => {
-          d(p) && C(p.type) ? r && n.push(p.props.children) : e.push(p);
-        }), l.push({
-          kind: "step",
-          element: o,
-          level: s,
-          slotContent: e.length ? e : null
-        }), r && n.forEach((p) => u(p, s + 1, r, l));
-      } else o.type === S && l.push({ kind: "label", element: o, level: s });
-  });
+function T(t) {
+  return t === j;
 }
-function E(t) {
-  const s = [];
-  for (let r = 0; r < t.length; r++) {
-    const l = t[r];
-    if (l.kind !== "step") {
-      s.push("start");
-      continue;
-    }
-    let o = !1;
-    for (let e = r - 1; e >= 0; e--) {
-      const n = t[e];
-      if (n.kind === "label") break;
-      if (n.kind === "step") {
-        if (n.level >= l.level) {
-          o = !0;
-          break;
+function w({
+  children: t,
+  orientation: r,
+  _nestingLevel: n
+}) {
+  const a = y(), p = x(() => {
+    let o = 0;
+    const s = (d, u, f) => {
+      let S = f;
+      return I.map(d, (e, C) => {
+        if (!P(e)) return e;
+        if (T(e.type)) {
+          const h = {
+            _index: S++,
+            _totalIndex: o++,
+            _nestingLevel: u
+          };
+          return l(e, { ...h, key: C });
         }
-        break;
-      }
-    }
-    let a = !1;
-    for (let e = r + 1; e < t.length; e++) {
-      const n = t[e];
-      if (n.kind === "label") break;
-      if (n.kind === "step") {
-        if (n.level >= l.level) {
-          a = !0;
-          break;
-        }
-        break;
-      }
-    }
-    o ? a ? s.push("intermediate") : s.push("end") : s.push("start");
-  }
-  return s;
-}
-const N = b(
-  ({ children: t, orientation: s = "horizontal", className: r, ...l }, o) => {
-    const a = s === "vertical", e = [];
-    u(t, 0, a, e);
-    const n = E(e), p = e.map((i, f) => {
-      if (i.kind === "label")
-        return c(i.element, {
-          key: i.element.key ?? `label-${f}`,
-          "data-nesting-level": i.level
-        });
-      const h = i.level > 0 && n[f] === "start";
-      return c(i.element, {
-        key: i.element.key ?? `step-${f}`,
-        "data-step-position": n[f],
-        "data-nesting-level": i.level,
-        "data-step-first-of-nested": h ? !0 : void 0,
-        // Strip nested <Stepper>s from children; keep only the slotContent.
-        children: i.slotContent
+        return E(e.type) && u < 3 ? l(e, {
+          orientation: r,
+          _nestingLevel: u + 1,
+          children: s(
+            e.props.children,
+            u + 1,
+            0
+          )
+        }) : e;
       });
-    });
-    return /* @__PURE__ */ k(
+    };
+    return {
+      childrenWithIndex: n === 0 ? s(t, 0, 0) : t,
+      totalIndex: o
+    };
+  }, [t, n, r]), i = n === 0 ? p.totalIndex : a.totalItemsInParentGroupCount;
+  return {
+    childrenWithIndex: p.childrenWithIndex,
+    totalItemsInParentGroupCount: i
+  };
+}
+const G = W(
+  ({
+    children: t,
+    orientation: r = "vertical",
+    _nestingLevel: n = 0,
+    className: a,
+    ...p
+  }, i) => {
+    const o = I.count(t), { childrenWithIndex: s, totalItemsInParentGroupCount: m } = w({
+      children: t,
+      orientation: r,
+      _nestingLevel: n
+    }), d = x(
+      () => ({
+        orientation: r,
+        itemsInGroupCount: o,
+        totalItemsInParentGroupCount: m
+      }),
+      [r, o, m]
+    );
+    return /* @__PURE__ */ c(v.Provider, { value: d, children: /* @__PURE__ */ c(
       "div",
       {
-        ref: o,
-        className: v("fds-stepper", r),
-        "data-orientation": s,
-        ...l,
-        children: p
+        ref: i,
+        className: N("fds-stepper", a),
+        "data-orientation": r,
+        "data-nesting-level": n,
+        ...p,
+        children: s
       }
-    );
+    ) });
   }
 );
-N.displayName = "Stepper";
+G.displayName = "Stepper";
 export {
-  N as Stepper,
-  y as StepperStep
+  G as Stepper
 };

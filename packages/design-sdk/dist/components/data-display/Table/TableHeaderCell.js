@@ -1,68 +1,44 @@
-import { jsx as s, jsxs as _ } from "react/jsx-runtime";
+import { jsx as n, jsxs as f } from "react/jsx-runtime";
 /* empty css                    */
-import { Info as S, ChevronUp as g, ChevronDown as K } from "react-feather";
-import { useEffect as C } from "react";
-import { cn as f } from "../../../utils/cn.js";
-import { useTableContextOptional as k } from "./TableContext.js";
-function w({ direction: r }) {
-  const l = r === "desc", c = r === "asc";
-  return /* @__PURE__ */ _("span", { className: "fds-table__sort-indicator", "aria-hidden": "true", children: [
-    /* @__PURE__ */ s(
-      g,
-      {
-        size: 12,
-        className: f(
-          "fds-table__sort-indicator__chevron",
-          l && "fds-table__sort-indicator__chevron--active"
-        )
-      }
-    ),
-    /* @__PURE__ */ s(
-      K,
-      {
-        size: 12,
-        className: f(
-          "fds-table__sort-indicator__chevron",
-          c && "fds-table__sort-indicator__chevron--active"
-        )
-      }
-    )
-  ] });
-}
+import { Info as v } from "react-feather";
+import { useEffect as g } from "react";
+import { cn as K } from "../../../utils/cn.js";
+import { useTableContextOptional as N } from "./TableContext.js";
+import { SortIndicator as k } from "./SortIndicator.js";
 function H({
-  children: r,
-  infoTooltip: l,
-  className: c,
+  children: m,
+  infoTooltip: h,
+  className: b,
   ...p
 }) {
-  var h, b, m;
-  const { isSticky: T, headerKey: t, onClick: a, onKeyDown: i, ...u } = p, e = k(), o = !!(t && ((h = e == null ? void 0 : e.sortableKeys) != null && h.includes(t)));
-  typeof process < "u" && ((b = process.env) == null ? void 0 : b.NODE_ENV) !== "production" && C(() => {
-    t && e && !e.sortableKeys.includes(t) && console.warn(
-      `[TableHeaderCell] \`headerKey="${t}"\` has no matching entry in \`sortFunctions\` on the parent <Table>. The column will not be sortable.`
+  var l, d, c;
+  const { isSticky: T, headerKey: o, onClick: s, onKeyDown: a, ...u } = p, e = N(), t = !!(o && ((l = e == null ? void 0 : e.sortableKeys) != null && l.includes(o)));
+  typeof process < "u" && ((d = process.env) == null ? void 0 : d.NODE_ENV) !== "production" && g(() => {
+    o && e && !e.sortableKeys.includes(o) && console.warn(
+      `[TableHeaderCell] \`headerKey="${o}"\` has no matching entry in \`sortFunctions\` on the parent <Table>. The column will not be sortable.`
     );
-  }, [t, e == null ? void 0 : e.sortableKeys]);
-  const d = o && ((m = e == null ? void 0 : e.sortState) == null ? void 0 : m.sortKey) === t ? e.sortState.direction : null, v = (n) => {
-    a == null || a(n), o && t && (e == null || e.toggleSort(t));
-  }, y = (n) => {
-    i == null || i(n), !(!o || !t) && (n.key === "Enter" || n.key === " ") && (n.preventDefault(), e == null || e.toggleSort(t));
-  }, N = o ? d === "asc" ? "ascending" : d === "desc" ? "descending" : "none" : void 0;
-  return /* @__PURE__ */ s(
+  }, [o, e == null ? void 0 : e.sortableKeys]);
+  const i = t && ((c = e == null ? void 0 : e.sortState) == null ? void 0 : c.sortKey) === o ? e.sortState.direction : null, y = (r) => {
+    s == null || s(r), t && o && (e == null || e.toggleSort(o));
+  }, _ = (r) => {
+    a == null || a(r), !(!t || !o) && (r.key === "Enter" || r.key === " ") && (r.preventDefault(), e == null || e.toggleSort(o));
+  }, S = t ? i === "asc" ? "ascending" : i === "desc" ? "descending" : "none" : void 0;
+  return /* @__PURE__ */ n(
     "th",
     {
-      className: f("fds-table__header-cell", "BodyMediumSemibold", c),
-      "data-sortable": o ? "true" : void 0,
-      "aria-sort": N,
-      tabIndex: o ? 0 : void 0,
-      onClick: o ? v : a,
-      onKeyDown: o ? y : i,
+      className: K("fds-table__header-cell", "BodyMediumSemibold", b),
+      "data-sortable": t ? "true" : void 0,
+      "aria-sort": S,
+      tabIndex: t ? 0 : void 0,
+      onClick: t ? y : s,
+      onKeyDown: t ? _ : a,
       ...u,
-      children: /* @__PURE__ */ _("div", { className: "fds-table__header-cell-inner", children: [
-        /* @__PURE__ */ _("div", { className: "fds-table__header-cell-text-container", children: [
-          /* @__PURE__ */ s("span", { className: "fds-table__header-cell-text", children: r }),
-          l && /* @__PURE__ */ s("span", { className: "fds-table__header-cell-info", "aria-hidden": "true", children: /* @__PURE__ */ s(S, { size: 16 }) })
+      children: /* @__PURE__ */ f("div", { className: "fds-table__header-cell-inner", children: [
+        /* @__PURE__ */ f("div", { className: "fds-table__header-cell-text-container", children: [
+          /* @__PURE__ */ n("span", { className: "fds-table__header-cell-text", children: m }),
+          h && /* @__PURE__ */ n("span", { className: "fds-table__header-cell-info", "aria-hidden": "true", children: /* @__PURE__ */ n(v, { size: 16 }) })
         ] }),
-        o && /* @__PURE__ */ s(w, { direction: d })
+        t && /* @__PURE__ */ n(k, { direction: i })
       ] })
     }
   );

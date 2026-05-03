@@ -108,13 +108,30 @@ export default defineConfig({
         "components/product/ListCard/index": resolve(__dirname, "src/components/product/ListCard/index.ts"),
         "components/product/ProductAccordion/index": resolve(__dirname, "src/components/product/ProductAccordion/index.ts"),
 
+        // Per-component entries — Chat
+        "components/chat/index": resolve(__dirname, "src/components/chat/index.ts"),
+        "components/chat/ChatMessage/index": resolve(__dirname, "src/components/chat/ChatMessage/index.ts"),
+        "components/chat/ChatInput/index": resolve(__dirname, "src/components/chat/ChatInput/index.ts"),
+
       },
       formats: ["es"],
       cssFileName: "style",
     },
     minify: "esbuild",
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime", "react-feather", "highcharts", "highcharts/esm/highcharts", "highcharts/esm/highcharts-more", "highcharts/esm/modules/solid-gauge", "highcharts-react-official", "apexcharts", "react-apexcharts", "libphonenumber-js", "libphonenumber-js/min", "libphonenumber-js/max", "libphonenumber-js/examples.mobile.json", "libphonenumber-js/examples.mobile"],
+      external: [
+        "react", "react-dom", "react/jsx-runtime", "react-feather",
+        "@table-library/react-table-library",
+        /^@table-library\/react-table-library\/.*/,
+        "highcharts",
+        "highcharts/esm/highcharts.js",
+        "highcharts/esm/highcharts-more.js",
+        "highcharts/esm/modules/solid-gauge.js",
+        "highcharts-react-official",
+        "apexcharts", "react-apexcharts",
+        "libphonenumber-js", "libphonenumber-js/min", "libphonenumber-js/max",
+        "libphonenumber-js/examples.mobile.json", "libphonenumber-js/examples.mobile",
+      ],
       output: {
         format: "es",
         preserveModules: true,

@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ChatInput — Faclon Design System
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Root wrapper ────────────────────────────────────────────────────────── */
+.fds-chat-input {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ── Card (z-index:1 so it sits above the error strip) ──────────────────── */
+.fds-chat-input__card {
+  position: relative;
+  z-index: 1;
+  background: var(--background-surface-intense);
+  border: 1px solid var(--border-gray-default);
+  border-radius: var(--global-border-radius-large);
+  box-shadow: 0 0.5px 4px 0 rgba(97, 109, 117, 0.09);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  overflow: hidden;
+}
+
+.fds-chat-input__card:focus-within {
+  border-color: var(--border-brand-default);
+  box-shadow: 0 0 0 3px var(--border-focused-default);
+  outline: none;
+}
+
+.fds-chat-input--disabled .fds-chat-input__card {
+  border-color: var(--border-gray-muted);
+  cursor: not-allowed;
+}
+
+.fds-chat-input--disabled .fds-chat-input__card:focus-within {
+  border-color: var(--border-gray-muted);
+  box-shadow: none;
+}
+
+/* ── File preview row (horizontal scroll, animated height 0→auto) ────────── */
+.fds-chat-input__files {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-03);
+  padding: var(--spacing-04) var(--spacing-04) 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+}
+
+.fds-chat-input__files::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── File chip ───────────────────────────────────────────────────────────── */
+.fds-chat-input__file-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  padding: var(--spacing-02) var(--spacing-03);
+  border: 1px solid var(--border-gray-muted);
+  border-radius: var(--global-border-radius-large);
+  background: var(--background-gray-default);
+  flex-shrink: 0;
+  max-width: 200px;
+  min-width: 120px;
+}
+
+.fds-chat-input__file-chip-name {
+  flex: 1 1 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-gray-secondary);
+}
+
+/* ── Textarea row (relative for ghost overlay) ───────────────────────────── */
+.fds-chat-input__textarea-row {
+  position: relative;
+  padding: var(--spacing-04) var(--spacing-04) 0;
+}
+
+/* ── Textarea ────────────────────────────────────────────────────────────── */
+.fds-chat-input__textarea {
+  all: unset;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 24px;
+  max-height: 200px;
+  overflow-y: auto;
+  resize: none;
+  color: var(--text-gray-primary);
+  caret-color: var(--border-brand-default);
+  white-space: pre-wrap;
+  word-break: break-word;
+  scrollbar-width: none;
+}
+
+.fds-chat-input__textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.fds-chat-input__textarea::placeholder {
+  color: var(--text-gray-disabled);
+}
+
+.fds-chat-input--disabled .fds-chat-input__textarea {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+/* ── Ghost suggestion overlay ────────────────────────────────────────────── */
+.fds-chat-input__ghost {
+  position: absolute;
+  top: var(--spacing-04);
+  left: var(--spacing-04);
+  right: var(--spacing-04);
+  pointer-events: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-03);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fds-chat-input__ghost-text {
+  color: var(--text-gray-disabled);
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Action bar ──────────────────────────────────────────────────────────── */
+.fds-chat-input__action-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-03) var(--spacing-04) var(--spacing-04);
+}
+
+/* ── Attach button (text + icon link style) ─────────────────────────────── */
+.fds-chat-input__attach-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-gray-secondary);
+  transition: color 150ms ease;
+}
+
+.fds-chat-input__attach-btn:hover:not(:disabled) {
+  color: var(--text-gray-primary);
+}
+
+.fds-chat-input__attach-btn:disabled {
+  color: var(--text-gray-disabled);
+  cursor: not-allowed;
+}
+
+.fds-chat-input__attach-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
+  border-radius: var(--global-border-radius-medium);
+}
+
+/* ── Error popup (z-index:0, absolute, sits behind card) ────────────────── */
+.fds-chat-input__error-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 12px);
+  z-index: 0;
+}
+
+.fds-chat-input__error-strip {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--spacing-02);
+  background: var(--background-error-secondary);
+  padding: var(--spacing-03) var(--spacing-04) var(--spacing-06);
+  border-top-left-radius: var(--global-border-radius-large);
+  border-top-right-radius: var(--global-border-radius-large);
+}
+
+.fds-chat-input__error-icon {
+  color: var(--text-error-default);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fds-chat-input__error-text {
+  flex: 1 1 0;
+  color: var(--text-error-default);
+  word-break: break-word;
+}
+
+.fds-chat-input__error-dismiss {
+  margin-left: auto;
+  flex-shrink: 0;
+}

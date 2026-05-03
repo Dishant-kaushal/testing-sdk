@@ -10,6 +10,49 @@ import './Chart.css';
 export type ChartTitleSize = 'Small' | 'Medium' | 'Large';
 
 /**
+ * A horizontal reference line drawn across the plot area at a fixed Y value.
+ * Maps directly to Highcharts `yAxis.plotLines`. Commonly used for threshold
+ * annotations (Warning / Critical limits in IOLens widgets).
+ */
+export interface ChartPlotLine {
+  /** Y-axis value where the line is drawn */
+  value: number;
+  /** Line colour — any valid CSS colour or hex string */
+  color?: string;
+  /** Line thickness in pixels @default 2 */
+  width?: number;
+  /** Stroke pattern @default 'Dash' */
+  dashStyle?: 'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'LongDash' | 'ShortDash';
+  /** Optional label text rendered beside the line */
+  label?: string;
+  /** Label horizontal alignment @default 'right' */
+  labelAlign?: 'left' | 'center' | 'right';
+  /** Stacking z-index so lines appear above series @default 5 */
+  zIndex?: number;
+}
+
+/**
+ * A shaded band spanning a Y value range across the plot area.
+ * Maps to Highcharts `yAxis.plotBands`. More visually prominent than a
+ * plotLine — use bands for threshold zones (e.g. warning 80–90, critical 90+)
+ * and lines for single threshold markers.
+ */
+export interface ChartPlotBand {
+  /** Lower Y-axis bound of the band */
+  from: number;
+  /** Upper Y-axis bound of the band. Use `Infinity` for open-ended top bands. */
+  to: number;
+  /** Fill colour — use a semi-transparent value e.g. `'rgba(249,115,22,0.15)'` */
+  color?: string;
+  /** Optional label text rendered inside the band */
+  label?: string;
+  /** Label horizontal alignment @default 'right' */
+  labelAlign?: 'left' | 'center' | 'right';
+  /** Stacking z-index @default 0 (behind series by default for bands) */
+  zIndex?: number;
+}
+
+/**
  * Shape of the context object passed to `onPointClick` on axis charts.
  * Used by consumers to implement time drill-down: click a point → consumer
  * inspects `category` / `pointIndex` and re-feeds the chart with data for

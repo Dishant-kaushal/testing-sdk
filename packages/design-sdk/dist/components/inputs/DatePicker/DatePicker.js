@@ -1,19 +1,20 @@
-import { jsxs as H, jsx as o } from "react/jsx-runtime";
-import { useRef as ge, useEffect as ve, useCallback as ye } from "react";
-import { cn as q } from "../../../utils/cn.js";
-import { useClickOutside as ke } from "../../../hooks/useClickOutside.js";
-import { useKeyboard as Ce } from "../../../hooks/useKeyboard.js";
-import { DatePickerTrigger as _e } from "./DatePickerTrigger.js";
-import { DatePickerPopover as De } from "./DatePickerPopover.js";
-import { CalendarBase as Pe } from "./CalendarBase.js";
-import { DEFAULT_PRESETS as we } from "./DatePresetSidebar.js";
-import { DropdownMenu as Te } from "../../overlays/DropdownMenu/DropdownMenu.js";
-import { ActionListItem as Ee } from "../../overlays/DropdownMenu/ActionListItem.js";
-import { ActionListItemGroup as be } from "../../overlays/DropdownMenu/ActionListItemGroup.js";
-import { useDatePickerState as Se } from "./useDatePickerState.js";
-import { formatDate as C } from "./datePickerUtils.js";
+import { jsxs as F, jsx as o } from "react/jsx-runtime";
+import { useRef as _e, useEffect as De, useCallback as we } from "react";
+import { createPortal as K } from "react-dom";
+import { cn as B } from "../../../utils/cn.js";
+import { useKeyboard as Te } from "../../../hooks/useKeyboard.js";
+import { useDropdownPortal as U } from "../../../hooks/useDropdownPortal.js";
+import { DatePickerTrigger as be } from "./DatePickerTrigger.js";
+import { DatePickerPopover as Ee } from "./DatePickerPopover.js";
+import { CalendarBase as Re } from "./CalendarBase.js";
+import { DEFAULT_PRESETS as Se } from "./DatePresetSidebar.js";
+import { DropdownMenu as Ae } from "../../overlays/DropdownMenu/DropdownMenu.js";
+import { ActionListItem as Ie } from "../../overlays/DropdownMenu/ActionListItem.js";
+import { ActionListItemGroup as xe } from "../../overlays/DropdownMenu/ActionListItemGroup.js";
+import { useDatePickerState as Ne } from "./useDatePickerState.js";
+import { formatDate as P } from "./datePickerUtils.js";
 /* empty css               */
-const Ae = {
+const Me = {
   custom: "Custom",
   today: "Today",
   yesterday: "Yesterday",
@@ -26,218 +27,239 @@ const Ae = {
   current_year: "Current Year",
   previous_year: "Previous Year"
 };
-function Ie({
+function Le({
   mode: r = "single",
-  isOpen: F,
-  onOpenChange: K,
-  value: m,
-  onChange: B,
-  rangeValue: p,
-  onRangeChange: U,
-  showPresets: Y = !0,
-  showPresetChip: h = !0,
+  isOpen: Y,
+  onOpenChange: j,
+  value: f,
+  onChange: V,
+  rangeValue: $,
+  onRangeChange: G,
+  showPresets: W = !0,
+  showPresetChip: m = !0,
   presets: _,
-  selectedPreset: j,
-  onPresetSelect: $,
-  label: G,
-  placeholder: W,
-  helpText: z,
-  errorText: J,
-  validationState: Q,
-  isDisabled: s,
+  selectedPreset: z,
+  onPresetSelect: J,
+  label: Q,
+  placeholder: X,
+  helpText: Z,
+  errorText: ee,
+  validationState: te,
+  isDisabled: l,
   showPeriodicity: D = !1,
-  periodicitySlot: g,
-  className: X,
-  ...Z
+  periodicitySlot: h,
+  className: re,
+  ...ne
 }) {
-  const V = Se({
+  const oe = Ne({
     mode: r,
-    controlledOpen: F,
-    onOpenChange: K,
-    value: m,
-    onChange: B,
-    rangeValue: p,
-    onRangeChange: U,
-    controlledPreset: j,
-    controlledPresetSelect: $,
-    isDisabled: s
+    controlledOpen: Y,
+    onOpenChange: j,
+    value: f,
+    onChange: V,
+    rangeValue: $,
+    onRangeChange: G,
+    controlledPreset: z,
+    controlledPresetSelect: J,
+    isDisabled: l
   }), {
     open: t,
-    setOpen: i,
-    presetOpen: c,
-    setPresetOpen: l,
-    preset: v,
-    view: f,
+    setOpen: c,
+    presetOpen: a,
+    setPresetOpen: s,
+    preset: g,
+    view: p,
     containerRef: n,
-    closedByKeyboard: u,
-    days: P,
-    monthItems: w,
-    yearItems: T,
+    closedByKeyboard: d,
+    days: w,
+    monthItems: T,
+    yearItems: b,
     headerLabel: E,
-    singleInputText: ee,
-    startRawText: te,
-    endRawText: re,
-    startTimeRaw: ne,
-    endTimeRaw: ae,
-    isApplyDisabled: b,
-    closeAndRevert: d,
+    singleInputText: ae,
+    startRawText: se,
+    endRawText: ie,
+    startTimeRaw: le,
+    endTimeRaw: ce,
+    isApplyDisabled: R,
+    resolvedRange: v,
+    closeAndRevert: u,
     handlePrev: S,
     handleNext: A,
     handleHeaderClick: I,
     handleItemClick: x,
     handleDayClick: N,
-    handleDayHover: oe,
-    handleDayHoverEnd: se,
+    handleDayHover: de,
+    handleDayHoverEnd: ue,
     handlePresetSelect: M,
-    handleApply: O,
-    handleCancel: R,
-    handleSingleInputChange: ie,
-    handleStartDateChange: ce,
-    handleEndDateChange: le,
-    handleStartTimeChange: ue,
-    handleEndTimeChange: de
-  } = V;
-  ke(n, d), Ce("Escape", d);
-  const y = ge(t);
-  ve(() => {
-    !y.current && t && requestAnimationFrame(() => {
-      var k;
-      const e = (k = n.current) == null ? void 0 : k.querySelector(".fds-datepicker__popover");
-      if (!e) return;
-      const a = e.querySelector(
+    handleApply: L,
+    handleCancel: O,
+    handleSingleInputChange: pe,
+    handleStartDateChange: fe,
+    handleEndDateChange: me,
+    handleStartTimeChange: he,
+    handleEndTimeChange: ge
+  } = oe, { portalRef: H, pos: y } = U(n, t, u), { portalRef: ve, pos: k } = U(n, a, () => s(!1));
+  Te("Escape", u);
+  const C = _e(t);
+  De(() => {
+    !C.current && t && requestAnimationFrame(() => {
+      var i;
+      const e = (i = H.current) == null ? void 0 : i.querySelector(
         'input:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
       );
-      a == null || a.focus();
-    }), y.current && !t && u.current && (u.current = !1, requestAnimationFrame(() => {
-      var a;
-      const e = (a = n.current) == null ? void 0 : a.querySelector(
+      e == null || e.focus();
+    }), C.current && !t && d.current && (d.current = !1, requestAnimationFrame(() => {
+      var i;
+      const e = (i = n.current) == null ? void 0 : i.querySelector(
         "button.fds-date-trigger__field, input.fds-date-trigger__input"
       );
       e == null || e.focus();
-    })), y.current = t;
-  }, [t, n, u]);
-  const pe = ye(
+    })), C.current = t;
+  }, [t, n, d]);
+  const ye = we(
     (e) => {
-      if (s) return;
-      const a = e.target;
-      if (!(a.closest(".fds-date-trigger__field") !== null)) {
-        e.key === "Escape" && (t || c) && (e.preventDefault(), e.stopPropagation(), u.current = !0, d());
+      if (l) return;
+      const i = e.target;
+      if (!(i.closest(".fds-date-trigger__field") !== null)) {
+        e.key === "Escape" && (t || a) && (e.preventDefault(), e.stopPropagation(), d.current = !0, u());
         return;
       }
-      const L = a.tagName === "INPUT";
+      const q = i.tagName === "INPUT";
       switch (e.key) {
         case "Enter":
         case " ":
-          !L && r === "range" && (e.preventDefault(), l(!1), i(!t));
+          !q && r === "range" && (e.preventDefault(), s(!1), c(!t));
           break;
         case "Escape":
-          (t || c) && (e.preventDefault(), e.stopPropagation(), u.current = !0, d());
+          (t || a) && (e.preventDefault(), e.stopPropagation(), d.current = !0, u());
           break;
         case "ArrowDown":
         case "ArrowUp":
-          L || (e.preventDefault(), t || (l(!1), i(!0)));
+          q || (e.preventDefault(), t || (s(!1), c(!0)));
           break;
       }
     },
-    [s, t, c, r, i, l, d, u]
-  ), fe = r === "single" && m ? C(m) : void 0, me = r === "range" && p ? `${C(p.start)} - ${C(p.end)}` : void 0, he = Ae[v] ?? "Custom";
-  return /* @__PURE__ */ H("div", { ref: n, className: q("fds-datepicker", X), onKeyDown: pe, ...Z, children: [
-    /* @__PURE__ */ H("div", { className: q("fds-datepicker__trigger-row", D && !!g && "fds-datepicker__trigger-row--with-periodicity"), children: [
+    [l, t, a, r, c, s, u, d]
+  ), ke = r === "single" && f ? P(f) : void 0, Ce = r === "range" && v ? `${P(v.start)} - ${P(v.end)}` : void 0, Pe = Me[g] ?? "Custom";
+  return /* @__PURE__ */ F("div", { ref: n, className: B("fds-datepicker", re), onKeyDown: ye, ...ne, children: [
+    /* @__PURE__ */ F("div", { className: B("fds-datepicker__trigger-row", D && !!h && "fds-datepicker__trigger-row--with-periodicity"), children: [
       /* @__PURE__ */ o(
-        _e,
+        be,
         {
           selectionType: r,
-          label: G,
-          placeholder: W,
-          date: fe,
-          presetValue: he,
-          range: me,
-          showPreset: h,
+          label: Q,
+          placeholder: X,
+          date: ke,
+          presetValue: Pe,
+          range: Ce,
+          showPreset: m,
           isOpen: t,
-          isDisabled: s,
-          helpText: z,
-          errorText: J,
-          validationState: Q,
+          isDisabled: l,
+          helpText: Z,
+          errorText: ee,
+          validationState: te,
           onClick: () => {
-            s || (!t && n.current && n.current.dispatchEvent(new MouseEvent("mousedown", { bubbles: !0, cancelable: !0 })), l(!1), i(!t));
+            l || (!t && n.current && n.current.dispatchEvent(new MouseEvent("mousedown", { bubbles: !0, cancelable: !0 })), s(!1), c(!t));
           },
           onPresetClick: () => {
-            s || (!c && n.current && n.current.dispatchEvent(new MouseEvent("mousedown", { bubbles: !0, cancelable: !0 })), i(!1), l(!c));
+            l || (!a && n.current && n.current.dispatchEvent(new MouseEvent("mousedown", { bubbles: !0, cancelable: !0 })), c(!1), s(!a));
           },
-          inputValue: r === "single" ? ee : void 0,
-          onInputChange: r === "single" ? ie : void 0,
+          inputValue: r === "single" ? ae : void 0,
+          onInputChange: r === "single" ? pe : void 0,
           onInputFocus: () => {
-            !s && !t && i(!0);
+            !l && !t && c(!0);
           }
         }
       ),
-      D && g && /* @__PURE__ */ o("div", { className: "fds-datepicker__periodicity", onMouseDown: () => {
-        t && i(!1), c && l(!1);
-      }, children: g })
+      D && h && /* @__PURE__ */ o("div", { className: "fds-datepicker__periodicity", onMouseDown: () => {
+        t && c(!1), a && s(!1);
+      }, children: h })
     ] }),
-    h && c && /* @__PURE__ */ o("div", { className: "fds-datepicker__preset-dropdown", children: /* @__PURE__ */ o(Te, { children: /* @__PURE__ */ o(be, { children: (_ ?? we).filter((e) => e.value !== "custom").map((e) => /* @__PURE__ */ o(
-      Ee,
-      {
-        title: e.label,
-        selectionType: "Single",
-        isSelected: v === e.value,
-        onClick: () => {
-          M(e.value), l(!1);
+    m && a && k && typeof document < "u" && K(
+      /* @__PURE__ */ o(
+        "div",
+        {
+          ref: ve,
+          className: "fds-datepicker__preset-dropdown",
+          style: { top: k.top, left: k.left },
+          children: /* @__PURE__ */ o(Ae, { children: /* @__PURE__ */ o(xe, { children: (_ ?? Se).filter((e) => e.value !== "custom").map((e) => /* @__PURE__ */ o(
+            Ie,
+            {
+              title: e.label,
+              selectionType: "Single",
+              isSelected: g === e.value,
+              onClick: () => {
+                M(e.value), s(!1);
+              }
+            },
+            e.value
+          )) }) })
         }
-      },
-      e.value
-    )) }) }) }),
-    t && /* @__PURE__ */ o("div", { className: "fds-datepicker__popover", children: r === "single" ? /* @__PURE__ */ o(
-      Pe,
-      {
-        view: f,
-        headerLabel: E,
-        days: P,
-        items: f === "month" ? w : T,
-        onDayClick: N,
-        onItemClick: x,
-        onHeaderClick: I,
-        onPrev: S,
-        onNext: A,
-        showFooter: !0,
-        isApplyDisabled: b,
-        onCancel: R,
-        onApply: O
-      }
-    ) : /* @__PURE__ */ o(
-      De,
-      {
-        showPresets: Y && h,
-        presets: _,
-        selectedPreset: v,
-        onPresetSelect: M,
-        startDate: te,
-        endDate: re,
-        startTime: ne,
-        endTime: ae,
-        onStartDateChange: ce,
-        onEndDateChange: le,
-        onStartTimeChange: ue,
-        onEndTimeChange: de,
-        calendarLabel: E,
-        view: f,
-        days: P,
-        items: f === "month" ? w : T,
-        onDayClick: N,
-        onDayHover: oe,
-        onDayHoverEnd: se,
-        onItemClick: x,
-        onCalendarLabelClick: I,
-        onPrevMonth: S,
-        onNextMonth: A,
-        isApplyDisabled: b,
-        onCancel: R,
-        onApply: O
-      }
-    ) })
+      ),
+      document.body
+    ),
+    t && y && typeof document < "u" && K(
+      /* @__PURE__ */ o(
+        "div",
+        {
+          ref: H,
+          className: "fds-datepicker__popover",
+          style: { top: y.top, left: y.left },
+          children: r === "single" ? /* @__PURE__ */ o(
+            Re,
+            {
+              view: p,
+              headerLabel: E,
+              days: w,
+              items: p === "month" ? T : b,
+              onDayClick: N,
+              onItemClick: x,
+              onHeaderClick: I,
+              onPrev: S,
+              onNext: A,
+              showFooter: !0,
+              isApplyDisabled: R,
+              onCancel: O,
+              onApply: L
+            }
+          ) : /* @__PURE__ */ o(
+            Ee,
+            {
+              showPresets: W && m,
+              presets: _,
+              selectedPreset: g,
+              onPresetSelect: M,
+              startDate: se,
+              endDate: ie,
+              startTime: le,
+              endTime: ce,
+              onStartDateChange: fe,
+              onEndDateChange: me,
+              onStartTimeChange: he,
+              onEndTimeChange: ge,
+              calendarLabel: E,
+              view: p,
+              days: w,
+              items: p === "month" ? T : b,
+              onDayClick: N,
+              onDayHover: de,
+              onDayHoverEnd: ue,
+              onItemClick: x,
+              onCalendarLabelClick: I,
+              onPrevMonth: S,
+              onNextMonth: A,
+              isApplyDisabled: R,
+              onCancel: O,
+              onApply: L
+            }
+          )
+        }
+      ),
+      document.body
+    )
   ] });
 }
-Ie.displayName = "DatePicker";
+Le.displayName = "DatePicker";
 export {
-  Ie as DatePicker
+  Le as DatePicker
 };

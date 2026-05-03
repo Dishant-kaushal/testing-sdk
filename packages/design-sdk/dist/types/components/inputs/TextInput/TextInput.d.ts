@@ -55,6 +55,11 @@ export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElemen
     isRequired?: boolean;
     /** Icon displayed at the start of the field */
     icon?: ReactNode;
+    /** Interactive element rendered at the start of the field (before input), flush
+     *  to the left edge with a right separator. Used by composite inputs such as
+     *  PhoneNumberInput for an inline country selector. When provided, `icon` and
+     *  `prefix` are ignored. */
+    leadingSlot?: ReactNode;
     /** Show clear button */
     showClearButton?: boolean;
     /** Callback when clear button is clicked */

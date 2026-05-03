@@ -84,8 +84,7 @@ const g = 28, E = 68, H = 28, O = 300, G = A(
                   ),
                   onClick: () => o(n),
                   children: r
-                },
-                n
+                }
               );
             }),
             /* @__PURE__ */ l("div", { className: "fds-time-column__spacer fds-time-column__spacer--bottom", "aria-hidden": "true" })

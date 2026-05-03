@@ -3,7 +3,8 @@
 
 .fds-datepicker {
   position: relative;
-  width: max-content;
+  width: 100%;
+  min-width: 0;
 }
 
 /* Trigger row — default: just the trigger */
@@ -31,18 +32,16 @@
 }
 
 .fds-datepicker__popover {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding-top: var(--spacing-02);
+  position: fixed;
   z-index: var(--global-z-index-dropdown, 100);
+  background: var(--background-surface-intense);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
 }
 
-/* Preset chip dropdown — DropdownMenu positioned below the trigger chip */
+/* Preset chip dropdown */
 .fds-datepicker__preset-dropdown {
-  position: absolute;
-  top: calc(100% + var(--spacing-02));
-  left: 0;
+  position: fixed;
   z-index: var(--global-z-index-dropdown, 100);
   min-width: 180px;
 }

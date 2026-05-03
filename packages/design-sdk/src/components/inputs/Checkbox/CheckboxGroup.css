@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: var(--spacing-02);
   align-items: flex-start;
+  width: 100%;
 }
 
 .fds-checkbox-group__label {

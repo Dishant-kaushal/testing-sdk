@@ -5,15 +5,15 @@
 .fds-search-input {
   position: relative;
   width: 100%;
+  min-width: 0;
 }
 
 .fds-search-input__popover {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  padding-top: var(--spacing-03);
-  z-index: var(--fds-z-dropdown);
+  position: fixed;
+  z-index: var(--global-z-index-dropdown);
+  background: var(--background-surface-intense);
+  border-radius: var(--global-border-radius-medium);
+  box-shadow: var(--fds-shadow-md);
 }
 
 .fds-search-input__empty {

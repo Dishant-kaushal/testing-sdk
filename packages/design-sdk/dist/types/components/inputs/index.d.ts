@@ -1,4 +1,5 @@
 export * from './TextInput';
+export * from './PhoneNumberInput';
 export * from './PasswordInput';
 export * from './CounterInput';
 export * from './TextArea';

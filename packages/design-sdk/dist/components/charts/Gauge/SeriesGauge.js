@@ -1,7 +1,7 @@
 import { jsx as l } from "react/jsx-runtime";
 import { forwardRef as h, useMemo as y } from "react";
-import k from "highcharts/esm/highcharts";
-import "highcharts/esm/highcharts-more";
+import k from "highcharts/esm/highcharts.js";
+import "highcharts/esm/highcharts-more.js";
 import C from "highcharts-react-official";
 import { Chart as b } from "../Chart/Chart.js";
 import { useFaclonChartTheme as x } from "../Chart/highchartsTheme.js";

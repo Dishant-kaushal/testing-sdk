@@ -1,152 +1,160 @@
-import { jsxs as F, jsx as s } from "react/jsx-runtime";
-import { forwardRef as ee, useState as d, useRef as w, useEffect as oe, useCallback as a } from "react";
+import { jsxs as S, jsx as n } from "react/jsx-runtime";
+import { forwardRef as te, useState as d, useRef as v, useEffect as re, useCallback as s } from "react";
+import { createPortal as ne } from "react-dom";
 import { cn as H } from "../../../utils/cn.js";
-import { useClickOutside as te } from "../../../hooks/useClickOutside.js";
-import { InputFieldHeader as re } from "../../forms/InputFieldHeader/InputFieldHeader.js";
-import { InputFieldFooter as ne } from "../../forms/InputFieldFooter/InputFieldFooter.js";
-import { ColorPicker as se } from "./ColorPicker.js";
-import { hexToRgb as N, rgbToHsb as ae, hsbToRgb as E, rgbToHex as h } from "./colorUtils.js";
+import { useDropdownPortal as se } from "../../../hooks/useDropdownPortal.js";
+import { InputFieldHeader as ae } from "../../forms/InputFieldHeader/InputFieldHeader.js";
+import { InputFieldFooter as ce } from "../../forms/InputFieldFooter/InputFieldFooter.js";
+import { ColorPicker as le } from "./ColorPicker.js";
+import { hexToRgb as E, rgbToHsb as ie, hsbToRgb as I, rgbToHex as u } from "./colorUtils.js";
 /* empty css               */
-const ce = ee(
+const pe = te(
   ({
-    label: O,
+    label: P,
     value: l = "",
-    onChange: u,
-    placeholder: I = "Enter color hex code",
-    helpText: P,
-    errorText: q,
-    validationState: B = "none",
+    onChange: p,
+    placeholder: q = "Enter color hex code",
+    helpText: B,
+    errorText: D,
+    validationState: M = "none",
     isDisabled: i = !1,
-    palettes: M,
-    className: $,
-    ...A
-  }, D) => {
-    const [t, c] = d(!1), f = w(null);
-    te(f, () => {
-      t && c(!1);
-    });
-    const K = N(l || "#000000"), [m, g, b] = K ?? [0, 0, 0], [_, C, y] = ae(m, g, b), [R, j] = d(100), [U, V] = d("Hex"), [z, G] = d("Presets"), x = B === "error", S = x ? q : P, k = !!l, p = w(!1), T = w(t);
-    oe(() => {
-      !T.current && t && requestAnimationFrame(() => {
-        var n;
-        const e = (n = f.current) == null ? void 0 : n.querySelector(".fds-color-input__popover"), o = e == null ? void 0 : e.querySelector("button:not([disabled]), input:not([disabled])");
-        o == null || o.focus();
-      }), T.current && !t && p.current && (p.current = !1, requestAnimationFrame(() => {
-        var o;
-        const e = (o = f.current) == null ? void 0 : o.querySelector(".fds-color-input__field");
+    palettes: $,
+    className: A,
+    ...K
+  }, j) => {
+    const [o, a] = d(!1), m = v(null), { portalRef: F, pos: h } = se(m, o, () => a(!1), 8), U = E(l || "#000000"), [g, b, _] = U ?? [0, 0, 0], [y, C, x] = ie(g, b, _), [N, V] = d(100), [z, G] = d("Hex"), [J, L] = d("Presets"), k = M === "error", O = k ? D : B, w = !!l, f = v(!1), R = v(o);
+    re(() => {
+      !R.current && o && requestAnimationFrame(() => {
+        var t;
+        const e = (t = F.current) == null ? void 0 : t.querySelector("button:not([disabled]), input:not([disabled])");
         e == null || e.focus();
-      })), T.current = t;
-    }, [t]);
-    const J = a((e) => {
+      }), R.current && !o && f.current && (f.current = !1, requestAnimationFrame(() => {
+        var t;
+        const e = (t = m.current) == null ? void 0 : t.querySelector(".fds-color-input__field");
+        e == null || e.focus();
+      })), R.current = o;
+    }, [o]);
+    const Q = s((e) => {
       if (i) return;
       if (!(e.target.closest(".fds-color-input__field") !== null)) {
-        e.key === "Escape" && t && (e.preventDefault(), e.stopPropagation(), p.current = !0, c(!1));
+        e.key === "Escape" && o && (e.preventDefault(), e.stopPropagation(), f.current = !0, a(!1));
         return;
       }
       switch (e.key) {
         case "Enter":
         case " ":
-          e.preventDefault(), c(!t);
+          e.preventDefault(), a(!o);
           break;
         case "Escape":
-          t && (e.preventDefault(), e.stopPropagation(), p.current = !0, c(!1));
+          o && (e.preventDefault(), e.stopPropagation(), f.current = !0, a(!1));
           break;
         case "ArrowDown":
-          e.preventDefault(), t || c(!0);
+          e.preventDefault(), o || a(!0);
           break;
       }
-    }, [i, t]), r = a((e) => {
-      u == null || u(e);
-    }, [u]), L = a((e) => {
+    }, [i, o]), r = s((e) => {
+      p == null || p(e);
+    }, [p]), W = s((e) => {
       r(e.toUpperCase());
-    }, [r]), Q = a((e) => {
-      const [o, n, v] = E(e, C, y);
-      r(h(o, n, v));
-    }, [C, y, r]), W = a((e, o) => {
-      const [n, v, Z] = E(_, e, o);
-      r(h(n, v, Z));
-    }, [_, r]), X = a((e, o, n) => {
-      r(h(e, o, n));
-    }, [r]), Y = a((e) => {
-      const o = N(e);
-      o && r(h(...o));
+    }, [r]), X = s((e) => {
+      const [t, c, T] = I(e, C, x);
+      r(u(t, c, T));
+    }, [C, x, r]), Y = s((e, t) => {
+      const [c, T, oe] = I(y, e, t);
+      r(u(c, T, oe));
+    }, [y, r]), Z = s((e, t, c) => {
+      r(u(e, t, c));
+    }, [r]), ee = s((e) => {
+      const t = E(e);
+      t && r(u(...t));
     }, [r]);
-    return /* @__PURE__ */ F("div", { ref: f, className: H("fds-color-input", $), onKeyDown: J, ...A, children: [
-      O && /* @__PURE__ */ s(re, { label: O }),
-      /* @__PURE__ */ F(
+    return /* @__PURE__ */ S("div", { ref: m, className: H("fds-color-input", A), onKeyDown: Q, ...K, children: [
+      P && /* @__PURE__ */ n(ae, { label: P }),
+      /* @__PURE__ */ S(
         "div",
         {
           className: H(
             "fds-color-input__field",
-            t && "fds-color-input__field--open",
-            x && "fds-color-input__field--error",
+            o && "fds-color-input__field--open",
+            k && "fds-color-input__field--error",
             i && "fds-color-input__field--disabled"
           ),
           tabIndex: i ? -1 : 0,
           role: "button",
           "aria-haspopup": "dialog",
-          "aria-expanded": t,
+          "aria-expanded": o,
           onClick: () => {
-            i || c(!t);
+            i || a(!o);
           },
           children: [
-            /* @__PURE__ */ s(
+            /* @__PURE__ */ n(
               "span",
               {
-                ref: D,
+                ref: j,
                 className: H(
                   "fds-color-input__value BodyMediumRegular",
-                  !k && "fds-color-input__value--placeholder"
+                  !w && "fds-color-input__value--placeholder"
                 ),
-                children: k ? l : I
+                children: w ? l : q
               }
             ),
-            /* @__PURE__ */ s("span", { className: "fds-color-input__swatch", children: k && /* @__PURE__ */ s(
+            /* @__PURE__ */ n("span", { className: "fds-color-input__swatch", children: w && /* @__PURE__ */ n(
               "span",
               {
                 className: "fds-color-input__swatch-fill",
-                style: { background: `rgba(${m},${g},${b},${R / 100})` }
+                style: { background: `rgba(${g},${b},${_},${N / 100})` }
               }
             ) })
           ]
         }
       ),
-      S && /* @__PURE__ */ s(
-        ne,
+      O && /* @__PURE__ */ n(
+        ce,
         {
-          helpText: S,
-          state: x ? "error" : "default"
+          helpText: O,
+          state: k ? "error" : "default"
         }
       ),
-      t && /* @__PURE__ */ s("div", { className: "fds-color-input__popover", children: /* @__PURE__ */ s(
-        se,
-        {
-          activeTab: z,
-          onTabChange: G,
-          hue: _,
-          saturation: C,
-          brightness: y,
-          opacity: R,
-          r: m,
-          g,
-          b,
-          hex: l || "#000000",
-          configMode: U,
-          onHueChange: Q,
-          onSaturationBrightnessChange: W,
-          onOpacityChange: j,
-          onRgbChange: X,
-          onHexChange: Y,
-          onConfigModeChange: V,
-          onColorSelect: L,
-          palettes: M,
-          selectedColor: l
-        }
-      ) })
+      o && h && typeof document < "u" && ne(
+        /* @__PURE__ */ n(
+          "div",
+          {
+            ref: F,
+            className: "fds-color-input__popover",
+            style: { top: h.top, left: h.left },
+            children: /* @__PURE__ */ n(
+              le,
+              {
+                activeTab: J,
+                onTabChange: L,
+                hue: y,
+                saturation: C,
+                brightness: x,
+                opacity: N,
+                r: g,
+                g: b,
+                b: _,
+                hex: l || "#000000",
+                configMode: z,
+                onHueChange: X,
+                onSaturationBrightnessChange: Y,
+                onOpacityChange: V,
+                onRgbChange: Z,
+                onHexChange: ee,
+                onConfigModeChange: G,
+                onColorSelect: W,
+                palettes: $,
+                selectedColor: l
+              }
+            )
+          }
+        ),
+        document.body
+      )
     ] });
   }
 );
-ce.displayName = "ColorInput";
+pe.displayName = "ColorInput";
 export {
-  ce as ColorInput
+  pe as ColorInput
 };

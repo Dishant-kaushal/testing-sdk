@@ -88,24 +88,24 @@ export function ChartActions({
     <>
       {renderInfo && (
         <IconButton
-          size="20"
-          icon={<Info size={20} />}
+          size="16"
+          icon={<Info size={16} />}
           aria-label={infoLabel}
           onClick={onInfoClick}
         />
       )}
       {renderSettings && (
         <IconButton
-          size="20"
-          icon={<Settings size={20} />}
+          size="16"
+          icon={<Settings size={16} />}
           aria-label={settingsLabel}
           onClick={onSettingsClick}
         />
       )}
       {renderMore && (
         <IconButton
-          size="20"
-          icon={<Menu size={20} />}
+          size="16"
+          icon={<Menu size={16} />}
           aria-label={moreLabel}
           onClick={onMoreClick}
         />

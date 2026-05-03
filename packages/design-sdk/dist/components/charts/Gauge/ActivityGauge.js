@@ -1,8 +1,8 @@
 import { jsx as d } from "react/jsx-runtime";
 import { forwardRef as y, useMemo as R } from "react";
-import b from "highcharts/esm/highcharts";
-import "highcharts/esm/highcharts-more";
-import "highcharts/esm/modules/solid-gauge";
+import b from "highcharts/esm/highcharts.js";
+import "highcharts/esm/highcharts-more.js";
+import "highcharts/esm/modules/solid-gauge.js";
 import A from "highcharts-react-official";
 import { Chart as x } from "../Chart/Chart.js";
 import { useFaclonChartTheme as C, FACLON_CHART_PALETTE_TOKENS as l } from "../Chart/highchartsTheme.js";

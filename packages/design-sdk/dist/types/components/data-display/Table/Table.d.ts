@@ -1,20 +1,9 @@
 import './Table.css';
 import type { TableNode, TableProps } from './types';
 /**
- * Table — root. Instantiates the headless engine
- * (`@table-library/react-table-library`) and provides the full
- * `TableContext` to subcomponents.
- *
- * Engine hooks wired:
- *   - useRowSelect    → selection (single / multi, row-click vs button-click)
- *   - useSort         → sort     (state + cycling driven by toggleSort)
- *   - usePagination   → paging   (client for `pagination`, server for
- *                                 controlled `page` + `pageSize` + `rowCount`)
- *   - useTree         → tree     (only enabled when isGrouped)
- *
- * Each hook has an `onChange` middleware that
- *   (1) updates a `useControllableState` slot so controlled props stay in sync,
- *   (2) fires the consumer's `onXxxChange` callback.
+ * Table — root. Thin render wrapper around `useTableEngine`, which owns all
+ * of the `@table-library/react-table-library` adapter logic (selection,
+ * sort, pagination, tree) and produces the memoised TableContext value.
  *
  * --------------------------------------------------------------------------
  * Gotchas (promoted from the Blade reference — please read before using):

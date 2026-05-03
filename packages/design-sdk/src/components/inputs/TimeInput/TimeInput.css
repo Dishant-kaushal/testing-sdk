@@ -5,14 +5,11 @@
 
 .fds-time-input {
   position: relative;
-  width: max-content;
-  min-width: 240px;
+  width: 100%;
+  min-width: 0;
 }
 
 .fds-time-input__popover {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding-top: var(--fds-space-xs);
+  position: fixed;
   z-index: var(--global-z-index-dropdown, 100);
 }

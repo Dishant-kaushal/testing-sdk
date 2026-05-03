@@ -1,0 +1,218 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Colors — Tier 1 Global Palette
+   Flask Design System (Falcon 2.0)
+   Source of truth: flask-master-ai-context.md
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Chromatic: Brand (Blue) ──────────────────────────────────────────── */
+  --global-chromatic-brand-50:    #F5F9FF;
+  --global-chromatic-brand-100:   #D6E5FF;
+  --global-chromatic-brand-200:   #A8C8FF;
+  --global-chromatic-brand-300:   #75AAFF;
+  --global-chromatic-brand-400:   #4287FF;
+  --global-chromatic-brand-500:   #1364F1;
+  --global-chromatic-brand-600:   #0E54CD;
+  --global-chromatic-brand-700:   #102D90;
+  --global-chromatic-brand-800:   #073688;
+  --global-chromatic-brand-900:   #052761;
+  --global-chromatic-brand-1000:  #021331;
+
+  /* Alpha base: #1364F1 */
+  --global-chromatic-brand-a50:   rgba(19, 100, 241, 0.08);
+  --global-chromatic-brand-a100:  rgba(19, 100, 241, 0.24);
+  --global-chromatic-brand-a150:  rgba(19, 100, 241, 0.32);
+  --global-chromatic-brand-a200:  rgba(19, 100, 241, 0.40);
+  --global-chromatic-brand-a400:  rgba(19, 100, 241, 0.64);
+
+  /* ── Chromatic: Green (Positive/Success) ──────────────────────────────── */
+  --global-chromatic-green-50:    #E6F4ED;
+  --global-chromatic-green-100:   #CEE9DB;
+  --global-chromatic-green-200:   #9CD3B8;
+  --global-chromatic-green-300:   #6BBD94;
+  --global-chromatic-green-400:   #3AA670;
+  --global-chromatic-green-500:   #009954;
+  --global-chromatic-green-600:   #008F47;
+  --global-chromatic-green-700:   #00753B;
+  --global-chromatic-green-800:   #005C2E;
+  --global-chromatic-green-900:   #004724;
+  --global-chromatic-green-1000:  #00381C;
+
+  /* Alpha base: #008F47 */
+  --global-chromatic-green-a50:   rgba(0, 143, 71, 0.08);
+  --global-chromatic-green-a100:  rgba(0, 143, 71, 0.24);
+  --global-chromatic-green-a150:  rgba(0, 143, 71, 0.32);
+  --global-chromatic-green-a200:  rgba(0, 143, 71, 0.40);
+  --global-chromatic-green-a400:  rgba(0, 143, 71, 0.64);
+  --global-chromatic-green-a500:  rgba(0, 143, 71, 0.72);
+  --global-chromatic-green-a600:  rgba(0, 143, 71, 0.80);
+  --global-chromatic-green-a700:  rgba(0, 143, 71, 0.88);
+
+  /* ── Chromatic: Red (Error/Danger) ───────────────────────────────────── */
+  --global-chromatic-red-50:      #FDF3F2;
+  --global-chromatic-red-100:     #FBE6E4;
+  --global-chromatic-red-200:     #F6C1BC;
+  --global-chromatic-red-300:     #F0968E;
+  --global-chromatic-red-400:     #E86559;
+  --global-chromatic-red-500:     #DF3E30;
+  --global-chromatic-red-600:     #D01E11;
+  --global-chromatic-red-700:     #AA180E;
+  --global-chromatic-red-800:     #8D150C;
+  --global-chromatic-red-900:     #7A100B;
+  --global-chromatic-red-1000:    #620F09;
+
+  /* Alpha base: #D01E11 */
+  --global-chromatic-red-a50:     rgba(208, 30, 17, 0.08);
+  --global-chromatic-red-a100:    rgba(208, 30, 17, 0.24);
+  --global-chromatic-red-a150:    rgba(208, 30, 17, 0.32);
+  --global-chromatic-red-a200:    rgba(208, 30, 17, 0.40);
+  --global-chromatic-red-a400:    rgba(208, 30, 17, 0.64);
+  --global-chromatic-red-a500:    rgba(208, 30, 17, 0.72);
+  --global-chromatic-red-a600:    rgba(208, 30, 17, 0.80);
+  --global-chromatic-red-a700:    rgba(208, 30, 17, 0.88);
+
+  /* ── Chromatic: Orange (Warning) ─────────────────────────────────────── */
+  --global-chromatic-orange-50:   #FFF6F0;
+  --global-chromatic-orange-100:  #FFE7D6;
+  --global-chromatic-orange-200:  #FFC9A3;
+  --global-chromatic-orange-300:  #FFA66B;
+  --global-chromatic-orange-400:  #FF8742;
+  --global-chromatic-orange-500:  #F56D19;
+  --global-chromatic-orange-600:  #E05E00;
+  --global-chromatic-orange-700:  #C75300;
+  --global-chromatic-orange-800:  #AD4800;
+  --global-chromatic-orange-900:  #8F3B00;
+  --global-chromatic-orange-1000: #6B2D00;
+
+  /* Alpha base: #E05E00 */
+  --global-chromatic-orange-a50:  rgba(224, 94, 0, 0.08);
+  --global-chromatic-orange-a100: rgba(224, 94, 0, 0.24);
+  --global-chromatic-orange-a150: rgba(224, 94, 0, 0.32);
+  --global-chromatic-orange-a200: rgba(224, 94, 0, 0.40);
+  --global-chromatic-orange-a400: rgba(224, 94, 0, 0.64);
+  --global-chromatic-orange-a500: rgba(224, 94, 0, 0.72);
+  --global-chromatic-orange-a600: rgba(224, 94, 0, 0.80);
+  --global-chromatic-orange-a700: rgba(224, 94, 0, 0.88);
+
+  /* ── Chromatic: Blue / Info (Informational) ──────────────────────────── */
+  --global-chromatic-blue-50:     #E7F7FD;
+  --global-chromatic-blue-100:    #CCEBFA;
+  --global-chromatic-blue-200:    #9DD8F6;
+  --global-chromatic-blue-300:    #6AC6F1;
+  --global-chromatic-blue-400:    #3BB4ED;
+  --global-chromatic-blue-500:    #00A1E5;
+  --global-chromatic-blue-600:    #008BD1;
+  --global-chromatic-blue-700:    #0070A8;
+  --global-chromatic-blue-800:    #005B85;
+  --global-chromatic-blue-900:    #004161;
+  --global-chromatic-blue-1000:   #002D42;
+
+  /* Alpha base: #008BD1 */
+  --global-chromatic-blue-a50:    rgba(0, 139, 209, 0.08);
+  --global-chromatic-blue-a100:   rgba(0, 139, 209, 0.24);
+  --global-chromatic-blue-a150:   rgba(0, 139, 209, 0.32);
+  --global-chromatic-blue-a200:   rgba(0, 139, 209, 0.40);
+  --global-chromatic-blue-a400:   rgba(0, 139, 209, 0.64);
+  --global-chromatic-blue-a500:   rgba(0, 139, 209, 0.72);
+  --global-chromatic-blue-a600:   rgba(0, 139, 209, 0.80);
+  --global-chromatic-blue-a700:   rgba(0, 139, 209, 0.88);
+
+  /* ── Neutral: Gray Light (light-mode surface & text grays) ───────────── */
+  --global-neutral-gray-0:        #FFFFFF;
+  --global-neutral-gray-50:       #F7F7F7;
+  --global-neutral-gray-100:      #EEF0F1;
+  --global-neutral-gray-200:      #DEE1E3;
+  --global-neutral-gray-300:      #C8CDD0;
+  --global-neutral-gray-400:      #AFB6BB;
+  --global-neutral-gray-500:      #96A0A6;
+  --global-neutral-gray-600:      #7B878E;
+  --global-neutral-gray-700:      #616D75;
+  --global-neutral-gray-800:      #4F585F;
+  --global-neutral-gray-900:      #434B51;
+  --global-neutral-gray-1000:     #373E43;
+  --global-neutral-gray-1100:     #292F32;
+  --global-neutral-gray-1200:     #191D1F;
+  --global-neutral-gray-1300:     #050505;
+
+  /* Gray alpha — base = gray-900 (#434B51 = rgb(67,75,81)) */
+  --global-neutral-gray-a906:     rgba(67, 75, 81, 0.04);   /* #434B510A */
+  --global-neutral-gray-a909:     rgba(67, 75, 81, 0.08);   /* #434B5114 */
+  --global-neutral-gray-a912:     rgba(67, 75, 81, 0.16);   /* #434B5129 */
+  --global-neutral-gray-a918:     rgba(67, 75, 81, 0.24);   /* #434B513D */
+  --global-neutral-gray-a932:     rgba(67, 75, 81, 0.40);   /* #434B5166 */
+  --global-neutral-gray-a964:     rgba(67, 75, 81, 0.64);   /* #434B51A3 */
+
+  /* Gray alpha — multi-base Figma tokens */
+  --global-neutral-gray-a1:       rgba(255, 255, 255, 0.01); /* #FFFFFF03  — white */
+  --global-neutral-gray-a25:      rgba(255, 255, 255, 0.50); /* #FFFFFF80  — white */
+  --global-neutral-gray-a48:      rgba(255, 255, 255, 0.94); /* #FFFFFFF0  — white */
+  --global-neutral-gray-a75:      rgba(247, 247, 247, 0.50); /* #F7F7F780  — gray-50 */
+  --global-neutral-gray-a406:     rgba(175, 182, 187, 0.04); /* #AFB6BB0A  — gray-400 */
+  --global-neutral-gray-a1072:    rgba(55, 62, 67, 0.72);    /* #373E43B8  — gray-1000 */
+  --global-neutral-gray-a1106:    rgba(41, 47, 50, 0.04);    /* #292F320A  — gray-1100 */
+  --global-neutral-gray-a1264:    rgba(25, 29, 31, 0.64);    /* #191D1FA3  — gray-1200 */
+  --global-neutral-gray-a1288:    rgba(25, 29, 31, 0.88);    /* #191D1FE0  — gray-1200 */
+
+  /* ── Neutral: Gray Dark (dark-mode surface & text grays) ─────────────── */
+  --global-neutral-gray-dark-0:   #FFFFFF;
+  --global-neutral-gray-dark-50:  #EAEBEB;
+  --global-neutral-gray-dark-100: #D5D6D7;
+  --global-neutral-gray-dark-200: #C0C2C4;
+  --global-neutral-gray-dark-300: #AEB0B2;
+  --global-neutral-gray-dark-400: #96999C;
+  --global-neutral-gray-dark-500: #808589;
+  --global-neutral-gray-dark-600: #73787D;
+  --global-neutral-gray-dark-700: #585C5F;
+  --global-neutral-gray-dark-800: #3B3D40;
+  --global-neutral-gray-dark-900: #313335;
+  --global-neutral-gray-dark-1000: #27292B;
+  --global-neutral-gray-dark-1100: #1F2123;
+  --global-neutral-gray-dark-1200: #131415;
+  --global-neutral-gray-dark-1300: #1B1C1D;
+
+  /* Gray-dark alpha — base = gray-dark-500 (#808589 = rgb(128,133,137)) */
+  --global-neutral-gray-dark-a506:  rgba(128, 133, 137, 0.04);  /* #8085890A */
+  --global-neutral-gray-dark-a509:  rgba(128, 133, 137, 0.08);  /* #80858914 */
+  --global-neutral-gray-dark-a512:  rgba(128, 133, 137, 0.16);  /* #80858929 */
+  --global-neutral-gray-dark-a518:  rgba(128, 133, 137, 0.24);  /* #8085893D */
+  --global-neutral-gray-dark-a532:  rgba(128, 133, 137, 0.40);  /* #80858966 */
+  --global-neutral-gray-dark-a564:  rgba(128, 133, 137, 0.64);  /* #808589A3 */
+  --global-neutral-gray-dark-a572:  rgba(128, 133, 137, 0.72);  /* #808589B8 */
+
+  /* Gray-dark alpha — multi-base Figma tokens */
+  --global-neutral-gray-dark-a1:    rgba(255, 255, 255, 0.01);  /* #FFFFFF03  — white */
+  --global-neutral-gray-dark-a25:   rgba(255, 255, 255, 0.50);  /* #FFFFFF80  — white */
+  --global-neutral-gray-dark-a48:   rgba(255, 255, 255, 0.94);  /* #FFFFFFF0  — white */
+  --global-neutral-gray-dark-a75:   rgba(234, 235, 235, 0.50);  /* #EAEBEB80  — gray-dark-50 */
+  --global-neutral-gray-dark-a888:  rgba(59, 61, 64, 0.88);     /* #3B3D40E0  — gray-dark-800 */
+  --global-neutral-gray-dark-a1188: rgba(31, 33, 35, 0.88);     /* #1F2123E0  — gray-dark-1100 */
+  --global-neutral-gray-dark-a1194: rgba(31, 33, 35, 0.94);     /* #1F2123F0  — gray-dark-1100 */
+  --global-neutral-gray-dark-a1312: rgba(27, 28, 29, 0.16);     /* #1B1C1D29  — gray-dark-1300 */
+  --global-neutral-gray-dark-a1388: rgba(27, 28, 29, 0.88);     /* #1B1C1DE0  — gray-dark-1300 */
+
+  /* ── Neutral: White opacity scale ────────────────────────────────────── */
+  --global-neutral-white-1:       rgba(255, 255, 255, 0.01);
+  --global-neutral-white-5:       rgba(255, 255, 255, 0.04);
+  --global-neutral-white-10:      rgba(255, 255, 255, 0.08);
+  --global-neutral-white-25:      rgba(255, 255, 255, 0.16);
+  --global-neutral-white-50:      rgba(255, 255, 255, 0.24);
+  --global-neutral-white-100:     rgba(255, 255, 255, 0.40);
+  --global-neutral-white-200:     rgba(255, 255, 255, 0.50);
+  --global-neutral-white-300:     rgba(255, 255, 255, 0.64);
+  --global-neutral-white-400:     rgba(255, 255, 255, 0.80);
+  --global-neutral-white-450:     rgba(255, 255, 255, 0.88);
+  --global-neutral-white-500:     #FFFFFF;
+
+  /* ── Neutral: Black opacity scale ────────────────────────────────────── */
+  --global-neutral-black-1:       rgba(0, 0, 0, 0.01);
+  --global-neutral-black-5:       rgba(0, 0, 0, 0.04);
+  --global-neutral-black-10:      rgba(0, 0, 0, 0.08);
+  --global-neutral-black-25:      rgba(0, 0, 0, 0.16);
+  --global-neutral-black-50:      rgba(0, 0, 0, 0.24);
+  --global-neutral-black-100:     rgba(0, 0, 0, 0.40);
+  --global-neutral-black-200:     rgba(0, 0, 0, 0.56);
+  --global-neutral-black-300:     rgba(0, 0, 0, 0.72);
+  --global-neutral-black-400:     rgba(0, 0, 0, 0.80);
+  --global-neutral-black-450:     rgba(0, 0, 0, 0.88);
+  --global-neutral-black-500:     #000000;
+}

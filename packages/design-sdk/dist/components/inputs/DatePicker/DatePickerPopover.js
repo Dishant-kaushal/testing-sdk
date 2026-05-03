@@ -1,6 +1,6 @@
 import { jsxs as d, jsx as e } from "react/jsx-runtime";
 import { cn as M } from "../../../utils/cn.js";
-import { TextInput as s } from "../TextInput/TextInput.js";
+import { TextInput as i } from "../TextInput/TextInput.js";
 import { formatDateInput as N, formatTimeInput as b } from "./datePickerUtils.js";
 import { Divider as O } from "../../layout/Divider/Divider.js";
 import { CalendarHeader as Q } from "./CalendarHeader.js";
@@ -15,25 +15,25 @@ function S({
   presets: h,
   selectedPreset: x,
   onPresetSelect: Y,
-  startDate: $ = "",
-  startTime: L = "",
-  endDate: P = "",
+  startDate: L = "",
+  startTime: P = "",
+  endDate: $ = "",
   endTime: j = "",
-  onStartDateChange: t,
-  onStartTimeChange: c,
-  onEndDateChange: o,
-  onEndTimeChange: m,
-  calendarLabel: F = "March 2026",
-  onPrevMonth: V,
-  onNextMonth: W,
-  onCalendarLabelClick: q,
+  onStartDateChange: s,
+  onStartTimeChange: t,
+  onEndDateChange: c,
+  onEndTimeChange: o,
+  calendarLabel: w = "March 2026",
+  onPrevMonth: F,
+  onNextMonth: V,
+  onCalendarLabelClick: W,
   view: a = "date",
-  days: w = [],
-  onDayClick: f,
-  onDayHover: v,
-  onDayHoverEnd: u,
+  days: q = [],
+  onDayClick: m,
+  onDayHover: f,
+  onDayHoverEnd: v,
   items: z = [],
-  onItemClick: _,
+  onItemClick: u,
   isApplyDisabled: A = !1,
   onCancel: B,
   onApply: G,
@@ -53,45 +53,45 @@ function S({
       /* @__PURE__ */ d("div", { className: "fds-datepicker-popover__inputs", children: [
         /* @__PURE__ */ d("div", { className: "fds-datepicker-popover__input-row", children: [
           /* @__PURE__ */ e(
-            s,
+            i,
             {
               label: "Start Date",
               placeholder: "DD/MM/YYYY",
-              value: $,
+              value: L,
               maxLength: 10,
-              onChange: (r) => t == null ? void 0 : t(N(r.value))
+              onChange: (r) => s == null ? void 0 : s(N(r.value))
             }
           ),
           /* @__PURE__ */ e(
-            s,
+            i,
             {
               label: "Start Time",
               placeholder: "HH:MM",
-              value: L,
+              value: P,
               maxLength: 5,
-              onChange: (r) => c == null ? void 0 : c(b(r.value))
+              onChange: (r) => t == null ? void 0 : t(b(r.value))
             }
           )
         ] }),
         /* @__PURE__ */ d("div", { className: "fds-datepicker-popover__input-row", children: [
           /* @__PURE__ */ e(
-            s,
+            i,
             {
               label: "End Date",
               placeholder: "DD/MM/YYYY",
-              value: P,
+              value: $,
               maxLength: 10,
-              onChange: (r) => o == null ? void 0 : o(N(r.value))
+              onChange: (r) => c == null ? void 0 : c(N(r.value))
             }
           ),
           /* @__PURE__ */ e(
-            s,
+            i,
             {
               label: "End Time",
               placeholder: "HH:MM",
               value: j,
               maxLength: 5,
-              onChange: (r) => m == null ? void 0 : m(b(r.value))
+              onChange: (r) => o == null ? void 0 : o(b(r.value))
             }
           )
         ] })
@@ -102,35 +102,34 @@ function S({
           /* @__PURE__ */ e(
             Q,
             {
-              label: F,
-              onPrev: V,
-              onNext: W,
-              onLabelClick: q
+              label: w,
+              onPrev: F,
+              onNext: V,
+              onLabelClick: W
             }
           ),
           a === "date" && /* @__PURE__ */ e(R, {})
         ] }),
         /* @__PURE__ */ d("div", { className: M("fds-datepicker-popover__calendar-body", a !== "date" && "fds-datepicker-popover__calendar-body--grid"), children: [
-          a === "date" && /* @__PURE__ */ e("div", { onMouseLeave: () => u == null ? void 0 : u(), children: w.map((r, p) => /* @__PURE__ */ e("div", { id: `week-${p}`, className: "fds-datepicker-popover__week", children: r.map((l, i) => /* @__PURE__ */ e(
+          a === "date" && /* @__PURE__ */ e("div", { onMouseLeave: () => v == null ? void 0 : v(), children: q.map((r, p) => /* @__PURE__ */ e("div", { id: `week-${p}`, className: "fds-datepicker-popover__week", children: r.map((l, _) => /* @__PURE__ */ e(
             U,
             {
-              id: `${p}-${i}`,
+              id: `${p}-${_}`,
               date: l.date,
               type: l.type,
               isSelected: l.isSelected,
               isCurrentDate: l.isCurrentDate,
-              onClick: () => f == null ? void 0 : f(l),
-              onMouseEnter: () => v == null ? void 0 : v(l)
-            },
-            `${p}-${i}`
-          )) }, p)) }),
-          a !== "date" && z.map((r, p) => /* @__PURE__ */ e("div", { id: `row-${p}`, className: "fds-datepicker-popover__item-row", children: r.map((l, i) => /* @__PURE__ */ e(
+              onClick: () => m == null ? void 0 : m(l),
+              onMouseEnter: () => f == null ? void 0 : f(l)
+            }
+          )) })) }),
+          a !== "date" && z.map((r, p) => /* @__PURE__ */ e("div", { id: `row-${p}`, className: "fds-datepicker-popover__item-row", children: r.map((l, _) => /* @__PURE__ */ e(
             Z,
             {
-              id: `${p}-${i}`,
+              id: `${p}-${_}`,
               label: l.label,
               isSelected: l.isSelected,
-              onClick: () => _ == null ? void 0 : _(l)
+              onClick: () => u == null ? void 0 : u(l)
             }
           )) }))
         ] })

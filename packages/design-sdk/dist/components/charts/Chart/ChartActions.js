@@ -18,8 +18,8 @@ function I({
     f && /* @__PURE__ */ n(
       e,
       {
-        size: "20",
-        icon: /* @__PURE__ */ n(g, { size: 20 }),
+        size: "16",
+        icon: /* @__PURE__ */ n(g, { size: 16 }),
         "aria-label": l,
         onClick: r
       }
@@ -27,8 +27,8 @@ function I({
     z && /* @__PURE__ */ n(
       e,
       {
-        size: "20",
-        icon: /* @__PURE__ */ n(h, { size: 20 }),
+        size: "16",
+        icon: /* @__PURE__ */ n(h, { size: 16 }),
         "aria-label": c,
         onClick: i
       }
@@ -36,8 +36,8 @@ function I({
     d && /* @__PURE__ */ n(
       e,
       {
-        size: "20",
-        icon: /* @__PURE__ */ n(x, { size: 20 }),
+        size: "16",
+        icon: /* @__PURE__ */ n(x, { size: 16 }),
         "aria-label": m,
         onClick: o
       }

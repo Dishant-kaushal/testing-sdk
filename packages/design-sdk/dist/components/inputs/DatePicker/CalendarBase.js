@@ -12,14 +12,14 @@ function W({
   onPrev: n,
   onNext: _,
   onHeaderClick: h,
-  days: $ = [],
-  onDayClick: l,
-  onDayHover: t,
-  onDayHoverEnd: m,
-  items: o = [],
-  onItemClick: c,
-  showFooter: u = !1,
-  isApplyDisabled: N = !1,
+  days: o = [],
+  onDayClick: s,
+  onDayHover: l,
+  onDayHoverEnd: t,
+  items: u = [],
+  onItemClick: i,
+  showFooter: N = !1,
+  isApplyDisabled: $ = !1,
   onCancel: C,
   onApply: M,
   className: S,
@@ -39,30 +39,29 @@ function W({
       r === "date" && /* @__PURE__ */ a(B, {})
     ] }),
     /* @__PURE__ */ f("div", { className: p("fds-calendar-base__body", r !== "date" && "fds-calendar-base__body--grid"), children: [
-      r === "date" && /* @__PURE__ */ a("div", { onMouseLeave: () => m == null ? void 0 : m(), children: $.map((i, d) => /* @__PURE__ */ a("div", { id: `week-${d}`, className: "fds-calendar-base__week", children: i.map((e, s) => /* @__PURE__ */ a(
+      r === "date" && /* @__PURE__ */ a("div", { onMouseLeave: () => t == null ? void 0 : t(), children: o.map((m, d) => /* @__PURE__ */ a("div", { id: `week-${d}`, className: "fds-calendar-base__week", children: m.map((e, c) => /* @__PURE__ */ a(
         L,
         {
-          id: `${d}-${s}`,
+          id: `${d}-${c}`,
           date: e.date,
           type: e.type,
           isSelected: e.isSelected,
           isCurrentDate: e.isCurrentDate,
-          onClick: () => l == null ? void 0 : l(e),
-          onMouseEnter: () => t == null ? void 0 : t(e)
-        },
-        `${d}-${s}`
-      )) }, d)) }),
-      r !== "date" && o.map((i, d) => /* @__PURE__ */ a("div", { id: `row-${d}`, className: "fds-calendar-base__item-row", children: i.map((e, s) => /* @__PURE__ */ a(
+          onClick: () => s == null ? void 0 : s(e),
+          onMouseEnter: () => l == null ? void 0 : l(e)
+        }
+      )) })) }),
+      r !== "date" && u.map((m, d) => /* @__PURE__ */ a("div", { id: `row-${d}`, className: "fds-calendar-base__item-row", children: m.map((e, c) => /* @__PURE__ */ a(
         F,
         {
-          id: `${d}-${s}`,
+          id: `${d}-${c}`,
           label: e.label,
           isSelected: e.isSelected,
-          onClick: () => c == null ? void 0 : c(e)
+          onClick: () => i == null ? void 0 : i(e)
         }
       )) }))
     ] }),
-    u && /* @__PURE__ */ a(g, { onCancel: C, onApply: M, isApplyDisabled: N })
+    N && /* @__PURE__ */ a(g, { onCancel: C, onApply: M, isApplyDisabled: $ })
   ] });
 }
 W.displayName = "CalendarBase";

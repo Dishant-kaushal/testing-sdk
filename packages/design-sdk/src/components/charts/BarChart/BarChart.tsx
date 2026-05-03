@@ -3,8 +3,8 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import type { Options, SeriesBarOptions } from 'highcharts';
 import { Chart } from '../Chart/Chart';
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
-import { useFaclonChartTheme } from '../Chart/highchartsTheme';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
+import { useFaclonChartTheme, readCssVar } from '../Chart/highchartsTheme';
 import './BarChart.css';
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -27,8 +27,7 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
   /**
    * Group labels rendered on the visual Y-axis (left side). Highcharts keeps
    * the option key as `xAxis.categories` even though the categorical axis
-   * renders vertically for `type: 'bar'` — only the visual orientation
-   * swaps, the API stays consistent with `ColumnChart`.
+   * renders vertically for `type: 'bar'`.
    */
   categories: string[];
   /**
@@ -47,9 +46,7 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
    */
   showDataLabels?: boolean;
   /**
-   * Make the plot vertically scrollable when categories overflow. Because bars
-   * are horizontal, scrolling is vertical — the chart renders at
-   * `scrollableMinHeight` px tall and scrolls inside its container.
+   * Make the plot vertically scrollable when categories overflow.
    * @default false
    */
   scrollable?: boolean;
@@ -59,21 +56,44 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
    */
   scrollableMinHeight?: number;
   /**
-   * Fires when a bar is clicked. Typical use: time drill-down. Consumer owns
-   * the hierarchy state. When set, bars use a pointer cursor.
+   * Fires when a bar is clicked. Consumer owns drill-down state.
+   * When set, bars use a pointer cursor.
    */
   onPointClick?: (ctx: ChartPointClickContext) => void;
+  /**
+   * Override the default Faclon palette for this chart instance.
+   */
+  colors?: string[];
+  /**
+   * Category-axis (vertical) title label.
+   * Highcharts calls this `xAxis` internally even though it renders on the left for `type: 'bar'`.
+   */
+  xAxisTitle?: string;
+  /** Value-axis (horizontal) title label. */
+  yAxisTitle?: string;
+  /**
+   * Unit string appended to every value-axis tick label (e.g. `'ms'`, `'kg'`).
+   */
+  yAxisUnit?: string;
+  /**
+   * Vertical reference lines drawn across the plot area (value axis).
+   * Commonly used for target / threshold annotations on bar charts.
+   */
+  plotLines?: ChartPlotLine[];
+  /**
+   * Shaded value-axis bands across the plot area.
+   * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+   */
+  plotBands?: ChartPlotBand[];
+  /**
+   * Full Highcharts options escape hatch — deep-merged last after all
+   * computed options.
+   */
+  highchartsOptions?: Options;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   BarChart — horizontal grouped or stacked bar chart
-   ───────────────────────────────────────────────────────────────────────────
-   Wraps the design-system `Chart` base for the header / breadcrumb / actions /
-   filters / canvas layout, and renders a Highcharts bar instance inside the
-   canvas slot. The Faclon theme (colors, typography) comes from
-   `useFaclonChartTheme()` — every other Highcharts default is left
-   untouched, including the chart-type-aware axis title rotations Highcharts
-   handles internally for `type: 'bar'`.
+   BarChart
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
@@ -87,6 +107,13 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
       scrollable = false,
       scrollableMinHeight = 500,
       onPointClick,
+      colors,
+      xAxisTitle,
+      yAxisTitle,
+      yAxisUnit,
+      plotLines,
+      plotBands,
+      highchartsOptions,
       ...chartProps
     },
     ref,
@@ -101,8 +128,34 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
         color: s.color,
       }));
 
-      return {
+      const hcPlotBands = plotBands?.map((pb) => ({
+        from: pb.from,
+        to: pb.to,
+        color: pb.color ?? 'rgba(239,68,68,0.1)',
+        zIndex: pb.zIndex ?? 0,
+        ...(pb.label && {
+          label: { text: pb.label, align: pb.labelAlign ?? 'right' },
+        }),
+      }));
+
+      const hcPlotLines = plotLines?.map((pl) => ({
+        value: pl.value,
+        color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444',
+        width: pl.width ?? 2,
+        dashStyle: pl.dashStyle ?? 'Dash',
+        zIndex: pl.zIndex ?? 5,
+        ...(pl.label && {
+          label: {
+            text: pl.label,
+            align: pl.labelAlign ?? 'right',
+            style: { color: (pl.color ?? readCssVar('--border-error-default')) || '#ef4444' },
+          },
+        }),
+      }));
+
+      const computed: Options = {
         ...theme,
+        ...(colors && { colors }),
         chart: {
           ...theme.chart,
           type: 'bar',
@@ -113,6 +166,14 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
         xAxis: {
           ...theme.xAxis,
           categories,
+          ...(xAxisTitle !== undefined && { title: { ...theme.xAxis?.title, text: xAxisTitle } }),
+        },
+        yAxis: {
+          ...theme.yAxis,
+          ...(yAxisTitle !== undefined && { title: { ...theme.yAxis?.title, text: yAxisTitle } }),
+          ...(yAxisUnit && { labels: { ...theme.yAxis?.labels, format: `{value} ${yAxisUnit}` } }),
+          ...(hcPlotLines && { plotLines: hcPlotLines }),
+          ...(hcPlotBands && { plotBands: hcPlotBands }),
         },
         plotOptions: {
           bar: {
@@ -142,7 +203,9 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
         },
         series: seriesConfig,
       };
-    }, [theme, series, categories, stacked, showLegend, showDataLabels, scrollable, scrollableMinHeight, onPointClick]);
+
+      return highchartsOptions ? Highcharts.merge(computed, highchartsOptions) : computed;
+    }, [theme, series, categories, stacked, showLegend, showDataLabels, scrollable, scrollableMinHeight, onPointClick, colors, xAxisTitle, yAxisTitle, yAxisUnit, plotLines, plotBands, highchartsOptions]);
 
     return (
       <Chart ref={ref} {...chartProps}>

@@ -30,6 +30,9 @@ export interface TablePaginationProps {
   variant?: TablePaginationVariant;
   /** Override the auto-generated label. */
   label?: string | ((args: { start: number; end: number; total: number }) => string);
+  /** When `true` (default), changing page size resets to page 1. Set to `false`
+   *  for server-driven pagination where the parent manages page state. */
+  resetPageOnSizeChange?: boolean;
   onPageChange?: (args: { page: number }) => void;
   onPageSizeChange?: (args: { pageSize: number }) => void;
   className?: string;
@@ -62,6 +65,7 @@ export function TablePagination({
   showLabel = true,
   variant = 'simple',
   label,
+  resetPageOnSizeChange = true,
   onPageChange,
   onPageSizeChange,
   className,
@@ -111,7 +115,7 @@ export function TablePagination({
 
   const handlePageSize = (next: number) => {
     ctx.setPageSize(next);
-    if (page !== 0) ctx.setPage(0);
+    if (resetPageOnSizeChange && page !== 0) ctx.setPage(0);
     onPageSizeChange?.({ pageSize: next });
     setSizeOpen(false);
   };

@@ -1,33 +1,27 @@
-import { jsx as e } from "react/jsx-runtime";
-import { forwardRef as a } from "react";
-import { User as d } from "react-feather";
-import { cn as o } from "../../../utils/cn.js";
+import { jsx as r } from "react/jsx-runtime";
+import { forwardRef as p } from "react";
+import { cn as d } from "../../../utils/cn.js";
 /* empty css                     */
-const f = {
-  Inactive: "fds-stepper-indicator--inactive",
-  Active: "fds-stepper-indicator--active",
-  Success: "fds-stepper-indicator--success",
-  Warning: "fds-stepper-indicator--warning"
-}, m = 12, I = a(
-  ({ status: i = "Inactive", type: t = "Indicator", icon: s, className: c, ...n }, p) => {
-    const r = t === "Icon";
-    return /* @__PURE__ */ e(
-      "div",
-      {
-        ref: p,
-        className: o(
-          "fds-stepper-indicator",
-          r ? "fds-stepper-indicator--type-icon" : "fds-stepper-indicator--type-dot",
-          f[i],
-          c
-        ),
-        ...n,
-        children: r ? /* @__PURE__ */ e("span", { className: "fds-stepper-indicator__glyph", "aria-hidden": "true", children: s ?? /* @__PURE__ */ e(d, { size: m }) }) : /* @__PURE__ */ e("span", { className: "fds-stepper-indicator__dot", "aria-hidden": "true" })
-      }
-    );
-  }
+const n = {
+  positive: "fds-stepper-indicator--positive",
+  negative: "fds-stepper-indicator--negative",
+  notice: "fds-stepper-indicator--notice",
+  information: "fds-stepper-indicator--information",
+  primary: "fds-stepper-indicator--primary",
+  neutral: "fds-stepper-indicator--neutral"
+}, s = p(
+  ({ color: i = "neutral", isDisabled: t, className: e, ...a }, o) => /* @__PURE__ */ r(
+    "div",
+    {
+      ref: o,
+      className: d("fds-stepper-indicator", n[i], e),
+      "data-disabled": t || void 0,
+      ...a,
+      children: /* @__PURE__ */ r("span", { className: "fds-stepper-indicator__dot", "aria-hidden": "true" })
+    }
+  )
 );
-I.displayName = "StepperIndicator";
+s.displayName = "StepperIndicator";
 export {
-  I as StepperIndicator
+  s as StepperIndicator
 };

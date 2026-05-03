@@ -11,10 +11,10 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  gap: var(--spacing-06);
-  padding: var(--spacing-06);
+  gap: var(--spacing-05);
+  padding: var(--spacing-04);
   background-color: var(--background-surface-intense);
-  border: var(--fds-border-subtle);
+  border: 1px solid var(--border-gray-muted);
   border-radius: var(--global-border-radius-medium);
 }
 
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-02);
-  padding: var(--spacing-02);
+  padding: var(--spacing-02) var(--spacing-02) var(--spacing-02) 0;
   background-color: var(--background-surface-intense);
   border: none;
   border-radius: var(--global-border-radius-medium);
@@ -66,7 +66,9 @@
 
 .fds-chart__title:focus-visible {
   outline: none;
-  box-shadow: var(--fds-border-focus-ring);
+  box-shadow:
+    0 0 0 2px var(--background-surface-intense),
+    0 0 0 6px var(--border-focused-default);
 }
 
 .fds-chart__title-label {
@@ -134,5 +136,4 @@
   position: relative;
   width: 100%;
   min-height: 367px;
-  background-color: var(--background-surface-moderate);
 }

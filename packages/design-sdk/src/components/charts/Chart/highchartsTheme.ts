@@ -60,7 +60,7 @@ export const FACLON_CHART_PALETTE_TOKENS: readonly string[] = [
  * server (where `window` is undefined) so that the `||` fallback in the
  * theme builder picks up a sane default.
  */
-function readCssVar(name: string): string {
+export function readCssVar(name: string): string {
   if (typeof window === 'undefined') return '';
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }

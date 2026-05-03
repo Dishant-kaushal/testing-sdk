@@ -9,6 +9,7 @@
   gap: var(--fds-space-xs);
   align-items: flex-start;
   width: 100%;
+  min-width: 0;
 }
 
 .fds-counter-input__field-wrapper {

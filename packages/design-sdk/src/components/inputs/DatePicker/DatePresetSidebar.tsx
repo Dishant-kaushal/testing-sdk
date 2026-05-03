@@ -76,7 +76,6 @@ export function DatePresetSidebar({
     >
       {presets.map((preset) => (
         <DatePresetBase
-          key={preset.value}
           id={preset.value}
           label={preset.label}
           isSelected={selectedValue === preset.value}

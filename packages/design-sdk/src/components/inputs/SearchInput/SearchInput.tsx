@@ -9,11 +9,12 @@ import {
   type HTMLAttributes,
   type KeyboardEvent,
 } from 'react';
+import { createPortal } from 'react-dom';
 import { TextInput } from '../TextInput/TextInput';
 import { MultiSelectField, type SelectInputTag } from '../SelectInput/MultiSelectField';
 import { cn } from '../../../utils/cn';
-import { useClickOutside } from '../../../hooks/useClickOutside';
 import { useControllableState } from '../../../hooks/useControllableState';
+import { useDropdownPortal } from '../../../hooks/useDropdownPortal';
 import './SearchInput.css';
 
 export type SearchInputType = 'single' | 'multiple' | 'multiple-flex';
@@ -36,7 +37,7 @@ export interface SearchInputHandle {
 export interface SearchInputProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'onFocus' | 'onBlur' | 'onSubmit'> {
   type?: SearchInputType;
-  label: string;
+  label?: string;
   name?: string;
   placeholder?: string;
   /** Controlled input value. Omit + set `defaultValue` for uncontrolled mode. */
@@ -79,7 +80,7 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
   (
     {
       type = 'single',
-      label,
+      label = '',
       name,
       placeholder = 'Search',
       inputValue,
@@ -103,7 +104,7 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
       onBackspace,
       onSubmit,
       noResultsText = 'No results found',
-      showClearButton = false,
+      showClearButton = true,
       onClearButtonClicked,
       isLoading = false,
       ...rest
@@ -144,7 +145,6 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
     const closingRef = useRef(false);
 
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const popoverRef = useRef<HTMLDivElement>(null);
     const innerInputRef = useRef<HTMLInputElement>(null);
 
     const popoverId = useId();
@@ -157,9 +157,7 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
       [setOpenBase],
     );
 
-    useClickOutside(wrapperRef, () => {
-      if (open) setOpen(false);
-    });
+    const { portalRef: popoverRef, pos } = useDropdownPortal(wrapperRef, open, () => setOpen(false));
 
     const handleFocus = () => {
       if (closingRef.current) {
@@ -323,20 +321,20 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
             leadingIcon={icon}
             onFocus={handleFocus}
             onBlur={onBlur}
-          >
-            {children}
-          </MultiSelectField>
-          {open && (
-            <div
-              ref={popoverRef}
-              id={popoverId}
-              className="fds-search-input__popover"
-            >
-              {children || (
-                <div className="fds-search-input__empty">{noResultsText}</div>
-              )}
-            </div>
-          )}
+          />
+          {open && pos && typeof document !== 'undefined' &&
+            createPortal(
+              <div
+                ref={popoverRef}
+                id={popoverId}
+                className="fds-search-input__popover"
+                style={{ top: pos.top, left: pos.left, width: pos.width }}
+              >
+                {children || <div className="fds-search-input__empty">{noResultsText}</div>}
+              </div>,
+              document.body,
+            )
+          }
         </div>
       );
     }
@@ -372,15 +370,19 @@ export const SearchInput = forwardRef<SearchInputHandle, SearchInputProps>(
           aria-controls={open ? popoverId : undefined}
         />
 
-        {open && (
-          <div ref={popoverRef} id={popoverId} className="fds-search-input__popover">
-            {children || (
-              <div className="fds-search-input__empty">
-                {noResultsText}
-              </div>
-            )}
-          </div>
-        )}
+        {open && pos && typeof document !== 'undefined' &&
+          createPortal(
+            <div
+              ref={popoverRef}
+              id={popoverId}
+              className="fds-search-input__popover"
+              style={{ top: pos.top, left: pos.left, width: pos.width }}
+            >
+              {children || <div className="fds-search-input__empty">{noResultsText}</div>}
+            </div>,
+            document.body,
+          )
+        }
       </div>
     );
   },
