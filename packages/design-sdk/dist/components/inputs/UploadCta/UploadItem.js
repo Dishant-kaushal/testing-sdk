@@ -2,13 +2,13 @@ import { jsx as e, jsxs as i, Fragment as m } from "react/jsx-runtime";
 import { CheckCircle as b, Download as k, Eye as w, X as B } from "react-feather";
 import { cn as d } from "../../../utils/cn.js";
 import { IconButton as l } from "../../actions/IconButton/IconButton.js";
-import { Divider as n } from "../../layout/Divider/Divider.js";
+import { Divider as t } from "../../layout/Divider/Divider.js";
 import { ProgressBar as C } from "../../feedback/ProgressBar/ProgressBar.js";
 import { FileThumbnail as x } from "./FileThumbnail.js";
 /* empty css               */
 function M({
   fileName: r,
-  fileSize: t,
+  fileSize: n,
   fileType: c = "xyz",
   uploadState: s = "completed",
   showDownload: p = !0,
@@ -40,7 +40,7 @@ function M({
               /* @__PURE__ */ e("span", { className: d("fds-upload-item__name BodyMediumMedium", (a || o) && "fds-upload-item__name--wide"), children: o ? `Uploading ${r} ...` : r }),
               s === "completed" && /* @__PURE__ */ e(b, { size: 14, className: "fds-upload-item__status-icon" })
             ] }),
-            a ? /* @__PURE__ */ e("span", { className: "fds-upload-item__error BodySmallRegular", children: u }) : /* @__PURE__ */ e("span", { className: "fds-upload-item__size BodySmallRegular", children: t })
+            a ? /* @__PURE__ */ e("span", { className: "fds-upload-item__error BodySmallRegular", children: u }) : /* @__PURE__ */ e("span", { className: "fds-upload-item__size BodySmallRegular", children: n })
           ] }),
           /* @__PURE__ */ i("div", { className: "fds-upload-item__actions", children: [
             y && /* @__PURE__ */ i("div", { className: "fds-upload-item__hover-actions", children: [
@@ -54,7 +54,7 @@ function M({
                     "aria-label": "Download file"
                   }
                 ),
-                /* @__PURE__ */ e(n, { orientation: "Vertical", thickness: "Thin", variant: "Muted", className: "fds-upload-item__divider" })
+                /* @__PURE__ */ e(t, { orientation: "Vertical", thickness: "Thin", variant: "Muted", className: "fds-upload-item__divider" })
               ] }),
               f && /* @__PURE__ */ i(m, { children: [
                 /* @__PURE__ */ e(
@@ -66,7 +66,7 @@ function M({
                     "aria-label": "Preview file"
                   }
                 ),
-                /* @__PURE__ */ e(n, { orientation: "Vertical", thickness: "Thin", variant: "Muted", className: "fds-upload-item__divider" })
+                /* @__PURE__ */ e(t, { orientation: "Vertical", thickness: "Thin", variant: "Muted", className: "fds-upload-item__divider" })
               ] })
             ] }),
             /* @__PURE__ */ e(
@@ -84,7 +84,7 @@ function M({
           C,
           {
             size: "Small",
-            intent: "None",
+            intent: "Neutral",
             value: _,
             showPercentage: !1,
             className: "fds-upload-item__progress"

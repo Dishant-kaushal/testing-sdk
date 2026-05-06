@@ -7,6 +7,10 @@ export interface BreadcrumbItemProps extends Omit<HTMLAttributes<HTMLLIElement>,
     type?: BreadcrumbItemType;
     /** Whether this is the current/active page */
     currentItem?: boolean;
+    /** Alias of `currentItem`. */
+    isCurrentPage?: boolean;
+    /** Accessible name (alias for `aria-label`). */
+    accessibilityLabel?: string;
     /** Whether to show the "/" separator after this item */
     showSeparator?: boolean;
     /** Size — controls typography and icon dimensions */
@@ -26,7 +30,7 @@ export interface BreadcrumbItemProps extends Omit<HTMLAttributes<HTMLLIElement>,
     /** Accessible label (especially useful for Icon type) */
     'aria-label'?: string;
 }
-export declare function BreadcrumbItem({ type, currentItem, showSeparator, size, value, icon, href, target, rel, onClick, 'aria-label': ariaLabel, className, ...rest }: BreadcrumbItemProps): import("react/jsx-runtime").JSX.Element;
+export declare function BreadcrumbItem({ type, currentItem, isCurrentPage, showSeparator, size, value, icon, href, target, rel, onClick, 'aria-label': ariaLabelProp, accessibilityLabel, className, ...rest }: BreadcrumbItemProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace BreadcrumbItem {
     var displayName: string;
 }

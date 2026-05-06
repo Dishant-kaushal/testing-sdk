@@ -1,4 +1,5 @@
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
+import type { Options } from 'highcharts';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
 import './BarChart.css';
 /** A single bar-chart series — name + numeric data points + optional color override. */
 export interface BarSeries {
@@ -15,8 +16,7 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
     /**
      * Group labels rendered on the visual Y-axis (left side). Highcharts keeps
      * the option key as `xAxis.categories` even though the categorical axis
-     * renders vertically for `type: 'bar'` — only the visual orientation
-     * swaps, the API stays consistent with `ColumnChart`.
+     * renders vertically for `type: 'bar'`.
      */
     categories: string[];
     /**
@@ -35,9 +35,7 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      */
     showDataLabels?: boolean;
     /**
-     * Make the plot vertically scrollable when categories overflow. Because bars
-     * are horizontal, scrolling is vertical — the chart renders at
-     * `scrollableMinHeight` px tall and scrolls inside its container.
+     * Make the plot vertically scrollable when categories overflow.
      * @default false
      */
     scrollable?: boolean;
@@ -47,9 +45,39 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      */
     scrollableMinHeight?: number;
     /**
-     * Fires when a bar is clicked. Typical use: time drill-down. Consumer owns
-     * the hierarchy state. When set, bars use a pointer cursor.
+     * Fires when a bar is clicked. Consumer owns drill-down state.
+     * When set, bars use a pointer cursor.
      */
     onPointClick?: (ctx: ChartPointClickContext) => void;
+    /**
+     * Override the default Faclon palette for this chart instance.
+     */
+    colors?: string[];
+    /**
+     * Category-axis (vertical) title label.
+     * Highcharts calls this `xAxis` internally even though it renders on the left for `type: 'bar'`.
+     */
+    xAxisTitle?: string;
+    /** Value-axis (horizontal) title label. */
+    yAxisTitle?: string;
+    /**
+     * Unit string appended to every value-axis tick label (e.g. `'ms'`, `'kg'`).
+     */
+    yAxisUnit?: string;
+    /**
+     * Vertical reference lines drawn across the plot area (value axis).
+     * Commonly used for target / threshold annotations on bar charts.
+     */
+    plotLines?: ChartPlotLine[];
+    /**
+     * Shaded value-axis bands across the plot area.
+     * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+     */
+    plotBands?: ChartPlotBand[];
+    /**
+     * Full Highcharts options escape hatch — deep-merged last after all
+     * computed options.
+     */
+    highchartsOptions?: Options;
 }
 export declare const BarChart: import("react").ForwardRefExoticComponent<BarChartProps & import("react").RefAttributes<HTMLDivElement>>;

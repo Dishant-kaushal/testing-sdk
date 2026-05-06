@@ -28,5 +28,7 @@ export interface LinkButtonProps extends Omit<HTMLAttributes<HTMLElement>, 'onCl
     rel?: string;
     /** Click handler */
     onClick?: React.MouseEventHandler;
+    /** Accessible name (sets `aria-label`). Required for icon-only links where no text is shown. */
+    accessibilityLabel?: string;
 }
 export declare const LinkButton: import("react").ForwardRefExoticComponent<LinkButtonProps & import("react").RefAttributes<HTMLButtonElement | HTMLAnchorElement>>;

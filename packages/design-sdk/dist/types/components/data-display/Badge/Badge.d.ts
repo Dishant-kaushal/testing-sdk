@@ -10,12 +10,14 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
     emphasis?: BadgeEmphasis;
     /** Size of the badge */
     size?: BadgeSize;
-    /** Badge label text */
+    /** Badge label text. Preferred over `children`. */
     label?: string;
+    /** Badge content — used when `label` is omitted (fallback). */
+    children?: ReactNode;
     /** Optional leading icon slot */
     leadingIcon?: ReactNode;
 }
-export declare function Badge({ color, emphasis, size, label, leadingIcon, className, ...props }: BadgeProps): import("react/jsx-runtime").JSX.Element;
+export declare function Badge({ color, emphasis, size, label, children, leadingIcon, className, ...props }: BadgeProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace Badge {
     var displayName: string;
 }

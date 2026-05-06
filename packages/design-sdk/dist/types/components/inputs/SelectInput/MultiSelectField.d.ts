@@ -27,6 +27,8 @@ export interface MultiSelectFieldProps {
     onClick?: (e: MouseEvent<HTMLDivElement>) => void;
     onFocus?: () => void;
     onBlur?: () => void;
+    /** Fires when the trailing chevron is clicked. Parent toggles the dropdown. */
+    onChevronClick?: () => void;
     className?: string;
 }
 export declare const MultiSelectField: import("react").ForwardRefExoticComponent<MultiSelectFieldProps & import("react").RefAttributes<HTMLInputElement>>;

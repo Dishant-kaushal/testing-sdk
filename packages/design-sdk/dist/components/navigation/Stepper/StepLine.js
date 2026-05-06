@@ -1,13 +1,22 @@
 import { jsx as t, jsxs as a } from "react/jsx-runtime";
-import { Divider as u } from "../../layout/Divider/Divider.js";
-import { StepperIndicator as M } from "./StepperIndicator.js";
-import { useStepper as b } from "./StepperContext.js";
+import { Divider as f } from "../../layout/Divider/Divider.js";
+import { StepperIndicator as b } from "./StepperIndicator.js";
+import { useStepper as w } from "./StepperContext.js";
 /* empty css             */
-const C = 6, n = 31, f = -26 / 2, N = /* @__PURE__ */ t(M, { color: "neutral" });
+const u = 6, n = 31, h = 2;
+function y(e) {
+  const i = e === "Large" ? 24 : 20;
+  return {
+    markerBg: i,
+    markerLeftAlignment: (i + h) / 2,
+    markerTopAlignment: -(i + h * 2 + 2) / 2
+  };
+}
+const N = /* @__PURE__ */ t(b, { color: "neutral" });
 function o(e) {
   return e === "none" || e === "end";
 }
-function r(e) {
+function s(e) {
   return e === "none" || e === "start";
 }
 function d(e) {
@@ -16,7 +25,7 @@ function d(e) {
     marginLeft: e.marginLeft
   };
   return e.fixedHeight != null ? i.height = `${e.fixedHeight}px` : i.flex = "1 1 0", /* @__PURE__ */ t(
-    u,
+    f,
     {
       orientation: "Vertical",
       thickness: "Thicker",
@@ -27,9 +36,9 @@ function d(e) {
     }
   );
 }
-function h(e) {
+function c(e) {
   return /* @__PURE__ */ t(
-    u,
+    f,
     {
       orientation: "Horizontal",
       thickness: "Thicker",
@@ -40,8 +49,8 @@ function h(e) {
     }
   );
 }
-function m({ isDotted: e, visible: i }) {
-  const s = { visibility: i ? "visible" : "hidden" };
+function C({ isDotted: e, visible: i }) {
+  const r = { visibility: i ? "visible" : "hidden" };
   return e ? /* @__PURE__ */ a(
     "svg",
     {
@@ -50,7 +59,7 @@ function m({ isDotted: e, visible: i }) {
       height: "20",
       viewBox: "0 0 20 20",
       fill: "currentColor",
-      style: s,
+      style: r,
       "aria-hidden": "true",
       children: [
         /* @__PURE__ */ t("path", { d: "M2 1C2 1.55228 1.55228 2 1 2C0.447715 2 0 1.55228 0 1C0 0.447715 0.447715 0 1 0C1.55228 0 2 0.447715 2 1Z" }),
@@ -70,7 +79,7 @@ function m({ isDotted: e, visible: i }) {
       height: "14",
       viewBox: "0 0 20 14",
       fill: "none",
-      style: s,
+      style: r,
       "aria-hidden": "true",
       children: /* @__PURE__ */ t(
         "path",
@@ -84,7 +93,7 @@ function m({ isDotted: e, visible: i }) {
   );
 }
 function g({ isDotted: e, visible: i }) {
-  const s = { visibility: i ? "visible" : "hidden" };
+  const r = { visibility: i ? "visible" : "hidden" };
   return e ? /* @__PURE__ */ a(
     "svg",
     {
@@ -93,7 +102,7 @@ function g({ isDotted: e, visible: i }) {
       height: "5",
       viewBox: "0 0 42 5",
       fill: "currentColor",
-      style: s,
+      style: r,
       "aria-hidden": "true",
       children: [
         /* @__PURE__ */ t("path", { d: "M32 1C32 1.55228 31.5523 2 31 2C30.4477 2 30 1.55228 30 1C30 0.447715 30.4477 0 31 0C31.5523 0 32 0.447715 32 1Z" }),
@@ -113,7 +122,7 @@ function g({ isDotted: e, visible: i }) {
       height: "5",
       viewBox: "0 0 33 5",
       fill: "none",
-      style: s,
+      style: r,
       "aria-hidden": "true",
       children: /* @__PURE__ */ t(
         "path",
@@ -126,7 +135,7 @@ function g({ isDotted: e, visible: i }) {
     }
   );
 }
-function c(e) {
+function m(e) {
   const i = e.isIndented ? n : void 0;
   return /* @__PURE__ */ a("span", { className: "fds-step-line__column", style: { marginLeft: i }, children: [
     /* @__PURE__ */ t(
@@ -134,30 +143,30 @@ function c(e) {
       {
         isDotted: o(e.stepProgress),
         visible: e.shouldShowStartBranch,
-        fixedHeight: C
+        fixedHeight: u
       }
     ),
     /* @__PURE__ */ t(
       "span",
       {
         className: "fds-step-line__marker",
-        style: { marginLeft: -11 },
+        style: { marginLeft: -e.geometry.markerLeftAlignment },
         children: e.marker
       }
     ),
     /* @__PURE__ */ t(
       d,
       {
-        isDotted: r(e.stepProgress),
+        isDotted: s(e.stepProgress),
         visible: e.shouldShowEndBranch
       }
     )
   ] });
 }
-function k(e) {
+function B(e) {
   return /* @__PURE__ */ a("span", { className: "fds-step-line__column", children: [
     /* @__PURE__ */ t(
-      m,
+      C,
       {
         visible: e.shouldShowStartBranch,
         isDotted: o(e.stepProgress)
@@ -168,8 +177,8 @@ function k(e) {
       {
         className: "fds-step-line__marker",
         style: {
-          marginLeft: -11 + n,
-          marginTop: f
+          marginLeft: -e.geometry.markerLeftAlignment + n,
+          marginTop: e.geometry.markerTopAlignment
         },
         children: e.marker
       }
@@ -179,88 +188,88 @@ function k(e) {
       {
         visible: e.shouldShowEndBranch,
         marginLeft: n,
-        isDotted: r(e.stepProgress)
-      }
-    )
-  ] });
-}
-function w(e) {
-  return /* @__PURE__ */ a("span", { className: "fds-step-line__column", children: [
-    /* @__PURE__ */ t(
-      d,
-      {
-        visible: e.shouldShowStartBranch,
-        marginLeft: n,
-        fixedHeight: C,
-        isDotted: o(e.stepProgress)
-      }
-    ),
-    /* @__PURE__ */ t(
-      "span",
-      {
-        className: "fds-step-line__marker",
-        style: { marginLeft: -11 + n },
-        children: e.marker
-      }
-    ),
-    /* @__PURE__ */ t(
-      d,
-      {
-        marginLeft: n,
-        visible: e.shouldShowEndBranch,
-        isDotted: r(e.stepProgress)
-      }
-    ),
-    /* @__PURE__ */ t(
-      g,
-      {
-        visible: e.shouldShowEndBranch,
-        isDotted: r(e.stepProgress)
-      }
-    )
-  ] });
-}
-function L(e) {
-  return /* @__PURE__ */ a("span", { className: "fds-step-line__column", children: [
-    /* @__PURE__ */ t(
-      m,
-      {
-        visible: e.shouldShowStartBranch,
-        isDotted: o(e.stepProgress)
-      }
-    ),
-    /* @__PURE__ */ t(
-      "span",
-      {
-        className: "fds-step-line__marker",
-        style: {
-          marginLeft: -11 + n,
-          marginTop: f
-        },
-        children: e.marker
-      }
-    ),
-    /* @__PURE__ */ t(
-      d,
-      {
-        marginLeft: n,
-        visible: e.shouldShowEndBranch,
-        isDotted: r(e.stepProgress)
-      }
-    ),
-    /* @__PURE__ */ t(
-      g,
-      {
-        visible: e.shouldShowEndBranch,
-        isDotted: r(e.stepProgress)
+        isDotted: s(e.stepProgress)
       }
     )
   ] });
 }
 function D(e) {
+  return /* @__PURE__ */ a("span", { className: "fds-step-line__column", children: [
+    /* @__PURE__ */ t(
+      d,
+      {
+        visible: e.shouldShowStartBranch,
+        marginLeft: n,
+        fixedHeight: u,
+        isDotted: o(e.stepProgress)
+      }
+    ),
+    /* @__PURE__ */ t(
+      "span",
+      {
+        className: "fds-step-line__marker",
+        style: { marginLeft: -e.geometry.markerLeftAlignment + n },
+        children: e.marker
+      }
+    ),
+    /* @__PURE__ */ t(
+      d,
+      {
+        marginLeft: n,
+        visible: e.shouldShowEndBranch,
+        isDotted: s(e.stepProgress)
+      }
+    ),
+    /* @__PURE__ */ t(
+      g,
+      {
+        visible: e.shouldShowEndBranch,
+        isDotted: s(e.stepProgress)
+      }
+    )
+  ] });
+}
+function x(e) {
+  return /* @__PURE__ */ a("span", { className: "fds-step-line__column", children: [
+    /* @__PURE__ */ t(
+      C,
+      {
+        visible: e.shouldShowStartBranch,
+        isDotted: o(e.stepProgress)
+      }
+    ),
+    /* @__PURE__ */ t(
+      "span",
+      {
+        className: "fds-step-line__marker",
+        style: {
+          marginLeft: -e.geometry.markerLeftAlignment + n,
+          marginTop: e.geometry.markerTopAlignment
+        },
+        children: e.marker
+      }
+    ),
+    /* @__PURE__ */ t(
+      d,
+      {
+        marginLeft: n,
+        visible: e.shouldShowEndBranch,
+        isDotted: s(e.stepProgress)
+      }
+    ),
+    /* @__PURE__ */ t(
+      g,
+      {
+        visible: e.shouldShowEndBranch,
+        isDotted: s(e.stepProgress)
+      }
+    )
+  ] });
+}
+function Z(e) {
   return /* @__PURE__ */ a("span", { className: "fds-step-line__row", children: [
     /* @__PURE__ */ t(
-      h,
+      c,
       {
         isDotted: o(e.stepProgress),
         visible: e.shouldShowStartBranch
@@ -268,30 +277,31 @@ function D(e) {
     ),
     /* @__PURE__ */ t("span", { className: "fds-step-line__marker", children: e.marker }),
     /* @__PURE__ */ t(
-      h,
+      c,
       {
-        isDotted: r(e.stepProgress),
+        isDotted: s(e.stepProgress),
         visible: e.shouldShowEndBranch
       }
     )
   ] });
 }
-function B({
+function A({
   stepType: e,
   shouldShowStartBranch: i,
-  shouldShowEndBranch: s,
+  shouldShowEndBranch: r,
   marker: v,
   stepProgress: _
 }) {
-  const { orientation: S } = b(), l = {
-    marker: v ?? N,
+  const { orientation: S, size: k } = w(), L = v ?? N, M = y(k), l = {
+    marker: L,
     stepProgress: _,
     shouldShowStartBranch: i,
-    shouldShowEndBranch: s
+    shouldShowEndBranch: r,
+    geometry: M
   };
-  return S === "horizontal" ? /* @__PURE__ */ t(D, { ...l }) : e === "start" ? /* @__PURE__ */ t(k, { ...l }) : e === "middle" ? /* @__PURE__ */ t(c, { ...l, isIndented: !0 }) : e === "end" ? /* @__PURE__ */ t(w, { ...l }) : e === "single-item" ? /* @__PURE__ */ t(L, { ...l }) : /* @__PURE__ */ t(c, { ...l, isIndented: !1 });
+  return S === "horizontal" ? /* @__PURE__ */ t(Z, { ...l }) : e === "start" ? /* @__PURE__ */ t(B, { ...l }) : e === "middle" ? /* @__PURE__ */ t(m, { ...l, isIndented: !0 }) : e === "end" ? /* @__PURE__ */ t(D, { ...l }) : e === "single-item" ? /* @__PURE__ */ t(x, { ...l }) : /* @__PURE__ */ t(m, { ...l, isIndented: !1 });
 }
-B.displayName = "StepLine";
+A.displayName = "StepLine";
 export {
-  B as StepLine
+  A as StepLine
 };

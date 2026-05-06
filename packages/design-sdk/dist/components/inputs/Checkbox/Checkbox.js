@@ -1,13 +1,13 @@
-import { jsxs as i, jsx as e } from "react/jsx-runtime";
-import { forwardRef as v, useId as y, useRef as L, useCallback as d, useEffect as N } from "react";
-import { cn as h } from "../../../utils/cn.js";
+import { jsxs as d, jsx as e } from "react/jsx-runtime";
+import { forwardRef as L, useId as N, useRef as B, useCallback as h, useEffect as M } from "react";
+import { cn as f } from "../../../utils/cn.js";
 /* empty css             */
-const B = {
+const D = {
   Small: "BodySmallRegular",
   Medium: "BodyMediumRegular",
   Large: "BodyLargeRegular"
 };
-function M() {
+function E() {
   return /* @__PURE__ */ e("svg", { viewBox: "0 0 12 12", fill: "none", xmlns: "http://www.w3.org/2000/svg", "aria-hidden": "true", children: /* @__PURE__ */ e(
     "path",
     {
@@ -16,7 +16,7 @@ function M() {
     }
   ) });
 }
-function D() {
+function R() {
   return /* @__PURE__ */ e("svg", { viewBox: "0 0 12 12", fill: "none", xmlns: "http://www.w3.org/2000/svg", "aria-hidden": "true", children: /* @__PURE__ */ e(
     "path",
     {
@@ -25,67 +25,68 @@ function D() {
     }
   ) });
 }
-const E = v(
+const H = L(
   ({
-    label: f,
+    label: u,
+    children: b,
     size: a = "Small",
-    isDisabled: u = !1,
+    isDisabled: m = !1,
     isIndeterminate: s = !1,
-    className: b,
-    id: m,
-    disabled: x,
-    onChange: p,
-    ...k
+    className: x,
+    id: p,
+    disabled: k,
+    onChange: C,
+    ...w
   }, n) => {
-    const C = y(), t = m ?? C, o = u || x || !1, r = L(null), w = d(
+    const t = b ?? u, _ = N(), i = p ?? _, o = m || k || !1, l = B(null), g = h(
       (c) => {
-        r.current = c, typeof n == "function" ? n(c) : n && (n.current = c);
+        l.current = c, typeof n == "function" ? n(c) : n && (n.current = c);
       },
       [n]
     );
-    N(() => {
-      r.current && (r.current.indeterminate = s);
+    M(() => {
+      l.current && (l.current.indeterminate = s);
     }, [s]);
-    const _ = d(
+    const v = h(
       (c) => {
         if (c.key === "Enter") {
           c.preventDefault();
-          const l = c.currentTarget;
-          l.checked = !l.checked, l.dispatchEvent(new Event("change", { bubbles: !0 }));
+          const r = c.currentTarget;
+          r.checked = !r.checked, r.dispatchEvent(new Event("change", { bubbles: !0 }));
         }
       },
       []
-    ), g = h(
+    ), y = f(
       "fds-checkbox",
       `fds-checkbox--size-${a.toLowerCase()}`,
       o && "fds-checkbox--disabled",
       s && "fds-checkbox--indeterminate",
-      b
+      x
     );
-    return /* @__PURE__ */ i("label", { className: g, htmlFor: t, children: [
+    return /* @__PURE__ */ d("label", { className: y, htmlFor: i, children: [
       /* @__PURE__ */ e(
         "input",
         {
-          ref: w,
+          ref: g,
           className: "fds-checkbox__input",
           type: "checkbox",
-          id: t,
+          id: i,
           disabled: o,
           "aria-disabled": o || void 0,
-          onChange: p,
-          onKeyDown: _,
-          ...k
+          onChange: C,
+          onKeyDown: v,
+          ...w
         }
       ),
-      /* @__PURE__ */ i("span", { className: "fds-checkbox__box", "aria-hidden": "true", children: [
-        /* @__PURE__ */ e("span", { className: "fds-checkbox__icon fds-checkbox__icon--check", children: /* @__PURE__ */ e(M, {}) }),
-        /* @__PURE__ */ e("span", { className: "fds-checkbox__icon fds-checkbox__icon--minus", children: /* @__PURE__ */ e(D, {}) })
+      /* @__PURE__ */ d("span", { className: "fds-checkbox__box", "aria-hidden": "true", children: [
+        /* @__PURE__ */ e("span", { className: "fds-checkbox__icon fds-checkbox__icon--check", children: /* @__PURE__ */ e(E, {}) }),
+        /* @__PURE__ */ e("span", { className: "fds-checkbox__icon fds-checkbox__icon--minus", children: /* @__PURE__ */ e(R, {}) })
       ] }),
-      /* @__PURE__ */ e("span", { className: h("fds-checkbox__label", B[a]), children: f })
+      t != null && /* @__PURE__ */ e("span", { className: f("fds-checkbox__label", D[a]), children: t })
     ] });
   }
 );
-E.displayName = "Checkbox";
+H.displayName = "Checkbox";
 export {
-  E as Checkbox
+  H as Checkbox
 };

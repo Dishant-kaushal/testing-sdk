@@ -1,30 +1,32 @@
-import { jsxs as e, jsx as r } from "react/jsx-runtime";
-import { cn as d } from "../../../utils/cn.js";
+import { jsxs as n, jsx as r } from "react/jsx-runtime";
+import { forwardRef as p } from "react";
+import { cn as t } from "../../../utils/cn.js";
 /* empty css            */
-function t({
-  color: n = "Brand",
+const c = p(function({
+  color: s = "Brand",
   size: i = "Medium",
-  label: s,
-  labelPosition: a = "Bottom",
-  accessibilityLabel: o = "Loading",
+  label: e,
+  labelPosition: o = "Right",
+  accessibilityLabel: a = "Loading",
   className: C,
   ...l
-}) {
-  return /* @__PURE__ */ e(
+}, d) {
+  return /* @__PURE__ */ n(
     "div",
     {
-      role: "status",
-      "aria-label": o,
-      className: d(
+      ref: d,
+      role: "progressbar",
+      "aria-label": a,
+      className: t(
         "fds-spinner",
-        `fds-spinner--color-${n.toLowerCase()}`,
+        `fds-spinner--color-${s.toLowerCase()}`,
         `fds-spinner--size-${i.toLowerCase()}`,
-        s && `fds-spinner--label-${a.toLowerCase()}`,
+        e && `fds-spinner--label-${o.toLowerCase()}`,
         C
       ),
       ...l,
       children: [
-        /* @__PURE__ */ r("div", { className: "fds-spinner__indicator", children: /* @__PURE__ */ e(
+        /* @__PURE__ */ r("div", { className: "fds-spinner__indicator", children: /* @__PURE__ */ n(
           "svg",
           {
             className: "fds-spinner__svg",
@@ -58,12 +60,12 @@ function t({
             ]
           }
         ) }),
-        s && /* @__PURE__ */ r("span", { className: "fds-spinner__label BodySmallRegular", children: s })
+        e && /* @__PURE__ */ r("span", { className: "fds-spinner__label BodySmallRegular", children: e })
       ]
     }
   );
-}
-t.displayName = "Spinner";
+});
+c.displayName = "Spinner";
 export {
-  t as Spinner
+  c as Spinner
 };

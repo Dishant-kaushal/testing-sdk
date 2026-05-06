@@ -18,6 +18,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
     footer?: ReactNode;
     /** Alternative: pass all content as children instead of header/body/footer slots */
     children?: ReactNode;
+    /** Accessible name for the card region. Sets `aria-label`. */
+    accessibilityLabel?: string;
+    /** href — when set, the card renders as an `<a>` (linkable card). */
+    href?: string;
+    /** target — paired with `href`. */
+    target?: string;
 }
 export declare function Card({ elevation, isHoverable, isHoverScaled, isSelected, header, body, footer, children, className, ...props }: CardProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace Card {

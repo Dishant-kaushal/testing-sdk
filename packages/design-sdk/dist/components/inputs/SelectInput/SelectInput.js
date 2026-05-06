@@ -1,81 +1,81 @@
-import { jsxs as U, jsx as i } from "react/jsx-runtime";
-import { forwardRef as C, useRef as g, useCallback as y, useEffect as G } from "react";
-import { createPortal as H } from "react-dom";
+import { jsxs as B, jsx as i } from "react/jsx-runtime";
+import { forwardRef as $, useRef as k, useCallback as y, useEffect as U } from "react";
+import { createPortal as G } from "react-dom";
 import { ChevronDown as I } from "react-feather";
-import { cn as F } from "../../../utils/cn.js";
+import { cn as O } from "../../../utils/cn.js";
 import { TextInput as b } from "../TextInput/TextInput.js";
 import { MultiSelectField as ee } from "./MultiSelectField.js";
 import { useControllableState as te } from "../../../hooks/useControllableState.js";
 import { useDropdownPortal as oe } from "../../../hooks/useDropdownPortal.js";
 /* empty css                */
-const re = C(
+const re = $(
   ({
-    multiType: J = "multiple",
-    label: O,
-    name: R,
-    placeholder: k,
-    value: L,
+    multiType: H = "multiple",
+    label: S,
+    name: F,
+    placeholder: R,
+    value: J,
     tags: q,
-    maxVisibleTags: Q = 2,
+    maxVisibleTags: L = 2,
     helpText: x,
     errorText: A,
     validationState: m = "none",
     isDisabled: s = !1,
     searchable: o = !1,
-    inputValue: N,
-    onInputChange: c,
-    isOpen: T,
-    onOpenChange: W,
-    leadingIcon: h,
-    leadingText: D,
-    onBackspace: X,
-    children: d,
-    onClick: a,
+    inputValue: h,
+    onInputChange: l,
+    isOpen: Q,
+    onOpenChange: T,
+    leadingIcon: D,
+    leadingText: N,
+    onBackspace: W,
+    children: a,
+    onClick: d,
     className: P
-  }, E) => {
-    const l = q != null, v = g(null), [Y, K] = te({
-      value: T,
+  }, M) => {
+    const c = q != null, v = k(null), [X, C] = te({
+      value: Q,
       defaultValue: !1,
-      onChange: W
-    }), t = Y ?? !1, M = g(t), w = g(!1), n = y(
+      onChange: T
+    }), t = X ?? !1, E = k(t), w = k(!1), n = y(
       (e) => {
-        e || (w.current = !0), K(e);
+        e || (w.current = !0), C(e);
       },
-      [K]
+      [C]
     ), { portalRef: p, pos: f } = oe(v, t, () => n(!1));
-    G(() => {
-      t && !o && !l && requestAnimationFrame(() => {
+    U(() => {
+      t && !o && !c && requestAnimationFrame(() => {
         var u;
         const e = (u = p.current) == null ? void 0 : u.querySelector(
           '[role="menuitem"]:not([aria-disabled="true"])'
         );
         e == null || e.focus();
       });
-    }, [t, o, l, p]), G(() => {
-      M.current && !t && requestAnimationFrame(() => {
+    }, [t, o, c, p]), U(() => {
+      E.current && !t && requestAnimationFrame(() => {
         var u;
         const e = (u = v.current) == null ? void 0 : u.querySelector(
           ".fds-text-input__input, .fds-select-input__multi-input"
         );
         e == null || e.focus();
-      }), M.current = t;
+      }), E.current = t;
     }, [t]);
-    const j = y(() => {
+    const K = y(() => {
       if (w.current) {
         w.current = !1;
         return;
       }
       !s && o && n(!0);
-    }, [s, o, n]), V = y(
+    }, [s, o, n]), j = y(
       (e) => {
-        s || e.target.closest(".fds-select-input__popover") || (a == null || a(e), o || n(!t));
+        s || e.target.closest(".fds-select-input__popover") || (d == null || d(e), o || n(!t));
       },
-      [s, t, o, a, n]
-    ), z = y(
+      [s, t, o, d, n]
+    ), V = y(
       (e) => {
-        var B;
+        var z;
         if (s) return;
-        const _ = e.target.getAttribute("role") === "menuitem", S = () => {
+        const _ = e.target.getAttribute("role") === "menuitem", g = () => {
           var r;
           return (r = p.current) == null ? void 0 : r.querySelectorAll(
             '[role="menuitem"]:not([aria-disabled="true"])'
@@ -85,8 +85,8 @@ const re = C(
           case "Enter":
           case " ":
             if (_) break;
-            if ((o || l) && t) {
-              const r = (B = S()) == null ? void 0 : B[0];
+            if ((o || c) && t) {
+              const r = (z = g()) == null ? void 0 : z[0];
               r && (e.preventDefault(), r.click());
             } else o || (e.preventDefault(), n(!t));
             break;
@@ -98,7 +98,7 @@ const re = C(
               if (e.preventDefault(), !t)
                 n(!0);
               else {
-                const r = S();
+                const r = g();
                 r && r.length > 0 && r[0].focus();
               }
             break;
@@ -107,55 +107,56 @@ const re = C(
               if (e.preventDefault(), !t)
                 n(!0);
               else {
-                const r = S();
+                const r = g();
                 r && r.length > 0 && r[r.length - 1].focus();
               }
             break;
         }
       },
-      [s, t, o, l, n]
+      [s, t, o, c, n]
     );
-    if (l)
-      return /* @__PURE__ */ U(
+    if (c)
+      return /* @__PURE__ */ B(
         "div",
         {
           ref: v,
-          className: F("fds-select-input", t && "fds-select-input--open", P),
-          onClick: V,
-          onKeyDown: z,
+          className: O("fds-select-input", t && "fds-select-input--open", P),
+          onClick: j,
+          onKeyDown: V,
           children: [
             /* @__PURE__ */ i(
               ee,
               {
-                type: J,
-                ref: E,
-                label: O,
-                name: R,
-                placeholder: k ?? "Select",
+                type: H,
+                ref: M,
+                label: S,
+                name: F,
+                placeholder: R ?? "Select",
                 tags: q,
-                maxVisibleTags: Q,
-                searchValue: N,
-                onSearchChange: c,
-                onBackspace: X,
+                maxVisibleTags: L,
+                searchValue: h,
+                onSearchChange: l,
+                onBackspace: W,
                 helpText: m === "error" ? void 0 : x,
                 errorText: A,
                 validationState: m,
                 isDisabled: s,
-                isReadOnly: !c,
+                isReadOnly: !l,
                 isOpen: t,
-                leadingIcon: h,
-                leadingText: D,
-                onFocus: j
+                leadingIcon: D,
+                leadingText: N,
+                onFocus: K,
+                onChevronClick: () => n(!t)
               }
             ),
-            t && d && f && typeof document < "u" && H(
+            t && a && f && typeof document < "u" && G(
               /* @__PURE__ */ i(
                 "div",
                 {
                   ref: p,
                   className: "fds-select-input__popover",
                   style: { top: f.top, left: f.left, width: f.width },
-                  children: d
+                  children: a
                 }
               ),
               document.body
@@ -163,47 +164,61 @@ const re = C(
           ]
         }
       );
-    const Z = o ? N : L, $ = k ?? (o ? "Search" : "Select");
-    return /* @__PURE__ */ U(
+    const Y = o ? h : J, Z = R ?? (o ? "Search" : "Select");
+    return /* @__PURE__ */ B(
       "div",
       {
         ref: v,
-        className: F("fds-select-input", t && "fds-select-input--open", P),
-        onClick: V,
-        onKeyDown: z,
+        className: O("fds-select-input", t && "fds-select-input--open", P),
+        onClick: j,
+        onKeyDown: V,
         children: [
           /* @__PURE__ */ i(
             b,
             {
-              ref: E,
-              label: O,
-              name: R,
-              placeholder: $,
-              value: Z ?? "",
+              ref: M,
+              label: S,
+              name: F,
+              placeholder: Z,
+              value: Y ?? "",
               readOnly: !o,
-              onChange: o ? (e) => c == null ? void 0 : c(e.value) : void 0,
-              onFocus: j,
+              onChange: o ? (e) => l == null ? void 0 : l(e.value) : void 0,
+              onFocus: K,
               helpText: m === "error" ? void 0 : x,
               errorText: A,
               validationState: m,
               isDisabled: s,
-              icon: h,
-              prefix: D,
+              icon: D,
+              prefix: N,
               autoComplete: o ? "off" : void 0,
               "aria-expanded": t,
               "aria-haspopup": "listbox",
               "aria-autocomplete": o ? "list" : void 0,
-              trailingIcon: /* @__PURE__ */ i("span", { className: F("fds-select-input__chevron", t && "fds-select-input__chevron--open"), children: /* @__PURE__ */ i(I, { size: 16 }) })
+              trailingIcon: /* @__PURE__ */ i(
+                "span",
+                {
+                  className: O("fds-select-input__chevron", t && "fds-select-input__chevron--open"),
+                  role: "button",
+                  "aria-label": t ? "Close menu" : "Open menu",
+                  onMouseDown: (e) => {
+                    e.preventDefault();
+                  },
+                  onClick: (e) => {
+                    s || (e.stopPropagation(), n(!t));
+                  },
+                  children: /* @__PURE__ */ i(I, { size: 16 })
+                }
+              )
             }
           ),
-          t && d && f && typeof document < "u" && H(
+          t && a && f && typeof document < "u" && G(
             /* @__PURE__ */ i(
               "div",
               {
                 ref: p,
                 className: "fds-select-input__popover",
                 style: { top: f.top, left: f.left, width: f.width },
-                children: d
+                children: a
               }
             ),
             document.body

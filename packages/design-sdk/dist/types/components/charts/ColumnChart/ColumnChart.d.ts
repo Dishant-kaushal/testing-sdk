@@ -1,4 +1,5 @@
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
+import type { Options } from 'highcharts';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
 import './ColumnChart.css';
 /** A single column-chart series — name + numeric data points + optional color override. */
 export interface ColumnSeries {
@@ -30,24 +31,49 @@ export interface ColumnChartProps extends Omit<ChartProps, 'children'> {
      */
     showDataLabels?: boolean;
     /**
-     * Make the plot horizontally scrollable when categories overflow. When true,
-     * the chart renders at `scrollableMinWidth` px wide and scrolls inside its
-     * container rather than compressing the columns.
+     * Make the plot horizontally scrollable when categories overflow.
      * @default false
      */
     scrollable?: boolean;
     /**
-     * Minimum plot width (px) when `scrollable` is true. Ignored when `scrollable`
-     * is false.
+     * Minimum plot width (px) when `scrollable` is true.
      * @default 900
      */
     scrollableMinWidth?: number;
     /**
-     * Fires when a column is clicked. Typical use: time drill-down — the
-     * consumer owns the hierarchy state (Month → Week → Day → Hour) and
-     * re-feeds the chart with categories/series for the next level. When set,
-     * data points use a pointer cursor to signal interactivity.
+     * Fires when a column is clicked. Typical use: time drill-down.
+     * When set, data points use a pointer cursor to signal interactivity.
      */
     onPointClick?: (ctx: ChartPointClickContext) => void;
+    /**
+     * Override the default Faclon palette for this chart instance.
+     * Array of CSS color strings applied in series order.
+     */
+    colors?: string[];
+    /** X-axis title label shown below the axis. */
+    xAxisTitle?: string;
+    /** Y-axis title label shown beside the axis. */
+    yAxisTitle?: string;
+    /**
+     * Unit string appended to every y-axis tick label (e.g. `'°C'`, `'%'`, `'bar'`).
+     * Applied as `{value} unit`. For full control use `highchartsOptions.yAxis.labels.formatter`.
+     */
+    yAxisUnit?: string;
+    /**
+     * Horizontal reference lines drawn across the plot area.
+     * Commonly used for single threshold markers.
+     */
+    plotLines?: ChartPlotLine[];
+    /**
+     * Shaded Y-axis bands across the plot area.
+     * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+     */
+    plotBands?: ChartPlotBand[];
+    /**
+     * Full Highcharts options escape hatch — deep-merged last, after all
+     * computed options. Use this to override anything not covered by the props
+     * above without losing the Faclon theme.
+     */
+    highchartsOptions?: Options;
 }
 export declare const ColumnChart: import("react").ForwardRefExoticComponent<ColumnChartProps & import("react").RefAttributes<HTMLDivElement>>;

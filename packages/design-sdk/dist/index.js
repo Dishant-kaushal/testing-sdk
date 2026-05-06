@@ -293,15 +293,16 @@ import { TimeInput as dx } from "./components/inputs/TimeInput/TimeInput.js";
 import { TimeInputFooter as ux } from "./components/inputs/TimeInput/TimeInputFooter.js";
 import { TimeInputPopover as bx } from "./components/inputs/TimeInput/TimeInputPopover.js";
 import { TimeInputTrigger as sx } from "./components/inputs/TimeInput/TimeInputTrigger.js";
-import { Tooltip as Ix } from "./components/overlays/Tooltip/Tooltip.js";
-import { UploadCta as Sx } from "./components/inputs/UploadCta/UploadCta.js";
-import { UploadItem as hx } from "./components/inputs/UploadCta/UploadItem.js";
-import { bucketRange as Lx, bucketRangeInexact as Dx } from "./components/charts/timeBuckets.js";
-import { formatDate as kx, formatTime as Fx, generateCalendarDays as Hx, generateMonths as Rx, generateYears as wx, getHeaderLabel as yx, getPresetDateRange as Mx } from "./components/inputs/DatePicker/datePickerUtils.js";
-import { hexToRgb as Ex, hsbToRgb as Ux, rgbToHex as Yx, rgbToHsb as Ox } from "./components/inputs/ColorPicker/colorUtils.js";
-import { useButtonGroupContext as Kx } from "./components/actions/ButtonGroup/ButtonGroupContext.js";
-import { useChipGroupContext as Qx } from "./components/data-display/Chip/ChipGroupContext.js";
-import { usePopoverContext as jx } from "./components/overlays/Popover/PopoverContext.js";
+import { TimeTabConfiguration as Ix } from "./components/product/TimeTabConfiguration/TimeTabConfiguration.js";
+import { Tooltip as Sx } from "./components/overlays/Tooltip/Tooltip.js";
+import { UploadCta as hx } from "./components/inputs/UploadCta/UploadCta.js";
+import { UploadItem as Lx } from "./components/inputs/UploadCta/UploadItem.js";
+import { bucketRange as Gx, bucketRangeInexact as kx } from "./components/charts/timeBuckets.js";
+import { formatDate as Hx, formatTime as Rx, generateCalendarDays as wx, generateMonths as yx, generateYears as Mx, getHeaderLabel as vx, getPresetDateRange as Ex } from "./components/inputs/DatePicker/datePickerUtils.js";
+import { hexToRgb as Yx, hsbToRgb as Ox, rgbToHex as _x, rgbToHsb as Kx } from "./components/inputs/ColorPicker/colorUtils.js";
+import { useButtonGroupContext as Qx } from "./components/actions/ButtonGroup/ButtonGroupContext.js";
+import { useChipGroupContext as jx } from "./components/data-display/Chip/ChipGroupContext.js";
+import { usePopoverContext as zx } from "./components/overlays/Popover/PopoverContext.js";
 export {
   zr as Accordion,
   Vr as AccordionItem,
@@ -451,29 +452,30 @@ export {
   ux as TimeInputFooter,
   bx as TimeInputPopover,
   sx as TimeInputTrigger,
-  Ix as Tooltip,
-  Sx as UploadCta,
-  hx as UploadItem,
-  Lx as bucketRange,
-  Dx as bucketRangeInexact,
+  Ix as TimeTabConfiguration,
+  Sx as Tooltip,
+  hx as UploadCta,
+  Lx as UploadItem,
+  Gx as bucketRange,
+  kx as bucketRangeInexact,
   jr as cn,
-  kx as formatDate,
-  Fx as formatTime,
-  Hx as generateCalendarDays,
-  Rx as generateMonths,
-  wx as generateYears,
-  yx as getHeaderLabel,
-  Mx as getPresetDateRange,
-  Ex as hexToRgb,
-  Ux as hsbToRgb,
-  Yx as rgbToHex,
-  Ox as rgbToHsb,
-  Kx as useButtonGroupContext,
-  Qx as useChipGroupContext,
+  Hx as formatDate,
+  Rx as formatTime,
+  wx as generateCalendarDays,
+  yx as generateMonths,
+  Mx as generateYears,
+  vx as getHeaderLabel,
+  Ex as getPresetDateRange,
+  Yx as hexToRgb,
+  Ox as hsbToRgb,
+  _x as rgbToHex,
+  Kx as rgbToHsb,
+  Qx as useButtonGroupContext,
+  jx as useChipGroupContext,
   Or as useClickOutside,
   Qr as useKeyboard,
   Kr as useMediaQuery,
-  jx as usePopoverContext,
+  zx as usePopoverContext,
   ci as useTableContext,
   si as useTableContextOptional
 };

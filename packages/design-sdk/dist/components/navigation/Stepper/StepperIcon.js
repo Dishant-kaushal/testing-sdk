@@ -1,27 +1,35 @@
-import { jsx as e } from "react/jsx-runtime";
-import { forwardRef as s, createElement as a } from "react";
-import { cn as c } from "../../../utils/cn.js";
+import { jsx as r } from "react/jsx-runtime";
+import { forwardRef as a, createElement as c } from "react";
+import { cn as d } from "../../../utils/cn.js";
 /* empty css                */
-const d = {
+const f = {
   positive: "fds-stepper-icon--positive",
   negative: "fds-stepper-icon--negative",
   notice: "fds-stepper-icon--notice",
   information: "fds-stepper-icon--information",
   primary: "fds-stepper-icon--primary",
   neutral: "fds-stepper-icon--neutral"
-}, f = 12, m = s(
-  ({ icon: r, color: i = "neutral", isDisabled: t = !1, className: p, ...n }, o) => /* @__PURE__ */ e(
+}, m = {
+  Medium: 12,
+  Large: 14
+}, l = a(
+  ({ icon: i, color: t = "neutral", size: e = "Medium", isDisabled: o = !1, className: p, ...s }, n) => /* @__PURE__ */ r(
     "div",
     {
-      ref: o,
-      className: c("fds-stepper-icon", d[i], p),
-      "data-disabled": t || void 0,
-      ...n,
-      children: /* @__PURE__ */ e("span", { className: "fds-stepper-icon__glyph", "aria-hidden": "true", children: a(r, { size: f }) })
+      ref: n,
+      className: d(
+        "fds-stepper-icon",
+        `fds-stepper-icon--size-${e.toLowerCase()}`,
+        f[t],
+        p
+      ),
+      "data-disabled": o || void 0,
+      ...s,
+      children: /* @__PURE__ */ r("span", { className: "fds-stepper-icon__glyph", "aria-hidden": "true", children: c(i, { size: m[e] }) })
     }
   )
 );
-m.displayName = "StepperIcon";
+l.displayName = "StepperIcon";
 export {
-  m as StepperIcon
+  l as StepperIcon
 };

@@ -1,18 +1,18 @@
-import { jsx as a, jsxs as _, Fragment as h } from "react/jsx-runtime";
-import { forwardRef as L } from "react";
-import { cn as N } from "../../../utils/cn.js";
+import { jsx as a, jsxs as h, Fragment as L } from "react/jsx-runtime";
+import { forwardRef as N } from "react";
+import { cn as k } from "../../../utils/cn.js";
 /* empty css               */
-const k = {
+const R = {
   Large: "BodyLargeRegular",
   Medium: "BodyMediumRegular",
   Small: "BodySmallRegular",
   XSmall: "BodyXSmallRegular"
-}, R = {
+}, A = {
   Large: "BodyLargeSemibold",
   Medium: "BodyMediumSemibold",
   Small: "BodySmallSemibold",
   XSmall: "BodyXSmallSemibold"
-}, A = L(
+}, x = N(
   ({
     type: l = "Anchor",
     color: c = "Primary",
@@ -22,20 +22,21 @@ const k = {
     trailingIcon: n,
     isDisabled: s = !1,
     className: u,
-    children: y,
-    href: b,
+    children: b,
+    href: y,
     target: S,
     rel: g,
     onClick: t,
+    accessibilityLabel: B,
     ...r
   }, d) => {
-    const B = l === "Action" ? R : k, i = N(
+    const _ = l === "Action" ? A : R, i = k(
       "fds-link",
       `fds-link--type-${l.toLowerCase()}`,
       `fds-link--color-${c.toLowerCase()}`,
-      B[f],
+      _[f],
       u
-    ), e = p ?? y, m = /* @__PURE__ */ _(h, { children: [
+    ), e = p ?? b, m = /* @__PURE__ */ h(L, { children: [
       o && /* @__PURE__ */ a("span", { className: "fds-link__icon", children: o }),
       /* @__PURE__ */ a("span", { className: "fds-link__label", "data-text": typeof e == "string" ? e : void 0, children: /* @__PURE__ */ a("span", { className: "fds-link__label-inner", children: e }) }),
       n && /* @__PURE__ */ a("span", { className: "fds-link__icon", children: n })
@@ -49,6 +50,7 @@ const k = {
         disabled: s,
         "aria-disabled": s || void 0,
         onClick: t,
+        "aria-label": B,
         ...r,
         children: m
       }
@@ -57,7 +59,7 @@ const k = {
       {
         ref: d,
         className: i,
-        href: b,
+        href: y,
         target: S,
         rel: g,
         onClick: t,
@@ -67,7 +69,7 @@ const k = {
     );
   }
 );
-A.displayName = "LinkButton";
+x.displayName = "LinkButton";
 export {
-  A as LinkButton
+  x as LinkButton
 };

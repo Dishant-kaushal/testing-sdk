@@ -12,9 +12,12 @@ export interface UploadFile {
     progress?: number;
     errorText?: string;
 }
+export type FileUploadType = 'single' | 'multiple';
 export interface FileUploadProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-    /** Single file or multiple files */
-    mode?: 'single' | 'multiple';
+    /** Upload mode — `'single'` (one file replaces previous) or `'multiple'`. Default `'single'`. */
+    uploadType?: FileUploadType;
+    /** @deprecated Use `uploadType`. Kept for backwards compatibility. */
+    mode?: FileUploadType;
     /** Label above the upload area */
     label?: string;
     /** Required indicator */
@@ -29,6 +32,10 @@ export interface FileUploadProps extends Omit<HTMLAttributes<HTMLDivElement>, 'o
     isDisabled?: boolean;
     /** Accepted file types (e.g. ".png,.jpg" or "image/*") */
     accept?: string;
+    /** Maximum size of each file in bytes. Files exceeding this are blocked at selection time. */
+    maxSize?: number;
+    /** Maximum number of files allowed (multiple mode). Files beyond this are blocked at selection time. */
+    maxCount?: number;
     /** Current list of files */
     files?: UploadFile[];
     /** Called when new files are selected via click or drop */
@@ -39,8 +46,10 @@ export interface FileUploadProps extends Omit<HTMLAttributes<HTMLDivElement>, 'o
     onDownload?: (id: string) => void;
     /** Called when preview is clicked on a file */
     onPreview?: (id: string) => void;
+    /** Called when a failed file's retry / re-upload action is clicked */
+    onReupload?: (id: string) => void;
 }
-export declare function FileUpload({ mode, label, necessityIndicator, helpText, errorText, validationState, isDisabled, accept, files, onFilesSelect, onRemove, onDownload, onPreview, className, ...props }: FileUploadProps): import("react/jsx-runtime").JSX.Element;
+export declare function FileUpload({ uploadType, mode, label, necessityIndicator, helpText, errorText, validationState, isDisabled, accept, maxSize, maxCount, files, onFilesSelect, onRemove, onDownload, onPreview, onReupload, className, ...props }: FileUploadProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace FileUpload {
     var displayName: string;
 }

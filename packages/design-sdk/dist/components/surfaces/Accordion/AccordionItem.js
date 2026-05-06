@@ -1,11 +1,11 @@
-import { jsx as e, jsxs as r } from "react/jsx-runtime";
-import { useState as g, useCallback as f } from "react";
-import { cn as B } from "../../../utils/cn.js";
-import { useAccordionContext as L } from "./Accordion.js";
-import { AccordionLeadingItem as b } from "./AccordionLeadingItem.js";
+import { jsx as o, jsxs as d } from "react/jsx-runtime";
+import { useState as B, useCallback as p } from "react";
+import { cn as L } from "../../../utils/cn.js";
+import { useAccordionContext as k } from "./Accordion.js";
+import { AccordionLeadingItem as A } from "./AccordionLeadingItem.js";
 /* empty css                  */
-function k() {
-  return /* @__PURE__ */ e("svg", { viewBox: "0 0 9.33 5.33", fill: "none", xmlns: "http://www.w3.org/2000/svg", "aria-hidden": "true", children: /* @__PURE__ */ e(
+function I() {
+  return /* @__PURE__ */ o("svg", { viewBox: "0 0 9.33 5.33", fill: "none", xmlns: "http://www.w3.org/2000/svg", "aria-hidden": "true", children: /* @__PURE__ */ o(
     "path",
     {
       fillRule: "evenodd",
@@ -15,68 +15,73 @@ function k() {
     }
   ) });
 }
-function A({
+function K({
   value: i,
-  title: p,
+  title: u,
   bodyText: s,
-  children: d,
-  leading: u = "None",
-  leadingIcon: _,
-  leadingNumber: h,
-  isExpanded: m,
-  defaultExpanded: y = !1,
-  onExpandedChange: c,
+  children: a,
+  leading: _ = "None",
+  leadingIcon: h,
+  leadingNumber: y,
+  isExpanded: f,
+  defaultExpanded: v = !1,
+  onExpandedChange: n,
+  isDisabled: t = !1,
   className: N
 }) {
-  const t = L(), [v, w] = g(y), a = m !== void 0, n = t && i ? t.expandedKeys.has(i) : a ? m : v, l = f(() => {
-    if (t && i)
-      t.toggleKey(i);
-    else {
-      const o = !n;
-      a || w(o), c == null || c(o);
-    }
-  }, [t, i, n, a, c]), x = f(
-    (o) => {
-      (o.key === "Enter" || o.key === " ") && (o.preventDefault(), l());
+  const c = k(), [w, x] = B(v), l = f !== void 0, r = c && i ? c.expandedKeys.has(i) : l ? f : w, m = p(() => {
+    if (!t)
+      if (c && i)
+        c.toggleKey(i);
+      else {
+        const e = !r;
+        l || x(e), n == null || n(e);
+      }
+  }, [t, c, i, r, l, n]), C = p(
+    (e) => {
+      (e.key === "Enter" || e.key === " ") && (e.preventDefault(), m());
     },
-    [l]
-  ), C = B(
+    [m]
+  ), g = L(
     "fds-accordion-item",
-    n && "fds-accordion-item--expanded",
+    r && "fds-accordion-item--expanded",
+    t && "fds-accordion-item--disabled",
     N
   );
-  return /* @__PURE__ */ e("div", { className: C, children: /* @__PURE__ */ r("div", { className: "fds-accordion-item__root", children: [
-    /* @__PURE__ */ r(
+  return /* @__PURE__ */ o("div", { className: g, children: /* @__PURE__ */ d("div", { className: "fds-accordion-item__root", children: [
+    /* @__PURE__ */ d(
       "button",
       {
         className: "fds-accordion-item__header",
         type: "button",
-        onClick: l,
-        onKeyDown: x,
-        "aria-expanded": n,
+        onClick: m,
+        onKeyDown: C,
+        "aria-expanded": r,
+        "aria-disabled": t || void 0,
+        disabled: t,
         children: [
-          /* @__PURE__ */ r("div", { className: "fds-accordion-item__title-area", children: [
-            /* @__PURE__ */ e(
-              b,
+          /* @__PURE__ */ d("div", { className: "fds-accordion-item__title-area", children: [
+            /* @__PURE__ */ o(
+              A,
               {
-                leading: u,
-                icon: _,
-                number: h
+                leading: _,
+                icon: h,
+                number: y
               }
             ),
-            /* @__PURE__ */ e("span", { className: "fds-accordion-item__title BodyMediumMedium", children: p })
+            /* @__PURE__ */ o("span", { className: "fds-accordion-item__title BodyMediumMedium", children: u })
           ] }),
-          /* @__PURE__ */ e("span", { className: "fds-accordion-item__chevron", children: /* @__PURE__ */ e(k, {}) })
+          /* @__PURE__ */ o("span", { className: "fds-accordion-item__chevron", children: /* @__PURE__ */ o(I, {}) })
         ]
       }
     ),
-    (d || s) && /* @__PURE__ */ r("div", { className: "fds-accordion-item__body", role: "region", children: [
-      s && !d && /* @__PURE__ */ e("p", { className: "fds-accordion-item__body-text BodyMediumRegular", children: s }),
-      d
+    (a || s) && /* @__PURE__ */ d("div", { className: "fds-accordion-item__body", role: "region", children: [
+      s && !a && /* @__PURE__ */ o("p", { className: "fds-accordion-item__body-text BodyMediumRegular", children: s }),
+      a
     ] })
   ] }) });
 }
-A.displayName = "AccordionItem";
+K.displayName = "AccordionItem";
 export {
-  A as AccordionItem
+  K as AccordionItem
 };

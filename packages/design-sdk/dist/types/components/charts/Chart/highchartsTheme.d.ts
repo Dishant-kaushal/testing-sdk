@@ -11,6 +11,12 @@ import type { Options } from 'highcharts';
  */
 export declare const FACLON_CHART_PALETTE_TOKENS: readonly string[];
 /**
+ * Read a CSS custom property from `:root`. Returns an empty string on the
+ * server (where `window` is undefined) so that the `||` fallback in the
+ * theme builder picks up a sane default.
+ */
+export declare function readCssVar(name: string): string;
+/**
  * Build a Highcharts options object themed to match Faclon tokens.
  *
  * Returns a memoized `Highcharts.Options` that contains ONLY the Faclon

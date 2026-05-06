@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 import './Spinner.css';
 export type SpinnerColor = 'Brand' | 'Positive' | 'Negative' | 'Warning' | 'Information' | 'Neutral' | 'White';
 export type SpinnerSize = 'Medium' | 'Large' | 'XLarge';
@@ -22,7 +22,4 @@ export interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
  * Structure: a faded full-circle track (9% opacity) with two arcs
  * at full opacity forming the spinning indicator.
  */
-export declare function Spinner({ color, size, label, labelPosition, accessibilityLabel, className, ...props }: SpinnerProps): import("react/jsx-runtime").JSX.Element;
-export declare namespace Spinner {
-    var displayName: string;
-}
+export declare const Spinner: import("react").ForwardRefExoticComponent<SpinnerProps & import("react").RefAttributes<HTMLDivElement>>;

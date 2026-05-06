@@ -9,6 +9,8 @@ export interface StepperStepProps {
     titleColor?: string;
     /** Optional subtitle. */
     description?: string;
+    /** Optional timestamp shown below the description (gray-tertiary, non-italic). */
+    timestamp?: string;
     /** Connector line state. Default `'none'`. */
     stepProgress?: StepperStepProgress;
     /** Marker JSX slot — `<StepperIndicator>` or `<StepperIcon>`. Defaults to a
@@ -26,6 +28,8 @@ export interface StepperStepProps {
     target?: string;
     /** Click handler — turns the step into a `<button>`. */
     onClick?: (event: MouseEvent) => void;
+    /** Accessible name override. Defaults to `title`. */
+    accessibilityLabel?: string;
     /** Children rendered below the header — additional custom content. */
     children?: ReactNode;
     /** @internal — injected by parent <Stepper>. */

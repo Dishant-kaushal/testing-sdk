@@ -55,5 +55,11 @@ export interface SearchInputProps extends Omit<HTMLAttributes<HTMLDivElement>, '
     onClearButtonClicked?: () => void;
     /** Swaps the clear button for a Spinner. `type='single'` only. */
     isLoading?: boolean;
+    /** Field size — Medium (36 px, default) or Large (48 px). */
+    size?: 'Medium' | 'Large';
+    /** Whether to render the leading search icon. Default `true`. */
+    showSearchIcon?: boolean;
+    /** Accessible name when no visible `label` is shown. */
+    accessibilityLabel?: string;
 }
 export declare const SearchInput: import("react").ForwardRefExoticComponent<SearchInputProps & import("react").RefAttributes<SearchInputHandle>>;

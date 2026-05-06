@@ -1,12 +1,13 @@
 {
   "name": "@faclon-labs/design-sdk",
-  "version": "0.5.1",
+  "version": "0.5.3",
   "private": false,
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "style": "./dist/style.css",
   "exports": {
+  
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js"
@@ -311,6 +312,10 @@
     "./ProductAccordion": {
       "types": "./dist/types/components/product/ProductAccordion/index.d.ts",
       "import": "./dist/components/product/ProductAccordion/index.js"
+    },
+    "./TimeTabConfiguration": {
+      "types": "./dist/types/components/product/TimeTabConfiguration/index.d.ts",
+      "import": "./dist/components/product/TimeTabConfiguration/index.js"
     },
     "./ChatMessage": {
       "types": "./dist/types/components/chat/ChatMessage/index.d.ts",

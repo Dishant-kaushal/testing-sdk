@@ -1,32 +1,42 @@
-import { jsx as r } from "react/jsx-runtime";
-import { useState as x, useCallback as f, createContext as p, useContext as C } from "react";
-const s = p(null);
-function w() {
-  return C(s);
+import { jsx as n } from "react/jsx-runtime";
+import { useState as K, useCallback as b, createContext as j, useContext as x } from "react";
+const l = j(null);
+function q() {
+  return x(l);
 }
-function S({
-  mode: n = "single",
-  defaultExpandedKeys: c = [],
-  children: i,
-  className: d
+function I({
+  mode: o = "single",
+  defaultExpandedKeys: f = [],
+  expandedKeys: c,
+  onExpandChange: t,
+  children: S,
+  className: w
 }) {
-  const [a, l] = x(
-    () => new Set(c)
-  ), u = f(
-    (e) => {
-      l((o) => {
-        if (n === "single")
-          return o.has(e) ? /* @__PURE__ */ new Set() : /* @__PURE__ */ new Set([e]);
-        const t = new Set(o);
-        return t.has(e) ? t.delete(e) : t.add(e), t;
-      });
+  const i = c !== void 0, [m, A] = K(
+    () => new Set(f)
+  ), d = i ? new Set(c) : m, v = b(
+    (r) => {
+      const u = (s) => {
+        if (o === "single")
+          return s.has(r) ? /* @__PURE__ */ new Set() : /* @__PURE__ */ new Set([r]);
+        const e = new Set(s);
+        return e.has(r) ? e.delete(r) : e.add(r), e;
+      };
+      if (i) {
+        const s = u(new Set(c));
+        t == null || t([...s]);
+      } else
+        A((s) => {
+          const e = u(s);
+          return t == null || t([...e]), e;
+        });
     },
-    [n]
+    [o, i, c, t]
   );
-  return /* @__PURE__ */ r(s.Provider, { value: { expandedKeys: a, toggleKey: u }, children: /* @__PURE__ */ r("div", { className: d, children: i }) });
+  return /* @__PURE__ */ n(l.Provider, { value: { expandedKeys: d, toggleKey: v }, children: /* @__PURE__ */ n("div", { className: w, children: S }) });
 }
-S.displayName = "Accordion";
+I.displayName = "Accordion";
 export {
-  S as Accordion,
-  w as useAccordionContext
+  I as Accordion,
+  q as useAccordionContext
 };

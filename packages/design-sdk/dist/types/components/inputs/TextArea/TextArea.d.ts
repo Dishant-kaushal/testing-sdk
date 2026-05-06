@@ -23,6 +23,8 @@ export interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
     helpText?: string;
     /** Error text shown when validationState is 'error' */
     errorText?: string;
+    /** Success text shown when validationState is 'success' */
+    successText?: string;
     /** Called when value changes (text mode) */
     onChange?: (meta: {
         name: string;
@@ -46,6 +48,12 @@ export interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
     necessityIndicator?: TextAreaNecessityIndicator;
     /** Max character count (text mode) */
     maxCharacters?: number;
+    /** Show a clear button when the field has content (text mode) */
+    showClearButton?: boolean;
+    /** Called when the clear button is clicked */
+    onClearButtonClicked?: () => void;
+    /** Accessible name for the textarea. Sets `aria-label` — use when no visible `label` is shown. */
+    accessibilityLabel?: string;
     /** Enable tags mode — Enter creates tag chips instead of new lines */
     isTagsMode?: boolean;
     /** Controlled tags (tags mode) */

@@ -37,6 +37,8 @@ export interface CounterInputProps extends Omit<InputHTMLAttributes<HTMLInputEle
     isDisabled?: boolean;
     /** Marks the field as required */
     isRequired?: boolean;
+    /** Disables interaction and shows a loading indicator while async work is in progress. */
+    isLoading?: boolean;
     /**
      * When true, the user can only adjust the value via the +/- buttons;
      * the input itself is not typeable. Defaults to `false`.

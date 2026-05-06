@@ -1,132 +1,148 @@
-import { jsxs as c, jsx as e } from "react/jsx-runtime";
-import { forwardRef as P, useMemo as U, Children as C, isValidElement as N, cloneElement as K } from "react";
-import { cn as y } from "../../../utils/cn.js";
-import { useStepper as L } from "./StepperContext.js";
-import { StepperIndicator as q } from "./StepperIndicator.js";
-import { StepLine as H } from "./StepLine.js";
+import { jsxs as u, jsx as e } from "react/jsx-runtime";
+import { forwardRef as q, useMemo as D, isValidElement as m, Children as H, cloneElement as J } from "react";
+import { cn as p } from "../../../utils/cn.js";
+import { useStepper as Q } from "./StepperContext.js";
+import { StepperIndicator as W } from "./StepperIndicator.js";
+import { StepLine as Y } from "./StepLine.js";
 /* empty css                */
-function J(r, p, o) {
-  return p === 0 ? "default" : o === 1 ? "single-item" : r === 0 ? "start" : r === o - 1 ? "end" : "middle";
+function Z(s, o, r) {
+  return o === 0 ? "default" : r === 1 ? "single-item" : s === 0 ? "start" : s === r - 1 ? "end" : "middle";
 }
-const Q = /* @__PURE__ */ e(q, { color: "neutral" }), W = P(
+function $(s) {
+  var r;
+  const o = (r = s.type) == null ? void 0 : r.displayName;
+  return o === "StepperIndicator" || o === "StepperIcon";
+}
+const k = /* @__PURE__ */ e(W, { color: "neutral" }), ee = q(
   ({
-    title: r,
-    titleColor: p,
-    description: o,
-    stepProgress: g = "none",
-    marker: s,
-    trailing: f,
-    isSelected: m,
-    isDisabled: t,
-    href: u,
+    title: s,
+    titleColor: o,
+    description: r,
+    timestamp: g,
+    stepProgress: E = "none",
+    marker: t,
+    trailing: h,
+    isSelected: S,
+    isDisabled: a,
+    href: v,
     target: M,
-    onClick: a,
-    children: h,
-    _index: I = 0,
-    _totalIndex: E = 0,
-    _nestingLevel: n = 0,
-    className: R,
-    style: z
-  }, T) => {
+    onClick: i,
+    accessibilityLabel: L,
+    children: _,
+    _index: b = 0,
+    _totalIndex: B = 0,
+    _nestingLevel: d = 0,
+    className: C,
+    style: T
+  }, x) => {
     const {
-      itemsInGroupCount: b,
-      totalItemsInParentGroupCount: x,
-      orientation: i
-    } = L(), F = U(
-      () => J(I, n, b),
-      [I, n, b]
-    ), G = i === "vertical", V = E === 0, j = E === x - 1, S = !!u || !!a;
+      itemsInGroupCount: w,
+      totalItemsInParentGroupCount: F,
+      orientation: l,
+      size: n
+    } = Q(), G = D(
+      () => Z(b, d, w),
+      [b, d, w]
+    ), O = l === "vertical", V = B === 0, j = B === F - 1, y = !!v || !!i;
     if (process.env.NODE_ENV !== "production") {
-      f && i === "horizontal" && console.warn("[StepperStep] `trailing` is ignored in horizontal Stepper."), n >= 1 && i === "horizontal" && console.warn(
+      h && l === "horizontal" && console.warn("[StepperStep] `trailing` is ignored in horizontal Stepper."), d >= 1 && l === "horizontal" && console.warn(
         "[StepperStep] Nested Steppers are not supported in horizontal orientation."
+      ), t && m(t) && !$(t) && console.warn(
+        "[StepperStep] `marker` should be a `<StepperIndicator>` or `<StepperIcon>`. Other elements will not receive the `isDisabled` / `size` cascade and may break the colour-cascade hover background."
       );
-      let l = !1;
-      C.forEach(h, (B) => {
-        var w;
-        N(B) && ((w = B.type) == null ? void 0 : w.displayName) === "Stepper" && (l = !0);
-      }), l && console.warn(
+      let f = !1;
+      H.forEach(_, (z) => {
+        var R;
+        m(z) && ((R = z.type) == null ? void 0 : R.displayName) === "Stepper" && (f = !0);
+      }), f && console.warn(
         "[StepperStep] Found a nested <Stepper> inside `children`. Move it OUT of <StepperStep> and render it as a SIBLING of the StepperStep items in the parent <Stepper> for nesting curves to render."
       );
     }
-    const A = N(s) ? K(s, {
-      isDisabled: t ?? s.props.isDisabled
-    }) : Q, O = (N(s) ? s.props.color : void 0) ?? "neutral", v = /* @__PURE__ */ c("div", { className: "fds-stepper-step__header", children: [
-      /* @__PURE__ */ c("div", { className: "fds-stepper-step__text-stack", children: [
+    const A = m(t) ? J(
+      t,
+      {
+        isDisabled: a ?? t.props.isDisabled,
+        size: t.props.size ?? n
+      }
+    ) : k, K = (m(t) ? t.props.color : void 0) ?? "neutral", P = n === "Large" ? "BodyLargeRegular" : "BodyMediumRegular", U = n === "Large" ? "BodyMediumRegular" : "BodySmallRegular", X = n === "Large" ? "BodySmallRegular" : "BodyXSmallRegular", N = /* @__PURE__ */ u("div", { className: "fds-stepper-step__header", children: [
+      /* @__PURE__ */ u("div", { className: "fds-stepper-step__text-stack", children: [
         /* @__PURE__ */ e(
           "p",
           {
-            className: "fds-stepper-step__title BodyMediumRegular",
-            style: p ? { color: p } : void 0,
-            children: r
+            className: p("fds-stepper-step__title", P),
+            style: o ? { color: o } : void 0,
+            children: s
           }
         ),
-        o && /* @__PURE__ */ e("p", { className: "fds-stepper-step__description BodySmallRegular", children: o })
+        r && /* @__PURE__ */ e("p", { className: p("fds-stepper-step__description", U), children: r }),
+        g && /* @__PURE__ */ e("p", { className: p("fds-stepper-step__timestamp", X), children: g })
       ] }),
-      f && G && /* @__PURE__ */ e("span", { className: "fds-stepper-step__trailing", children: f })
-    ] }), _ = {
-      className: y(
+      h && O && /* @__PURE__ */ e("span", { className: "fds-stepper-step__trailing", children: h })
+    ] }), I = {
+      className: p(
         "fds-stepper-step__header-box",
-        S && "fds-stepper-step__header-box--interactive"
+        y && "fds-stepper-step__header-box--interactive"
       )
     };
-    let d;
-    return u ? d = /* @__PURE__ */ e(
+    let c;
+    return v ? c = /* @__PURE__ */ e(
       "a",
       {
-        ..._,
-        href: t ? void 0 : u,
+        ...I,
+        href: a ? void 0 : v,
         target: M,
-        "aria-disabled": t || void 0,
-        onClick: t ? (l) => l.preventDefault() : a,
-        children: v
+        "aria-disabled": a || void 0,
+        onClick: a ? (f) => f.preventDefault() : i,
+        children: N
       }
-    ) : a ? d = /* @__PURE__ */ e(
+    ) : i ? c = /* @__PURE__ */ e(
       "button",
       {
-        ..._,
+        ...I,
         type: "button",
-        disabled: t,
-        onClick: a,
-        children: v
+        disabled: a,
+        onClick: i,
+        children: N
       }
-    ) : d = /* @__PURE__ */ e("div", { ..._, children: v }), /* @__PURE__ */ c(
+    ) : c = /* @__PURE__ */ e("div", { ...I, children: N }), /* @__PURE__ */ u(
       "div",
       {
-        ref: T,
-        className: y("fds-stepper-step", R),
-        style: z,
-        role: "group",
-        "aria-label": r,
-        "aria-current": m ? "step" : void 0,
-        "aria-disabled": t || void 0,
-        "data-orientation": i,
-        "data-nesting-level": n,
-        "data-selected": m || void 0,
-        "data-disabled": t || void 0,
-        "data-color": O,
+        ref: x,
+        className: p("fds-stepper-step", C),
+        style: T,
+        role: "listitem",
+        "aria-label": L ?? s,
+        "aria-current": S ? "step" : void 0,
+        "aria-disabled": a || void 0,
+        "data-orientation": l,
+        "data-size": n.toLowerCase(),
+        "data-nesting-level": d,
+        "data-selected": S || void 0,
+        "data-disabled": a || void 0,
+        "data-color": K,
         children: [
           /* @__PURE__ */ e(
-            H,
+            Y,
             {
-              stepType: F,
+              stepType: G,
               shouldShowStartBranch: !V,
               shouldShowEndBranch: !j,
               marker: A,
-              stepProgress: g
+              stepProgress: E
             }
           ),
-          /* @__PURE__ */ c(
+          /* @__PURE__ */ u(
             "div",
             {
-              className: y(
+              className: p(
                 "fds-stepper-step__body",
-                S && "fds-stepper-step__body--interactive"
+                y && "fds-stepper-step__body--interactive"
               ),
-              "data-selected": m || void 0,
-              "data-interactive": S || void 0,
+              "data-selected": S || void 0,
+              "data-interactive": y || void 0,
               children: [
-                d,
-                h && /* @__PURE__ */ e("div", { className: "fds-stepper-step__slot", children: h })
+                c,
+                _ && /* @__PURE__ */ e("div", { className: "fds-stepper-step__slot", children: _ })
               ]
             }
           )
@@ -135,7 +151,7 @@ const Q = /* @__PURE__ */ e(q, { color: "neutral" }), W = P(
     );
   }
 );
-W.displayName = "StepperStep";
+ee.displayName = "StepperStep";
 export {
-  W as StepperStep
+  ee as StepperStep
 };

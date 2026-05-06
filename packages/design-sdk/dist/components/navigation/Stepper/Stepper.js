@@ -1,89 +1,129 @@
-import { jsx as c } from "react/jsx-runtime";
-import { forwardRef as W, Children as I, useMemo as x, isValidElement as P, cloneElement as l } from "react";
-import { cn as N } from "../../../utils/cn.js";
-import { StepperStep as j } from "./StepperStep.js";
-import { StepperContext as v, useStepper as y } from "./StepperContext.js";
+import { jsx as R } from "react/jsx-runtime";
+import { forwardRef as W, Children as b, useMemo as T, useRef as _, useCallback as k, isValidElement as j, cloneElement as P } from "react";
+import { cn as H } from "../../../utils/cn.js";
+import { StepperStep as M } from "./StepperStep.js";
+import { StepperContext as q, useStepper as B } from "./StepperContext.js";
 /* empty css            */
-function E(t) {
+function F(t) {
   return typeof t != "string" && (t == null ? void 0 : t.displayName) === "Stepper";
 }
-function T(t) {
-  return t === j;
+function G(t) {
+  return t === M;
 }
-function w({
+function U({
   children: t,
   orientation: r,
-  _nestingLevel: n
+  _nestingLevel: o
 }) {
-  const a = y(), p = x(() => {
-    let o = 0;
-    const s = (d, u, f) => {
-      let S = f;
-      return I.map(d, (e, C) => {
-        if (!P(e)) return e;
-        if (T(e.type)) {
-          const h = {
-            _index: S++,
-            _totalIndex: o++,
-            _nestingLevel: u
+  const f = B(), c = T(() => {
+    let s = 0;
+    const x = (l, p, u) => {
+      let I = u;
+      return b.map(l, (n, S) => {
+        if (!j(n)) return n;
+        if (G(n.type)) {
+          const C = {
+            _index: I++,
+            _totalIndex: s++,
+            _nestingLevel: p
           };
-          return l(e, { ...h, key: C });
+          return P(n, { ...C, key: S });
         }
-        return E(e.type) && u < 3 ? l(e, {
+        return F(n.type) && p < 3 ? P(n, {
           orientation: r,
-          _nestingLevel: u + 1,
-          children: s(
-            e.props.children,
-            u + 1,
+          _nestingLevel: p + 1,
+          children: x(
+            n.props.children,
+            p + 1,
             0
           )
-        }) : e;
+        }) : n;
       });
     };
     return {
-      childrenWithIndex: n === 0 ? s(t, 0, 0) : t,
-      totalIndex: o
+      childrenWithIndex: o === 0 ? x(t, 0, 0) : t,
+      totalIndex: s
     };
-  }, [t, n, r]), i = n === 0 ? p.totalIndex : a.totalItemsInParentGroupCount;
+  }, [t, o, r]), m = o === 0 ? c.totalIndex : f.totalItemsInParentGroupCount;
   return {
-    childrenWithIndex: p.childrenWithIndex,
-    totalItemsInParentGroupCount: i
+    childrenWithIndex: c.childrenWithIndex,
+    totalItemsInParentGroupCount: m
   };
 }
-const G = W(
+const V = '.fds-stepper-step__header-box--interactive:not([aria-disabled="true"]):not([disabled])', $ = W(
   ({
     children: t,
     orientation: r = "vertical",
-    _nestingLevel: n = 0,
-    className: a,
+    size: o = "Medium",
+    width: f,
+    minWidth: c,
+    maxWidth: m,
+    _nestingLevel: s = 0,
+    className: x,
+    style: h,
+    onKeyDown: l,
     ...p
-  }, i) => {
-    const o = I.count(t), { childrenWithIndex: s, totalItemsInParentGroupCount: m } = w({
+  }, u) => {
+    const I = b.count(t), { childrenWithIndex: n, totalItemsInParentGroupCount: S } = U({
       children: t,
       orientation: r,
-      _nestingLevel: n
-    }), d = x(
+      _nestingLevel: s
+    }), C = T(
       () => ({
         orientation: r,
-        itemsInGroupCount: o,
-        totalItemsInParentGroupCount: m
+        size: o,
+        itemsInGroupCount: I,
+        totalItemsInParentGroupCount: S
       }),
-      [r, o, m]
-    );
-    return /* @__PURE__ */ c(v.Provider, { value: d, children: /* @__PURE__ */ c(
+      [r, o, I, S]
+    ), y = _(null), g = k(
+      (e) => {
+        if (l == null || l(e), e.defaultPrevented || r !== "horizontal" || s !== 0 || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+        const E = y.current;
+        if (!E) return;
+        const i = Array.from(
+          E.querySelectorAll(V)
+        );
+        if (i.length === 0) return;
+        const A = document.activeElement, d = A ? i.indexOf(A) : -1;
+        let a = d;
+        e.key === "ArrowRight" ? a = d < 0 ? 0 : (d + 1) % i.length : e.key === "ArrowLeft" ? a = d <= 0 ? i.length - 1 : d - 1 : e.key === "Home" ? a = 0 : e.key === "End" && (a = i.length - 1), i[a] && (e.preventDefault(), i[a].focus());
+      },
+      [l, r, s]
+    ), w = k(
+      (e) => {
+        y.current = e, typeof u == "function" ? u(e) : u && (u.current = e);
+      },
+      [u]
+    ), N = {
+      ...h,
+      ...f !== void 0 && { width: f },
+      ...c !== void 0 && { minWidth: c },
+      ...m !== void 0 && { maxWidth: m }
+    };
+    return /* @__PURE__ */ R(q.Provider, { value: C, children: /* @__PURE__ */ R(
       "div",
       {
-        ref: i,
-        className: N("fds-stepper", a),
+        ref: w,
+        className: H(
+          "fds-stepper",
+          `fds-stepper--size-${o.toLowerCase()}`,
+          x
+        ),
+        role: "list",
+        "aria-orientation": r,
         "data-orientation": r,
-        "data-nesting-level": n,
+        "data-size": o.toLowerCase(),
+        "data-nesting-level": s,
+        style: N,
+        onKeyDown: g,
         ...p,
-        children: s
+        children: n
       }
     ) });
   }
 );
-G.displayName = "Stepper";
+$.displayName = "Stepper";
 export {
-  G as Stepper
+  $ as Stepper
 };

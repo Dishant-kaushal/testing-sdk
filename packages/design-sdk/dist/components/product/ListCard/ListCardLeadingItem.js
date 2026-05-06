@@ -1,23 +1,23 @@
 import { jsx as i } from "react/jsx-runtime";
-import { cn as a } from "../../../utils/cn.js";
+import { cn as r } from "../../../utils/cn.js";
 /* empty css                        */
-function s({
-  leading: t = "Icon",
-  icon: l,
+function t({
+  leading: l = "Icon",
+  icon: e,
   children: n,
-  color: e,
+  color: s,
   className: d,
-  ...r
+  ...a
 }) {
-  return t === "Color" ? /* @__PURE__ */ i("div", { className: a("fds-list-card-leading", d), ...r, children: /* @__PURE__ */ i(
+  return l === "Color" ? /* @__PURE__ */ i("div", { className: r("fds-list-card-leading", d), ...a, children: /* @__PURE__ */ i("span", { className: "fds-list-card-leading__color", children: s && /* @__PURE__ */ i(
     "span",
     {
-      className: "fds-list-card-leading__color",
-      style: e ? { backgroundColor: e } : void 0
+      className: "fds-list-card-leading__color-fill",
+      style: { background: s }
     }
-  ) }) : t === "Slot" ? /* @__PURE__ */ i("div", { className: a("fds-list-card-leading", d), ...r, children: n }) : /* @__PURE__ */ i("div", { className: a("fds-list-card-leading", d), ...r, children: l });
+  ) }) }) : l === "Slot" ? /* @__PURE__ */ i("div", { className: r("fds-list-card-leading", d), ...a, children: n }) : /* @__PURE__ */ i("div", { className: r("fds-list-card-leading", d), ...a, children: e });
 }
-s.displayName = "ListCardLeadingItem";
+t.displayName = "ListCardLeadingItem";
 export {
-  s as ListCardLeadingItem
+  t as ListCardLeadingItem
 };

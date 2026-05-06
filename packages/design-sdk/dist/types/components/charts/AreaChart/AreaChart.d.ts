@@ -1,4 +1,5 @@
-import type { ChartProps, ChartPointClickContext } from '../Chart/Chart';
+import type { Options } from 'highcharts';
+import type { ChartProps, ChartPointClickContext, ChartPlotLine, ChartPlotBand } from '../Chart/Chart';
 import './AreaChart.css';
 /** A single area-chart series — name + numeric data points + optional color override. */
 export interface AreaSeries {
@@ -15,29 +16,23 @@ export interface AreaChartProps extends Omit<ChartProps, 'children'> {
     /** X-axis category labels (one per index in each series's `data` array). */
     categories: string[];
     /**
-     * Stack areas from each category instead of overlapping them. When `true`,
-     * Highcharts uses `stacking: 'normal'` so the series stack additively.
+     * Stack areas additively instead of overlapping them.
      * @default false
      */
     stacked?: boolean;
     /**
-     * Render as a 100% stacked area chart — every category sums to 100% and
-     * each series is shown as its proportional share. Implies `stacked: true`
-     * (overrides it if both are passed).
+     * 100% stacked area — every category sums to 100%. Overrides `stacked`.
      * @default false
      */
     percentStacked?: boolean;
     /**
-     * Smooth area edges using spline (Bezier) interpolation. Highcharts treats
-     * this as `chart.type: 'areaspline'` — same axes, same legend, same fill,
-     * just curved boundaries instead of straight ones.
+     * Smooth area edges using spline interpolation.
      * @default false
      */
     smooth?: boolean;
     /**
-     * Show data-point markers along each area's top edge. Forwarded to each
-     * series's `marker.enabled`. Leaving this `undefined` lets Highcharts use
-     * its default `'auto'`.
+     * Show data-point markers along each area's top edge.
+     * `undefined` lets Highcharts use its default `'auto'`.
      */
     showMarkers?: boolean;
     /**
@@ -61,9 +56,35 @@ export interface AreaChartProps extends Omit<ChartProps, 'children'> {
      */
     scrollableMinWidth?: number;
     /**
-     * Fires when a data point (marker) is clicked. Typical use: time drill-down.
-     * Consumer owns the hierarchy state.
+     * Fires when a data point is clicked. Consumer owns drill-down state.
      */
     onPointClick?: (ctx: ChartPointClickContext) => void;
+    /**
+     * Override the default Faclon palette for this chart instance.
+     */
+    colors?: string[];
+    /** X-axis title label shown below the axis. */
+    xAxisTitle?: string;
+    /** Y-axis title label shown beside the axis. */
+    yAxisTitle?: string;
+    /**
+     * Unit string appended to every y-axis tick label (e.g. `'°C'`, `'%'`).
+     */
+    yAxisUnit?: string;
+    /**
+     * Horizontal reference lines drawn across the plot area.
+     * Commonly used for single threshold markers.
+     */
+    plotLines?: ChartPlotLine[];
+    /**
+     * Shaded Y-axis bands across the plot area.
+     * Use for threshold zones e.g. warning band 80–90, critical band 90+.
+     */
+    plotBands?: ChartPlotBand[];
+    /**
+     * Full Highcharts options escape hatch — deep-merged last after all
+     * computed options.
+     */
+    highchartsOptions?: Options;
 }
 export declare const AreaChart: import("react").ForwardRefExoticComponent<AreaChartProps & import("react").RefAttributes<HTMLDivElement>>;

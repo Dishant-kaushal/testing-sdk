@@ -9,6 +9,8 @@ export interface TabsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChang
     /** Fired when selection changes (both controlled and uncontrolled).
      *  Named `onChange` to match Blade's Tabs API. */
     onChange?: (value: string) => void;
+    /** Alias of `onChange`. */
+    onValueChange?: (value: string) => void;
     /** Visual style. */
     variant?: TabsVariant;
     size?: TabsSize;

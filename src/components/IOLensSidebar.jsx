@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Clock, Database, BarChart2, AlertTriangle, Layout, Settings } from 'react-feather';
+import { TimeTabConfiguration } from '@faclon-labs/design-sdk/TimeTabConfiguration';
 import { Accordion } from '@faclon-labs/design-sdk/Accordion';
 import { AccordionItem } from '@faclon-labs/design-sdk/AccordionItem';
 import { TextInput } from '@faclon-labs/design-sdk/TextInput';
@@ -404,36 +405,111 @@ const canvasStyle = {
   gap: 8,
 };
 
+const defaultTimeConfig = {
+  timezone: 'Asia/Kolkata',
+  defaultDurationId: 'last_15_minutes',
+  allDurations: [],
+  defaultPeriodicity: 'minute',
+};
+
+const tabBarStyle = {
+  display: 'flex',
+  borderBottom: '1px solid #e5e7eb',
+  flexShrink: 0,
+};
+
+function tabStyle(active) {
+  return {
+    flex: 1,
+    padding: '10px 0',
+    fontSize: 13,
+    fontWeight: active ? 600 : 400,
+    color: active ? '#111827' : '#6b7280',
+    background: 'none',
+    border: 'none',
+    borderBottom: active ? '2px solid #111827' : '2px solid transparent',
+    cursor: 'pointer',
+    marginBottom: -1,
+  };
+}
+
 export default function IOLensSidebar() {
   const [applied, setApplied] = useState(false);
+  const [sidebarTab, setSidebarTab] = useState('data');
+  const [timeMode, setTimeMode] = useState(undefined);
 
   return (
     <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
 
       {/* ── Left panel ── */}
       <div style={sidebarStyle}>
-        <div style={sidebarHeaderStyle}>
-          <Settings size={16} color="#374151" />
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Widget Config</span>
+        {/* Tab bar */}
+        <div style={tabBarStyle}>
+          <button style={tabStyle(sidebarTab === 'data')} onClick={() => setSidebarTab('data')}>
+            Data
+          </button>
+          <button style={tabStyle(sidebarTab === 'time')} onClick={() => setSidebarTab('time')}>
+            Time
+          </button>
         </div>
 
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          <Accordion mode="single" defaultExpandedKeys={['time']}>
-            {SECTIONS.map(({ key, title, icon, content }) => (
-              <AccordionItem
-                key={key}
-                value={key}
-                title={title}
-                leading="Icon"
-                leadingIcon={icon}
+        {/* Mode toggle — only on Time tab */}
+        {sidebarTab === 'time' && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderBottom: '1px solid #e5e7eb', flexShrink: 0, background: '#f9fafb' }}>
+            <span style={{ fontSize: 11, color: '#6b7280', fontWeight: 500 }}>mode:</span>
+            {[undefined, 'series'].map((m) => (
+              <button
+                key={String(m)}
+                onClick={() => setTimeMode(m)}
+                style={{
+                  padding: '2px 10px',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  borderRadius: 20,
+                  border: '1px solid',
+                  cursor: 'pointer',
+                  borderColor: timeMode === m ? '#6366f1' : '#d1d5db',
+                  background: timeMode === m ? '#6366f1' : '#fff',
+                  color: timeMode === m ? '#fff' : '#374151',
+                }}
               >
-                <div style={contentPadStyle}>
-                  {content({ onApply: () => setApplied(true) })}
-                </div>
-              </AccordionItem>
+                {m ?? 'default'}
+              </button>
             ))}
-          </Accordion>
-        </div>
+          </div>
+        )}
+
+        {/* Data tab — existing accordion */}
+        {sidebarTab === 'data' && (
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <Accordion mode="single" defaultExpandedKeys={['time']}>
+              {SECTIONS.map(({ key, title, icon, content }) => (
+                <AccordionItem
+                  key={key}
+                  value={key}
+                  title={title}
+                  leading="Icon"
+                  leadingIcon={icon}
+                >
+                  <div style={contentPadStyle}>
+                    {content({ onApply: () => setApplied(true) })}
+                  </div>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        )}
+
+        {/* Time tab — TimeTabConfiguration */}
+        {sidebarTab === 'time' && (
+          <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <TimeTabConfiguration
+              value={defaultTimeConfig}
+              mode={timeMode}
+              onChange={(cfg) => console.log('[TimeTabConfiguration]', cfg)}
+            />
+          </div>
+        )}
       </div>
 
       {/* ── Canvas ── */}

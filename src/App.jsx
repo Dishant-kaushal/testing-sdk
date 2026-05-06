@@ -6,6 +6,7 @@ import EmptyStateTestPage from './components/EmptyStateTestPage';
 import IOLensSidebar from './components/IOLensSidebar';
 import InputsTestPage from './components/InputsTestPage';
 import ChartTestPage from './components/ChartTestPage';
+import TimeTabConfigTestPage from './components/TimeTabConfigTestPage';
 
 const VIEWS = [
   { id: 'table',      label: 'Products Table' },
@@ -15,6 +16,7 @@ const VIEWS = [
   { id: 'emptystate', label: 'EmptyState Test' },
   { id: 'iolens',     label: 'IOLens Sidebar' },
   { id: 'inputs',     label: 'Inputs Test' },
+  { id: 'timeconfig', label: 'Time Config' },
 ];
 
 const navStyle = {
@@ -71,6 +73,7 @@ function App() {
         {view === 'emptystate' && <EmptyStateTestPage />}
         {view === 'iolens'     && <IOLensSidebar />}
         {view === 'inputs'     && <InputsTestPage />}
+        {view === 'timeconfig' && <TimeTabConfigTestPage />}
       </div>
     </div>
   );

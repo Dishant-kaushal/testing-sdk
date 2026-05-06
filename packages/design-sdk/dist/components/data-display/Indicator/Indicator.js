@@ -1,40 +1,50 @@
-import { jsx as d, jsxs as t } from "react/jsx-runtime";
-import { cn as i } from "../../../utils/cn.js";
+import { jsx as i, jsxs as u } from "react/jsx-runtime";
+import { cn as d } from "../../../utils/cn.js";
 /* empty css              */
-const m = {
+const p = {
   Small: "BodySmallMedium",
   Medium: "BodyMediumMedium",
   Large: "BodyMediumMedium"
 };
-function c({
-  intent: r = "Positive",
-  size: a = "Small",
-  label: o,
-  className: s,
-  ...e
+function f({
+  intent: r = "Neutral",
+  size: e = "Small",
+  emphasis: t = "Subtle",
+  label: n,
+  children: c,
+  accessibilityLabel: s,
+  className: l,
+  ...m
 }) {
-  return /* @__PURE__ */ d(
+  const o = n ?? c, a = o != null && o !== "";
+  return process.env.NODE_ENV !== "production" && !a && !s && console.warn("[Indicator] Provide `label`, `children`, or `accessibilityLabel` so the indicator has an accessible name."), /* @__PURE__ */ i(
     "div",
     {
-      className: i("fds-indicator", s),
-      ...e,
-      children: /* @__PURE__ */ t("div", { className: "fds-indicator__wrapper", children: [
-        /* @__PURE__ */ d(
+      role: "status",
+      "aria-label": a ? void 0 : s,
+      className: d(
+        "fds-indicator",
+        `fds-indicator--emphasis-${t.toLowerCase()}`,
+        l
+      ),
+      ...m,
+      children: /* @__PURE__ */ u("div", { className: "fds-indicator__wrapper", children: [
+        /* @__PURE__ */ i(
           "span",
           {
-            className: i(
+            className: d(
               "fds-indicator__dot",
               `fds-indicator__dot--${r.toLowerCase()}`,
-              `fds-indicator__dot--${a.toLowerCase()}`
+              `fds-indicator__dot--${e.toLowerCase()}`
             )
           }
         ),
-        o && /* @__PURE__ */ d("span", { className: i("fds-indicator__label", m[a]), children: o })
+        a && /* @__PURE__ */ i("span", { className: d("fds-indicator__label", p[e]), children: o })
       ] })
     }
   );
 }
-c.displayName = "Indicator";
+f.displayName = "Indicator";
 export {
-  c as Indicator
+  f as Indicator
 };

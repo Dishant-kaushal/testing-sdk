@@ -1,50 +1,83 @@
-import { jsx as r, jsxs as f } from "react/jsx-runtime";
-import { useContext as x, createContext as S } from "react";
-import { cn as e } from "../../../utils/cn.js";
+import { jsx as a, jsxs as d } from "react/jsx-runtime";
+import { useId as M, useState as P, useCallback as $, useContext as h, createContext as j } from "react";
+import { cn as p } from "../../../utils/cn.js";
+import { InputFieldFooter as w } from "../../forms/InputFieldFooter/InputFieldFooter.js";
 /* empty css               */
-const a = S(null);
-function b() {
-  return x(a);
+const f = j(null);
+function H() {
+  return h(f);
 }
-const g = {
+const A = {
   Small: "BodySmallSemibold",
   Medium: "BodySmallSemibold",
   Large: "BodyMediumSemibold"
 };
-function y({
-  label: o,
-  name: d,
-  value: i,
-  onChange: l,
-  size: t = "Small",
-  isDisabled: s = !1,
-  children: m,
-  className: n,
-  orientation: u = "Vertical",
-  ...p
+function F({
+  label: e,
+  labelPosition: v = "Top",
+  helpText: i,
+  isRequired: s = !1,
+  necessityIndicator: t = "None",
+  name: _,
+  value: u,
+  defaultValue: N,
+  onChange: o,
+  size: n = "Small",
+  isDisabled: S = !1,
+  children: b,
+  className: g,
+  orientation: x = "Vertical",
+  ...C
 }) {
-  const c = {
-    name: d,
-    value: i,
-    onChange: l,
-    isDisabled: s
+  const G = M(), r = _ ?? `radio-group-${G}`, l = u !== void 0, [L, R] = P(N ?? ""), y = l ? u : L, B = $(
+    (c, I) => {
+      l || R(c), o == null || o({ name: r, value: c, event: I });
+    },
+    [l, o, r]
+  ), m = t === "Required" ? " *" : t === "Optional" ? " (optional)" : "", V = {
+    name: r,
+    value: y,
+    onChange: B,
+    isDisabled: S,
+    isRequired: s,
+    size: n
   };
-  return /* @__PURE__ */ r(a.Provider, { value: c, children: /* @__PURE__ */ f(
+  return /* @__PURE__ */ a(f.Provider, { value: V, children: /* @__PURE__ */ d(
     "div",
     {
       role: "radiogroup",
-      className: e("fds-radio-group", `fds-radio-group--${u.toLowerCase()}`, n),
-      "aria-label": o,
-      ...p,
+      className: p(
+        "fds-radio-group",
+        `fds-radio-group--${x.toLowerCase()}`,
+        `fds-radio-group--label-${v.toLowerCase()}`,
+        g
+      ),
+      "aria-label": e,
+      "aria-required": s || void 0,
+      ...C,
       children: [
-        o && /* @__PURE__ */ r("span", { className: e("fds-radio-group__label", g[t]), children: o }),
-        /* @__PURE__ */ r("div", { className: "fds-radio-group__body", children: m })
+        e && /* @__PURE__ */ d("span", { className: p("fds-radio-group__label", A[n]), children: [
+          e,
+          m && /* @__PURE__ */ a("span", { className: "fds-radio-group__label-suffix", children: m })
+        ] }),
+        /* @__PURE__ */ d("div", { className: "fds-radio-group__content", children: [
+          /* @__PURE__ */ a("div", { className: "fds-radio-group__body", children: b }),
+          i && /* @__PURE__ */ a(
+            w,
+            {
+              helpText: i,
+              state: "default",
+              size: "Medium",
+              className: "fds-radio-group__footer"
+            }
+          )
+        ] })
       ]
     }
   ) });
 }
-y.displayName = "RadioGroup";
+F.displayName = "RadioGroup";
 export {
-  y as RadioGroup,
-  b as useRadioGroupContext
+  F as RadioGroup,
+  H as useRadioGroupContext
 };

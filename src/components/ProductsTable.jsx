@@ -339,12 +339,12 @@ export default function ProductsTable() {
           onClearSearch={handleSearchClear}
           onCategoryChange={(val) => { setCategory(val); setPage(0); }}
           onDateRangeChange={(range) => { setDateRange(range); setPage(0); }}
-          onDensityToggle={() => setDensity((d) => (d === 'compact' ? 'comfortable' : 'compact'))}
+          onDensityToggle={() => setDensity((d) => (d === 'compact' ? 'expanded' : 'compact'))}
           onRefresh={() => setRefreshKey((k) => k + 1)}
         />
       }
       footer={
-        <TablePagination pageSizeOptions={[5, 10, 25, 50]} showLabel showRowsPerPage />
+        <TablePagination pageSizeOptions={[5, 10, 25, 50,500]} showLabel showRowsPerPage />
       }
     >
       {(rows) => (

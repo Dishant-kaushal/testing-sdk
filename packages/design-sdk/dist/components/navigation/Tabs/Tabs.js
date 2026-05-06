@@ -1,113 +1,114 @@
-import { jsx as E, jsxs as j } from "react/jsx-runtime";
-import { forwardRef as N, useId as P, useRef as S, useCallback as c, useMemo as H, Children as T, isValidElement as B } from "react";
-import { cn as F } from "../../../utils/cn.js";
-import { useControllableState as O } from "../../../hooks/useControllableState.js";
-import { TabsContext as U } from "./TabsContext.js";
-import { TabIndicator as q } from "./TabIndicator.js";
+import { jsx as H, jsxs as P } from "react/jsx-runtime";
+import { forwardRef as S, useId as T, useRef as B, useCallback as c, useMemo as I, Children as F, isValidElement as O } from "react";
+import { cn as U } from "../../../utils/cn.js";
+import { useControllableState as q } from "../../../hooks/useControllableState.js";
+import { TabsContext as G } from "./TabsContext.js";
+import { TabIndicator as J } from "./TabIndicator.js";
 /* empty css         */
-function G(i) {
-  let o;
-  return T.forEach(i, (l) => {
-    if (o !== void 0 || !B(l)) return;
-    const r = l.props;
-    typeof r.value == "string" && !r.isDisabled && (o = r.value);
-  }), o;
+function Q(i) {
+  let s;
+  return F.forEach(i, (l) => {
+    if (s !== void 0 || !O(l)) return;
+    const o = l.props;
+    typeof o.value == "string" && !o.isDisabled && (s = o.value);
+  }), s;
 }
-const J = N(
+const X = S(
   ({
     value: i,
-    defaultValue: o,
+    defaultValue: s,
     onChange: l,
-    variant: r = "Bordered",
-    size: d = "Medium",
-    orientation: s = "Horizontal",
-    isFullWidthTabItem: u = !1,
-    className: I,
-    children: m,
-    onKeyDown: f,
-    ...g
-  }, k) => {
-    const z = P(), p = g.id ?? `fds-tabs-${z}`, [h, w] = O({
+    onValueChange: o,
+    variant: d = "Bordered",
+    size: u = "Medium",
+    orientation: r = "Horizontal",
+    isFullWidthTabItem: m = !1,
+    className: k,
+    children: p,
+    onKeyDown: n,
+    ...h
+  }, z) => {
+    const L = T(), b = h.id ?? `fds-tabs-${L}`, R = l ?? o, [C, w] = q({
       value: i,
-      defaultValue: o,
-      onChange: l
-    }), n = S(/* @__PURE__ */ new Map()), x = c((e, t) => {
-      t ? n.current.set(e, t) : n.current.delete(e);
-    }, []), C = c(
-      (e) => n.current.get(e),
+      defaultValue: s,
+      onChange: R
+    }), f = B(/* @__PURE__ */ new Map()), x = c((e, t) => {
+      t ? f.current.set(e, t) : f.current.delete(e);
+    }, []), v = c(
+      (e) => f.current.get(e),
       []
-    ), v = H(
-      () => G(m),
-      [m]
+    ), y = I(
+      () => Q(p),
+      [p]
     ), a = c(
       (e, t) => {
         if (e.length === 0) return;
         e[(t + e.length) % e.length].focus();
       },
       []
-    ), L = c(
+    ), V = c(
       (e) => {
-        if (f == null || f(e), e.defaultPrevented) return;
-        const t = Array.from(n.current.values()).filter(
-          (M) => !M.disabled
+        if (n == null || n(e), e.defaultPrevented) return;
+        const t = Array.from(f.current.values()).filter(
+          (N) => !N.disabled
         );
         if (t.length === 0) return;
-        const b = document.activeElement, y = b ? t.indexOf(b) : -1, A = s === "Horizontal", $ = A ? "ArrowRight" : "ArrowDown", D = A ? "ArrowLeft" : "ArrowUp";
-        e.key === $ ? (e.preventDefault(), a(t, y + 1)) : e.key === D ? (e.preventDefault(), a(t, y - 1)) : e.key === "Home" ? (e.preventDefault(), a(t, 0)) : e.key === "End" && (e.preventDefault(), a(t, t.length - 1));
+        const g = document.activeElement, A = g ? t.indexOf(g) : -1, E = r === "Horizontal", M = E ? "ArrowRight" : "ArrowDown", j = E ? "ArrowLeft" : "ArrowUp";
+        e.key === M ? (e.preventDefault(), a(t, A + 1)) : e.key === j ? (e.preventDefault(), a(t, A - 1)) : e.key === "Home" ? (e.preventDefault(), a(t, 0)) : e.key === "End" && (e.preventDefault(), a(t, t.length - 1));
       },
-      [a, f, s]
-    ), R = H(
+      [a, n, r]
+    ), $ = I(
       () => ({
-        selectedValue: h,
+        selectedValue: C,
         setSelectedValue: w,
-        variant: r,
-        size: d,
-        orientation: s,
-        isFullWidthTabItem: u,
-        baseId: p,
+        variant: d,
+        size: u,
+        orientation: r,
+        isFullWidthTabItem: m,
+        baseId: b,
         registerItem: x,
-        getItemEl: C,
-        firstFocusableValue: v
+        getItemEl: v,
+        firstFocusableValue: y
       }),
       [
-        h,
-        w,
-        r,
-        d,
-        s,
-        u,
-        p,
-        x,
         C,
-        v
+        w,
+        d,
+        u,
+        r,
+        m,
+        b,
+        x,
+        v,
+        y
       ]
-    ), V = F(
+    ), D = U(
       "fds-tabs",
-      `fds-tabs--variant-${r.toLowerCase()}`,
-      `fds-tabs--orientation-${s.toLowerCase()}`,
-      `fds-tabs--size-${d.toLowerCase()}`,
-      s === "Horizontal" && u && "fds-tabs--full-width",
-      I
+      `fds-tabs--variant-${d.toLowerCase()}`,
+      `fds-tabs--orientation-${r.toLowerCase()}`,
+      `fds-tabs--size-${u.toLowerCase()}`,
+      r === "Horizontal" && m && "fds-tabs--full-width",
+      k
     );
-    return /* @__PURE__ */ E(U.Provider, { value: R, children: /* @__PURE__ */ j(
+    return /* @__PURE__ */ H(G.Provider, { value: $, children: /* @__PURE__ */ P(
       "div",
       {
-        ref: k,
+        ref: z,
         role: "tablist",
-        "aria-orientation": s === "Horizontal" ? "horizontal" : "vertical",
-        className: V,
-        onKeyDown: L,
-        ...g,
-        id: p,
+        "aria-orientation": r === "Horizontal" ? "horizontal" : "vertical",
+        className: D,
+        onKeyDown: V,
+        ...h,
+        id: b,
         children: [
-          m,
-          /* @__PURE__ */ E(q, {})
+          p,
+          /* @__PURE__ */ H(J, {})
         ]
       }
     ) });
   }
 );
-J.displayName = "Tabs";
+X.displayName = "Tabs";
 export {
-  J as Tabs
+  X as Tabs
 };

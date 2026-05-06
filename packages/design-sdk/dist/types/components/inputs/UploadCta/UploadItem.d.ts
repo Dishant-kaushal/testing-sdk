@@ -25,6 +25,8 @@ export interface UploadItemProps extends HTMLAttributes<HTMLDivElement> {
     onDownload?: () => void;
     /** Called when preview is clicked */
     onPreview?: () => void;
+    /** Called when the retry action is clicked on a failed upload */
+    onRetry?: () => void;
 }
 export declare function UploadItem({ fileName, fileSize, fileType, uploadState, showDownload, showPreview, errorText, progress, onRemove, onDownload, onPreview, className, ...props }: UploadItemProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace UploadItem {

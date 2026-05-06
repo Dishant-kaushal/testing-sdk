@@ -81,5 +81,7 @@ export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElemen
     autoCompleteSuggestionType?: TextInputAutoComplete;
     /** Return key type */
     keyboardReturnKeyType?: TextInputKeyboardReturn;
+    /** Accessible name for the input. Sets `aria-label` — use when no visible `label` is shown. */
+    accessibilityLabel?: string;
 }
 export declare const TextInput: import("react").ForwardRefExoticComponent<TextInputProps & import("react").RefAttributes<HTMLInputElement>>;

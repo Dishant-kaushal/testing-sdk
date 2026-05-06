@@ -22,10 +22,12 @@ export interface AccordionItemProps {
     defaultExpanded?: boolean;
     /** Called when expanded state changes */
     onExpandedChange?: (expanded: boolean) => void;
+    /** Disables expansion and visually mutes the item. */
+    isDisabled?: boolean;
     /** Additional class name */
     className?: string;
 }
-export declare function AccordionItem({ value, title, bodyText, children, leading, leadingIcon, leadingNumber, isExpanded: controlledExpanded, defaultExpanded, onExpandedChange, className, }: AccordionItemProps): import("react/jsx-runtime").JSX.Element;
+export declare function AccordionItem({ value, title, bodyText, children, leading, leadingIcon, leadingNumber, isExpanded: controlledExpanded, defaultExpanded, onExpandedChange, isDisabled, className, }: AccordionItemProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace AccordionItem {
     var displayName: string;
 }

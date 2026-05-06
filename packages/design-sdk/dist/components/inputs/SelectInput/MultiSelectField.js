@@ -1,199 +1,212 @@
-import { jsx as e, jsxs as l, Fragment as T } from "react/jsx-runtime";
-import { forwardRef as W, useId as X, useRef as Y, useCallback as y } from "react";
+import { jsx as t, jsxs as s, Fragment as T } from "react/jsx-runtime";
+import { forwardRef as Y, useId as Z, useRef as $, useCallback as v } from "react";
 import { ChevronDown as q } from "react-feather";
-import { cn as r } from "../../../utils/cn.js";
+import { cn as a } from "../../../utils/cn.js";
 import { Tag as A } from "../../data-display/Tag/Tag.js";
-import { InputFieldHeader as Z } from "../../forms/InputFieldHeader/InputFieldHeader.js";
-import { InputFieldFooter as $ } from "../../forms/InputFieldFooter/InputFieldFooter.js";
-const S = W(
+import { InputFieldHeader as S } from "../../forms/InputFieldHeader/InputFieldHeader.js";
+import { InputFieldFooter as O } from "../../forms/InputFieldFooter/InputFieldFooter.js";
+const V = Y(
   ({
     type: B = "multiple",
-    label: x,
-    name: w,
-    placeholder: g = "Select",
-    tags: a = [],
-    maxVisibleTags: M = 2,
-    helpText: C,
-    errorText: G,
-    validationState: J = "none",
-    isDisabled: s = !1,
+    label: N,
+    name: g,
+    placeholder: M = "Select",
+    tags: u = [],
+    maxVisibleTags: b = 2,
+    helpText: G,
+    errorText: J,
+    validationState: L = "none",
+    isDisabled: l = !1,
     isOpen: i = !1,
     isReadOnly: R = !1,
-    searchValue: n,
-    onSearchChange: p,
+    searchValue: r,
+    onSearchChange: d,
     onBackspace: o,
     onSubmit: h,
-    leadingIcon: u,
-    leadingText: f,
-    children: b,
+    leadingIcon: f,
+    leadingText: m,
+    children: F,
     onClick: c,
-    onFocus: F,
-    onBlur: z,
-    className: L
-  }, P) => {
-    const N = X(), Q = Y(null), m = P ?? Q, _ = B === "multiple-flex", d = a.length > 0, v = J === "error", K = v ? G : C, j = _ ? a : a.slice(0, M), D = _ ? 0 : a.length - M, U = y(
-      (t) => {
+    onFocus: z,
+    onBlur: D,
+    onChevronClick: n,
+    className: Q
+  }, U) => {
+    const y = Z(), W = $(null), _ = U ?? W, x = B === "multiple-flex", p = u.length > 0, w = L === "error", K = w ? J : G, j = x ? u : u.slice(0, b), E = x ? 0 : u.length - b, X = v(
+      (e) => {
         var I;
-        s || ((I = m.current) == null || I.focus(), c == null || c(t));
+        l || ((I = _.current) == null || I.focus(), c == null || c(e));
       },
-      [s, c, m]
-    ), E = y(
-      (t) => {
-        p == null || p(t.target.value);
+      [l, c, _]
+    ), P = v(
+      (e) => {
+        d == null || d(e.target.value);
       },
-      [p]
-    ), H = y(
-      (t) => {
-        t.key === "Backspace" && !n && (o == null || o()), t.key === "Enter" && n && h && (t.preventDefault(), h(n));
+      [d]
+    ), H = v(
+      (e) => {
+        e.key === "Backspace" && !r && (o == null || o()), e.key === "Enter" && r && h && (e.preventDefault(), h(r));
       },
-      [n, o, h]
+      [r, o, h]
     );
-    return /* @__PURE__ */ e("div", { className: r("fds-select-input__multi", L), children: /* @__PURE__ */ l(
+    return /* @__PURE__ */ t("div", { className: a("fds-select-input__multi", Q), children: /* @__PURE__ */ s(
       "div",
       {
-        className: r(
+        className: a(
           "fds-text-input",
-          s && "fds-text-input--disabled",
-          v && "fds-text-input--error",
+          l && "fds-text-input--disabled",
+          w && "fds-text-input--error",
           i && "fds-select-input--open"
         ),
         children: [
-          /* @__PURE__ */ e(Z, { label: x, htmlFor: N }),
-          /* @__PURE__ */ l("div", { className: "fds-text-input__field-wrapper fds-select-input__multi-field-wrapper", children: [
-            /* @__PURE__ */ e(
+          /* @__PURE__ */ t(S, { label: N, htmlFor: y }),
+          /* @__PURE__ */ s("div", { className: "fds-text-input__field-wrapper fds-select-input__multi-field-wrapper", children: [
+            /* @__PURE__ */ t(
               "div",
               {
-                className: r(
+                className: a(
                   "fds-text-input__field fds-select-input__multi-trigger",
-                  _ && "fds-select-input__multi-trigger--flex"
+                  x && "fds-select-input__multi-trigger--flex"
                 ),
                 role: "combobox",
                 "aria-expanded": i,
                 "aria-haspopup": "listbox",
-                "aria-disabled": s || void 0,
-                onClick: U,
-                children: _ ? /* @__PURE__ */ l(T, { children: [
-                  /* @__PURE__ */ l("span", { className: "fds-select-input__leading-col", children: [
-                    d && /* @__PURE__ */ e("span", { className: "fds-select-input__tags fds-select-input__tags--flex", children: j.map((t) => /* @__PURE__ */ e(
+                "aria-disabled": l || void 0,
+                onClick: X,
+                children: x ? /* @__PURE__ */ s(T, { children: [
+                  /* @__PURE__ */ s("span", { className: "fds-select-input__leading-col", children: [
+                    p && /* @__PURE__ */ t("span", { className: "fds-select-input__tags fds-select-input__tags--flex", children: j.map((e) => /* @__PURE__ */ t(
                       A,
                       {
-                        id: t.label,
-                        label: t.label,
+                        id: e.label,
+                        label: e.label,
                         size: "Medium",
-                        isDisabled: s,
-                        onDismiss: t.onDismiss
+                        isDisabled: l,
+                        onDismiss: e.onDismiss
                       }
                     )) }),
-                    /* @__PURE__ */ l(
+                    /* @__PURE__ */ s(
                       "span",
                       {
-                        className: r(
+                        className: a(
                           "fds-select-input__input-row",
-                          d && !i && "fds-select-input__input-row--hidden"
+                          p && !i && "fds-select-input__input-row--hidden"
                         ),
                         children: [
-                          u && /* @__PURE__ */ e("span", { className: "fds-text-input__icon", children: u }),
-                          f && /* @__PURE__ */ e("span", { className: "fds-text-input__prefix BodyMediumRegular", children: f }),
-                          /* @__PURE__ */ e(
+                          f && /* @__PURE__ */ t("span", { className: "fds-text-input__icon", children: f }),
+                          m && /* @__PURE__ */ t("span", { className: "fds-text-input__prefix BodyMediumRegular", children: m }),
+                          /* @__PURE__ */ t(
                             "input",
                             {
-                              ref: m,
-                              id: N,
+                              ref: _,
+                              id: y,
                               type: "text",
                               role: "searchbox",
                               className: "fds-select-input__multi-input BodyMediumRegular",
-                              name: w,
-                              placeholder: d ? "" : g,
-                              value: n ?? "",
-                              disabled: s,
+                              name: g,
+                              placeholder: p ? "" : M,
+                              value: r ?? "",
+                              disabled: l,
                               readOnly: R,
-                              "aria-label": x,
+                              "aria-label": N,
                               "aria-autocomplete": "list",
                               autoComplete: "off",
-                              onChange: E,
+                              onChange: P,
                               onKeyDown: H,
-                              onFocus: F,
-                              onBlur: z
+                              onFocus: z,
+                              onBlur: D
                             }
                           )
                         ]
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ e("span", { className: "fds-select-input__trailing--flex", children: /* @__PURE__ */ e(
+                  /* @__PURE__ */ t("span", { className: "fds-select-input__trailing--flex", children: /* @__PURE__ */ t(
                     "span",
                     {
-                      className: r(
+                      className: a(
                         "fds-select-input__multi-chevron",
                         i && "fds-select-input__multi-chevron--open"
                       ),
-                      children: /* @__PURE__ */ e(q, { size: 16 })
+                      role: "button",
+                      "aria-label": i ? "Close menu" : "Open menu",
+                      onMouseDown: (e) => e.preventDefault(),
+                      onClick: (e) => {
+                        l || (e.stopPropagation(), n == null || n());
+                      },
+                      children: /* @__PURE__ */ t(q, { size: 16 })
                     }
                   ) })
-                ] }) : /* @__PURE__ */ l(T, { children: [
-                  /* @__PURE__ */ l("span", { className: "fds-text-input__leading", children: [
-                    u && /* @__PURE__ */ e("span", { className: "fds-text-input__icon", children: u }),
-                    f && /* @__PURE__ */ e("span", { className: "fds-text-input__prefix BodyMediumRegular", children: f }),
-                    d && /* @__PURE__ */ l("span", { className: "fds-select-input__tags", children: [
-                      j.map((t) => /* @__PURE__ */ e(
+                ] }) : /* @__PURE__ */ s(T, { children: [
+                  /* @__PURE__ */ s("span", { className: "fds-text-input__leading", children: [
+                    f && /* @__PURE__ */ t("span", { className: "fds-text-input__icon", children: f }),
+                    m && /* @__PURE__ */ t("span", { className: "fds-text-input__prefix BodyMediumRegular", children: m }),
+                    p && /* @__PURE__ */ s("span", { className: "fds-select-input__tags", children: [
+                      j.map((e) => /* @__PURE__ */ t(
                         A,
                         {
-                          id: t.label,
-                          label: t.label,
+                          id: e.label,
+                          label: e.label,
                           size: "Medium",
-                          isDisabled: s,
-                          onDismiss: t.onDismiss
+                          isDisabled: l,
+                          onDismiss: e.onDismiss
                         }
                       )),
-                      D > 0 && /* @__PURE__ */ l("span", { className: "fds-select-input__overflow BodySmallRegular", children: [
+                      E > 0 && /* @__PURE__ */ s("span", { className: "fds-select-input__overflow BodySmallRegular", children: [
                         "+",
-                        D,
+                        E,
                         " more"
                       ] })
                     ] }),
-                    /* @__PURE__ */ e(
+                    /* @__PURE__ */ t(
                       "input",
                       {
-                        ref: m,
-                        id: N,
+                        ref: _,
+                        id: y,
                         type: "text",
                         role: "searchbox",
                         className: "fds-select-input__multi-input BodyMediumRegular",
-                        name: w,
-                        placeholder: d ? "" : g,
-                        value: n ?? "",
-                        disabled: s,
+                        name: g,
+                        placeholder: p ? "" : M,
+                        value: r ?? "",
+                        disabled: l,
                         readOnly: R,
-                        "aria-label": x,
+                        "aria-label": N,
                         "aria-autocomplete": "list",
                         autoComplete: "off",
-                        onChange: E,
+                        onChange: P,
                         onKeyDown: H,
-                        onFocus: F,
-                        onBlur: z
+                        onFocus: z,
+                        onBlur: D
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ e("span", { className: "fds-text-input__trailing", children: /* @__PURE__ */ e(
+                  /* @__PURE__ */ t("span", { className: "fds-text-input__trailing", children: /* @__PURE__ */ t(
                     "span",
                     {
-                      className: r(
+                      className: a(
                         "fds-select-input__multi-chevron",
                         i && "fds-select-input__multi-chevron--open"
                       ),
-                      children: /* @__PURE__ */ e(q, { size: 16 })
+                      role: "button",
+                      "aria-label": i ? "Close menu" : "Open menu",
+                      onMouseDown: (e) => e.preventDefault(),
+                      onClick: (e) => {
+                        l || (e.stopPropagation(), n == null || n());
+                      },
+                      children: /* @__PURE__ */ t(q, { size: 16 })
                     }
                   ) })
                 ] })
               }
             ),
-            i && b && /* @__PURE__ */ e("div", { className: "fds-select-input__popover", children: b })
+            i && F && /* @__PURE__ */ t("div", { className: "fds-select-input__popover", children: F })
           ] }),
-          K && /* @__PURE__ */ e(
-            $,
+          K && /* @__PURE__ */ t(
+            O,
             {
               helpText: K,
-              state: v ? "error" : "default"
+              state: w ? "error" : "default"
             }
           )
         ]
@@ -201,7 +214,7 @@ const S = W(
     ) });
   }
 );
-S.displayName = "MultiSelectField";
+V.displayName = "MultiSelectField";
 export {
-  S as MultiSelectField
+  V as MultiSelectField
 };

@@ -1,50 +1,59 @@
-import { jsxs as d, jsx as a } from "react/jsx-runtime";
-import { cn as n } from "../../../utils/cn.js";
+import { jsxs as f, jsx as e } from "react/jsx-runtime";
+import { cn as $ } from "../../../utils/cn.js";
 /* empty css                */
-function t({
-  label: s,
-  value: l = 0,
-  size: i = "Large",
-  intent: p = "None",
-  isIndeterminate: r = !1,
-  showPercentage: o = !0,
-  className: c,
-  ...g
+function B({
+  label: a,
+  accessibilityLabel: h,
+  type: d = "progress",
+  value: v = 0,
+  min: c = 0,
+  max: l = 100,
+  size: _ = "Large",
+  intent: b = "Neutral",
+  isIndeterminate: p = !1,
+  showPercentage: m = !0,
+  className: N,
+  ...x
 }) {
-  const e = Math.min(100, Math.max(0, l)), m = !!s || o && !r;
-  return /* @__PURE__ */ d(
+  const s = d === "meter", r = !s && p;
+  process.env.NODE_ENV !== "production" && s && p && console.warn('[ProgressBar] `isIndeterminate` is ignored when `type="meter"` (meters represent static values).');
+  const o = Math.min(c, l), t = Math.max(c, l), i = Math.min(t, Math.max(o, v)), g = t - o, n = g > 0 ? (i - o) / g * 100 : 0, u = s ? `${i}` : `${Math.round(n)}%`, w = r ? void 0 : u, y = !!a || m && !r, M = s ? "meter" : "progressbar";
+  return /* @__PURE__ */ f(
     "div",
     {
-      className: n(
+      className: $(
         "fds-progress-bar",
-        `fds-progress-bar--size-${i.toLowerCase()}`,
-        `fds-progress-bar--intent-${p.toLowerCase()}`,
+        `fds-progress-bar--size-${_.toLowerCase()}`,
+        `fds-progress-bar--intent-${b.toLowerCase()}`,
+        `fds-progress-bar--type-${d}`,
         r && "fds-progress-bar--indeterminate",
-        c
+        N
       ),
-      role: "progressbar",
-      "aria-valuenow": r ? void 0 : e,
-      "aria-valuemin": 0,
-      "aria-valuemax": 100,
-      "aria-label": s ?? "Progress",
-      ...g,
+      role: M,
+      "aria-valuenow": r ? void 0 : i,
+      "aria-valuemin": o,
+      "aria-valuemax": t,
+      "aria-valuetext": w,
+      "aria-label": h ?? a ?? "Progress",
+      ...x,
       children: [
-        m && /* @__PURE__ */ d("div", { className: "fds-progress-bar__header", children: [
-          s && /* @__PURE__ */ a("span", { className: "fds-progress-bar__label BodySmallRegular", children: s }),
-          o && !r && /* @__PURE__ */ a("span", { className: "fds-progress-bar__percentage BodySmallRegular", children: `${Math.round(e)}%` })
+        y && /* @__PURE__ */ f("div", { className: "fds-progress-bar__header", children: [
+          a && /* @__PURE__ */ e("span", { className: "fds-progress-bar__label BodySmallRegular", children: a }),
+          m && !r && /* @__PURE__ */ e("span", { className: "fds-progress-bar__percentage BodySmallRegular", children: u })
         ] }),
-        /* @__PURE__ */ a("div", { className: "fds-progress-bar__track", children: /* @__PURE__ */ a(
+        /* @__PURE__ */ e("div", { className: "fds-progress-bar__track", children: /* @__PURE__ */ e(
           "div",
           {
             className: "fds-progress-bar__indicator",
-            style: r ? void 0 : { width: `${e}%` }
+            style: r ? void 0 : { width: `${n}%` },
+            children: !s && !r && n > 0 && /* @__PURE__ */ e("span", { className: "fds-progress-bar__pulse", "aria-hidden": "true" })
           }
         ) })
       ]
     }
   );
 }
-t.displayName = "ProgressBar";
+B.displayName = "ProgressBar";
 export {
-  t as ProgressBar
+  B as ProgressBar
 };

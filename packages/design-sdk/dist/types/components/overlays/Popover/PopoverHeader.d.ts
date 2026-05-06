@@ -8,12 +8,10 @@ export interface PopoverHeaderProps extends HTMLAttributes<HTMLDivElement> {
     leading?: ReactNode;
     /** When true, renders a close `<IconButton icon={<X/>} />` that triggers the parent Popover's close. */
     showClose?: boolean;
-    /** Accessibility label for the close button */
-    closeLabel?: string;
     /** Override the close handler. Defaults to calling `close()` from PopoverContext. */
     onClose?: () => void;
 }
-export declare function PopoverHeader({ title, leading, showClose, closeLabel, onClose, className, ...props }: PopoverHeaderProps): import("react/jsx-runtime").JSX.Element;
+export declare function PopoverHeader({ title, leading, showClose, onClose, className, ...props }: PopoverHeaderProps): import("react/jsx-runtime").JSX.Element;
 export declare namespace PopoverHeader {
     var displayName: string;
 }

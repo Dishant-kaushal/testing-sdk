@@ -8,6 +8,12 @@ export interface CheckboxGroupProps extends Omit<HTMLAttributes<HTMLDivElement>,
     size?: CheckboxSize;
     /** Orientation of the checkbox group */
     orientation?: 'Vertical' | 'Horizontal';
+    /** Help text shown below the group */
+    helpText?: string;
+    /** Error text shown below the group when in an error state */
+    errorText?: string;
+    /** Validation state */
+    validationState?: 'none' | 'error';
     /** Checkbox children */
     children: ReactNode;
 }

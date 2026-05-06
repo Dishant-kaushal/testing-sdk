@@ -1,6 +1,6 @@
-import { jsx as r } from "react/jsx-runtime";
-import { forwardRef as p } from "react";
-import { cn as d } from "../../../utils/cn.js";
+import { jsx as e } from "react/jsx-runtime";
+import { forwardRef as d } from "react";
+import { cn as s } from "../../../utils/cn.js";
 /* empty css                     */
 const n = {
   positive: "fds-stepper-indicator--positive",
@@ -9,19 +9,24 @@ const n = {
   information: "fds-stepper-indicator--information",
   primary: "fds-stepper-indicator--primary",
   neutral: "fds-stepper-indicator--neutral"
-}, s = p(
-  ({ color: i = "neutral", isDisabled: t, className: e, ...a }, o) => /* @__PURE__ */ r(
+}, c = d(
+  ({ color: i = "neutral", size: r = "Medium", isDisabled: t, className: a, ...o }, p) => /* @__PURE__ */ e(
     "div",
     {
-      ref: o,
-      className: d("fds-stepper-indicator", n[i], e),
+      ref: p,
+      className: s(
+        "fds-stepper-indicator",
+        `fds-stepper-indicator--size-${r.toLowerCase()}`,
+        n[i],
+        a
+      ),
       "data-disabled": t || void 0,
-      ...a,
-      children: /* @__PURE__ */ r("span", { className: "fds-stepper-indicator__dot", "aria-hidden": "true" })
+      ...o,
+      children: /* @__PURE__ */ e("span", { className: "fds-stepper-indicator__dot", "aria-hidden": "true" })
     }
   )
 );
-s.displayName = "StepperIndicator";
+c.displayName = "StepperIndicator";
 export {
-  s as StepperIndicator
+  c as StepperIndicator
 };
