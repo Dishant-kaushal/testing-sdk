@@ -1,37 +1,35 @@
-import { jsx as C } from "react/jsx-runtime";
-import { forwardRef as w, useMemo as F } from "react";
-import N from "highcharts";
-import V from "highcharts-react-official";
-import { Chart as Y } from "../Chart/Chart.js";
-import { useFaclonChartTheme as $, readCssVar as P } from "../Chart/highchartsTheme.js";
+import { jsx as z } from "react/jsx-runtime";
+import { forwardRef as j, useMemo as F } from "react";
+import C from "highcharts";
+import R from "highcharts-react-official";
+import { Chart as M } from "../Chart/Chart.js";
+import { useFaclonChartTheme as P, readCssVar as A } from "../Chart/highchartsTheme.js";
 /* empty css             */
-const q = w(
+const V = R.default ?? R, $ = j(
   ({
-    series: c,
+    series: n,
     categories: d,
     stacked: h = !1,
     showLegend: f = !0,
-    showDataLabels: x = !1,
-    scrollable: g = !1,
-    scrollableMinHeight: u = 500,
+    showDataLabels: g = !1,
     onPointClick: o,
     colors: l,
     xAxisTitle: i,
     yAxisTitle: s,
     yAxisUnit: m,
-    plotLines: a,
-    plotBands: t,
-    highchartsOptions: n,
-    ...S
-  }, H) => {
-    const r = $(), R = F(() => {
-      var I, z, A;
-      const j = c.map((e) => ({
+    plotLines: t,
+    plotBands: a,
+    highchartsOptions: c,
+    ...H
+  }, N) => {
+    const r = P(), S = F(() => {
+      var y, v, I;
+      const w = n.map((e) => ({
         type: "bar",
         name: e.name,
         data: e.data,
         color: e.color
-      })), b = t == null ? void 0 : t.map((e) => ({
+      })), u = a == null ? void 0 : a.map((e) => ({
         from: e.from,
         to: e.to,
         color: e.color ?? "rgba(239,68,68,0.1)",
@@ -39,9 +37,9 @@ const q = w(
         ...e.label && {
           label: { text: e.label, align: e.labelAlign ?? "right" }
         }
-      })), y = a == null ? void 0 : a.map((e) => ({
+      })), x = t == null ? void 0 : t.map((e) => ({
         value: e.value,
-        color: (e.color ?? P("--border-error-default")) || "#ef4444",
+        color: (e.color ?? A("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -49,35 +47,33 @@ const q = w(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? P("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? A("--border-error-default")) || "#ef4444" }
           }
         }
-      })), v = {
+      })), b = {
         ...r,
         ...l && { colors: l },
         chart: {
           ...r.chart,
           type: "bar",
-          ...g && {
-            scrollablePlotArea: { minHeight: u, scrollPositionY: 0 }
-          }
+          zooming: { type: "y", singleTouch: !0 }
         },
         xAxis: {
           ...r.xAxis,
           categories: d,
-          ...i !== void 0 && { title: { ...(I = r.xAxis) == null ? void 0 : I.title, text: i } }
+          ...i !== void 0 && { title: { ...(y = r.xAxis) == null ? void 0 : y.title, text: i } }
         },
         yAxis: {
           ...r.yAxis,
-          ...s !== void 0 && { title: { ...(z = r.yAxis) == null ? void 0 : z.title, text: s } },
-          ...m && { labels: { ...(A = r.yAxis) == null ? void 0 : A.labels, format: `{value} ${m}` } },
-          ...y && { plotLines: y },
-          ...b && { plotBands: b }
+          ...s !== void 0 && { title: { ...(v = r.yAxis) == null ? void 0 : v.title, text: s } },
+          ...m && { labels: { ...(I = r.yAxis) == null ? void 0 : I.labels, format: `{value} ${m}` } },
+          ...x && { plotLines: x },
+          ...u && { plotBands: u }
         },
         plotOptions: {
           bar: {
             stacking: h ? "normal" : void 0,
-            dataLabels: { enabled: x },
+            dataLabels: { enabled: g },
             ...o && {
               cursor: "pointer",
               point: {
@@ -100,21 +96,21 @@ const q = w(
           ...r.legend,
           enabled: f
         },
-        series: j
+        series: w
       };
-      return n ? N.merge(v, n) : v;
-    }, [r, c, d, h, f, x, g, u, o, l, i, s, m, a, t, n]);
-    return /* @__PURE__ */ C(Y, { ref: H, ...S, children: /* @__PURE__ */ C(
+      return c ? C.merge(b, c) : b;
+    }, [r, n, d, h, f, g, o, l, i, s, m, t, a, c]);
+    return /* @__PURE__ */ z(M, { ref: N, ...H, children: /* @__PURE__ */ z(
       V,
       {
-        highcharts: N,
-        options: R,
+        highcharts: C,
+        options: S,
         containerProps: { className: "fds-bar-chart" }
       }
     ) });
   }
 );
-q.displayName = "BarChart";
+$.displayName = "BarChart";
 export {
-  q as BarChart
+  $ as BarChart
 };

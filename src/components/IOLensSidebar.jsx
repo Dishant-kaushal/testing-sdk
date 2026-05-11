@@ -80,12 +80,14 @@ function TimeConfig() {
 
       <SectionDivider />
 
-      <Switch
-        label="Auto Refresh"
-        name="autoRefresh"
-        isChecked={autoRefresh}
-        onChange={({ checked }) => setAutoRefresh(checked)}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: 13, color: '#374151' }}>Auto Refresh</span>
+        <Switch
+          name="autoRefresh"
+          isChecked={autoRefresh}
+          onChange={({ isChecked }) => setAutoRefresh(isChecked)}
+        />
+      </div>
 
       {autoRefresh && (
         <SelectInput
@@ -222,13 +224,14 @@ function VisualConfig() {
           { key: 'smoothCurve',    label: 'Smooth Curve' },
           { key: 'stacked',        label: 'Stacked' },
         ].map(({ key, label }) => (
-          <Switch
-            key={key}
-            name={key}
-            label={label}
-            isChecked={settings[key]}
-            onChange={({ checked }) => setSettings((prev) => ({ ...prev, [key]: checked }))}
-          />
+          <div key={key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: 13, color: '#374151' }}>{label}</span>
+            <Switch
+              name={key}
+              isChecked={settings[key]}
+              onChange={({ isChecked }) => setSettings((prev) => ({ ...prev, [key]: isChecked }))}
+            />
+          </div>
         ))}
       </FieldGroup>
     </FormRow>

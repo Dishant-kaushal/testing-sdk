@@ -51,6 +51,16 @@ export interface AreaChartProps extends Omit<ChartProps, 'children'> {
      */
     scrollable?: boolean;
     /**
+     * Enable drag-to-zoom on the plot area.
+     * @default false
+     */
+    zoomable?: boolean;
+    /**
+     * Which axis the zoom selection should apply to.
+     * @default 'x'
+     */
+    zoomType?: 'x' | 'y' | 'xy';
+    /**
      * Minimum plot width (px) when `scrollable` is true.
      * @default 900
      */

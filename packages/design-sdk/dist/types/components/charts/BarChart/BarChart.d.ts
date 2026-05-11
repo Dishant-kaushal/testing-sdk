@@ -40,6 +40,18 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      */
     scrollable?: boolean;
     /**
+     * Enable drag-to-zoom on the plot area.
+     * @default false
+     */
+    zoomable?: boolean;
+    /**
+     * Which axis the zoom selection should apply to.
+     * For `type: 'bar'`, the value axis is horizontal (Highcharts' `yAxis`),
+     * and the category axis is vertical (Highcharts' `xAxis`).
+     * @default 'y'
+     */
+    zoomType?: 'x' | 'y' | 'xy';
+    /**
      * Minimum plot height (px) when `scrollable` is true.
      * @default 500
      */

@@ -1,14 +1,13 @@
-import { jsxs as i, Fragment as y, jsx as s } from "react/jsx-runtime";
-import { forwardRef as I, useId as M, useCallback as B } from "react";
-import { cn as w } from "../../../utils/cn.js";
-import { Divider as F } from "../../layout/Divider/Divider.js";
+import { jsxs as _, jsx as s } from "react/jsx-runtime";
+import { forwardRef as k, useId as N, useCallback as C } from "react";
+import { cn as b } from "../../../utils/cn.js";
 /* empty css           */
-function j({ size: e }) {
+function x({ size: c }) {
   return /* @__PURE__ */ s(
     "svg",
     {
-      width: e,
-      height: e,
+      width: c,
+      height: c,
       viewBox: "0 0 12 12",
       fill: "none",
       xmlns: "http://www.w3.org/2000/svg",
@@ -24,74 +23,63 @@ function j({ size: e }) {
     }
   );
 }
-const D = {
-  Small: 8,
-  Medium: 10
-}, R = I(
+const I = { Small: 8, Medium: 10 }, L = k(
   ({
-    size: e = "Medium",
-    isChecked: t,
-    defaultChecked: _,
-    isDisabled: p = !1,
-    onChange: c,
-    name: u,
-    accessibilityLabel: N,
-    label: d,
-    helpText: r,
-    trailingIcon: h,
-    showDivider: v = !1,
+    size: c = "Medium",
+    isChecked: i,
+    defaultChecked: l,
+    isDisabled: r = !1,
+    onChange: t,
+    name: h,
+    value: e,
+    accessibilityLabel: o,
     className: n,
-    id: k,
-    disabled: b,
-    ...C
-  }, S) => {
-    const g = M(), a = k ?? g, l = u ?? "", o = p || b || !1, x = B(
-      (L) => {
-        c == null || c({ name: l, checked: L.target.checked });
+    id: m,
+    ...w
+  }, f) => {
+    const p = N(), a = m ?? p, u = C(
+      (d) => {
+        t == null || t({ isChecked: d.target.checked, event: d, value: e });
       },
-      [l, c]
-    ), m = w(
-      "fds-switch",
-      `fds-switch--${e.toLowerCase()}`,
-      o && "fds-switch--disabled",
-      !d && n
-    ), f = /* @__PURE__ */ i(y, { children: [
-      /* @__PURE__ */ s(
-        "input",
-        {
-          ref: S,
-          id: a,
-          type: "checkbox",
-          role: "switch",
-          className: "fds-switch__input",
-          name: l || void 0,
-          checked: t,
-          defaultChecked: _,
-          disabled: o,
-          "aria-label": N ?? d,
-          "aria-checked": t,
-          onChange: x,
-          ...C
-        }
-      ),
-      /* @__PURE__ */ s("span", { className: "fds-switch__wrapper", children: /* @__PURE__ */ s("span", { className: "fds-switch__track", children: /* @__PURE__ */ s("span", { className: "fds-switch__thumb", children: /* @__PURE__ */ s(j, { size: D[e] }) }) }) })
-    ] });
-    return d ? /* @__PURE__ */ i("div", { className: w("fds-switch-field", n), children: [
-      /* @__PURE__ */ s("label", { className: m, htmlFor: a, children: /* @__PURE__ */ i("div", { className: "fds-switch-field__row", children: [
-        /* @__PURE__ */ i("div", { className: "fds-switch-field__text", children: [
-          /* @__PURE__ */ i("div", { className: "fds-switch-field__heading", children: [
-            /* @__PURE__ */ s("span", { className: "fds-switch-field__title BodySmallSemibold", children: d }),
-            h && /* @__PURE__ */ s("span", { className: "fds-switch-field__icon", children: h })
-          ] }),
-          r && /* @__PURE__ */ s("span", { className: "fds-switch-field__help BodySmallRegular", children: r })
-        ] }),
-        f
-      ] }) }),
-      v && /* @__PURE__ */ s(F, { variant: "Muted" })
-    ] }) : /* @__PURE__ */ s("label", { className: m, htmlFor: a, children: f });
+      [e, t]
+    );
+    return /* @__PURE__ */ _(
+      "label",
+      {
+        className: b(
+          "fds-switch",
+          `fds-switch--${c.toLowerCase()}`,
+          r && "fds-switch--disabled",
+          n
+        ),
+        htmlFor: a,
+        children: [
+          /* @__PURE__ */ s(
+            "input",
+            {
+              ref: f,
+              id: a,
+              type: "checkbox",
+              role: "switch",
+              className: "fds-switch__input",
+              name: h,
+              value: e,
+              checked: i,
+              defaultChecked: l,
+              disabled: r,
+              "aria-label": o,
+              "aria-checked": i,
+              onChange: u,
+              ...w
+            }
+          ),
+          /* @__PURE__ */ s("span", { className: "fds-switch__wrapper", children: /* @__PURE__ */ s("span", { className: "fds-switch__track", children: /* @__PURE__ */ s("span", { className: "fds-switch__thumb", children: /* @__PURE__ */ s(x, { size: I[c] }) }) }) })
+        ]
+      }
+    );
   }
 );
-R.displayName = "Switch";
+L.displayName = "Switch";
 export {
-  R as Switch
+  L as Switch
 };

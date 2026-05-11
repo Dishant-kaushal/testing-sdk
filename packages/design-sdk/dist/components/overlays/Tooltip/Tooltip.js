@@ -1,85 +1,160 @@
-import { jsxs as n, jsx as e } from "react/jsx-runtime";
-import { useId as B, useState as S, useRef as T, useCallback as h, useEffect as y, isValidElement as L, cloneElement as M } from "react";
-import { cn as b } from "../../../utils/cn.js";
-import { useKeyboard as x } from "../../../hooks/useKeyboard.js";
+import { jsxs as H, jsx as E } from "react/jsx-runtime";
+import { useState as v, useRef as m, useCallback as B, useEffect as L, useLayoutEffect as J, isValidElement as Q, cloneElement as $ } from "react";
+import { createPortal as g } from "react-dom";
+import { cn as O } from "../../../utils/cn.js";
 /* empty css            */
-const C = {
-  Top: "fds-tooltip--top",
-  TopStart: "fds-tooltip--top-start",
-  TopEnd: "fds-tooltip--top-end",
-  Bottom: "fds-tooltip--bottom",
-  BottomStart: "fds-tooltip--bottom-start",
-  BottomEnd: "fds-tooltip--bottom-end",
-  Left: "fds-tooltip--left",
-  Right: "fds-tooltip--right"
+const z = 200, tt = 0, et = 200, ot = 8, nt = 8, _ = 8, rt = {
+  Top: "top",
+  TopStart: "top-start",
+  TopEnd: "top-end",
+  Bottom: "bottom",
+  BottomStart: "bottom-start",
+  BottomEnd: "bottom-end",
+  Left: "left",
+  Right: "right"
 };
-function I({
-  bodyText: w,
-  heading: p,
-  placement: g = "Top",
-  isOpen: t,
-  showDelay: a = 200,
-  hideDelay: m = 0,
-  maxWidth: o,
-  children: i,
-  className: E,
-  ..._
+function it(t) {
+  return t === "Top" ? "Bottom" : t === "Bottom" ? "Top" : t === "TopStart" ? "BottomStart" : t === "TopEnd" ? "BottomEnd" : t === "BottomStart" ? "TopStart" : t === "BottomEnd" ? "TopEnd" : t === "Left" ? "Right" : "Left";
+}
+function V(t, e, i) {
+  const u = t.left + t.width / 2, l = t.top + t.height / 2, n = ot + nt;
+  switch (i) {
+    case "Top":
+      return { top: t.top - e.height - n, left: u - e.width / 2 };
+    case "TopStart":
+      return { top: t.top - e.height - n, left: t.left };
+    case "TopEnd":
+      return { top: t.top - e.height - n, left: t.right - e.width };
+    case "Bottom":
+      return { top: t.bottom + n, left: u - e.width / 2 };
+    case "BottomStart":
+      return { top: t.bottom + n, left: t.left };
+    case "BottomEnd":
+      return { top: t.bottom + n, left: t.right - e.width };
+    case "Left":
+      return { top: l - e.height / 2, left: t.left - e.width - n };
+    case "Right":
+      return { top: l - e.height / 2, left: t.right + n };
+  }
+}
+function j(t, e, i) {
+  const u = window.innerWidth, l = window.innerHeight;
+  return !!(i.startsWith("Top") && t.top < _ || i.startsWith("Bottom") && t.top + e.height > l - _ || i === "Left" && t.left < _ || i === "Right" && t.left + e.width > u - _);
+}
+function st({
+  bodyText: t,
+  heading: e,
+  placement: i = "Top",
+  open: u,
+  onOpenChange: l,
+  zIndex: n,
+  accessibilityLabel: q,
+  children: y,
+  className: Y,
+  ...F
 }) {
-  const c = B(), [N, u] = S(!1), s = T(void 0), r = T(void 0), d = t ?? N, f = h(() => {
-    clearTimeout(r.current), s.current = setTimeout(() => u(!0), a);
-  }, [a]), l = h(() => {
-    clearTimeout(s.current), r.current = setTimeout(() => u(!1), m);
-  }, [m]);
-  y(() => () => {
-    clearTimeout(s.current), clearTimeout(r.current);
-  }, []), x("Escape", l, d);
-  let v = i;
-  return L(i) && (v = M(i, {
-    "aria-describedby": d ? c : void 0
-  })), /* @__PURE__ */ n(
-    "span",
+  const r = u !== void 0, [K, b] = v(!1), d = r ? u : K, [f, W] = v(d), [U, N] = v(!1), P = m(null), A = m(null), x = m(void 0), D = m(void 0), I = m(void 0), [s, X] = v(null), c = B(
+    (o) => {
+      l == null || l({ isOpen: o });
+    },
+    [l]
+  ), M = B(() => {
+    clearTimeout(D.current), x.current = setTimeout(() => {
+      r || b(!0), c(!0);
+    }, z);
+  }, [c, r]), k = B(() => {
+    clearTimeout(x.current), D.current = setTimeout(() => {
+      r || b(!1), c(!1);
+    }, tt);
+  }, [c, r]);
+  L(() => {
+    d ? (clearTimeout(I.current), W(!0), N(!1)) : f && (N(!0), I.current = setTimeout(() => {
+      W(!1), N(!1);
+    }, et));
+  }, [d]), L(() => () => {
+    clearTimeout(x.current), clearTimeout(D.current), clearTimeout(I.current);
+  }, []), L(() => {
+    if (!d) return;
+    const o = (h) => {
+      h.key === "Escape" && (r || b(!1), c(!1));
+    };
+    return document.addEventListener("keydown", o), () => document.removeEventListener("keydown", o);
+  }, [d, r, c]);
+  const p = B(() => {
+    if (!P.current || !A.current) return;
+    const o = P.current.getBoundingClientRect(), h = A.current.getBoundingClientRect(), w = { width: h.width, height: h.height };
+    let a = i, T = V(o, w, a);
+    if (j(T, w, a)) {
+      const S = it(a), R = V(o, w, S);
+      j(R, w, S) || (a = S, T = R);
+    }
+    X({ top: T.top, left: T.left, placement: a });
+  }, [i]);
+  J(() => {
+    f && p();
+  }, [f, p, t, e]), L(() => {
+    if (!f) return;
+    const o = () => p();
+    return window.addEventListener("scroll", o, !0), window.addEventListener("resize", o), () => {
+      window.removeEventListener("scroll", o, !0), window.removeEventListener("resize", o);
+    };
+  }, [f, p]);
+  let C = y;
+  Q(y) && (C = $(y, {
+    "aria-label": q ?? t
+  }));
+  const Z = {
+    top: s == null ? void 0 : s.top,
+    left: s == null ? void 0 : s.left,
+    visibility: s ? "visible" : "hidden",
+    ...n !== void 0 && { zIndex: n }
+  }, G = f ? /* @__PURE__ */ H(
+    "div",
     {
-      className: b("fds-tooltip-wrapper", E),
-      onMouseEnter: t === void 0 ? f : void 0,
-      onMouseLeave: t === void 0 ? l : void 0,
-      onFocus: t === void 0 ? f : void 0,
-      onBlur: t === void 0 ? l : void 0,
-      ..._,
+      ref: A,
+      className: O("fds-tooltip", U && "fds-tooltip--exiting"),
+      role: "tooltip",
+      "data-placement": rt[(s == null ? void 0 : s.placement) ?? i],
+      style: Z,
       children: [
-        v,
-        d && /* @__PURE__ */ n(
-          "div",
+        /* @__PURE__ */ H("div", { className: "fds-tooltip__content", children: [
+          e && /* @__PURE__ */ E("span", { className: "fds-tooltip__heading BodyMediumSemibold", children: e }),
+          /* @__PURE__ */ E("span", { className: "fds-tooltip__body BodySmallRegular", children: t })
+        ] }),
+        /* @__PURE__ */ E(
+          "svg",
           {
-            className: b("fds-tooltip", C[g]),
-            role: "tooltip",
-            id: c,
-            style: o ? { "--fds-tooltip-max-width": typeof o == "number" ? `${o}px` : o } : void 0,
-            children: [
-              /* @__PURE__ */ n("div", { className: "fds-tooltip__content", children: [
-                p && /* @__PURE__ */ e("span", { className: "fds-tooltip__heading BodyMediumSemibold", children: p }),
-                /* @__PURE__ */ e("span", { className: "fds-tooltip__body BodySmallRegular", children: w })
-              ] }),
-              /* @__PURE__ */ e(
-                "svg",
-                {
-                  className: "fds-tooltip__arrow",
-                  width: "14",
-                  height: "8",
-                  viewBox: "0 0 14 8",
-                  fill: "none",
-                  xmlns: "http://www.w3.org/2000/svg",
-                  "aria-hidden": "true",
-                  children: /* @__PURE__ */ e("path", { d: "M7 0L14 8H0L7 0Z", fill: "currentColor" })
-                }
-              )
-            ]
+            className: "fds-tooltip__arrow",
+            width: "14",
+            height: "8",
+            viewBox: "0 0 14 8",
+            fill: "none",
+            xmlns: "http://www.w3.org/2000/svg",
+            "aria-hidden": "true",
+            children: /* @__PURE__ */ E("path", { d: "M7 0L14 8H0L7 0Z", fill: "currentColor" })
           }
         )
       ]
     }
+  ) : null;
+  return /* @__PURE__ */ H(
+    "span",
+    {
+      ref: P,
+      className: O("fds-tooltip-wrapper", Y),
+      onMouseEnter: r ? void 0 : M,
+      onMouseLeave: r ? void 0 : k,
+      onFocus: r ? void 0 : M,
+      onBlur: r ? void 0 : k,
+      ...F,
+      children: [
+        C,
+        typeof document < "u" && G ? g(G, document.body) : null
+      ]
+    }
   );
 }
-I.displayName = "Tooltip";
+st.displayName = "Tooltip";
 export {
-  I as Tooltip
+  st as Tooltip
 };

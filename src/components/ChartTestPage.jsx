@@ -80,6 +80,10 @@ export default function ChartTestPage() {
             { name: 'Product A', data: [42, 85, 60, 92, 75, 88] },
             { name: 'Product B', data: [30, 55, 70, 45, 60, 72] },
           ]}
+          highchartsOptions={{
+            chart: { zooming: { type: 'x' } },
+            xAxis: { minRange: 1, startOnTick: false, endOnTick: false },
+          }}
           xAxisTitle="Month"
           yAxisTitle="Revenue"
           yAxisUnit="k"
@@ -107,6 +111,10 @@ export default function ChartTestPage() {
           title="Server Latency"
           categories={['00:00', '04:00', '08:00', '12:00', '16:00', '20:00']}
           series={[{ name: 'p99', data: [12, 18, 45, 38, 22, 15] }]}
+          zoomable={true}
+          highchartsOptions={{
+            xAxis: { minRange: 1, startOnTick: false, endOnTick: false },
+          }}
           smooth={true}
           xAxisTitle="Time"
           yAxisTitle="Latency"
@@ -134,6 +142,10 @@ export default function ChartTestPage() {
             { name: 'Paid',    data: [200, 180, 220, 190, 210] },
             { name: 'Direct',  data: [100, 120,  90, 130, 115] },
           ]}
+          zoomable={true}
+          highchartsOptions={{
+            xAxis: { minRange: 1, startOnTick: false, endOnTick: false },
+          }}
           stacked={true}
           xAxisTitle="Day"
           yAxisTitle="Visits"
@@ -158,6 +170,10 @@ export default function ChartTestPage() {
             { name: 'Paid',    data: [200, 180, 220, 190, 210] },
             { name: 'Direct',  data: [100, 120,  90, 130, 115] },
           ]}
+          zoomable={true}
+          highchartsOptions={{
+            xAxis: { minRange: 1, startOnTick: false, endOnTick: false },
+          }}
           percentStacked={true}
           xAxisTitle="Day"
           yAxisTitle="Share"
@@ -177,6 +193,7 @@ export default function ChartTestPage() {
           title="Top Machines by Downtime"
           categories={['Machine A', 'Machine B', 'Machine C', 'Machine D', 'Machine E']}
           series={[{ name: 'Downtime', data: [2.1, 4.5, 1.8, 6.2, 3.3] }]}
+          zoomable={true}
           xAxisTitle="Machine"
           yAxisTitle="Hours"
           yAxisUnit="h"
@@ -201,6 +218,8 @@ export default function ChartTestPage() {
           categories={['Q1', 'Q2', 'Q3', 'Q4']}
           series={[{ name: 'Sales', data: [120, 145, 98, 160] }]}
           highchartsOptions={{
+            chart: { zooming: { type: 'x' } },
+            xAxis: { minRange: 1, startOnTick: false, endOnTick: false },
             tooltip: { valueSuffix: ' units', shared: true },
             plotOptions: { column: { borderRadius: 6 } },
           }}

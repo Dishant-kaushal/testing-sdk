@@ -1,30 +1,32 @@
 import { jsx as d } from "react/jsx-runtime";
-import { forwardRef as y, useMemo as R } from "react";
-import b from "highcharts/esm/highcharts.js";
+import { forwardRef as b, useMemo as A } from "react";
+import C from "highcharts/esm/highcharts.js";
 import "highcharts/esm/highcharts-more.js";
 import "highcharts/esm/modules/solid-gauge.js";
-import A from "highcharts-react-official";
+import l from "highcharts-react-official";
 import { Chart as x } from "../Chart/Chart.js";
-import { useFaclonChartTheme as C, FACLON_CHART_PALETTE_TOKENS as l } from "../Chart/highchartsTheme.js";
+import { useFaclonChartTheme as T, FACLON_CHART_PALETTE_TOKENS as m } from "../Chart/highchartsTheme.js";
 /* empty css                  */
-function T(e, t) {
-  return typeof window > "u" ? t : getComputedStyle(document.documentElement).getPropertyValue(e).trim() || t;
+var c;
+const _ = ((c = l) == null ? void 0 : c.default) ?? l;
+function k(e, r) {
+  return typeof window > "u" ? r : getComputedStyle(document.documentElement).getPropertyValue(e).trim() || r;
 }
-const u = 24, _ = 1, k = u + _, a = (e) => 100 - e * k, m = (e) => a(e) - u, N = y(
+const p = 24, N = 1, w = p + N, a = (e) => 100 - e * w, u = (e) => a(e) - p, G = b(
   ({
     activities: e,
-    showLegend: t = !0,
-    highchartsOptions: i,
-    ...c
-  }, p) => {
-    const n = C(), g = R(() => {
+    showLegend: r = !0,
+    highchartsOptions: s,
+    ...g
+  }, h) => {
+    const n = T(), f = A(() => {
       if (!e || e.length === 0)
         return { ...n, chart: { type: "solidgauge" } };
-      const s = e.map((r, o) => {
-        const h = l[o % l.length];
-        return T(h, "#e9690c");
-      }), f = s.map(
-        (r) => `color-mix(in srgb, ${r} 30%, transparent)`
+      const i = e.map((t, o) => {
+        const R = m[o % m.length];
+        return k(R, "#e9690c");
+      }), y = i.map(
+        (t) => `color-mix(in srgb, ${t} 30%, transparent)`
       );
       return {
         ...n,
@@ -47,10 +49,10 @@ const u = 24, _ = 1, k = u + _, a = (e) => 100 - e * k, m = (e) => a(e) - u, N =
         pane: {
           startAngle: 0,
           endAngle: 360,
-          background: e.map((r, o) => ({
+          background: e.map((t, o) => ({
             outerRadius: `${a(o)}%`,
-            innerRadius: `${m(o)}%`,
-            backgroundColor: f[o],
+            innerRadius: `${u(o)}%`,
+            backgroundColor: y[o],
             borderWidth: 0
           }))
         },
@@ -70,38 +72,38 @@ const u = 24, _ = 1, k = u + _, a = (e) => 100 - e * k, m = (e) => a(e) - u, N =
         },
         legend: {
           ...n.legend,
-          enabled: t
+          enabled: r
         },
-        series: e.map((r, o) => ({
+        series: e.map((t, o) => ({
           type: "solidgauge",
-          name: r.name,
+          name: t.name,
           showInLegend: !0,
           data: [
             {
-              color: s[o],
+              color: i[o],
               radius: `${a(o)}%`,
-              innerRadius: `${m(o)}%`,
+              innerRadius: `${u(o)}%`,
               y: Math.min(
                 100,
-                Math.max(0, r.value / (r.max ?? 100) * 100)
+                Math.max(0, t.value / (t.max ?? 100) * 100)
               )
             }
           ]
         })),
-        ...i
+        ...s
       };
-    }, [e, n, t, i]);
-    return /* @__PURE__ */ d(x, { ref: p, ...c, children: /* @__PURE__ */ d(
-      A,
+    }, [e, n, r, s]);
+    return /* @__PURE__ */ d(x, { ref: h, ...g, children: /* @__PURE__ */ d(
+      _,
       {
-        highcharts: b,
-        options: g,
+        highcharts: C,
+        options: f,
         containerProps: { className: "fds-activity-gauge" }
       }
     ) });
   }
 );
-N.displayName = "ActivityGauge";
+G.displayName = "ActivityGauge";
 export {
-  N as ActivityGauge
+  G as ActivityGauge
 };

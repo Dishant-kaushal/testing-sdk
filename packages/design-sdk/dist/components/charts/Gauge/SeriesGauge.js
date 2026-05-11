@@ -1,26 +1,27 @@
 import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as h, useMemo as y } from "react";
-import k from "highcharts/esm/highcharts.js";
+import { forwardRef as y, useMemo as k } from "react";
+import C from "highcharts/esm/highcharts.js";
 import "highcharts/esm/highcharts-more.js";
-import C from "highcharts-react-official";
+import m from "highcharts-react-official";
 import { Chart as b } from "../Chart/Chart.js";
 import { useFaclonChartTheme as x } from "../Chart/highchartsTheme.js";
 /* empty css                */
-function m(e, t) {
+const S = m.default ?? m;
+function p(e, t) {
   return typeof window > "u" ? t : getComputedStyle(document.documentElement).getPropertyValue(e).trim() || t;
 }
-const S = h(
+const v = y(
   ({
     value: e,
     min: t = 0,
     max: i = 100,
     bands: n = [],
     unit: s,
-    label: d,
-    ...p
-  }, u) => {
-    const o = x(), g = y(() => {
-      const c = "'Noto Sans Variable', 'Noto Sans', sans-serif", r = m("--text-gray-primary", "#192839"), f = m("--background-surface-intense", "#ffffff");
+    label: c,
+    ...u
+  }, g) => {
+    const o = x(), f = k(() => {
+      const d = "'Noto Sans Variable', 'Noto Sans', sans-serif", r = p("--text-gray-primary", "#192839"), h = p("--background-surface-intense", "#ffffff");
       return {
         ...o,
         chart: {
@@ -64,14 +65,14 @@ const S = h(
              label positions. */
           tickLength: 0,
           tickWidth: 0,
-          tickColor: f,
+          tickColor: h,
           minorTickInterval: void 0,
           labels: {
             distance: 20,
             style: {
               fontSize: "14px",
               color: r,
-              fontFamily: c
+              fontFamily: d
             }
           },
           lineWidth: 0,
@@ -89,12 +90,12 @@ const S = h(
             name: "Value",
             data: [e],
             dataLabels: {
-              format: d ?? `{y}${s ?? ""}`,
+              format: c ?? `{y}${s ?? ""}`,
               borderWidth: 0,
               color: r,
               style: {
                 fontSize: "16px",
-                fontFamily: c
+                fontFamily: d
               }
             },
             dial: {
@@ -111,18 +112,18 @@ const S = h(
           }
         ]
       };
-    }, [o, e, t, i, n, s, d]);
-    return /* @__PURE__ */ l(b, { ref: u, ...p, children: /* @__PURE__ */ l(
-      C,
+    }, [o, e, t, i, n, s, c]);
+    return /* @__PURE__ */ l(b, { ref: g, ...u, children: /* @__PURE__ */ l(
+      S,
       {
-        highcharts: k,
-        options: g,
+        highcharts: C,
+        options: f,
         containerProps: { className: "fds-series-gauge" }
       }
     ) });
   }
 );
-S.displayName = "SeriesGauge";
+v.displayName = "SeriesGauge";
 export {
-  S as SeriesGauge
+  v as SeriesGauge
 };

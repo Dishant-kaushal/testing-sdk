@@ -15,13 +15,19 @@ import react from '@vitejs/plugin-react';
 function fixHighchartsReactInterop() {
   return {
     name: 'fix-highcharts-react-interop',
+    enforce: 'pre',
     transform(code, id) {
-      if (!id.includes('highcharts-react-official') && code.includes('"highcharts-react-official"')) {
-        return code.replace(
-          /import\s+(\w+)\s+from\s+"highcharts-react-official";/g,
+      // Transform any file that imports from highcharts-react-official
+      if (code.includes('"highcharts-react-official"') || code.includes("'highcharts-react-official'")) {
+        const transformed = code.replace(
+          /import\s+(\w+)\s+from\s+["']highcharts-react-official["'];?/g,
           (_, name) =>
-            `import _${name}_hrc from "highcharts-react-official";\nconst ${name} = _${name}_hrc.default ?? _${name}_hrc;`
+            `import _${name}_hrc from "highcharts-react-official";\nconst ${name} = _${name}_hrc?.default ?? _${name}_hrc;`
         );
+        if (transformed !== code) {
+          console.log('[fixHighchartsReactInterop] Transformed:', id);
+          return transformed;
+        }
       }
     },
   };

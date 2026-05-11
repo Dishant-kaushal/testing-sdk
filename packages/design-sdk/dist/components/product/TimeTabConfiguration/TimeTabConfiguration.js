@@ -1,5 +1,5 @@
-import { jsxs as a, jsx as t, Fragment as R } from "react/jsx-runtime";
-import { useState as c, useEffect as pe } from "react";
+import { jsxs as c, jsx as t, Fragment as R } from "react/jsx-runtime";
+import { useState as a, useEffect as pe } from "react";
 import { SelectInput as _ } from "../../inputs/SelectInput/SelectInput.js";
 import { DropdownMenu as y } from "../../overlays/DropdownMenu/DropdownMenu.js";
 import { ActionListItem as h } from "../../overlays/DropdownMenu/ActionListItem.js";
@@ -8,7 +8,7 @@ import { RadioGroup as Ee } from "../../inputs/Radio/RadioGroup.js";
 import { ProductAccordionItem as $ } from "../ProductAccordion/ProductAccordionItem.js";
 import { Switch as j } from "../../inputs/Switch/Switch.js";
 import { ListCardLeadingItem as Me } from "../ListCard/ListCardLeadingItem.js";
-import { ListCardTrailingItem as u } from "../ListCard/ListCardTrailingItem.js";
+import { ListCardTrailingItem as g } from "../ListCard/ListCardTrailingItem.js";
 import { ListCard as J } from "../ListCard/ListCard.js";
 import { TextInput as Le } from "../../inputs/TextInput/TextInput.js";
 import { AddDurationPanel as Fe } from "./AddDurationPanel.js";
@@ -71,7 +71,7 @@ const I = [
   month: "",
   year: ""
 };
-function ge(i) {
+function ue(i) {
   var S;
   if ((S = i.periodicities) != null && S.length) return i.periodicities.join(", ");
   if (i.calendarType)
@@ -89,15 +89,15 @@ function ge(i) {
   const d = (i.x ?? 1) * (Ue[i.xPeriod ?? "day"] ?? 1440);
   return d <= 60 ? "Minute, Hourly" : d <= 1440 ? "Hourly" : d <= 10080 ? "Hourly, Daily" : d <= 43200 ? "Daily" : "Daily, Monthly";
 }
-function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
+function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ge }) {
   var de, re, me;
-  const [L, K] = c((i == null ? void 0 : i.timezone) ?? "Asia/Kolkata"), [C, Z] = c((i == null ? void 0 : i.timeType) ?? "fixed"), [A, F] = c((i == null ? void 0 : i.globalTimepickerId) ?? ""), [N, z] = c(
+  const [L, K] = a((i == null ? void 0 : i.timezone) ?? "Asia/Kolkata"), [N, Z] = a((i == null ? void 0 : i.timeType) ?? "fixed"), [A, F] = a((i == null ? void 0 : i.globalTimepickerId) ?? ""), [C, z] = a(
     i != null && i.allDurations ? new Set(i.allDurations.filter((e) => M.has(e.id)).map((e) => e.id)) : new Set(Be)
-  ), [D, B] = c(
+  ), [D, B] = a(
     ((de = i == null ? void 0 : i.allDurations) == null ? void 0 : de.filter((e) => !M.has(e.id))) ?? []
-  ), [k, P] = c((i == null ? void 0 : i.defaultDurationId) ?? He), [w, Q] = c((i == null ? void 0 : i.disablePeriodicities) ?? !1), [V, X] = c((i == null ? void 0 : i.comparisonMode) ?? !1), [v, ee] = c((i == null ? void 0 : i.disableTimeSelection) ?? !1), [ie, te] = c((i == null ? void 0 : i.futureDaysAllowed) ?? ""), [b, H] = c((i == null ? void 0 : i.shifts) ?? []), [q, ne] = c((i == null ? void 0 : i.shiftAggregator) ?? ""), [r, le] = c((i == null ? void 0 : i.cycleTime) ?? Je), [be, Te] = c(!1), [Se, De] = c(!1), [Ie, Ce] = c(!1), [p, Ne] = c(null), [ce, g] = c(null), [oe, O] = c(null), [ae, x] = c(null);
+  ), [k, P] = a((i == null ? void 0 : i.defaultDurationId) ?? He), [w, Q] = a((i == null ? void 0 : i.disablePeriodicities) ?? !1), [V, X] = a((i == null ? void 0 : i.comparisonMode) ?? !1), [v, ee] = a((i == null ? void 0 : i.disableTimeSelection) ?? !1), [ie, te] = a((i == null ? void 0 : i.futureDaysAllowed) ?? ""), [b, H] = a((i == null ? void 0 : i.shifts) ?? []), [q, ne] = a((i == null ? void 0 : i.shiftAggregator) ?? ""), [r, le] = a((i == null ? void 0 : i.cycleTime) ?? Je), [be, Te] = a(!1), [Se, De] = a(!1), [Ie, Ne] = a(!1), [p, Ce] = a(null), [ce, u] = a(null), [ae, O] = a(null), [oe, x] = a(null);
   function o(e, n) {
-    Ne(n ? e : null);
+    Ce(n ? e : null);
   }
   pe(() => {
     d(se({}));
@@ -106,13 +106,13 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
   }, [i == null ? void 0 : i.timezone, i == null ? void 0 : i.allDurations, i == null ? void 0 : i.defaultDurationId, i == null ? void 0 : i.shifts, i == null ? void 0 : i.cycleTime]);
   function se(e) {
     var fe, he;
-    const n = e.enabledIds ?? N, l = e.customPresets ?? D, m = e.defaultDurationId ?? k, f = [
+    const n = e.enabledIds ?? C, l = e.customPresets ?? D, m = e.defaultDurationId ?? k, f = [
       ...I.filter((G) => n.has(G.id)),
       ...l
     ], Y = ((fe = f.find((G) => G.id === m)) == null ? void 0 : fe.id) ?? ((he = f[0]) == null ? void 0 : he.id) ?? "";
     return {
       timezone: e.timezone ?? L,
-      timeType: e.timeType ?? C,
+      timeType: e.timeType ?? N,
       globalTimepickerId: e.globalTimepickerId ?? A,
       allDurations: f,
       defaultDurationId: Y,
@@ -130,7 +130,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
     d(se(e));
   }
   function U(e, n) {
-    const l = new Set(N);
+    const l = new Set(C);
     if (n)
       l.add(e);
     else if (l.delete(e), k === e) {
@@ -146,14 +146,14 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
   function ke(e) {
     const n = D.filter((l) => l.id !== e);
     if (B(n), k === e) {
-      const l = [...I.filter((f) => N.has(f.id)), ...n][0], m = (l == null ? void 0 : l.id) ?? "";
+      const l = [...I.filter((f) => C.has(f.id)), ...n][0], m = (l == null ? void 0 : l.id) ?? "";
       P(m), s({ customPresets: n, defaultDurationId: m });
     } else
       s({ customPresets: n });
   }
   function Ae(e) {
     let n;
-    oe ? n = D.map((l) => l.id === e.id ? e : l) : n = [...D, e], B(n), s({ customPresets: n }), g(null), O(null);
+    ae ? n = D.map((l) => l.id === e.id ? e : l) : n = [...D, e], B(n), s({ customPresets: n }), u(null), O(null);
   }
   function Pe(e) {
     const n = b.filter((l) => l.id !== e);
@@ -161,16 +161,16 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
   }
   function we(e) {
     let n;
-    ae ? n = b.map((l) => l.id === e.id ? e : l) : n = [...b, e], H(n), s({ shifts: n }), g(null), x(null);
+    oe ? n = b.map((l) => l.id === e.id ? e : l) : n = [...b, e], H(n), s({ shifts: n }), u(null), x(null);
   }
   function T(e) {
     const n = { ...r, ...e };
     le(n), s({ cycleTime: n });
   }
-  const Oe = N.size + D.length, xe = C === "global", E = ue === "series";
-  return /* @__PURE__ */ a("div", { className: "fds-ttc", children: [
-    /* @__PURE__ */ t("div", { className: "fds-ttc__body", children: /* @__PURE__ */ a("div", { className: "fds-ttc__section", children: [
-      /* @__PURE__ */ a("div", { style: { padding: "16px 16px 0 16px", display: "flex", flexDirection: "column", gap: 12 }, children: [
+  const Oe = C.size + D.length, xe = N === "global", E = ge === "series";
+  return /* @__PURE__ */ c("div", { className: "fds-ttc", children: [
+    /* @__PURE__ */ t("div", { className: "fds-ttc__body", children: /* @__PURE__ */ c("div", { className: "fds-ttc__section", children: [
+      /* @__PURE__ */ c("div", { style: { padding: "16px 16px 0 16px", display: "flex", flexDirection: "column", gap: 12 }, children: [
         /* @__PURE__ */ t("div", { className: "fds-ttc__required-select", children: /* @__PURE__ */ t(
           _,
           {
@@ -200,7 +200,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             label: "Time Type",
             name: "timeType",
             placeholder: "Select time type",
-            value: ((re = ye.find((e) => e.value === C)) == null ? void 0 : re.label) ?? "",
+            value: ((re = ye.find((e) => e.value === N)) == null ? void 0 : re.label) ?? "",
             isOpen: p === "timeType",
             onOpenChange: (e) => o("timeType", e),
             children: /* @__PURE__ */ t(y, { children: ye.map((e) => /* @__PURE__ */ t(
@@ -208,7 +208,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
               {
                 title: e.label,
                 selectionType: "Single",
-                isSelected: C === e.value,
+                isSelected: N === e.value,
                 onClick: () => {
                   Z(e.value), o("timeType", !1);
                   const n = e.value !== "global" ? "" : A;
@@ -219,7 +219,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             )) })
           }
         ) }),
-        C === "global" && /* @__PURE__ */ t("div", { className: "fds-ttc__required-select", children: /* @__PURE__ */ t(
+        N === "global" && /* @__PURE__ */ t("div", { className: "fds-ttc__required-select", children: /* @__PURE__ */ t(
           _,
           {
             label: "Global Timepicker",
@@ -228,7 +228,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             value: ((me = S.find((e) => e.id === A)) == null ? void 0 : me.name) ?? "",
             isOpen: p === "globalTimepicker",
             onOpenChange: (e) => o("globalTimepicker", e),
-            children: /* @__PURE__ */ a(y, { children: [
+            children: /* @__PURE__ */ c(y, { children: [
               S.length === 0 && /* @__PURE__ */ t(h, { title: "No timepickers available", isDisabled: !0 }),
               S.map((e) => /* @__PURE__ */ t(
                 h,
@@ -246,15 +246,15 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
           }
         ) })
       ] }),
-      !xe && /* @__PURE__ */ a(R, { children: [
+      !xe && /* @__PURE__ */ c(R, { children: [
         /* @__PURE__ */ t(
           $,
           {
             title: "Cycle Time",
             isExpanded: Ie,
-            onToggle: () => Ce((e) => !e),
-            children: /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-body", children: [
-              /* @__PURE__ */ a(
+            onToggle: () => Ne((e) => !e),
+            children: /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-body", children: [
+              /* @__PURE__ */ c(
                 Ee,
                 {
                   label: "Cycle Time Identifier",
@@ -268,7 +268,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   ]
                 }
               ),
-              /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-row fds-ttc__cycle-row--gap16", children: [
+              /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-row fds-ttc__cycle-row--gap16", children: [
                 /* @__PURE__ */ t("div", { className: "fds-ttc__required-select", children: /* @__PURE__ */ t(
                   _,
                   {
@@ -316,8 +316,8 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   }
                 ) })
               ] }),
-              /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-day-section", children: [
-                /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-day-label", children: [
+              /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-day-section", children: [
+                /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-day-label", children: [
                   /* @__PURE__ */ t("span", { className: "fds-ttc__label-text", children: "Day" }),
                   /* @__PURE__ */ t("span", { className: "fds-ttc__required-marker", children: "*" })
                 ] }),
@@ -331,7 +331,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   n
                 )) })
               ] }),
-              /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-row fds-ttc__cycle-row--gap12", children: [
+              /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-row fds-ttc__cycle-row--gap12", children: [
                 /* @__PURE__ */ t("div", { className: "fds-ttc__required-select", children: /* @__PURE__ */ t(
                   _,
                   {
@@ -411,7 +411,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             title: "Duration",
             isExpanded: be,
             onToggle: () => Te((e) => !e),
-            trailingIcon: /* @__PURE__ */ a("div", { className: "fds-ttc__duration-header-actions", onClick: (e) => e.stopPropagation(), children: [
+            trailingIcon: /* @__PURE__ */ c("div", { className: "fds-ttc__duration-header-actions", onClick: (e) => e.stopPropagation(), children: [
               /* @__PURE__ */ t("span", { className: "fds-ttc__duration-counter", children: Oe }),
               /* @__PURE__ */ t(
                 "span",
@@ -421,28 +421,29 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   tabIndex: 0,
                   title: "Add preset",
                   onClick: () => {
-                    O(null), g("duration");
+                    O(null), u("duration");
                   },
                   children: "add"
                 }
               )
             ] }),
-            children: /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-body", children: [
-              !E && /* @__PURE__ */ a("div", { className: "fds-ttc__duration-toggle-row", children: [
+            children: /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-body", children: [
+              !E && /* @__PURE__ */ c("div", { className: "fds-ttc__duration-toggle-row", children: [
                 /* @__PURE__ */ t("span", { className: "fds-ttc__duration-toggle-label", children: "Disable Periodicities" }),
                 /* @__PURE__ */ t(
                   j,
                   {
                     name: "disablePeriodicities",
+                    accessibilityLabel: "Disable Periodicities",
                     isChecked: w,
-                    onChange: ({ checked: e }) => {
+                    onChange: ({ isChecked: e }) => {
                       Q(e), s({ disablePeriodicities: e });
                     }
                   }
                 )
               ] }),
               I.map((e) => {
-                const n = N.has(e.id), l = k === e.id && n, m = ge(e);
+                const n = C.has(e.id), l = k === e.id && n, m = ue(e);
                 return /* @__PURE__ */ t(
                   J,
                   {
@@ -453,9 +454,9 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                     onClick: () => {
                       n ? l || W(e.id) : U(e.id, !0);
                     },
-                    trailingItems: l ? /* @__PURE__ */ t(u, { trailing: "Icon", icon: /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__duration-icon fds-ttc__duration-icon--active", children: "check_circle" }) }) : n ? /* @__PURE__ */ a(R, { children: [
+                    trailingItems: l ? /* @__PURE__ */ t(g, { trailing: "Icon", icon: /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__duration-icon fds-ttc__duration-icon--active", children: "check_circle" }) }) : n ? /* @__PURE__ */ c(R, { children: [
                       /* @__PURE__ */ t(
-                        u,
+                        g,
                         {
                           trailing: "Icon",
                           title: "Set as default",
@@ -466,7 +467,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                         }
                       ),
                       /* @__PURE__ */ t(
-                        u,
+                        g,
                         {
                           trailing: "Icon",
                           title: "Hide",
@@ -477,7 +478,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                         }
                       )
                     ] }) : /* @__PURE__ */ t(
-                      u,
+                      g,
                       {
                         trailing: "Icon",
                         title: "Show",
@@ -492,7 +493,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                 );
               }),
               D.map((e) => {
-                const n = k === e.id, l = ge(e);
+                const n = k === e.id, l = ue(e);
                 return /* @__PURE__ */ t(
                   J,
                   {
@@ -501,11 +502,11 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                     isSelected: n,
                     className: n ? void 0 : "fds-ttc__duration-card--hideable",
                     onClick: () => {
-                      O(e), g("duration");
+                      O(e), u("duration");
                     },
-                    trailingItems: n ? /* @__PURE__ */ t(u, { trailing: "Icon", icon: /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__duration-icon fds-ttc__duration-icon--active", children: "check_circle" }) }) : /* @__PURE__ */ a(R, { children: [
+                    trailingItems: n ? /* @__PURE__ */ t(g, { trailing: "Icon", icon: /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__duration-icon fds-ttc__duration-icon--active", children: "check_circle" }) }) : /* @__PURE__ */ c(R, { children: [
                       /* @__PURE__ */ t(
-                        u,
+                        g,
                         {
                           trailing: "Icon",
                           title: "Set as default",
@@ -516,7 +517,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                         }
                       ),
                       /* @__PURE__ */ t(
-                        u,
+                        g,
                         {
                           trailing: "Icon",
                           title: "Delete",
@@ -540,7 +541,7 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             title: "Shift",
             isExpanded: Se,
             onToggle: () => De((e) => !e),
-            trailingIcon: /* @__PURE__ */ a("div", { className: "fds-ttc__duration-header-actions", onClick: (e) => e.stopPropagation(), children: [
+            trailingIcon: /* @__PURE__ */ c("div", { className: "fds-ttc__duration-header-actions", onClick: (e) => e.stopPropagation(), children: [
               /* @__PURE__ */ t("span", { className: "fds-ttc__duration-counter", children: b.length }),
               /* @__PURE__ */ t(
                 "span",
@@ -550,13 +551,13 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   tabIndex: 0,
                   title: "Add shift",
                   onClick: () => {
-                    x(null), g("shift");
+                    x(null), u("shift");
                   },
                   children: "add"
                 }
               )
             ] }),
-            children: /* @__PURE__ */ a("div", { className: "fds-ttc__cycle-body", children: [
+            children: /* @__PURE__ */ c("div", { className: "fds-ttc__cycle-body", children: [
               b.map((e) => /* @__PURE__ */ t(
                 J,
                 {
@@ -565,10 +566,10 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
                   className: "fds-ttc__duration-card--hideable",
                   leadingItem: /* @__PURE__ */ t(Me, { leading: "Color", color: e.color }),
                   onClick: () => {
-                    x(e), g("shift");
+                    x(e), u("shift");
                   },
                   trailingItems: /* @__PURE__ */ t(
-                    u,
+                    g,
                     {
                       trailing: "Icon",
                       title: "Delete",
@@ -608,29 +609,37 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
             ] })
           }
         ),
-        /* @__PURE__ */ t(
-          j,
-          {
-            label: "Comparison Mode",
-            name: "comparisonMode",
-            isChecked: V,
-            onChange: ({ checked: e }) => {
-              X(e), s({ comparisonMode: e });
+        /* @__PURE__ */ c("label", { className: "fds-ttc__switch-row", children: [
+          /* @__PURE__ */ t("span", { className: "fds-ttc__switch-label", children: "Comparison Mode" }),
+          /* @__PURE__ */ t(
+            j,
+            {
+              name: "comparisonMode",
+              accessibilityLabel: "Comparison Mode",
+              isChecked: V,
+              onChange: ({ isChecked: e }) => {
+                X(e), s({ comparisonMode: e });
+              }
             }
-          }
-        ),
-        /* @__PURE__ */ t(
-          j,
-          {
-            label: "Disable Time Selection",
-            name: "disableTimeSelection",
-            isChecked: v,
-            trailingIcon: /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__info-icon", title: "When enabled, users cannot change the time selection.", children: "info_outline" }),
-            onChange: ({ checked: e }) => {
-              ee(e), s({ disableTimeSelection: e });
+          )
+        ] }),
+        /* @__PURE__ */ c("label", { className: "fds-ttc__switch-row", children: [
+          /* @__PURE__ */ c("span", { className: "fds-ttc__switch-label", children: [
+            "Disable Time Selection",
+            /* @__PURE__ */ t("span", { className: "material-icons fds-ttc__info-icon", title: "When enabled, users cannot change the time selection.", children: "info_outline" })
+          ] }),
+          /* @__PURE__ */ t(
+            j,
+            {
+              name: "disableTimeSelection",
+              accessibilityLabel: "Disable Time Selection",
+              isChecked: v,
+              onChange: ({ isChecked: e }) => {
+                ee(e), s({ disableTimeSelection: e });
+              }
             }
-          }
-        ),
+          )
+        ] }),
         /* @__PURE__ */ t("div", { style: { padding: "16px" }, children: /* @__PURE__ */ t(
           Le,
           {
@@ -649,9 +658,9 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
     ce === "duration" && /* @__PURE__ */ t("div", { className: "fds-ttc__panel-overlay", children: /* @__PURE__ */ t(
       Fe,
       {
-        preset: oe ?? void 0,
+        preset: ae ?? void 0,
         onClose: () => {
-          g(null), O(null);
+          u(null), O(null);
         },
         onSave: Ae
       }
@@ -659,9 +668,9 @@ function ri({ value: i, onChange: d, globalTimepickers: S = [], mode: ue }) {
     ce === "shift" && /* @__PURE__ */ t("div", { className: "fds-ttc__panel-overlay", children: /* @__PURE__ */ t(
       ze,
       {
-        shift: ae ?? void 0,
+        shift: oe ?? void 0,
         onClose: () => {
-          g(null), x(null);
+          u(null), x(null);
         },
         onSave: we
       }

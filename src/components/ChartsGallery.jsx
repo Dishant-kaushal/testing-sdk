@@ -6,6 +6,8 @@ import {
   BarChart,
   ColumnChart,
   LineChart,
+  // Pie charts
+  PieChart,
   // Gauge — Highcharts
   ActivityGauge,
   SeriesGauge,
@@ -94,6 +96,8 @@ const SETTING_META = {
   smooth:         'Smooth Curves',
   stacked:        'Stacked',
   percentStacked: '100 % Stacked',
+  donut:          'Donut Mode',
+  allowPointSelect: 'Allow Selection',
 };
 
 // ─── ChartActionsMenu ─────────────────────────────────────────────────────────
@@ -196,6 +200,8 @@ const DEFAULT_SETTINGS = {
   smooth: false,
   stacked: false,
   percentStacked: false,
+  donut: false,
+  allowPointSelect: false,
 };
 
 function ControlledAxisChart({
@@ -245,12 +251,72 @@ function ControlledAxisChart({
         categories={categories}
         showLegend={settings.showLegend}
         showDataLabels={settings.showDataLabels}
-        showMarkers={settings.showMarkers}
-        smooth={settings.smooth}
-        stacked={settings.stacked}
-        percentStacked={settings.percentStacked}
+        {...(availableSettings.includes('showMarkers') && { showMarkers: settings.showMarkers })}
+        {...(availableSettings.includes('smooth') && { smooth: settings.smooth })}
+        {...(availableSettings.includes('stacked') && { stacked: settings.stacked })}
+        {...(availableSettings.includes('percentStacked') && { percentStacked: settings.percentStacked })}
         onPointClick={ctx => console.log('[point click]', ctx)}
         {...extraProps}
+      />
+    </div>
+  );
+}
+
+// ─── Controlled Pie Chart (IO Sense style configurability) ─────────────────────
+
+function ControlledPieChart({
+  title,
+  defaultDuration,
+  data,
+  initialSettings = {},
+  availableSettings = ['showLegend', 'showDataLabels', 'donut', 'allowPointSelect'],
+  donutMode = false,
+}) {
+  const wrapperRef = useRef(null);
+  const [settings, setSettings] = useState({
+    showLegend: true,
+    showDataLabels: false,
+    donut: donutMode,
+    allowPointSelect: false,
+    innerSize: '60%',
+    ...initialSettings,
+  });
+  const [duration, setDuration] = useState(defaultDuration);
+
+  const onSettingChange = useCallback(
+    (key) => (val) => setSettings(s => ({ ...s, [key]: val })),
+    []
+  );
+
+  return (
+    <div ref={wrapperRef}>
+      <PieChart
+        title={title}
+        duration={duration}
+        actions={
+          <ChartActionsMenu
+            wrapperRef={wrapperRef}
+            settings={settings}
+            onSettingChange={onSettingChange}
+            availableSettings={availableSettings}
+          />
+        }
+        filters={
+          <DatePicker
+            mode="range"
+            showPresets
+            onChange={({ startDate, endDate }) =>
+              setDuration(formatRange(startDate, endDate) ?? defaultDuration)
+            }
+          />
+        }
+        data={data}
+        showLegend={settings.showLegend}
+        showDataLabels={settings.showDataLabels}
+        donut={settings.donut}
+        innerSize={settings.innerSize}
+        allowPointSelect={settings.allowPointSelect}
+        onPointClick={(ctx) => console.log('[pie click]', ctx)}
       />
     </div>
   );
@@ -468,7 +534,7 @@ export default function ChartsGallery() {
         />
         <ControlledAxisChart
           ChartComponent={AreaChart}
-          title="Energy Output — Scrollable"
+          title="Energy Output — Weekly"
           defaultDuration="12-week window"
           series={[
             { name: 'Solar', data: [310,340,290,380,420,460,440,410,390,350,320,300] },
@@ -477,13 +543,12 @@ export default function ChartsGallery() {
           categories={WEEKS}
           initialSettings={{ showLegend: true, smooth: true }}
           availableSettings={['showLegend','showDataLabels','showMarkers','smooth']}
-          extraProps={{ scrollable: true, scrollableMinWidth: 1200 }}
         />
       </Section>
 
       <Section
         title="Line Chart"
-        note="Props: series, categories, smooth, showMarkers, showLegend, showDataLabels, scrollable, onPointClick, filters (Chart slot)"
+        note="Props: series, categories, smooth, showMarkers, showLegend, showDataLabels, onPointClick, filters (Chart slot)"
       >
         <ControlledAxisChart
           ChartComponent={LineChart}
@@ -507,7 +572,7 @@ export default function ChartsGallery() {
 
       <Section
         title="Column Chart (Vertical Bars)"
-        note="Props: series, categories, stacked, showLegend, showDataLabels, scrollable, scrollableMinWidth, onPointClick, filters (Chart slot)"
+        note="Props: series, categories, stacked, showLegend, showDataLabels, onPointClick, filters (Chart slot)"
       >
         <ControlledAxisChart
           ChartComponent={ColumnChart}
@@ -520,13 +585,12 @@ export default function ChartsGallery() {
         />
         <ControlledAxisChart
           ChartComponent={ColumnChart}
-          title="Regional Sales — Scrollable"
+          title="Regional Sales — Extended"
           defaultDuration="2025"
           series={REGION_SERIES}
           categories={REGIONS}
           initialSettings={{ showLegend: true }}
           availableSettings={['showLegend','showDataLabels','stacked']}
-          extraProps={{ scrollable: true, scrollableMinWidth: 1000 }}
         />
       </Section>
 
@@ -551,6 +615,38 @@ export default function ChartsGallery() {
           categories={REGIONS}
           initialSettings={{ showLegend: true, stacked: true }}
           availableSettings={['showLegend','showDataLabels','stacked']}
+        />
+      </Section>
+
+      <Section
+        title="Pie Chart"
+        note="Props: data (array of {name, y, color?}), showLegend, showDataLabels, donut (boolean), innerSize (string), allowPointSelect, onPointClick, highchartsOptions escape hatch. Configurable via settings menu."
+      >
+        <ControlledPieChart
+          title="Browser Market Share"
+          defaultDuration="2025"
+          data={[
+            { name: 'Chrome', y: 61.41, color: '#4285F4' },
+            { name: 'Edge', y: 11.84, color: '#0078D7' },
+            { name: 'Firefox', y: 10.85, color: '#FF7139' },
+            { name: 'Safari', y: 4.67, color: '#006CFF' },
+            { name: 'Other', y: 11.23, color: '#95a5a6' },
+          ]}
+          initialSettings={{ showLegend: true, showDataLabels: true, donut: false, allowPointSelect: false }}
+          availableSettings={['showLegend', 'showDataLabels', 'donut', 'allowPointSelect']}
+        />
+        <ControlledPieChart
+          title="Budget Allocation"
+          defaultDuration="Q1 2025"
+          data={[
+            { name: 'Marketing', y: 30, color: '#6366f1' },
+            { name: 'R&D', y: 40, color: '#8b5cf6' },
+            { name: 'Sales', y: 20, color: '#ec4899' },
+            { name: 'Ops', y: 10, color: '#14b8a6' },
+          ]}
+          donutMode={true}
+          initialSettings={{ showLegend: true, showDataLabels: true, donut: true, allowPointSelect: true, innerSize: '60%' }}
+          availableSettings={['showLegend', 'showDataLabels', 'donut', 'allowPointSelect']}
         />
       </Section>
 

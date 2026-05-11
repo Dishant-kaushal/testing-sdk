@@ -1,39 +1,37 @@
-import { jsx as P } from "react/jsx-runtime";
-import { forwardRef as X, useMemo as $ } from "react";
-import S from "highcharts";
-import q from "highcharts-react-official";
-import { Chart as E } from "../Chart/Chart.js";
-import { useFaclonChartTheme as G, readCssVar as H } from "../Chart/highchartsTheme.js";
+import { jsx as R } from "react/jsx-runtime";
+import { forwardRef as V, useMemo as $ } from "react";
+import A from "highcharts";
+import H from "highcharts-react-official";
+import { Chart as q } from "../Chart/Chart.js";
+import { useFaclonChartTheme as E, readCssVar as N } from "../Chart/highchartsTheme.js";
 /* empty css              */
-const J = X(
+const G = H.default ?? H, J = V(
   ({
-    series: f,
-    categories: h,
-    smooth: x = !1,
+    series: h,
+    categories: f,
+    smooth: u = !1,
     showMarkers: o,
-    showLegend: u = !0,
+    showLegend: x = !0,
     showDataLabels: l = !1,
-    scrollable: g = !1,
-    scrollableMinWidth: b = 900,
     onPointClick: i,
     colors: n,
     xAxisTitle: s,
-    yAxisTitle: d,
-    yAxisUnit: m,
-    plotLines: t,
+    yAxisTitle: c,
+    yAxisUnit: d,
+    plotLines: r,
     plotBands: a,
-    highchartsOptions: c,
-    ...R
+    highchartsOptions: m,
+    ...S
   }, j) => {
-    const r = G(), F = $(() => {
-      var A, p, N;
-      const y = x ? "spline" : "line", V = f.map((e) => ({
-        type: y,
+    const t = E(), F = $(() => {
+      var z, C, p;
+      const g = u ? "spline" : "line", P = h.map((e) => ({
+        type: g,
         name: e.name,
         data: e.data,
         color: e.color,
         ...o !== void 0 && { marker: { enabled: o } }
-      })), v = a == null ? void 0 : a.map((e) => ({
+      })), b = a == null ? void 0 : a.map((e) => ({
         from: e.from,
         to: e.to,
         color: e.color ?? "rgba(239,68,68,0.1)",
@@ -41,9 +39,9 @@ const J = X(
         ...e.label && {
           label: { text: e.label, align: e.labelAlign ?? "right" }
         }
-      })), I = t == null ? void 0 : t.map((e) => ({
+      })), y = r == null ? void 0 : r.map((e) => ({
         value: e.value,
-        color: (e.color ?? H("--border-error-default")) || "#ef4444",
+        color: (e.color ?? N("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -51,10 +49,10 @@ const J = X(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? H("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? N("--border-error-default")) || "#ef4444" }
           }
         }
-      })), C = i ? {
+      })), v = i ? {
         cursor: "pointer",
         point: {
           events: {
@@ -69,50 +67,48 @@ const J = X(
             }
           }
         }
-      } : {}, z = {
-        ...r,
+      } : {}, I = {
+        ...t,
         ...n && { colors: n },
         chart: {
-          ...r.chart,
-          type: y,
-          ...g && {
-            scrollablePlotArea: { minWidth: b, scrollPositionX: 0 }
-          }
+          ...t.chart,
+          type: g,
+          zooming: { type: "x", singleTouch: !0 }
         },
         xAxis: {
-          ...r.xAxis,
-          categories: h,
-          ...s !== void 0 && { title: { ...(A = r.xAxis) == null ? void 0 : A.title, text: s } }
+          ...t.xAxis,
+          categories: f,
+          ...s !== void 0 && { title: { ...(z = t.xAxis) == null ? void 0 : z.title, text: s } }
         },
         yAxis: {
-          ...r.yAxis,
-          ...d !== void 0 && { title: { ...(p = r.yAxis) == null ? void 0 : p.title, text: d } },
-          ...m && { labels: { ...(N = r.yAxis) == null ? void 0 : N.labels, format: `{value} ${m}` } },
-          ...I && { plotLines: I },
-          ...v && { plotBands: v }
+          ...t.yAxis,
+          ...c !== void 0 && { title: { ...(C = t.yAxis) == null ? void 0 : C.title, text: c } },
+          ...d && { labels: { ...(p = t.yAxis) == null ? void 0 : p.labels, format: `{value} ${d}` } },
+          ...y && { plotLines: y },
+          ...b && { plotBands: b }
         },
         plotOptions: {
           line: {
             dataLabels: { enabled: l },
-            ...C
+            ...v
           },
           spline: {
             dataLabels: { enabled: l },
-            ...C
+            ...v
           }
         },
         legend: {
-          ...r.legend,
-          enabled: u
+          ...t.legend,
+          enabled: x
         },
-        series: V
+        series: P
       };
-      return c ? S.merge(z, c) : z;
-    }, [r, f, h, x, o, u, l, g, b, i, n, s, d, m, t, a, c]);
-    return /* @__PURE__ */ P(E, { ref: j, ...R, children: /* @__PURE__ */ P(
-      q,
+      return m ? A.merge(I, m) : I;
+    }, [t, h, f, u, o, x, l, i, n, s, c, d, r, a, m]);
+    return /* @__PURE__ */ R(q, { ref: j, ...S, children: /* @__PURE__ */ R(
+      G,
       {
-        highcharts: S,
+        highcharts: A,
         options: F,
         containerProps: { className: "fds-line-chart" }
       }

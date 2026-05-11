@@ -4,27 +4,29 @@ import { ColumnChart as f } from "./ColumnChart/ColumnChart.js";
 import { LineChart as C } from "./LineChart/LineChart.js";
 import { AreaChart as u } from "./AreaChart/AreaChart.js";
 import { BarChart as g } from "./BarChart/BarChart.js";
-import { SeriesGauge as n } from "./Gauge/SeriesGauge.js";
-import { ActivityGauge as l } from "./Gauge/ActivityGauge.js";
-import { RadialBar as R } from "./Gauge/RadialBar.js";
-import { SemiCircleGauge as k } from "./Gauge/SemiCircleGauge.js";
-import { CircleGauge as b } from "./Gauge/CircleGauge.js";
-import { StrokedCircularGauge as s } from "./Gauge/StrokedCircularGauge.js";
-import { bucketRange as H, bucketRangeInexact as I } from "./timeBuckets.js";
+import { PieChart as n } from "./PieChart/PieChart.js";
+import { SeriesGauge as l } from "./Gauge/SeriesGauge.js";
+import { ActivityGauge as R } from "./Gauge/ActivityGauge.js";
+import { RadialBar as k } from "./Gauge/RadialBar.js";
+import { SemiCircleGauge as S } from "./Gauge/SemiCircleGauge.js";
+import { CircleGauge as d } from "./Gauge/CircleGauge.js";
+import { StrokedCircularGauge as B } from "./Gauge/StrokedCircularGauge.js";
+import { bucketRange as I, bucketRangeInexact as L } from "./timeBuckets.js";
 export {
-  l as ActivityGauge,
+  R as ActivityGauge,
   u as AreaChart,
   g as BarChart,
   o as CHART_TITLE_TYPOGRAPHY,
   t as Chart,
   m as ChartActions,
-  b as CircleGauge,
+  d as CircleGauge,
   f as ColumnChart,
   C as LineChart,
-  R as RadialBar,
-  k as SemiCircleGauge,
-  n as SeriesGauge,
-  s as StrokedCircularGauge,
-  H as bucketRange,
-  I as bucketRangeInexact
+  n as PieChart,
+  k as RadialBar,
+  S as SemiCircleGauge,
+  l as SeriesGauge,
+  B as StrokedCircularGauge,
+  I as bucketRange,
+  L as bucketRangeInexact
 };

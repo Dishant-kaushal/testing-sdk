@@ -1,33 +1,27 @@
-import { type InputHTMLAttributes, type ReactNode } from 'react';
+import { type InputHTMLAttributes, type ChangeEvent } from 'react';
 import './Switch.css';
 export type SwitchSize = 'Small' | 'Medium';
-export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type' | 'onChange'> {
-    /** Size of the switch */
+export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type' | 'onChange' | 'value'> {
+    /** Size of the switch. Default `'Medium'`. */
     size?: SwitchSize;
-    /** Whether the switch is on */
+    /** Controlled checked state. */
     isChecked?: boolean;
-    /** Default checked state for uncontrolled usage */
+    /** Initial checked state for uncontrolled usage. */
     defaultChecked?: boolean;
-    /** Whether the switch is disabled */
+    /** Disables interaction. */
     isDisabled?: boolean;
-    /** Called when the switch is toggled */
-    onChange?: (meta: {
-        name: string;
-        checked: boolean;
-    }) => void;
-    /** Field name for form submissions */
+    /** Field name for form submissions. */
     name?: string;
-    /** Accessible label (use when no visible label) */
-    accessibilityLabel?: string;
-    /** Title text — when provided, renders the "with text" layout */
-    label?: string;
-    /** Subheading text below the title */
-    helpText?: string;
-    /** Icon slot next to the title (e.g. Info icon) */
-    trailingIcon?: ReactNode;
-    /** Show a muted divider below the row */
-    showDivider?: boolean;
-    /** Additional class name */
+    /** Form value submitted when the switch is checked. */
+    value?: string;
+    /** Fires on toggle. Payload mirrors Blade's `OnChange` shape. */
+    onChange?: (meta: {
+        isChecked: boolean;
+        event: ChangeEvent<HTMLInputElement>;
+        value?: string;
+    }) => void;
+    /** Accessible name. Required — Switch has no built-in visible label. */
+    accessibilityLabel: string;
     className?: string;
 }
 export declare const Switch: import("react").ForwardRefExoticComponent<SwitchProps & import("react").RefAttributes<HTMLInputElement>>;
