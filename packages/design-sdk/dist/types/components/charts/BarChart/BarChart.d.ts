@@ -65,10 +65,17 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      */
     plotBands?: ChartPlotBand[];
     /**
-     * Enable drag-to-zoom on the Y axis (value axis). Disable for read-only dashboards.
-     * @default true
+     * Make the plot area vertically scrollable when there are many categories.
+     * Only the plot area scrolls — legend and axis titles stay static.
+     * @default false
      */
-    zoomable?: boolean;
+    scrollable?: boolean;
+    /**
+     * Minimum plot-area height in pixels before the vertical scrollbar appears.
+     * Only used when `scrollable` is true. A good rule of thumb is ~30 px per category.
+     * @default 400
+     */
+    scrollableMinHeight?: number;
     /**
      * Full Highcharts options escape hatch — deep-merged last after all
      * computed options.

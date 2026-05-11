@@ -1,38 +1,40 @@
-import { jsx as A } from "react/jsx-runtime";
-import { forwardRef as $, useMemo as q } from "react";
-import H from "highcharts";
-import N from "highcharts-react-official";
+import { jsxs as v, jsx as l } from "react/jsx-runtime";
+import { forwardRef as q, useMemo as w } from "react";
+import k from "highcharts";
+import P from "highcharts-react-official";
 import { Chart as E } from "../Chart/Chart.js";
-import { useFaclonChartTheme as G, readCssVar as S } from "../Chart/highchartsTheme.js";
+import { useFaclonChartTheme as G, readCssVar as W } from "../Chart/highchartsTheme.js";
 /* empty css              */
-const J = N.default ?? N, K = $(
+const J = P.default ?? P, K = q(
   ({
-    series: h,
-    categories: f,
-    smooth: u = !1,
-    showMarkers: o,
-    showLegend: x = !0,
-    showDataLabels: l = !1,
-    onPointClick: i,
-    colors: n,
-    xAxisTitle: s,
-    yAxisTitle: c,
-    yAxisUnit: d,
-    plotLines: r,
-    plotBands: a,
-    zoomable: g = !0,
-    highchartsOptions: m,
-    ...j
-  }, F) => {
-    const t = G(), P = q(() => {
-      var p, z, R;
-      const y = u ? "spline" : "line", V = h.map((e) => ({
-        type: y,
+    series: s,
+    categories: p,
+    smooth: C = !1,
+    showMarkers: c,
+    showLegend: d = !0,
+    showDataLabels: m = !1,
+    onPointClick: h,
+    colors: f,
+    xAxisTitle: x,
+    yAxisTitle: u,
+    yAxisUnit: g,
+    plotLines: o,
+    plotBands: i,
+    zoomable: I = !0,
+    scrollable: n = !1,
+    scrollableMinWidth: N,
+    highchartsOptions: y,
+    ...F
+  }, V) => {
+    const r = G(), $ = w(() => {
+      var S, H, j;
+      const t = C ? "spline" : "line", b = s.map((e) => ({
+        type: t,
         name: e.name,
         data: e.data,
         color: e.color,
-        ...o !== void 0 && { marker: { enabled: o } }
-      })), b = a == null ? void 0 : a.map((e) => ({
+        ...c !== void 0 && { marker: { enabled: c } }
+      })), a = i == null ? void 0 : i.map((e) => ({
         from: e.from,
         to: e.to,
         color: e.color ?? "rgba(239,68,68,0.1)",
@@ -40,9 +42,9 @@ const J = N.default ?? N, K = $(
         ...e.label && {
           label: { text: e.label, align: e.labelAlign ?? "right" }
         }
-      })), v = r == null ? void 0 : r.map((e) => ({
+      })), z = o == null ? void 0 : o.map((e) => ({
         value: e.value,
-        color: (e.color ?? S("--border-error-default")) || "#ef4444",
+        color: (e.color ?? W("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -50,15 +52,15 @@ const J = N.default ?? N, K = $(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? S("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? W("--border-error-default")) || "#ef4444" }
           }
         }
-      })), I = i ? {
+      })), A = h ? {
         cursor: "pointer",
         point: {
           events: {
             click() {
-              i({
+              h({
                 category: String(this.category ?? ""),
                 seriesName: this.series.name,
                 value: this.y ?? null,
@@ -68,52 +70,65 @@ const J = N.default ?? N, K = $(
             }
           }
         }
-      } : {}, C = {
-        ...t,
-        ...n && { colors: n },
+      } : {}, R = {
+        ...r,
+        ...f && { colors: f },
         chart: {
-          ...t.chart,
-          type: y,
-          ...g && { zooming: { type: "x", singleTouch: !0 } }
+          ...r.chart,
+          type: t,
+          ...I && { zooming: { type: "x", singleTouch: !0, mouseWheel: { enabled: !0 } } },
+          ...n && { scrollablePlotArea: { minWidth: N ?? 800, opacity: 1 } }
         },
         xAxis: {
-          ...t.xAxis,
-          categories: f,
-          ...s !== void 0 && { title: { ...(p = t.xAxis) == null ? void 0 : p.title, text: s } }
+          ...r.xAxis,
+          categories: p,
+          ...x !== void 0 && { title: { ...(S = r.xAxis) == null ? void 0 : S.title, text: x } }
         },
         yAxis: {
-          ...t.yAxis,
-          ...c !== void 0 && { title: { ...(z = t.yAxis) == null ? void 0 : z.title, text: c } },
-          ...d && { labels: { ...(R = t.yAxis) == null ? void 0 : R.labels, format: `{value} ${d}` } },
-          ...v && { plotLines: v },
-          ...b && { plotBands: b }
+          ...r.yAxis,
+          ...u !== void 0 && { title: { ...(H = r.yAxis) == null ? void 0 : H.title, text: u } },
+          ...g && { labels: { ...(j = r.yAxis) == null ? void 0 : j.labels, format: `{value} ${g}` } },
+          ...z && { plotLines: z },
+          ...a && { plotBands: a }
         },
         plotOptions: {
           line: {
-            dataLabels: { enabled: l },
-            ...I
+            dataLabels: { enabled: m },
+            ...A
           },
           spline: {
-            dataLabels: { enabled: l },
-            ...I
+            dataLabels: { enabled: m },
+            ...A
           }
         },
         legend: {
-          ...t.legend,
-          enabled: x
+          ...r.legend,
+          enabled: n ? !1 : d
         },
-        series: V
+        series: b
       };
-      return m ? H.merge(C, m) : C;
-    }, [t, h, f, u, o, x, l, g, i, n, s, c, d, r, a, m]);
-    return /* @__PURE__ */ A(E, { ref: F, ...j, children: /* @__PURE__ */ A(
-      J,
-      {
-        highcharts: H,
-        options: P,
-        containerProps: { className: "fds-line-chart" }
-      }
-    ) });
+      return y ? k.merge(R, y) : R;
+    }, [r, s, p, C, c, d, m, I, n, N, h, f, x, u, g, o, i, y]), _ = r.colors ?? [];
+    return /* @__PURE__ */ v(E, { ref: V, ...F, children: [
+      /* @__PURE__ */ l(
+        J,
+        {
+          highcharts: k,
+          options: $,
+          containerProps: { className: "fds-line-chart" }
+        }
+      ),
+      n && d && /* @__PURE__ */ l("div", { className: "fds-chart__scrollable-legend", children: s.map((t, b) => {
+        const a = t.color ?? _[b % _.length];
+        return /* @__PURE__ */ v("span", { className: "fds-chart__scrollable-legend-item", children: [
+          /* @__PURE__ */ v("svg", { width: "16", height: "12", viewBox: "0 0 16 12", "aria-hidden": "true", style: { flexShrink: 0 }, children: [
+            /* @__PURE__ */ l("line", { x1: "0", y1: "6", x2: "16", y2: "6", stroke: a, strokeWidth: "2" }),
+            /* @__PURE__ */ l("circle", { cx: "8", cy: "6", r: "3", fill: a })
+          ] }),
+          /* @__PURE__ */ l("span", { className: "fds-chart__scrollable-legend-label", children: t.name })
+        ] }, t.name);
+      }) })
+    ] });
   }
 );
 K.displayName = "LineChart";

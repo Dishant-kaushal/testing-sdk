@@ -69,6 +69,18 @@ export interface LineChartProps extends Omit<ChartProps, 'children'> {
      */
     zoomable?: boolean;
     /**
+     * Make the plot area horizontally scrollable when there are many categories.
+     * Only the plot area scrolls — legend and axis titles stay static.
+     * @default false
+     */
+    scrollable?: boolean;
+    /**
+     * Minimum plot-area width in pixels before the horizontal scrollbar appears.
+     * Only used when `scrollable` is true.
+     * @default 800
+     */
+    scrollableMinWidth?: number;
+    /**
      * Full Highcharts options escape hatch — deep-merged last after all
      * computed options. Use this to override anything not covered by props.
      */

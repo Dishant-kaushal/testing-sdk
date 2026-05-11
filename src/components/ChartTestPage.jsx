@@ -273,30 +273,78 @@ export default function ChartTestPage() {
         </ul>
       </div>
 
-      {/* ── 8. Zoom opt-out ──────────────────────────────────────────────── */}
+      {/* ── 8. Zoom — wheel + drag (ColumnChart / LineChart / AreaChart) ──── */}
       <div style={wrap(widthPct)}>
-        <span style={TAG}>8 — Zoom: zoomable=false (ColumnChart) vs default BarChart</span>
+        <span style={TAG}>8 — Zoom: mouse-wheel in/out + drag-to-zoom + reset (ColumnChart)</span>
         <p style={{ margin: '0 0 12px', fontSize: 12, color: '#6b7280' }}>
-          <strong>Top:</strong> ColumnChart zoomable=false — drag should do nothing.
+          Two-finger scroll <strong>down → zoom in</strong>, scroll <strong>up → zoom out</strong> on X axis. Click-drag also selects a range to zoom.
         </p>
         <ColumnChart
-          title="No Zoom (ColumnChart)"
-          zoomable={false}
-          categories={['Jan', 'Feb', 'Mar']}
-          series={[{ name: 'Sales', data: [10, 20, 15] }]}
-        />
-        <p style={{ margin: '12px 0', fontSize: 12, color: '#6b7280' }}>
-          <strong>Bottom:</strong> BarChart default (zoomable=true) — drag horizontally to zoom value axis.
-        </p>
-        <BarChart
-          title="Bar Zoom (default)"
-          categories={['A', 'B', 'C']}
-          series={[{ name: 'Value', data: [5, 12, 8] }]}
+          title="Monthly Revenue — Wheel + Drag Zoom"
+          categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']}
+          series={[
+            { name: 'Product A', data: [42, 85, 60, 92, 75, 88, 70, 95, 65, 80, 55, 78] },
+            { name: 'Product B', data: [30, 55, 70, 45, 60, 72, 50, 68, 40, 62, 48, 58] },
+          ]}
+          zoomable
+          xAxisTitle="Month"
+          yAxisTitle="Revenue"
+          yAxisUnit="k"
+          showLegend
         />
         <ul style={CHECK}>
-          <li>Top chart: drag across columns — <strong>no selection box, no zoom</strong></li>
-          <li>Bottom chart: drag across bars — <strong>blue selection box appears, chart zooms in</strong></li>
-          <li>Bottom chart zoom resets via the "Reset zoom" button that appears</li>
+          <li>Two-finger scroll down → <strong>zooms in</strong> on X axis; scroll up → <strong>zooms out</strong></li>
+          <li>Click and drag across columns → blue selection box → <strong>zooms to range</strong></li>
+          <li><strong>Reset zoom</strong> button appears after any zoom action</li>
+        </ul>
+      </div>
+
+      <div style={wrap(widthPct)}>
+        <span style={TAG}>8b — Zoom: LineChart + AreaChart wheel zoom</span>
+        <p style={{ margin: '0 0 12px', fontSize: 12, color: '#6b7280' }}>
+          Same wheel + drag zoom on LineChart and AreaChart.
+        </p>
+        <LineChart
+          title="Server Latency — Wheel Zoom"
+          categories={['00:00','02:00','04:00','06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00']}
+          series={[{ name: 'p99', data: [12, 14, 18, 22, 45, 38, 30, 28, 22, 18, 15, 13] }]}
+          zoomable
+          smooth
+          xAxisTitle="Time"
+          yAxisTitle="Latency"
+          yAxisUnit="ms"
+        />
+        <div style={{ marginTop: 16 }}>
+          <AreaChart
+            title="Traffic Sources — Wheel Zoom"
+            categories={['Mon','Tue','Wed','Thu','Fri','Sat','Sun']}
+            series={[
+              { name: 'Organic', data: [400, 430, 390, 500, 480, 320, 290] },
+              { name: 'Paid',    data: [200, 180, 220, 190, 210, 150, 130] },
+            ]}
+            zoomable
+            xAxisTitle="Day"
+            yAxisTitle="Visits"
+            yAxisUnit="k"
+            showLegend
+          />
+        </div>
+        <ul style={CHECK}>
+          <li>Both charts respond to two-finger scroll <strong>in/out on X axis</strong></li>
+          <li>Reset zoom button appears after zooming</li>
+        </ul>
+      </div>
+
+      <div style={wrap(widthPct)}>
+        <span style={TAG}>8c — Zoom disabled: zoomable=false (ColumnChart)</span>
+        <ColumnChart
+          title="No Zoom"
+          zoomable={false}
+          categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+          series={[{ name: 'Sales', data: [10, 20, 15, 30, 25] }]}
+        />
+        <ul style={CHECK}>
+          <li>Two-finger scroll and drag — <strong>no zoom, no selection box</strong></li>
         </ul>
       </div>
 
@@ -317,91 +365,61 @@ export default function ChartTestPage() {
         </ul>
       </div>
 
-      {/* ── 10a. LineChart — horizontal scroll ───────────────────────────── */}
+      {/* ── 10a. LineChart — native scrollable prop ───────────────────────── */}
       <div style={wrap(widthPct)}>
-        <span style={TAG}>10a — LineChart: horizontal scroll (60 data points)</span>
-        <div style={{ overflowX: 'auto', borderRadius: 6 }}>
-          <div style={{ minWidth: 1600 }}>
-            <LineChart
-              title="Hourly Readings — 60 hrs"
-              categories={Array.from({ length: 60 }, (_, i) => `${String(Math.floor(i / 24) + 1).padStart(2, '0')}d ${String(i % 24).padStart(2, '0')}:00`)}
-              series={[
-                { name: 'Sensor A', data: Array.from({ length: 60 }, (_, i) => +(20 + 8 * Math.sin(i / 5) + Math.random() * 2).toFixed(1)) },
-                { name: 'Sensor B', data: Array.from({ length: 60 }, (_, i) => +(30 + 6 * Math.cos(i / 4) + Math.random() * 2).toFixed(1)) },
-              ]}
-              xAxisTitle="Time"
-              yAxisTitle="Temperature"
-              yAxisUnit="°C"
-              smooth
-              showLegend
-            />
-          </div>
+        <span style={TAG}>10a — LineChart: scrollable=true, scrollableMinWidth=1500 (60 pts)</span>
+        <div style={{ maxWidth: 600 }}>
+          <LineChart
+            title="Hourly Readings — 60 hrs"
+            categories={Array.from({ length: 60 }, (_, i) => `${String(Math.floor(i / 24) + 1).padStart(2, '0')}d ${String(i % 24).padStart(2, '0')}:00`)}
+            series={[
+              { name: 'Sensor A', data: Array.from({ length: 60 }, (_, i) => +(20 + 8 * Math.sin(i / 5) + Math.random() * 2).toFixed(1)) },
+              { name: 'Sensor B', data: Array.from({ length: 60 }, (_, i) => +(30 + 6 * Math.cos(i / 4) + Math.random() * 2).toFixed(1)) },
+            ]}
+            xAxisTitle="Time"
+            yAxisTitle="Temperature"
+            yAxisUnit="°C"
+            smooth
+            showLegend
+            scrollable
+            scrollableMinWidth={1500}
+          />
         </div>
         <ul style={CHECK}>
-          <li>Chart is <strong>wider than the container</strong> — horizontal scrollbar appears</li>
-          <li>Scrolling reveals all 60 data points</li>
-          <li>Y-axis and legend remain correctly positioned</li>
+          <li><strong>Only the plot area scrolls</strong> — legend, axis titles, header stay pinned</li>
+          <li>Scrollbar appears inside the 600px container; all 60 points reachable</li>
         </ul>
       </div>
 
-      {/* ── 10b. ColumnChart — horizontal scroll ─────────────────────────── */}
+      {/* ── 10b. ColumnChart — native scrollable prop ────────────────────── */}
       <div style={wrap(widthPct)}>
-        <span style={TAG}>10b — ColumnChart: horizontal scroll (36 months)</span>
-        <div style={{ overflowX: 'auto', borderRadius: 6 }}>
-          <div style={{ minWidth: 1800 }}>
-            <ColumnChart
-              title="Monthly Revenue — 3 Years"
-              categories={Array.from({ length: 36 }, (_, i) => {
-                const d = new Date(2022, i, 1);
-                return `${d.toLocaleString('en', { month: 'short' })} '${String(d.getFullYear()).slice(2)}`;
-              })}
-              series={[
-                { name: 'Product A', data: Array.from({ length: 36 }, (_, i) => Math.round(40 + 30 * Math.sin(i / 6 + 1) + i * 0.8 + Math.random() * 5)) },
-                { name: 'Product B', data: Array.from({ length: 36 }, (_, i) => Math.round(25 + 20 * Math.cos(i / 5) + i * 0.5 + Math.random() * 5)) },
-              ]}
-              xAxisTitle="Month"
-              yAxisTitle="Revenue"
-              yAxisUnit="k"
-              colors={['#6366f1', '#22c55e']}
-              showLegend
-              showDataLabels={false}
-            />
-          </div>
+        <span style={TAG}>10b — ColumnChart: scrollable=true, scrollableMinWidth=1500 (24 months)</span>
+        <div style={{ maxWidth: 600 }}>
+          <ColumnChart
+            title="Monthly Revenue — 2 Years"
+            categories={Array.from({ length: 24 }, (_, i) => {
+              const d = new Date(2023, i, 1);
+              return `${d.toLocaleString('en', { month: 'short' })} '${String(d.getFullYear()).slice(2)}`;
+            })}
+            series={[
+              { name: 'Product A', data: Array.from({ length: 24 }, (_, i) => Math.round(40 + 30 * Math.sin(i / 6 + 1) + i * 0.8)) },
+              { name: 'Product B', data: Array.from({ length: 24 }, (_, i) => Math.round(25 + 20 * Math.cos(i / 5) + i * 0.5)) },
+            ]}
+            xAxisTitle="Month"
+            yAxisTitle="Revenue"
+            yAxisUnit="k"
+            colors={['#6366f1', '#22c55e']}
+            showLegend
+            scrollable
+            scrollableMinWidth={1500}
+          />
         </div>
         <ul style={CHECK}>
-          <li>36 columns (3 years × 12 months) extend beyond the container</li>
-          <li>Horizontal scroll reveals all months</li>
-          <li>Two grouped series visible throughout</li>
+          <li><strong>Only the columns scroll</strong> — legend bottom, y-axis, and title stay static</li>
+          <li>24 columns fit across a 1500px plot area inside a 600px card</li>
         </ul>
       </div>
 
-      {/* ── 10c. BarChart — horizontal scroll (many categories) ──────────── */}
-      <div style={wrap(widthPct)}>
-        <span style={TAG}>10c — BarChart: horizontal scroll (20 machines, 3 series)</span>
-        <div style={{ overflowX: 'auto', borderRadius: 6 }}>
-          <div style={{ minWidth: 1400 }}>
-            <BarChart
-              title="Downtime by Machine — 3 Shifts"
-              categories={Array.from({ length: 20 }, (_, i) => `Machine ${String.fromCharCode(65 + (i % 26))}${i >= 26 ? Math.floor(i / 26) : ''}`)}
-              series={[
-                { name: 'Morning',   data: Array.from({ length: 20 }, () => +(Math.random() * 5).toFixed(1)) },
-                { name: 'Afternoon', data: Array.from({ length: 20 }, () => +(Math.random() * 4).toFixed(1)) },
-                { name: 'Night',     data: Array.from({ length: 20 }, () => +(Math.random() * 6).toFixed(1)) },
-              ]}
-              xAxisTitle="Hours"
-              yAxisTitle="Machine"
-              yAxisUnit="h"
-              showLegend
-              showDataLabels={false}
-            />
-          </div>
-        </div>
-        <ul style={CHECK}>
-          <li>20 machines × 3 shift series extend the chart horizontally</li>
-          <li>Horizontal scroll reveals all machines</li>
-          <li>Three colour-coded shift series visible throughout</li>
-        </ul>
-      </div>
     </div>
   );
 }
