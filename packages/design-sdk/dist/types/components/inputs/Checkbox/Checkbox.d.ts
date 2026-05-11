@@ -12,5 +12,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
     isDisabled?: boolean;
     /** Whether the checkbox is in the indeterminate (intermediate) state */
     isIndeterminate?: boolean;
+    /** Absorbed and discarded — prevents leaking to the DOM when passed by composite parents */
+    isChecked?: boolean;
 }
 export declare const Checkbox: import("react").ForwardRefExoticComponent<CheckboxProps & import("react").RefAttributes<HTMLInputElement>>;

@@ -35,28 +35,6 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      */
     showDataLabels?: boolean;
     /**
-     * Make the plot vertically scrollable when categories overflow.
-     * @default false
-     */
-    scrollable?: boolean;
-    /**
-     * Enable drag-to-zoom on the plot area.
-     * @default false
-     */
-    zoomable?: boolean;
-    /**
-     * Which axis the zoom selection should apply to.
-     * For `type: 'bar'`, the value axis is horizontal (Highcharts' `yAxis`),
-     * and the category axis is vertical (Highcharts' `xAxis`).
-     * @default 'y'
-     */
-    zoomType?: 'x' | 'y' | 'xy';
-    /**
-     * Minimum plot height (px) when `scrollable` is true.
-     * @default 500
-     */
-    scrollableMinHeight?: number;
-    /**
      * Fires when a bar is clicked. Consumer owns drill-down state.
      * When set, bars use a pointer cursor.
      */
@@ -86,6 +64,11 @@ export interface BarChartProps extends Omit<ChartProps, 'children'> {
      * Use for threshold zones e.g. warning band 80–90, critical band 90+.
      */
     plotBands?: ChartPlotBand[];
+    /**
+     * Enable drag-to-zoom on the Y axis (value axis). Disable for read-only dashboards.
+     * @default true
+     */
+    zoomable?: boolean;
     /**
      * Full Highcharts options escape hatch — deep-merged last after all
      * computed options.

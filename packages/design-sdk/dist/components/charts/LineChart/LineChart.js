@@ -1,11 +1,11 @@
-import { jsx as R } from "react/jsx-runtime";
-import { forwardRef as V, useMemo as $ } from "react";
-import A from "highcharts";
-import H from "highcharts-react-official";
-import { Chart as q } from "../Chart/Chart.js";
-import { useFaclonChartTheme as E, readCssVar as N } from "../Chart/highchartsTheme.js";
+import { jsx as A } from "react/jsx-runtime";
+import { forwardRef as $, useMemo as q } from "react";
+import H from "highcharts";
+import N from "highcharts-react-official";
+import { Chart as E } from "../Chart/Chart.js";
+import { useFaclonChartTheme as G, readCssVar as S } from "../Chart/highchartsTheme.js";
 /* empty css              */
-const G = H.default ?? H, J = V(
+const J = N.default ?? N, K = $(
   ({
     series: h,
     categories: f,
@@ -20,13 +20,14 @@ const G = H.default ?? H, J = V(
     yAxisUnit: d,
     plotLines: r,
     plotBands: a,
+    zoomable: g = !0,
     highchartsOptions: m,
-    ...S
-  }, j) => {
-    const t = E(), F = $(() => {
-      var z, C, p;
-      const g = u ? "spline" : "line", P = h.map((e) => ({
-        type: g,
+    ...j
+  }, F) => {
+    const t = G(), P = q(() => {
+      var p, z, R;
+      const y = u ? "spline" : "line", V = h.map((e) => ({
+        type: y,
         name: e.name,
         data: e.data,
         color: e.color,
@@ -39,9 +40,9 @@ const G = H.default ?? H, J = V(
         ...e.label && {
           label: { text: e.label, align: e.labelAlign ?? "right" }
         }
-      })), y = r == null ? void 0 : r.map((e) => ({
+      })), v = r == null ? void 0 : r.map((e) => ({
         value: e.value,
-        color: (e.color ?? N("--border-error-default")) || "#ef4444",
+        color: (e.color ?? S("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -49,10 +50,10 @@ const G = H.default ?? H, J = V(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? N("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? S("--border-error-default")) || "#ef4444" }
           }
         }
-      })), v = i ? {
+      })), I = i ? {
         cursor: "pointer",
         point: {
           events: {
@@ -67,55 +68,55 @@ const G = H.default ?? H, J = V(
             }
           }
         }
-      } : {}, I = {
+      } : {}, C = {
         ...t,
         ...n && { colors: n },
         chart: {
           ...t.chart,
-          type: g,
-          zooming: { type: "x", singleTouch: !0 }
+          type: y,
+          ...g && { zooming: { type: "x", singleTouch: !0 } }
         },
         xAxis: {
           ...t.xAxis,
           categories: f,
-          ...s !== void 0 && { title: { ...(z = t.xAxis) == null ? void 0 : z.title, text: s } }
+          ...s !== void 0 && { title: { ...(p = t.xAxis) == null ? void 0 : p.title, text: s } }
         },
         yAxis: {
           ...t.yAxis,
-          ...c !== void 0 && { title: { ...(C = t.yAxis) == null ? void 0 : C.title, text: c } },
-          ...d && { labels: { ...(p = t.yAxis) == null ? void 0 : p.labels, format: `{value} ${d}` } },
-          ...y && { plotLines: y },
+          ...c !== void 0 && { title: { ...(z = t.yAxis) == null ? void 0 : z.title, text: c } },
+          ...d && { labels: { ...(R = t.yAxis) == null ? void 0 : R.labels, format: `{value} ${d}` } },
+          ...v && { plotLines: v },
           ...b && { plotBands: b }
         },
         plotOptions: {
           line: {
             dataLabels: { enabled: l },
-            ...v
+            ...I
           },
           spline: {
             dataLabels: { enabled: l },
-            ...v
+            ...I
           }
         },
         legend: {
           ...t.legend,
           enabled: x
         },
-        series: P
+        series: V
       };
-      return m ? A.merge(I, m) : I;
-    }, [t, h, f, u, o, x, l, i, n, s, c, d, r, a, m]);
-    return /* @__PURE__ */ R(q, { ref: j, ...S, children: /* @__PURE__ */ R(
-      G,
+      return m ? H.merge(C, m) : C;
+    }, [t, h, f, u, o, x, l, g, i, n, s, c, d, r, a, m]);
+    return /* @__PURE__ */ A(E, { ref: F, ...j, children: /* @__PURE__ */ A(
+      J,
       {
-        highcharts: A,
-        options: F,
+        highcharts: H,
+        options: P,
         containerProps: { className: "fds-line-chart" }
       }
     ) });
   }
 );
-J.displayName = "LineChart";
+K.displayName = "LineChart";
 export {
-  J as LineChart
+  K as LineChart
 };

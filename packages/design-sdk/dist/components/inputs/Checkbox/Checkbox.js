@@ -32,13 +32,15 @@ const H = L(
     size: a = "Small",
     isDisabled: m = !1,
     isIndeterminate: s = !1,
-    className: x,
-    id: p,
-    disabled: k,
+    className: k,
+    id: x,
+    disabled: p,
     onChange: C,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isChecked: S,
     ...w
   }, n) => {
-    const t = b ?? u, _ = N(), i = p ?? _, o = m || k || !1, l = B(null), g = h(
+    const t = b ?? u, _ = N(), i = x ?? _, o = m || p || !1, l = B(null), g = h(
       (c) => {
         l.current = c, typeof n == "function" ? n(c) : n && (n.current = c);
       },
@@ -61,7 +63,7 @@ const H = L(
       `fds-checkbox--size-${a.toLowerCase()}`,
       o && "fds-checkbox--disabled",
       s && "fds-checkbox--indeterminate",
-      x
+      k
     );
     return /* @__PURE__ */ d("label", { className: y, htmlFor: i, children: [
       /* @__PURE__ */ e(

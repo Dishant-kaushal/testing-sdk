@@ -1,11 +1,11 @@
-import { jsx as N } from "react/jsx-runtime";
-import { forwardRef as q, useMemo as E } from "react";
-import S from "highcharts";
-import j from "highcharts-react-official";
-import { Chart as G } from "../Chart/Chart.js";
-import { useFaclonChartTheme as J, readCssVar as F } from "../Chart/highchartsTheme.js";
+import { jsx as S } from "react/jsx-runtime";
+import { forwardRef as E, useMemo as G } from "react";
+import j from "highcharts";
+import F from "highcharts-react-official";
+import { Chart as J } from "../Chart/Chart.js";
+import { useFaclonChartTheme as K, readCssVar as P } from "../Chart/highchartsTheme.js";
 /* empty css              */
-const K = j.default ?? j, M = q(
+const M = F.default ?? F, O = E(
   ({
     series: f,
     categories: h,
@@ -13,7 +13,7 @@ const K = j.default ?? j, M = q(
     percentStacked: u = !1,
     smooth: x = !1,
     showMarkers: o,
-    showLegend: b = !0,
+    showLegend: y = !0,
     showDataLabels: l = !1,
     onPointClick: i,
     colors: n,
@@ -22,18 +22,19 @@ const K = j.default ?? j, M = q(
     yAxisUnit: d,
     plotLines: a,
     plotBands: t,
+    zoomable: b = !0,
     highchartsOptions: m,
-    ...P
-  }, V) => {
-    const r = J(), $ = E(() => {
-      var p, R, H;
-      const y = x ? "areaspline" : "area", v = u ? "percent" : g ? "normal" : void 0, k = f.map((e) => ({
-        type: y,
+    ...V
+  }, $) => {
+    const r = K(), k = G(() => {
+      var R, H, N;
+      const v = x ? "areaspline" : "area", I = u ? "percent" : g ? "normal" : void 0, q = f.map((e) => ({
+        type: v,
         name: e.name,
         data: e.data,
         color: e.color,
         ...o !== void 0 && { marker: { enabled: o } }
-      })), I = t == null ? void 0 : t.map((e) => ({
+      })), A = t == null ? void 0 : t.map((e) => ({
         from: e.from,
         to: e.to,
         color: e.color ?? "rgba(239,68,68,0.1)",
@@ -41,9 +42,9 @@ const K = j.default ?? j, M = q(
         ...e.label && {
           label: { text: e.label, align: e.labelAlign ?? "right" }
         }
-      })), z = a == null ? void 0 : a.map((e) => ({
+      })), C = a == null ? void 0 : a.map((e) => ({
         value: e.value,
-        color: (e.color ?? F("--border-error-default")) || "#ef4444",
+        color: (e.color ?? P("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -51,10 +52,10 @@ const K = j.default ?? j, M = q(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? F("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? P("--border-error-default")) || "#ef4444" }
           }
         }
-      })), A = i ? {
+      })), p = i ? {
         cursor: "pointer",
         point: {
           events: {
@@ -69,57 +70,57 @@ const K = j.default ?? j, M = q(
             }
           }
         }
-      } : {}, C = {
+      } : {}, z = {
         ...r,
         ...n && { colors: n },
         chart: {
           ...r.chart,
-          type: y,
-          zooming: { type: "x", singleTouch: !0 }
+          type: v,
+          ...b && { zooming: { type: "x", singleTouch: !0 } }
         },
         xAxis: {
           ...r.xAxis,
           categories: h,
-          ...s !== void 0 && { title: { ...(p = r.xAxis) == null ? void 0 : p.title, text: s } }
+          ...s !== void 0 && { title: { ...(R = r.xAxis) == null ? void 0 : R.title, text: s } }
         },
         yAxis: {
           ...r.yAxis,
-          ...c !== void 0 && { title: { ...(R = r.yAxis) == null ? void 0 : R.title, text: c } },
-          ...d && { labels: { ...(H = r.yAxis) == null ? void 0 : H.labels, format: `{value} ${d}` } },
-          ...z && { plotLines: z },
-          ...I && { plotBands: I }
+          ...c !== void 0 && { title: { ...(H = r.yAxis) == null ? void 0 : H.title, text: c } },
+          ...d && { labels: { ...(N = r.yAxis) == null ? void 0 : N.labels, format: `{value} ${d}` } },
+          ...C && { plotLines: C },
+          ...A && { plotBands: A }
         },
         plotOptions: {
           area: {
-            stacking: v,
+            stacking: I,
             dataLabels: { enabled: l },
-            ...A
+            ...p
           },
           areaspline: {
-            stacking: v,
+            stacking: I,
             dataLabels: { enabled: l },
-            ...A
+            ...p
           }
         },
         legend: {
           ...r.legend,
-          enabled: b
+          enabled: y
         },
-        series: k
+        series: q
       };
-      return m ? S.merge(C, m) : C;
-    }, [r, f, h, g, u, x, o, b, l, i, n, s, c, d, a, t, m]);
-    return /* @__PURE__ */ N(G, { ref: V, ...P, children: /* @__PURE__ */ N(
-      K,
+      return m ? j.merge(z, m) : z;
+    }, [r, f, h, g, u, x, o, y, l, b, i, n, s, c, d, a, t, m]);
+    return /* @__PURE__ */ S(J, { ref: $, ...V, children: /* @__PURE__ */ S(
+      M,
       {
-        highcharts: S,
-        options: $,
+        highcharts: j,
+        options: k,
         containerProps: { className: "fds-area-chart" }
       }
     ) });
   }
 );
-M.displayName = "AreaChart";
+O.displayName = "AreaChart";
 export {
-  M as AreaChart
+  O as AreaChart
 };

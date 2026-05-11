@@ -1,6 +1,6 @@
 {
   "name": "@faclon-labs/design-sdk",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": false,
   "type": "module",
   "module": "./dist/index.js",
@@ -73,6 +73,10 @@
       "types": "./dist/types/components/charts/BarChart/index.d.ts",
       "import": "./dist/components/charts/BarChart/index.js"
     },
+    "./PieChart": {
+      "types": "./dist/types/components/charts/PieChart/index.d.ts",
+      "import": "./dist/components/charts/PieChart/index.js"
+    },
     "./Gauge": {
       "types": "./dist/types/components/charts/Gauge/index.d.ts",
       "import": "./dist/components/charts/Gauge/index.js"
@@ -136,6 +140,10 @@
     "./Alert": {
       "types": "./dist/types/components/feedback/Alert/index.d.ts",
       "import": "./dist/components/feedback/Alert/index.js"
+    },
+    "./Toast": {
+      "types": "./dist/types/components/feedback/Toast/index.d.ts",
+      "import": "./dist/components/feedback/Toast/index.js"
     },
     "./Checkbox": {
       "types": "./dist/types/components/inputs/Checkbox/index.d.ts",
@@ -354,7 +362,7 @@
     "build:types": "tsc -p tsconfig.build.json",
     "build:js": "vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -393,6 +401,7 @@
     "playwright": "^1.58.2",
     "react-apexcharts": "^2.1.0",
     "react-feather": "^2.0.10",
+    "rimraf": "^6.0.1",
     "storybook": "^10.3.3",
     "typescript": "^5.6.3",
     "vite": "^6.0.0",

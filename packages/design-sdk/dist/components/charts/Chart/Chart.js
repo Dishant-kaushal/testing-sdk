@@ -1,18 +1,18 @@
 import { jsxs as e, jsx as a } from "react/jsx-runtime";
-import { forwardRef as H } from "react";
+import { forwardRef as b } from "react";
 import { ChevronDown as S, Clock as C } from "react-feather";
 import { cn as d } from "../../../utils/cn.js";
 /* empty css          */
-const b = {
+const R = {
   Small: "HeadingSmallSemibold",
   Medium: "HeadingMediumSemibold",
   Large: "HeadingLargeSemibold"
-}, R = H(
+}, w = b(
   ({
     title: s,
-    titleSize: h = "Small",
-    titleClassName: m,
-    titleHasDropdown: o = !1,
+    titleSize: o = "Small",
+    titleClassName: h,
+    titleHasDropdown: m = !1,
     onTitleClick: _,
     breadcrumb: c,
     duration: l,
@@ -20,18 +20,19 @@ const b = {
     filters: i,
     children: f,
     className: u,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ...N
   }, p) => {
-    const v = typeof s == "string", n = s != null || c != null, t = n || l != null, g = t || r != null;
-    return /* @__PURE__ */ e("div", { ref: p, className: d("fds-chart", u), ...N, children: [
-      g && /* @__PURE__ */ e("div", { className: "fds-chart__header", children: [
+    const { zoomable: y, ...v } = N, g = typeof s == "string", n = s != null || c != null, t = n || l != null, H = t || r != null;
+    return /* @__PURE__ */ e("div", { ref: p, className: d("fds-chart", u), ...v, children: [
+      H && /* @__PURE__ */ e("div", { className: "fds-chart__header", children: [
         t && /* @__PURE__ */ e("div", { className: "fds-chart__header-main", children: [
           n && /* @__PURE__ */ e("div", { className: "fds-chart__header-row", children: [
-            v ? /* @__PURE__ */ e(
+            g ? /* @__PURE__ */ e(
               "button",
               {
                 type: "button",
-                className: d("fds-chart__title", m),
+                className: d("fds-chart__title", h),
                 onClick: _,
                 children: [
                   /* @__PURE__ */ a(
@@ -39,12 +40,12 @@ const b = {
                     {
                       className: d(
                         "fds-chart__title-label",
-                        b[h]
+                        R[o]
                       ),
                       children: s
                     }
                   ),
-                  o && /* @__PURE__ */ a(
+                  m && /* @__PURE__ */ a(
                     S,
                     {
                       className: "fds-chart__title-icon",
@@ -68,8 +69,8 @@ const b = {
     ] });
   }
 );
-R.displayName = "Chart";
+w.displayName = "Chart";
 export {
-  b as CHART_TITLE_TYPOGRAPHY,
-  R as Chart
+  R as CHART_TITLE_TYPOGRAPHY,
+  w as Chart
 };

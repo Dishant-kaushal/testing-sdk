@@ -196,10 +196,11 @@ export const AreaChart = forwardRef<HTMLDivElement, AreaChartProps>(
         chart: {
           ...theme.chart,
           type: seriesType,
-          ...(scrollable && {
-            scrollablePlotArea: { minWidth: scrollableMinWidth, scrollPositionX: 0 },
-          }),
+          zooming: { type: 'x', singleTouch: true },
         },
+        ...(scrollable && {
+          scrollablePlotArea: { minWidth: scrollableMinWidth, scrollPositionX: 0 },
+        }),
         xAxis: {
           ...theme.xAxis,
           categories,

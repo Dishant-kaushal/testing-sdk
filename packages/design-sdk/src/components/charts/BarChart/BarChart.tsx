@@ -159,10 +159,11 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
         chart: {
           ...theme.chart,
           type: 'bar',
-          ...(scrollable && {
-            scrollablePlotArea: { minHeight: scrollableMinHeight, scrollPositionY: 0 },
-          }),
+          zooming: { type: 'y', singleTouch: true },
         },
+        ...(scrollable && {
+          scrollablePlotArea: { minHeight: scrollableMinHeight, scrollPositionY: 0 },
+        }),
         xAxis: {
           ...theme.xAxis,
           categories,

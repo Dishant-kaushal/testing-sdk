@@ -31,16 +31,6 @@ export interface ColumnChartProps extends Omit<ChartProps, 'children'> {
      */
     showDataLabels?: boolean;
     /**
-     * Make the plot horizontally scrollable when categories overflow.
-     * @default false
-     */
-    scrollable?: boolean;
-    /**
-     * Minimum plot width (px) when `scrollable` is true.
-     * @default 900
-     */
-    scrollableMinWidth?: number;
-    /**
      * Fires when a column is clicked. Typical use: time drill-down.
      * When set, data points use a pointer cursor to signal interactivity.
      */
@@ -69,6 +59,11 @@ export interface ColumnChartProps extends Omit<ChartProps, 'children'> {
      * Use for threshold zones e.g. warning band 80–90, critical band 90+.
      */
     plotBands?: ChartPlotBand[];
+    /**
+     * Enable drag-to-zoom on the X axis. Disable for read-only dashboards.
+     * @default true
+     */
+    zoomable?: boolean;
     /**
      * Full Highcharts options escape hatch — deep-merged last, after all
      * computed options. Use this to override anything not covered by the props

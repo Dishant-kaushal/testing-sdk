@@ -1,31 +1,30 @@
 import { jsx as d } from "react/jsx-runtime";
-import { forwardRef as b, useMemo as A } from "react";
-import C from "highcharts/esm/highcharts.js";
+import { forwardRef as R, useMemo as b } from "react";
+import A from "highcharts/esm/highcharts.js";
 import "highcharts/esm/highcharts-more.js";
 import "highcharts/esm/modules/solid-gauge.js";
 import l from "highcharts-react-official";
 import { Chart as x } from "../Chart/Chart.js";
-import { useFaclonChartTheme as T, FACLON_CHART_PALETTE_TOKENS as m } from "../Chart/highchartsTheme.js";
+import { useFaclonChartTheme as C, FACLON_CHART_PALETTE_TOKENS as m } from "../Chart/highchartsTheme.js";
 /* empty css                  */
-var c;
-const _ = ((c = l) == null ? void 0 : c.default) ?? l;
-function k(e, r) {
+const T = l.default ?? l;
+function _(e, r) {
   return typeof window > "u" ? r : getComputedStyle(document.documentElement).getPropertyValue(e).trim() || r;
 }
-const p = 24, N = 1, w = p + N, a = (e) => 100 - e * w, u = (e) => a(e) - p, G = b(
+const c = 24, k = 1, N = c + k, a = (e) => 100 - e * N, u = (e) => a(e) - c, w = R(
   ({
     activities: e,
     showLegend: r = !0,
     highchartsOptions: s,
-    ...g
-  }, h) => {
-    const n = T(), f = A(() => {
+    ...p
+  }, g) => {
+    const n = C(), h = b(() => {
       if (!e || e.length === 0)
         return { ...n, chart: { type: "solidgauge" } };
       const i = e.map((t, o) => {
-        const R = m[o % m.length];
-        return k(R, "#e9690c");
-      }), y = i.map(
+        const y = m[o % m.length];
+        return _(y, "#e9690c");
+      }), f = i.map(
         (t) => `color-mix(in srgb, ${t} 30%, transparent)`
       );
       return {
@@ -52,7 +51,7 @@ const p = 24, N = 1, w = p + N, a = (e) => 100 - e * w, u = (e) => a(e) - p, G =
           background: e.map((t, o) => ({
             outerRadius: `${a(o)}%`,
             innerRadius: `${u(o)}%`,
-            backgroundColor: y[o],
+            backgroundColor: f[o],
             borderWidth: 0
           }))
         },
@@ -93,17 +92,17 @@ const p = 24, N = 1, w = p + N, a = (e) => 100 - e * w, u = (e) => a(e) - p, G =
         ...s
       };
     }, [e, n, r, s]);
-    return /* @__PURE__ */ d(x, { ref: h, ...g, children: /* @__PURE__ */ d(
-      _,
+    return /* @__PURE__ */ d(x, { ref: g, ...p, children: /* @__PURE__ */ d(
+      T,
       {
-        highcharts: C,
-        options: f,
+        highcharts: A,
+        options: h,
         containerProps: { className: "fds-activity-gauge" }
       }
     ) });
   }
 );
-G.displayName = "ActivityGauge";
+w.displayName = "ActivityGauge";
 export {
-  G as ActivityGauge
+  w as ActivityGauge
 };

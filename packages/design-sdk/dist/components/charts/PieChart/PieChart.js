@@ -1,44 +1,44 @@
-import { jsx as g } from "react/jsx-runtime";
+import { jsx as u } from "react/jsx-runtime";
 import { forwardRef as C, useMemo as I } from "react";
-import l from "highcharts";
+import g from "highcharts";
 import y from "highcharts-react-official";
 import { Chart as N } from "../Chart/Chart.js";
 import { useFaclonChartTheme as b } from "../Chart/highchartsTheme.js";
 /* empty css             */
 const j = y.default ?? y, M = C(
   ({
-    data: o,
-    showLegend: r = !0,
-    showDataLabels: s = !1,
-    dataLabelFormat: i = "{point.name}: {point.percentage:.1f}%",
+    data: i,
+    showLegend: t = !0,
+    showDataLabels: m = !1,
+    dataLabelFormat: s = "{point.name}: {point.percentage:.1f}%",
     donut: c = !1,
     innerSize: n = "60%",
     startAngle: h = 0,
     endAngle: f = 360,
     allowPointSelect: d = !1,
-    tooltipValueSuffix: t,
+    tooltipValueSuffix: r,
     colors: p,
-    onPointClick: a,
-    highchartsOptions: m,
+    onPointClick: o,
+    highchartsOptions: a,
     ...R
   }, v) => {
     const e = b(), x = I(() => {
       const H = [
         {
           type: "pie",
-          data: o,
+          data: i,
           ...c && { innerSize: n },
           allowPointSelect: d,
           dataLabels: {
-            enabled: s,
-            format: i
+            enabled: m,
+            format: s
           },
-          ...a && {
+          ...o && {
             cursor: "pointer",
             point: {
               events: {
                 click() {
-                  a({
+                  o({
                     name: this.name,
                     value: this.y ?? 0,
                     percentage: this.percentage ?? 0,
@@ -50,7 +50,7 @@ const j = y.default ?? y, M = C(
             }
           }
         }
-      ], u = {
+      ], l = {
         ...e,
         ...p && { colors: p },
         chart: {
@@ -58,42 +58,43 @@ const j = y.default ?? y, M = C(
           type: "pie"
         },
         tooltip: {
-          ...t && { valueSuffix: t }
+          ...e.tooltip,
+          ...r && { valueSuffix: r }
         },
         plotOptions: {
           pie: {
             startAngle: h,
             endAngle: f,
-            showInLegend: r
+            showInLegend: t
           }
         },
         legend: {
           ...e.legend,
-          enabled: r
+          enabled: t
         },
         series: H
       };
-      return m ? l.merge(u, m) : u;
+      return a ? g.merge(l, a) : l;
     }, [
       e,
-      o,
-      r,
-      s,
       i,
+      t,
+      m,
+      s,
       c,
       n,
       h,
       f,
       d,
-      t,
+      r,
       p,
-      a,
-      m
+      o,
+      a
     ]);
-    return /* @__PURE__ */ g(N, { ref: v, ...R, children: /* @__PURE__ */ g(
+    return /* @__PURE__ */ u(N, { ref: v, ...R, children: /* @__PURE__ */ u(
       j,
       {
-        highcharts: l,
+        highcharts: g,
         options: x,
         containerProps: { className: "fds-pie-chart" }
       }

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",
-    "@faclon-labs/design-sdk": "file:./packages/design-sdk",
+    "@faclon-labs/design-sdk": "file:packages/design-sdk",
     "@fontsource-variable/noto-sans": "^5.2.10",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

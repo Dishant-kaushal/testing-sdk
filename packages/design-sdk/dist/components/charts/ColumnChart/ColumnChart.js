@@ -1,11 +1,11 @@
-import { jsx as I } from "react/jsx-runtime";
-import { forwardRef as j, useMemo as F } from "react";
-import z from "highcharts";
-import R from "highcharts-react-official";
-import { Chart as M } from "../Chart/Chart.js";
-import { useFaclonChartTheme as P, readCssVar as A } from "../Chart/highchartsTheme.js";
+import { jsx as z } from "react/jsx-runtime";
+import { forwardRef as F, useMemo as M } from "react";
+import R from "highcharts";
+import A from "highcharts-react-official";
+import { Chart as P } from "../Chart/Chart.js";
+import { useFaclonChartTheme as V, readCssVar as H } from "../Chart/highchartsTheme.js";
 /* empty css                */
-const V = R.default ?? R, $ = j(
+const $ = A.default ?? A, q = F(
   ({
     series: s,
     categories: d,
@@ -19,17 +19,18 @@ const V = R.default ?? R, $ = j(
     yAxisUnit: c,
     plotLines: t,
     plotBands: a,
+    zoomable: g = !0,
     highchartsOptions: i,
-    ...H
-  }, N) => {
-    const r = P(), S = F(() => {
-      var b, v, C;
-      const w = s.map((e) => ({
+    ...N
+  }, S) => {
+    const r = V(), w = M(() => {
+      var v, C, I;
+      const j = s.map((e) => ({
         type: "column",
         name: e.name,
         data: e.data,
         color: e.color
-      })), g = a == null ? void 0 : a.map((e) => ({
+      })), x = a == null ? void 0 : a.map((e) => ({
         from: e.from,
         to: e.to,
         color: e.color ?? "rgba(239,68,68,0.1)",
@@ -40,9 +41,9 @@ const V = R.default ?? R, $ = j(
             align: e.labelAlign ?? "right"
           }
         }
-      })), x = t == null ? void 0 : t.map((e) => ({
+      })), y = t == null ? void 0 : t.map((e) => ({
         value: e.value,
-        color: (e.color ?? A("--border-error-default")) || "#ef4444",
+        color: (e.color ?? H("--border-error-default")) || "#ef4444",
         width: e.width ?? 2,
         dashStyle: e.dashStyle ?? "Dash",
         zIndex: e.zIndex ?? 5,
@@ -50,28 +51,28 @@ const V = R.default ?? R, $ = j(
           label: {
             text: e.label,
             align: e.labelAlign ?? "right",
-            style: { color: (e.color ?? A("--border-error-default")) || "#ef4444" }
+            style: { color: (e.color ?? H("--border-error-default")) || "#ef4444" }
           }
         }
-      })), y = {
+      })), b = {
         ...r,
         ...l && { colors: l },
         chart: {
           ...r.chart,
           type: "column",
-          zooming: { type: "x", singleTouch: !0 }
+          ...g && { zooming: { type: "x", singleTouch: !0 } }
         },
         xAxis: {
           ...r.xAxis,
           categories: d,
-          ...m !== void 0 && { title: { ...(b = r.xAxis) == null ? void 0 : b.title, text: m } }
+          ...m !== void 0 && { title: { ...(v = r.xAxis) == null ? void 0 : v.title, text: m } }
         },
         yAxis: {
           ...r.yAxis,
-          ...n !== void 0 && { title: { ...(v = r.yAxis) == null ? void 0 : v.title, text: n } },
-          ...c && { labels: { ...(C = r.yAxis) == null ? void 0 : C.labels, format: `{value} ${c}` } },
-          ...x && { plotLines: x },
-          ...g && { plotBands: g }
+          ...n !== void 0 && { title: { ...(C = r.yAxis) == null ? void 0 : C.title, text: n } },
+          ...c && { labels: { ...(I = r.yAxis) == null ? void 0 : I.labels, format: `{value} ${c}` } },
+          ...y && { plotLines: y },
+          ...x && { plotBands: x }
         },
         plotOptions: {
           column: {
@@ -99,21 +100,21 @@ const V = R.default ?? R, $ = j(
           ...r.legend,
           enabled: u
         },
-        series: w
+        series: j
       };
-      return i ? z.merge(y, i) : y;
-    }, [r, s, d, h, u, f, o, l, m, n, c, t, a, i]);
-    return /* @__PURE__ */ I(M, { ref: N, ...H, children: /* @__PURE__ */ I(
-      V,
+      return i ? R.merge(b, i) : b;
+    }, [r, s, d, h, u, f, g, o, l, m, n, c, t, a, i]);
+    return /* @__PURE__ */ z(P, { ref: S, ...N, children: /* @__PURE__ */ z(
+      $,
       {
-        highcharts: z,
-        options: S,
+        highcharts: R,
+        options: w,
         containerProps: { className: "fds-column-chart" }
       }
     ) });
   }
 );
-$.displayName = "ColumnChart";
+q.displayName = "ColumnChart";
 export {
-  $ as ColumnChart
+  q as ColumnChart
 };

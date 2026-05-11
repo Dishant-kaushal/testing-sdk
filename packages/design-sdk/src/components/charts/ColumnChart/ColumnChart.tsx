@@ -158,6 +158,7 @@ export const ColumnChart = forwardRef<HTMLDivElement, ColumnChartProps>(
         chart: {
           ...theme.chart,
           type: 'column',
+          zooming: { type: 'x', singleTouch: true },
           ...(scrollable && {
             scrollablePlotArea: { minWidth: scrollableMinWidth, scrollPositionX: 0 },
           }),

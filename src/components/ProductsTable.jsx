@@ -445,10 +445,10 @@ export default function ProductsTable() {
                   <TableCell contentType="actions">
                     <TableRowActions
                       actions={[
-                        { label: 'View',   icon: <Eye size={16} />,    onClick: () => console.log('view', item.id) },
-                        { label: 'Edit',   icon: <Edit2 size={16} />,  onClick: () => console.log('edit', item.id) },
-                        { label: 'Delete', icon: <Trash2 size={16} />, onClick: () => console.log('delete', item.id), isDestructive: true },
-                        { label: 'Share',  icon: <Share2 size={16} />, onClick: () => console.log('share', item.id) },
+                        { key: 'view',   label: 'View',   icon: <Eye size={16} />,    onClick: () => console.log('view', item.id) },
+                        { key: 'edit',   label: 'Edit',   icon: <Edit2 size={16} />,  onClick: () => console.log('edit', item.id) },
+                        { key: 'delete', label: 'Delete', icon: <Trash2 size={16} />, onClick: () => console.log('delete', item.id), isDestructive: true },
+                        { key: 'share',  label: 'Share',  icon: <Share2 size={16} />, onClick: () => console.log('share', item.id) },
                       ]}
                     />
                   </TableCell>

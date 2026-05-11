@@ -46,26 +46,6 @@ export interface AreaChartProps extends Omit<ChartProps, 'children'> {
      */
     showDataLabels?: boolean;
     /**
-     * Make the plot horizontally scrollable when categories overflow.
-     * @default false
-     */
-    scrollable?: boolean;
-    /**
-     * Enable drag-to-zoom on the plot area.
-     * @default false
-     */
-    zoomable?: boolean;
-    /**
-     * Which axis the zoom selection should apply to.
-     * @default 'x'
-     */
-    zoomType?: 'x' | 'y' | 'xy';
-    /**
-     * Minimum plot width (px) when `scrollable` is true.
-     * @default 900
-     */
-    scrollableMinWidth?: number;
-    /**
      * Fires when a data point is clicked. Consumer owns drill-down state.
      */
     onPointClick?: (ctx: ChartPointClickContext) => void;
@@ -91,6 +71,11 @@ export interface AreaChartProps extends Omit<ChartProps, 'children'> {
      * Use for threshold zones e.g. warning band 80–90, critical band 90+.
      */
     plotBands?: ChartPlotBand[];
+    /**
+     * Enable drag-to-zoom on the X axis. Disable for read-only dashboards.
+     * @default true
+     */
+    zoomable?: boolean;
     /**
      * Full Highcharts options escape hatch — deep-merged last after all
      * computed options.
